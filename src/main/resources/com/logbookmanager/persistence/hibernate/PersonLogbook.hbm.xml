@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!-- 
+        Auto-generated mapping file from
+        the hibernate.org cfg2hbm engine
+-->
+    <class name="com.logbookmanager.domain.model.person.PersonLogbook" table="person_logbook" >
+        <id
+            name="id"
+            column="id"
+            type="java.lang.Long"
+            unsaved-value="null"
+        >
+            <generator class="increment">
+            </generator>
+        </id>
+
+		<version name="version" column="version" type="java.lang.Long"/>
+
+        <property name="active" type="java.lang.Boolean" update="true">
+            <column name="ACTIVE" not-null="true" unique="false" default="true"/>
+        </property>
+
+        <property name="lastUpdateTimeStamp" type="java.sql.Timestamp">
+            <column name="LAST_UPDATE_DATE" length="10" not-null="true" unique="false" default="CURRENT_TIMESTAMP"/>
+        </property>
+
+        <property name="name" type="string">
+            <column name="NAME" length="50" />
+        </property>
+                
+        <many-to-one name="logbook" class="com.logbookmanager.domain.model.logbook.Logbook">
+            <column name="LOGBOOK_ID" not-null="true" unique="false"/>
+        </many-to-one>
+        <many-to-one name="person" class="com.logbookmanager.domain.model.person.Person">
+            <column name="PERSON_ID" not-null="true" unique="false" />
+        </many-to-one>
+
+		<set name="logbookDetails" inverse="true" batch-size="0" cascade="save-update" lazy="true">
+			<key>
+				<column name="LOGBOOK_ID" not-null="true" />
+			</key>
+			<one-to-many class="com.logbookmanager.domain.model.person.PersonLogbookDetail" />
+		</set>
+		
+		<set name="userEntries" inverse="true" batch-size="0" cascade="all-delete-orphan" lazy="true">
+			<key>
+				<column name="PERSON_LOGBOOK_ID" not-null="true" />
+			</key>
+			<one-to-many class="com.logbookmanager.domain.model.person.PersonEntry" />
+		</set>
+
+    </class>
+</hibernate-mapping>

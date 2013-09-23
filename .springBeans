@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beansProjectDescription>
+	<version>1</version>
+	<pluginVersion><![CDATA[3.3.0.201307091516-RELEASE]]></pluginVersion>
+	<configSuffixes>
+		<configSuffix><![CDATA[xml]]></configSuffix>
+	</configSuffixes>
+	<enableImports><![CDATA[true]]></enableImports>
+	<configs>
+		<config>src/main/resources/com/logbookmanager/configuration/spring/app-cloud.xml</config>
+		<config>src/main/resources/com/logbookmanager/configuration/spring/app-data.xml</config>
+		<config>src/main/resources/com/logbookmanager/configuration/spring/app-property-configurator.xml</config>
+		<config>src/main/resources/com/logbookmanager/configuration/spring/app-root.xml</config>
+		<config>src/main/resources/com/logbookmanager/configuration/spring/app-security.xml</config>
+		<config>src/main/resources/com/logbookmanager/configuration/spring/app-services.xml</config>
+		<config>src/main/resources/com/logbookmanager/configuration/spring/app-tx.xml</config>
+		<config>src/main/resources/com/logbookmanager/configuration/spring/app-infrastructure.xml</config>
+		<config>src/main/resources/com/logbookmanager/configuration/spring/app-repository.xml</config>
+	</configs>
+	<configSets>
+	</configSets>
+</beansProjectDescription>

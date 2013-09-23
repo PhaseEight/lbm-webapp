@@ -1,0 +1,23 @@
+/*
+	http://www.ampsoft.net/webdesign-l/WindowsMacFonts.html
+	Text: Tahoma, Geneva, sans-serif
+	Strong: Verdana, Verdana, Geneva, sans-serif
+	
+	Lob My Dive - 
+		Dark Blue: rgb(32,64,96)
+		Light Blue: rgb(128, 192, 255)
+*/
+strong em bold {
+	font: Verdana, Verdana, Geneva, sans-serif;
+	font-family: sans-serif;
+}
+
+body {
+	background-color: rgb(32,64,96);
+	color: rgb(64, 192, 255);
+}
+
+h1.site-title {
+	padding-top: 10px;
+	padding-left: 10px;
+}

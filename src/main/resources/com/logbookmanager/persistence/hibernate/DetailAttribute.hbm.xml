@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<!-- 
+		Auto-generated mapping file from
+		the hibernate.org cfg2hbm engine
+	-->
+	<class name="com.logbookmanager.domain.model.logbook.DetailAttribute" table="detail_attribute">
+        <id
+            name="id"
+            column="id"
+            type="java.lang.Long"
+            unsaved-value="null"
+        >
+            <generator class="increment">
+            </generator>
+        </id>
+
+		<version name="version" column="version" type="java.lang.Long"/>
+
+        <property name="active" type="java.lang.Boolean" update="true">
+            <column name="ACTIVE" not-null="true" unique="false" default="true"/>
+        </property>
+
+        <property name="lastUpdateTimeStamp" type="java.sql.Timestamp">
+            <column name="LAST_UPDATE_DATE" length="10" not-null="true" unique="false" default="CURRENT_TIMESTAMP"/>
+        </property>
+
+		<property name="name" type="string">
+			<column name="NAME" not-null="true" unique="true" />
+		</property>
+		<property name="commonName" type="string">
+			<column name="COMMON_NAME" />
+		</property>
+
+		<many-to-one name="detail" class="com.logbookmanager.domain.model.logbook.Detail">
+			<column name="DETAIL_ID" not-null="true" />
+		</many-to-one>
+
+
+		<set name="entryAttributes" inverse="true" lazy="true">
+			<comment>All the Entries which have this Attribute associated with it. This is lazy loaded so ensure less objects to be loaded</comment>
+			<key>
+				<column name="DETAIL_ATTRIBUTE_ID" not-null="true" />
+			</key>
+			<one-to-many class="com.logbookmanager.domain.model.person.EntryAttribute" />
+		</set>
+	</class>
+</hibernate-mapping>

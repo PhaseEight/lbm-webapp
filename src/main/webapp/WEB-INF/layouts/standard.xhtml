@@ -1,0 +1,227 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<f:view contentType="text/html" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:sec="http://www.springframework.org/security/tags"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:lbm="http://www.logbookmanager.com/faces"
+	xmlns:faces="http://www.springframework.org/tags/faces">
+	<h:head>
+		<base
+			href="#{request.requestURL.substring(0, request.requestURL.length() - request.requestURI.length())}#{request.contextPath}/" />
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title><ui:insert name="page-header-title" /> @ Log My Dives</title>
+		<ui:fragment rendered="true">
+			<link rel="icon" type="image/png"
+				href="${request.contextPath}/resources/themes/logmydive/images/favicon.png"
+				target="head" />
+			<link rel="shortcut icon" type="image/png"
+				href="${request.contextPath}/resources/themes/logmydive/images/favicon.png"
+				target="head" />
+		</ui:fragment>
+		<ui:insert name="head-includes" />
+	</h:head>
+	<h:body>
+		<h:outputScript library="primefaces" name="jquery/jquery.js"
+			target="head" />
+		<h:outputScript library="js" name="tipsy/jquery.tipsy.js"
+			target="head" />
+		<h:outputScript library="js" name="logmydive/logmydive.js"
+			target="head" />
+
+		<h:outputStylesheet library="css" name="tipsy/tipsy.css" target="head" />
+		<h:outputStylesheet library="themes" name="logmydive/logmydive.css"
+			target="head" />
+		<h:outputStylesheet library="themes"
+			name="logmydive-light/logmydive.css" target="head" />
+
+
+		<p:layout fullPage="true" stateCookie="true"
+			widgetVar="fullPageLayoutWidget" gutter="0">
+			<p:layoutUnit id="top" position="north" gutter="0">
+				<div id="layout-top">
+					<span class="title"><span id="site-title">#{resourceBundle['site.title']}</span></span>
+					<span class="right"><span id="logout-button"> <p:button
+								id="logoutButton" outcome="logout" value="Logout"
+								rendered="#{request.isUserInRole('ROLE_GUESTUSER')}"
+								ajax="false">
+								<f:param name="logout" value="1" />
+							</p:button>
+					</span> </span> <span class="right"><span id="login-button"> 
+					
+					<p:commandButton 
+								id="topLoginButton" 
+								value="login" 
+								ajax="false" 
+								onclick="PF('loginDialog').show();"
+								type="button"
+								rendered="#{!request.isUserInRole('ROLE_GUESTUSER')}"
+								/>
+							
+					</span> </span>
+				</div>
+			</p:layoutUnit>
+
+		<h:outputScript>
+			$(function() {
+				// change the action of the form to use Spring Security Login Target
+				$('#logoutButton').on('click', function() {
+	     			window.open('#{request.contextPath}#{request.servletPath}/logout','_self');
+	     		});
+			});
+		</h:outputScript>
+			<p:layoutUnit id="left" position="west" size="300" resizable="false"
+				closable="true" collapsible="true" header="Options" minSize="200">
+				<p:accordionPanel>
+					<p:tab title="Menu 1">
+						<br />
+						<p:calendar mode="inline" navigator="none" />
+						<br />
+					</p:tab>
+
+					<p:tab title="Menu 2">
+						<h:outputText value="Menu 2 Content" />
+					</p:tab>
+
+					<p:tab title="Menu 3">
+						<h:outputText value="Menu 3 Content" />
+					</p:tab>
+				</p:accordionPanel>
+			</p:layoutUnit>
+
+			<p:layoutUnit id="right" position="east" size="250" header="Gallery"
+				resizable="true" closable="true" collapsible="true">
+
+				<p:lightBox style="text-align:center;margin-top:20px;">
+					<h:outputLink value="#{request.contextPath}/images/nature1.jpg"
+						title="Nature 1" style="margin-bottom:5px;">
+						<h:graphicImage value="/images/nature1_small.jpg" />
+					</h:outputLink>
+
+					<h:outputLink value="#{request.contextPath}/images/nature2.jpg"
+						title="Nature 2" style="margin-bottom:2px;">
+						<h:graphicImage value="/images/nature2_small.jpg" />
+					</h:outputLink>
+
+					<h:outputLink value="#{request.contextPath}/images/nature3.jpg"
+						title="Nature 3" style="margin-bottom:2px;">
+						<h:graphicImage value="/images/nature3_small.jpg" />
+					</h:outputLink>
+
+					<h:outputLink value="#{request.contextPath}/images/nature4.jpg"
+						title="Nature 4" style="margin-bottom:2px;">
+						<h:graphicImage value="/images/nature4_small.jpg" />
+					</h:outputLink>
+				</p:lightBox>
+
+				<p:commandButton id="basic" value="Show Dialog"
+					onclick="PF('dlg').show();" type="button" style="margin-top:10px" />
+
+			</p:layoutUnit>
+
+			<p:layoutUnit id="bottom" position="south" size="50">
+				<div class="title">footer, goes here...</div>
+			</p:layoutUnit>
+
+			<p:layoutUnit id="center" position="center">
+				<div id="main-content">
+					<lbm:menu />
+
+					<ui:insert name="content" />
+				</div>
+			</p:layoutUnit>
+
+		</p:layout>
+
+		<h:form id="autoLogoutWarningForm">
+			<p:growl id="idleMessage" showDetail="true" sticky="true" />
+			<!-- If idle 10 seconds, run 'idleDialog' -->
+			<p:idleMonitor id="idleMonitor"
+				timeout="#{idleMonitorController.permittedIdleTimeMillis}"
+				onidle="PF('idleDialog').show()"
+				rendered="#{request.isUserInRole('ROLE_GUESTUSER')}" />
+
+			<p:confirmDialog id="idleConfirmDialog"
+				message="You have been idle for #{idleMonitorController.permittedIdleTimeSeconds} seconds, 
+                            Please click ok to continue."
+				header="Are you there?" severity="alert" widgetVar="idleDialog">
+				<p:commandButton id="confirmButton" value="Ok" update="idleMessage"
+					oncomplete="PF('idleDialog').hide()"
+					actionListener="#{idleMonitorController.welcomeListener}"
+					alt="Keep me logged in" />
+				<p:commandButton id="logoutButton" value="Log out"
+					update="idleMessage" oncomplete="PF('idleDialog').hide()"
+					actionListener="#{idleMonitorController.logoutListener}"
+					accesskey="l" alt="Log me out" />
+			</p:confirmDialog>
+		</h:form>
+
+		<c:if test="${not empty param.login_error}">
+			<c:set var="username"
+				value="${sessionScope.SPRING_SECURITY_LAST_USERNAME}" />
+			<c:set var="errorMessage" value="#{resourceBundle['login.error']}" />
+		</c:if>
+		<c:otherwise>
+			<c:set var="username" value="${request.userPrincipal.name}" />
+		</c:otherwise>
+
+		<p:dialog id="dialog" header="Login" widgetVar="loginDialog"
+			resizable="false">
+			<div id="login-form-wrapper">
+				<div id="login-form-container">
+					<h:form id="loginForm" name="loginForm"
+						action="#{request.contextPath}#{request.servletPath}/doLogin"
+						method="post">
+						<p:fieldset role="login" legend="Login Information"
+							id="login-fields">
+							<div id="login-username">
+								<span id="login-username-label"><label for="j_username">Username:</label></span>
+								<span id="login-username-input"><input type="text"
+									name="j_username" value="#{username}" class="ui-widget"
+									title="Your Username is Case Sensitive" size="25" /></span>
+							</div>
+
+							<div id="login-password">
+								<span id="login-password-label"><label for="j_password">Password:</label></span>
+								<span id="login-password-input"><input type="password"
+									id="j_password" name="j_password" class="ui-widget"
+									title="Your Password is Case Sensitive." size="25" /></span>
+							</div>
+
+							<div id="login-button">
+								<span id="login-remember-me"><input type="checkbox"
+									name="_spring_security_remember_me" class="ui-widget" />
+									Remember me for two weeks.</span> <span id="loginButton"><p:commandButton
+										value="Login" id="loginButton"
+										actionListener="#{defaultCommandBean.btn1Submit}" ajax="false" /></span>
+							</div>
+						</p:fieldset>
+					</h:form>
+				</div>
+			</div>
+		</p:dialog>
+		<c:set var="loginFormAction"
+			value="#{request.contextPath}#{request.servletPath}/doLogin"></c:set>
+		<h:outputScript>
+			$(function() {
+				// change the action of the form to use Spring Security Login Target
+				$('#loginForm\\:loginButton').on('click', function() {
+	     			$('#loginForm').attr('action', '#{loginFormAction}');
+	     		});
+			
+				//work around JSF form action and go straight to Spring Security URL
+				$('#loginForm [title]').tipsy({
+					trigger : 'focus',
+					gravity : 'w'
+				});
+			});
+		</h:outputScript>
+
+
+
+	</h:body>
+</f:view>
+</html>

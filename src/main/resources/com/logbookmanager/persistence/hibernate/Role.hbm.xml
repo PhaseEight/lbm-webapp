@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.logbookmanager.domain.model.security.Role" table="SEC_ROLE">
+
+		<id name="id" type="java.lang.Long" unsaved-value="null">
+			<column name="ID" />
+			<generator class="increment" />
+        </id>
+
+		<natural-id mutable="false">
+			<property name="name" column="name" type="java.lang.String"
+				length="20" />
+		</natural-id>
+
+		<version name="version" column="version" type="java.lang.Long"
+			unsaved-value="negative" />
+
+		<property name="description" type="java.lang.String" update="true"
+			insert="true" column="description" />
+
+        <property name="active" type="java.lang.Boolean" update="true">
+            <column name="ACTIVE" not-null="true" unique="false" default="true"/>
+        </property>
+
+        <property name="lastUpdateTimeStamp" type="java.sql.Timestamp" update="true">
+            <column name="LAST_UPDATE_DATE" length="10" not-null="true" unique="false" default="CURRENT_TIMESTAMP"/>
+        </property>
+       
+		<set name="users" table="sec_user_role" lazy="false" cascade="save-update,delete"
+			inverse="true" fetch="join">
+			<key column="role_id" />
+			<many-to-many class="com.logbookmanager.domain.model.security.User"
+				column="user_id" />
+		</set>
+
+	</class>
+</hibernate-mapping>

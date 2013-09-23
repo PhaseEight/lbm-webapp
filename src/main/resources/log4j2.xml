@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<log4j:configuration status="warn" monitorInterval="600">
+	<appenders>
+		<File name="file" fileName="c:/weblogs/admin-webapp.log" append="false">
+			<PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
+		</File>
+		<Console name="stdout" target="SYSTEM_OUT">
+			<PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
+		</Console>
+	</appenders>
+	<loggers>
+		<logger name="org.apache.log4j.xml" level="warn">
+			<appender-ref ref="file" />
+		</logger>
+
+		<!-- Application Loggers -->
+		<logger name="com.logbookmanager" level="warn" >
+			<appender-ref ref="stdout" />
+		</logger>
+
+		<logger name="com.logbookmanager.controller" level="warn" >
+		</logger>
+
+		<!-- 3rdparty Loggers -->
+		<logger name="org.springframework.core.env.StandardEnvironment" level="warn" >
+		</logger>
+
+		<logger name="org.springframework" level="warn" >
+		</logger>
+
+		<logger name="org.springframework.jndi" level="warn" >
+		</logger>
+
+		<logger name="org.springframework.ui" level="warn" >
+		</logger>
+
+		<logger name="org.springframework.core" level="warn" >
+		</logger>
+
+		<logger name="org.springframework.beans" level="warn" >
+		</logger>
+
+		<logger name="org.springframework.beans.factory" level="warn" >
+		</logger>
+
+		<logger name="org.springframework.beans.factory.xml.XmlBeanDefinitionReader" level="warn" >
+		</logger>
+
+
+
+		<logger name="org.springframework.test" level="warn" >
+		</logger>
+
+
+		<logger name="org.springframework.context" level="warn" >
+		</logger>
+
+		<logger name="org.springframework.web" level="warn" >
+		</logger>
+
+		<logger name="org.springframework.security" level="warn" >
+		</logger>
+
+		<logger name="net.sf.ehcache" level="warn" >
+		</logger>
+
+		<logger name="org.springframework.jdbc" level="warn" >
+		</logger>
+
+		<logger name="org.springframework.jdbc" level="warn" >
+		</logger>
+
+		<logger name="com.mchange.v2" level="warn" >
+		</logger>
+
+		<logger name="org.apache.commons.beanutils" level="warn" >
+		</logger>
+
+		<logger name="org.apache.catalina" level="warn" >
+		</logger>
+
+		<logger name="org.hibernate.SQL" level="warn" >
+		</logger>
+
+		<logger name="org.hibernate.type" level="warn" >
+		</logger>
+
+		<logger name="TableMetadata" level="warn" >
+		</logger>
+
+		<logger name="org.hibernate.loader.Loader" level="warn" >
+		</logger>
+
+
+		<logger name="org.hibernate.cfg.HbmBinder" level="warn" >
+		</logger>
+
+		<logger name="org.hibernate.cfg.CollectionSecondPass" level="warn" >
+		</logger>
+
+		<logger name="org.hibernate" level="warn" >
+		</logger>
+
+		<logger name="org.jboss.logging" level="warn" >
+		</logger>
+
+		<!-- Root Logger -->
+		<root level="warn">
+			<appender-ref ref="stdout" />
+		</root>
+	</loggers>
+</log4j:configuration>

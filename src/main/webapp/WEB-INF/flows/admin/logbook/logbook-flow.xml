@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/webflow
+        http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd"
+	start-state="start">
+	<secured attributes="ROLE_LOGBOOKUSER" match="any" />
+
+	<!-- 
+	• On flow start
+	• On state entry
+	• On view render
+	• On transition execution
+	• On state exit
+	• On flow end
+ 	-->
+	
+	<view-state id="start" popup="false" redirect="false" view="manageLogbooks.xhtml">
+		<transition on="submit" to="reviewLogbook" />
+	</view-state>
+
+	<view-state id="reviewLogbook">
+		<transition on="confirm" to="logbookConfirmed" />
+		<transition on="revise" to="enterLogbookDetails" />
+		<transition on="cancel" to="logbookCancelled" />
+	</view-state>
+
+	<end-state id="logbookConfirmed" />
+	<end-state id="logbookCancelled" />
+
+
+</flow>

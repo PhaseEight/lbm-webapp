@@ -1,0 +1,103 @@
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:security="http://www.springframework.org/schema/security" xmlns:p="http://www.springframework.org/schema/p"
+
+	xsi:schemaLocation="
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+			http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.2.xsd
+	">
+	<description><![CDATA[
+		Main entry point for spring security configuration
+	]]></description>
+
+	<import resource="app-data.xml" />
+
+<!-- 
+	<security:debug />
+ -->
+	<!-- ======================== AUTHENTICATION ======================= -->
+	<!-- Read users from database -->
+	<bean name="ulmEhCacheMgr" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+		<property name="configLocation">
+			<value>classpath:com/logbookmanager/configuration/ehcache-security.xml</value>
+		</property>
+	</bean>
+	<bean name="ulmUserCacheFB" class="org.springframework.cache.ehcache.EhCacheFactoryBean">
+		<property name="cacheManager">
+			<ref bean="ulmEhCacheMgr" />
+		</property>
+		<property name="cacheName">
+			<value>securityUserCache</value>
+		</property>
+	</bean>
+	<bean id="securityUserCache" class="org.springframework.security.core.userdetails.cache.EhCacheBasedUserCache">
+		<property name="cache" ref="ulmUserCacheFB" />
+	</bean>
+
+	<!-- Automatically receives AuthenticationEvent messages -->
+	<bean id="loggerListener" class="org.springframework.security.authentication.event.LoggerListener">
+		<property name="logInteractiveAuthenticationSuccessEvents" value="true"></property>
+	</bean>
+
+	<security:global-method-security secured-annotations="enabled" pre-post-annotations="enabled" />
+
+	<bean id="webexpressionHandler" class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler" />
+
+	<!-- Secure per URL pattern com.logbookmanager.service.UserManager.findAll=ROLE_ADMIN com.logbookmanager.service.UserManager.removeUser=ROLE_ADMIN 
+		If we want to add our own filters, we do it as documented at: http://static.springsource.org/spring-security/site/docs/3.1.x/reference/ns-config.html -->
+	<security:http security="none" pattern="/app/resources/**" />
+	<security:http security="none" pattern="/app/javax.faces.resource/**" />
+
+	<security:http auto-config="false" create-session="ifRequired" authentication-manager-ref="authenticationManager"
+		request-matcher="ant" use-expressions="true">
+
+		<security:remember-me services-alias="rememberMeService" data-source-ref="dataSource"
+			token-validity-seconds="86400" />
+
+		<security:intercept-url pattern="/app/logout*" access="permitAll" />
+		<security:intercept-url pattern="/app/session-timeout*" access="permitAll" />
+
+		<security:intercept-url pattern="/app/main" access="hasRole('ROLE_LOGBOOKUSER')" />
+
+		<!-- A user will always go to default-target-url on successful login -->
+		<security:form-login password-parameter="j_password" username-parameter="j_username"
+			always-use-default-target="false" authentication-failure-url="/app/welcome?login_error=1" login-processing-url="/app/doLogin"
+			login-page="/app/welcome" default-target-url="/app/main" />
+		<security:logout delete-cookies="JSESSIONID" logout-success-url="/app/welcome?logout_success=1" logout-url="/app/logout"
+			invalidate-session="true" />
+
+		<security:port-mappings>
+			<security:port-mapping http="8080" https="8443" />
+		</security:port-mappings>
+
+		<security:session-management invalid-session-url="/app/welcome">
+			<security:concurrency-control max-sessions="1" />
+		</security:session-management>
+		<security:anonymous enabled="true" username="guest" granted-authority="ROLE_GUESTUSER" />
+	</security:http>
+
+	<bean id="remoteUserFilter" class="org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter" />
+
+
+	<security:authentication-manager alias="authenticationManager" erase-credentials="false">
+		<security:authentication-provider>
+			<security:jdbc-user-service id="jdbcUserService" data-source-ref="dataSource" cache-ref="securityUserCache"
+				authorities-by-username-query="SELECT su.username, 'ROLE_' || UPPER(sr.name) FROM
+			sec_user_role sur, sec_user su,
+			sec_role sr
+			WHERE
+			su.ID = sur.user_ID
+			AND
+			sur.role_ID = sr.ID
+			AND
+			su.username = ?"
+				users-by-username-query="SELECT username, password, active FROM sec_user
+			WHERE username=?" />
+		</security:authentication-provider>
+	</security:authentication-manager>
+
+
+	<bean id="roleVoter" class="org.springframework.security.access.vote.RoleVoter">
+		<property name="rolePrefix" value="" />
+	</bean>
+
+</beans>

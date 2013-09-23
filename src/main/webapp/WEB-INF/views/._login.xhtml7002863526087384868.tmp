@@ -1,0 +1,61 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/WEB-INF/layouts/standard.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:faces="http://www.springframework.org/tags/faces"
+	xmlns:sec="http://www.springframework.org/security/tags"
+	xmlns:lbm="http://www.logbookmanager.com/faces">
+	<ui:debug hotkey="x" />
+
+
+	<ui:define name="page-title">Login</ui:define>
+
+	<ui:define name="page-overview">
+	</ui:define>
+	<ui:define name="content">
+		<p:panel header="Login">
+			<c:if test="${param.login_error eq 1}">
+				<div class="ui-state-error">
+					<span class="ui-icon ui-icon-alert"
+						style="float: left; margin-right: .3em;"></span><strong>#{sessionScope.SPRING_SECURITY_LAST_EXCEPTION.message}</strong>
+					- Invalid User ID or Password.<br />The User ID and Password
+					fields are case sensitive. Check if "Caps Lock" is on.<br />
+				</div>
+			</c:if>
+			<form name="f" action="${request.contextPath}/app/login.do"
+				method="post">
+				<fieldset role="login">
+					<legend>Login Information</legend>
+					<p>
+						User ID: <br />
+						<c:if test="${not empty param.login_error}">
+							<c:set var="username"
+								value="${sessionScope.SPRING_SECURITY_LAST_USERNAME}" />
+						</c:if>
+						<input type="text" name="j_username" value="#{username}" />
+					</p>
+					<p>
+						Password: <br /> <input type="password" name="j_password" />
+
+					</p>
+					<p>
+						<input type="checkbox" name="_spring_security_remember_me" />
+						Don't ask for my password for two weeks:
+					</p>
+
+					<button id="button"
+						class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
+						role="button" aria-disabled="false">
+						<span class="ui-button-text">Log in</span>
+					</button>
+
+				</fieldset>
+			</form>
+		</p:panel>
+	</ui:define>
+
+</ui:composition>

@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<!-- Auto-generated mapping file from the hibernate.org cfg2hbm engine -->
+	<class name="com.logbookmanager.domain.model.Country" table="country">
+		<id name="id" column="id" type="java.lang.Long" unsaved-value="null">
+			<generator class="increment">
+			</generator>
+		</id>
+
+		<natural-id>
+			<property name="ansiCode" type="string">
+				<column name="ANSI_CODE" length="3" unique="true" />
+			</property>
+
+		</natural-id>
+
+		<version name="version" column="version" type="java.lang.Long" />
+
+		<property name="active" type="java.lang.Boolean" update="true">
+			<column name="ACTIVE" not-null="true" unique="false" default="true" />
+		</property>
+
+		<property name="lastUpdateTimeStamp" type="java.sql.Timestamp">
+			<column name="LAST_UPDATE_DATE" length="10" not-null="true"
+				unique="false" default="CURRENT_TIMESTAMP" />
+		</property>
+
+		<property name="displayName" type="string">
+			<column name="DISPLAY_NAME" unique="true" />
+		</property>
+
+		<set name="organisationCountries" inverse="true" batch-size="0"
+			lazy="true" cascade="all-delete-orphan">
+			<key column="COUNTRY_ID" />
+			<one-to-many
+				class="com.logbookmanager.domain.model.organisation.OrganisationCountry"></one-to-many>
+		</set>
+
+	</class>
+</hibernate-mapping>
