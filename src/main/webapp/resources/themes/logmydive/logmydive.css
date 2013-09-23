@@ -24,6 +24,16 @@ body {
 	height: auto;
 }
 
+#layout-top {
+	display: inline-block;
+	width: 100%;
+	margin: 0px auto;
+	padding: 0px;
+	border: 0px dashed #333;
+	background-color: #fff;
+	height: auto;
+}
+
 #site-menu {
 	width: 100%;
 	margin: 0px auto;
@@ -34,14 +44,14 @@ body {
 
 #site-title {
 	display: inline-block;
-	width: 98%;
+	width: 100%;
 	padding-top: 2px;
 	padding-left: 2px;
 	position: relative;
 	overflow: hidden;
 	vertical-align: middle;
 	text-align: left;
-	white-space: nowrap;
+	white-space: pre;
 }
 
 .title {
@@ -49,6 +59,7 @@ body {
 	display: inline-block;
 	font-size: x-large;
 	overflow: hidden; 
+	white-space: nowrap;
 }
 
 .ui-dashboard .ui-dashboard-column div.ui-state-hover {

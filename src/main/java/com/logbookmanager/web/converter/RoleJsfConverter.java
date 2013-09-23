@@ -8,6 +8,7 @@
  */
 package com.logbookmanager.web.converter;
 
+
 import javax.faces.bean.ApplicationScoped;
 
 import org.springframework.beans.factory.annotation.Autowired;
