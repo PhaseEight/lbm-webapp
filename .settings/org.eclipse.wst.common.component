@@ -4,9 +4,9 @@
         <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
-        <property name="context-root" value="/lbm"/>
         <property name="java-output-path" value="/admin/target/classes"/>
         <property name="component.inclusion.patterns" value="WEB-INF/lib/*.jar,**/*.xml,**/*.properties,**/*.class,**/*.png,**/*.css,**/*.js,**/*.xhtml,**/*."/>
         <property name="component.exclusion.patterns" value="**/resources/**/*.css,**/resources/**/*.js,WEB-INF/lib/terracotta-toolkit*.jar"/>
+        <property name="context-root" value="/web"/>
     </wb-module>
 </project-modules>

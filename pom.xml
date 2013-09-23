@@ -10,7 +10,7 @@
 		<maven>3.1.0</maven>
 	</prerequisites>
 	<properties>
-		<m2eclipse.wtp.contextRoot>/lbm</m2eclipse.wtp.contextRoot>
+		<m2eclipse.wtp.contextRoot>/web</m2eclipse.wtp.contextRoot>
 		<javassist-version>3.18.0-GA</javassist-version>
 		<springframework-version>3.2.4.RELEASE</springframework-version>
 		<spring-security-version>3.2.0.M2</spring-security-version>
