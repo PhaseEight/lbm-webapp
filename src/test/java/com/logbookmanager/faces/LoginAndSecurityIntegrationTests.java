@@ -9,7 +9,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -20,6 +22,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.binding.message.MessageContext;
+import org.springframework.faces.webflow.FlowFacesContext;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
@@ -47,6 +51,16 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.request.ServletWebRequest;
 import org.springframework.web.util.NestedServletException;
+import org.springframework.webflow.context.ExternalContext;
+import org.springframework.webflow.core.collection.MutableAttributeMap;
+import org.springframework.webflow.core.collection.ParameterMap;
+import org.springframework.webflow.definition.FlowDefinition;
+import org.springframework.webflow.definition.StateDefinition;
+import org.springframework.webflow.definition.TransitionDefinition;
+import org.springframework.webflow.execution.Event;
+import org.springframework.webflow.execution.FlowExecutionContext;
+import org.springframework.webflow.execution.RequestContext;
+import org.springframework.webflow.execution.View;
 
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
 
@@ -66,7 +80,7 @@ import com.github.springtestdbunit.DbUnitTestExecutionListener;
  * @see https://cwiki.apache.org/confluence/display/MFTEST/Index
  * @author Peter
  */
-public class LoginAndSecurityIntegrationTests extends org.apache.myfaces.test.base.junit4.AbstractJsfConfigurableMockTestCase {
+public class LoginAndSecurityIntegrationTests extends org.apache.myfaces.test.base.junit4.AbstractJsfTestCase {
 
 	@Autowired
 	WebApplicationContext wac; // cached
@@ -97,8 +111,10 @@ public class LoginAndSecurityIntegrationTests extends org.apache.myfaces.test.ba
 		mockMvc = webAppContextSetup(wac).alwaysDo(print())
 				.defaultRequest(get("/web/app").accept(MediaType.APPLICATION_FORM_URLENCODED)).addFilter(springSecurityFilterChain)
 				.build();
-
-	}
+		
+	}		
+		
+		
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -207,5 +223,24 @@ public class LoginAndSecurityIntegrationTests extends org.apache.myfaces.test.ba
 				.perform(get("/web/app/admin/logbook").contextPath("/web").servletPath("/app").session(session).principal(authToken))
 				.andExpect(status().is(403)).andExpect(redirectedUrl(null));
 	}
+	
 
+	// Test behavior of select() with an invalid value
+	@Test
+	public void testSelectInvalid() {
+	 
+	    Locale locale = new Locale("en");
+	    facesContext.getViewRoot().setLocale(locale);
+	    org.junit.Assert.assertEquals(locale, facesContext.getViewRoot().getLocale());
+	}
+
+	protected class Select {
+		
+		public Select(){}
+		
+	}
+	
+	
 }
+
+
