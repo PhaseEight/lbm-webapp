@@ -1,12 +1,16 @@
-<facelet-taglib 
-	xmlns="http://java.sun.com/xml/ns/javaee"
+<facelet-taglib xmlns="http://java.sun.com/xml/ns/javaee"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facelettaglibrary_2_0.xsd" 
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facelettaglibrary_2_0.xsd"
 	version="2.0">
 	<namespace>http://www.logbookmanager.com/faces</namespace>
 	<tag>
 		<tag-name>dashboard</tag-name>
 		<source>dashboard/dashboard.xhtml</source>
+		<attribute>
+			<description>Unique identifier in for the underlying dashboard component. This id is also used to build the label id etc.</description>
+			<name>id</name>
+			<required>true</required>
+		</attribute>
 	</tag>
 
 	<tag>
@@ -53,7 +57,7 @@
 			<required>true</required>
 		</attribute>
 	</tag>
-		<tag>
+	<tag>
 		<tag-name>inputMultiAutoComplete</tag-name>
 		<source>autocomplete/inputMultiAutoComplete.xhtml</source>
 	</tag>

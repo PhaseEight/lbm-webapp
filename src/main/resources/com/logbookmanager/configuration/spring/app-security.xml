@@ -59,7 +59,7 @@
 		<security:intercept-url pattern="/app/admin/*" access="hasRole('ROLE_ADMIN')" />
 
 		<!-- A user will always go to default-target-url on successful login -->
-		<security:form-login password-parameter="j_password" username-parameter="j_username"
+		<security:form-login password-parameter="loginForm:j_password" username-parameter="loginForm:j_username"
 			always-use-default-target="false" authentication-failure-url="/app/welcome?login_error=1" login-processing-url="/app/doLogin"
 			login-page="/app/welcome" default-target-url="/app/main" />
 		<security:logout delete-cookies="JSESSIONID" logout-success-url="/app/welcome?logout_success=1" logout-url="/app/logout"
@@ -94,10 +94,5 @@
 			WHERE username=?" />
 		</security:authentication-provider>
 	</security:authentication-manager>
-
-
-	<bean id="roleVoter" class="org.springframework.security.access.vote.RoleVoter">
-		<property name="rolePrefix" value="" />
-	</bean>
 
 </beans>

@@ -41,12 +41,10 @@
 
 		<p:layout fullPage="true" stateCookie="true"
 			widgetVar="fullPageLayoutWidget" gutter="0">
-			<p:layoutUnit id="top" position="north" gutter="0">
+			<p:layoutUnit id="top-panel" position="north" gutter="0">
 				<div id="layout-top">
 					<h:form id="topLoginLogoutForm">
-
 						<span class="title"><span id="site-title">#{resourceBundle['site.title']}</span></span>
-
 						<span class="right"> <span id="logout-button"> <p:commandButton
 									id="topLogoutButton" value="logout" ajax="false"
 									onclick="window.open('#{request.contextPath}#{request.servletPath}/logout','_self');"
@@ -66,36 +64,35 @@
 				</div>
 
 			</p:layoutUnit>
-			<p:layoutUnit id="left" position="west" size="300" resizable="false"
-				closable="true" collapsible="true" header="Options" minSize="200">
+			<p:layoutUnit id="left" position="west" size="315" resizable="false"
+				closable="true" collapsible="true" header="Options" minSize="200" collapsed="false">
 
 				<h:form id="leftAccordionMenu">
-					<p:accordionPanel>
-						<p:tab title="My Dives">
-						<br/>
-							<p:calendar id="myDivesCalendar" 
-							mode="inline" navigator="none" />
-							
-							<br/>
-					
+					<p:accordionPanel id="leftPanelMenu">
+						<p:tab id="accordionMyDives" title="My Dives">
+							<br />
+							<!-- TODO: create DivesCalendar component -->
+							<p:calendar id="myDivesCalendar" mode="inline" navigator="none" />
+							<br />
 						</p:tab>
 
-						<p:tab title="My Dive Sites">
+						<p:tab id="accordionMyDiveSites" title="My Dive Sites">
+							<!-- TODO: create DiveSites component -->
 							<h:outputText
 								value="See what's been happening at your favourite dive sites." />
 						</p:tab>
 
-						<p:tab title="My Dive Centres">
+						<p:tab id="accordionMyDiveCentres" title="My Dive Centres">
 							<h:outputText
 								value="See what the dive centres friends have been doing." />
 						</p:tab>
 
-						<p:tab title="My Kit">
+						<p:tab id="accordionMyDiveKit" title="My Dive Kit">
 							<h:outputText
 								value="View and manage your dive kit configurations" />
 						</p:tab>
 
-						<p:tab title="Dive Feeds">
+						<p:tab id="accordionDiveFeeds" title="Dive Feeds">
 							<h:outputText
 								value="See where everyone has been diving; filter by friends, family and dive centres" />
 						</p:tab>
@@ -179,6 +176,9 @@
 			<c:set var="username" value="${request.userPrincipal.name}" />
 		</c:otherwise>
 
+		<c:set var="loginFormAction"
+			value="#{request.contextPath}#{request.servletPath}/doLogin"></c:set>
+			
 		<p:dialog id="dialog" header="Login" widgetVar="loginDialog"
 			resizable="false">
 			<div id="login-form-wrapper">
@@ -190,40 +190,44 @@
 							id="login-fields">
 							<div id="login-username">
 								<span id="login-username-label"><label for="j_username">Username:</label></span>
-								<span id="login-username-input"><input type="text"
+								<span id="login-username-input"> <p:inputText type="text"
+										id="j_username" value="#{username}" size="25"
+										title="Your Username is Case Sensitive" /> <!-- 
+								<input type="text"
 									name="j_username" value="#{username}" class="ui-widget"
-									title="Your Username is Case Sensitive" size="25" /></span>
+									title="Your Username is Case Sensitive" size="25" />
+									 -->
+								</span>
 							</div>
 
 							<div id="login-password">
 								<span id="login-password-label"><label for="j_password">Password:</label></span>
-								<span id="login-password-input"><input type="password"
+								<span id="login-password-input"> <p:inputText
+										type="password" id="j_password" value="" size="25"
+										title="Your Password is Case Sensitive." /> <!-- 
+								<input type="password"
 									id="j_password" name="j_password" class="ui-widget"
-									title="Your Password is Case Sensitive." size="25" /></span>
+									title="Your Password is Case Sensitive." size="25" />
+									 -->
+								</span>
 							</div>
 
 							<div id="login-button">
 								<span id="login-remember-me"><input type="checkbox"
 									name="_spring_security_remember_me" class="ui-widget" />
 									Remember me for two weeks.</span> <span id="loginButton"><p:commandButton
-										value="Login" id="loginButton"
-										actionListener="#{defaultCommandBean.btn1Submit}" ajax="false" /></span>
+										value="Login" id="loginButton" onclick="$('#loginForm').attr('action', '#{loginFormAction}'); return true;"
+										
+										 ajax="false" /></span>
 							</div>
 						</p:fieldset>
 					</h:form>
 				</div>
 			</div>
 		</p:dialog>
-		<c:set var="loginFormAction"
-			value="#{request.contextPath}#{request.servletPath}/doLogin"></c:set>
 		<h:outputScript>
 			$(function() {
-				// change the action of the form to use Spring Security Login Target
-				$('#loginForm\\:loginButton').on('click', function() {
-	     			$('#loginForm').attr('action', '#{loginFormAction}');
-	     		});
-			
-				//work around JSF form action and go straight to Spring Security URL
+				// add tipsy to the loginForm input boxes
 				$('#loginForm [title]').tipsy({
 					trigger : 'focus',
 					gravity : 'w'
@@ -231,6 +235,11 @@
 			});
 		</h:outputScript>
 
+		<p:dialog modal="true" widgetVar="statusDialog" header="Saving"
+			draggable="false" closable="false" resizable="false">
+			<p:graphicImage
+				value="/resources/themes/logmydive/images/ajaxloadingbar.gif" />
+		</p:dialog>
 
 
 	</h:body>
