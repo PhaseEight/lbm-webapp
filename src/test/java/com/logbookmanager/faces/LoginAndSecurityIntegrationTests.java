@@ -2,6 +2,7 @@ package com.logbookmanager.faces;
 
 import static org.junit.Assert.assertNotNull;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -59,7 +60,9 @@ import com.github.springtestdbunit.DbUnitTestExecutionListener;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 @TestExecutionListeners({ ServletTestExecutionListener.class, DependencyInjectionTestExecutionListener.class,
 		DirtiesContextTestExecutionListener.class, TransactionalTestExecutionListener.class, DbUnitTestExecutionListener.class })
-public class LoginAndSecurityIntegrationTests {
+
+//https://cwiki.apache.org/confluence/display/MFTEST/Configure+MyFaces+Test+using+Maven
+public class LoginAndSecurityIntegrationTests extends org.apache.myfaces.test.base.junit4.AbstractJsfConfigurableMockTestCase {
 
 	@Autowired
 	WebApplicationContext wac; // cached
@@ -111,8 +114,6 @@ public class LoginAndSecurityIntegrationTests {
 	@Test
 	public void getLoginView() throws Exception {
 
-		session.clearAttributes();
-
 		try {
 			this.mockMvc.perform(get("/web/app/welcome").contextPath("/web").servletPath("/app")).andExpect(status().isOk())
 					.andExpect(view().name("app/welcome"));
@@ -123,9 +124,28 @@ public class LoginAndSecurityIntegrationTests {
 				throw e;
 			}
 		}
-
 	}
 
+	@Test
+	public void doLogin() throws Exception {
+
+		this.mockMvc
+				.perform(
+						post("/web/app/doLogin").param("loginForm:j_username", "peterneil").param("loginForm:j_password", "password")
+								.contextPath("/web").servletPath("/app")).andExpect(status().is(302))
+				.andExpect(redirectedUrl("/web/app/main"));
+	}
+
+	@Test
+	public void doLoginWithInvalidCredentials() throws Exception {
+
+		this.mockMvc
+				.perform(
+						post("/web/app/doLogin").param("loginForm:j_username", "loginerrorusername").param("loginForm:j_password", "password")
+								.contextPath("/web").servletPath("/app")).andExpect(status().is(302))
+				.andExpect(redirectedUrl("/web/app/welcome?login_error=1"));
+	}
+	
 	@Test
 	public void getUnauthenticatedMainViewReturnsWelcomeUrl() throws Exception {
 
@@ -136,6 +156,10 @@ public class LoginAndSecurityIntegrationTests {
 	}
 
 	@Test
+	/**
+	 * @see https://cwiki.apache.org/confluence/display/MFTEST/Configure+MyFaces+Test+using+Maven
+	 * @throws Exception
+	 */
 	public void getAuthenticatedMainViewReturnsNoRedirect() throws Exception {
 
 		List<GrantedAuthority> authorities = AuthorityUtils.createAuthorityList("ROLE_LOGBOOKUSER");
@@ -145,18 +169,18 @@ public class LoginAndSecurityIntegrationTests {
 		session.setAttribute(
 				org.springframework.security.web.context.HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY, sc);
 
-		try {
+//		try {
 			MvcResult result = this.mockMvc
 					.perform(get("/web/app/main").session(session).principal(authToken).contextPath("/web").servletPath("/app"))
 					.andExpect(status().is(200)).andReturn();
 			org.junit.Assert.assertNull("There should be no redirect url", result.getResponse().getRedirectedUrl());
-		} catch (IllegalStateException | NestedServletException e) {
-			if ("Could not find backup for factory javax.faces.lifecycle.LifecycleFactory. ".equals(e.getCause().getMessage())) {
-				return;
-			} else {
-				throw e;
-			}
-		}
+//		} catch (IllegalStateException | NestedServletException e) {
+//			if ("Could not find backup for factory javax.faces.lifecycle.LifecycleFactory. ".equals(e.getCause().getMessage())) {
+//				return;
+//			} else {
+//				throw e;
+//			}
+//		}
 	}
 
 	@Test

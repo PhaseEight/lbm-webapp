@@ -62,6 +62,7 @@
 		<security:form-login password-parameter="loginForm:j_password" username-parameter="loginForm:j_username"
 			always-use-default-target="false" authentication-failure-url="/app/welcome?login_error=1" login-processing-url="/app/doLogin"
 			login-page="/app/welcome" default-target-url="/app/main" />
+			
 		<security:logout delete-cookies="JSESSIONID" logout-success-url="/app/welcome?logout_success=1" logout-url="/app/logout"
 			invalidate-session="true" />
 
