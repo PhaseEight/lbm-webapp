@@ -78,7 +78,6 @@
 
 	<bean id="remoteUserFilter" class="org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter" />
 
-
 	<security:authentication-manager alias="authenticationManager" erase-credentials="false">
 		<security:authentication-provider>
 			<security:jdbc-user-service id="jdbcUserService" data-source-ref="dataSource" cache-ref="securityUserCache"

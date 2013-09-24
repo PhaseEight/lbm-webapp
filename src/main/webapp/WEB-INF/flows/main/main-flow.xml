@@ -3,9 +3,8 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/webflow
         http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd"
 	start-state="start">
-	<!--
 	<secured attributes="ROLE_LOGBOOKUSER" match="any" />
-	 
+	<!--
 	<var name="dashboardBean" class="com.logbookmanager.web.component.DashboardBean" />
 	 -->
 	<view-state id="start" popup="false" redirect="false" view="main.xhtml">

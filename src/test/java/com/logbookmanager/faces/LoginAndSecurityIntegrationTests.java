@@ -61,7 +61,11 @@ import com.github.springtestdbunit.DbUnitTestExecutionListener;
 @TestExecutionListeners({ ServletTestExecutionListener.class, DependencyInjectionTestExecutionListener.class,
 		DirtiesContextTestExecutionListener.class, TransactionalTestExecutionListener.class, DbUnitTestExecutionListener.class })
 
-//https://cwiki.apache.org/confluence/display/MFTEST/Configure+MyFaces+Test+using+Maven
+/**
+ * @see https://cwiki.apache.org/confluence/display/MFTEST/Configure+MyFaces+Test+using+Maven
+ * @see https://cwiki.apache.org/confluence/display/MFTEST/Index
+ * @author Peter
+ */
 public class LoginAndSecurityIntegrationTests extends org.apache.myfaces.test.base.junit4.AbstractJsfConfigurableMockTestCase {
 
 	@Autowired
@@ -158,6 +162,7 @@ public class LoginAndSecurityIntegrationTests extends org.apache.myfaces.test.ba
 	@Test
 	/**
 	 * @see https://cwiki.apache.org/confluence/display/MFTEST/Configure+MyFaces+Test+using+Maven
+	 * @see https://cwiki.apache.org/confluence/display/MFTEST/Index
 	 * @throws Exception
 	 */
 	public void getAuthenticatedMainViewReturnsNoRedirect() throws Exception {
