@@ -122,8 +122,6 @@
 		<!-- ########## -->
 		<!-- <dependency> <groupId>net.bull.javamelody</groupId> <artifactId>javamelody-core</artifactId> 
 			<version>1.45.0</version> </dependency> -->
-		<!-- <dependency> <groupId>commons-logging</groupId> <artifactId>commons-logging</artifactId> 
-			</dependency> -->
 		<dependency>
 			<groupId>commons-fileupload</groupId>
 			<artifactId>commons-fileupload</artifactId>
@@ -312,7 +310,7 @@
 			<artifactId>jsf-impl</artifactId>
 			<scope>compile</scope>
 		</dependency>
- 
+
 
 		<!-- Primefaces dependency -->
 		<dependency>
@@ -437,12 +435,12 @@
 			<artifactId>usertype.core</artifactId>
 			<scope>compile</scope>
 		</dependency>
-	 	<dependency>
+		<dependency>
 			<groupId>javax</groupId>
-			<artifactId>javaee-web-api</artifactId> 
+			<artifactId>javaee-web-api</artifactId>
 			<scope>test</scope>
 		</dependency>
-		
+
 		<!-- Test -->
 		<dependency>
 			<groupId>org.apache.tomcat</groupId>
@@ -487,8 +485,14 @@
 			<version>1.9.5</version>
 			<scope>test</scope>
 		</dependency>
-		<!-- <dependency> <groupId>org.apache.myfaces.test</groupId> <artifactId>myfaces-test20</artifactId> 
-			<version>${myfaces-test20-version}</version> <scope>test</scope> </dependency> -->
+
+		<dependency>
+			<groupId>org.apache.myfaces.test</groupId>
+			<artifactId>myfaces-test20</artifactId>
+			<version>${myfaces-test20-version}</version>
+			<scope>test</scope>
+		</dependency>
+
 		<dependency>
 			<groupId>org.jboss.arquillian</groupId>
 			<artifactId>arquillian-bom</artifactId>
@@ -938,14 +942,8 @@
 				<artifactId>jsf-impl</artifactId>
 				<version>${com.sun.faces-version}</version>
 			</dependency>
-			<!-- 
-			<dependency>
-				<groupId>javax.el</groupId>
-				<artifactId>el-api</artifactId>
-				<version>2.2</version>
-				<scope>test</scope>
-			</dependency>
-			 -->
+			<!-- <dependency> <groupId>javax.el</groupId> <artifactId>el-api</artifactId> 
+				<version>2.2</version> <scope>test</scope> </dependency> -->
 			<dependency>
 				<groupId>org.primefaces</groupId>
 				<artifactId>primefaces</artifactId>
@@ -1042,7 +1040,7 @@
 
 			<dependency>
 				<groupId>javax</groupId>
-				<artifactId>javaee-web-api</artifactId> 
+				<artifactId>javaee-web-api</artifactId>
 				<version>${javax.javaee-web-api-version}</version>
 			</dependency>
 			<dependency>
