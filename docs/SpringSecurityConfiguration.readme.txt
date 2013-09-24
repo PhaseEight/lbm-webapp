@@ -1,0 +1,11 @@
+-------------------------------------------------
+- Spring Security Configuration Information     -
+-------------------------------------------------
+
+spring.security.disableUISecurity
+
+security Span tags are class="securityHiddenUI"
+
+These can be changed with the System properties
+spring.security.securedUIPrefix
+spring.security.securedUISuffix

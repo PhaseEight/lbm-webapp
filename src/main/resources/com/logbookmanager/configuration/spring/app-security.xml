@@ -55,8 +55,8 @@
 
 		<security:intercept-url pattern="/app/logout*" access="permitAll" />
 		<security:intercept-url pattern="/app/session-timeout*" access="permitAll" />
-
 		<security:intercept-url pattern="/app/main" access="hasRole('ROLE_LOGBOOKUSER')" />
+		<security:intercept-url pattern="/app/admin/*" access="hasRole('ROLE_ADMIN')" />
 
 		<!-- A user will always go to default-target-url on successful login -->
 		<security:form-login password-parameter="j_password" username-parameter="j_username"

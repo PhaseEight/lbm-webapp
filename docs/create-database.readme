@@ -1,0 +1,27 @@
+Set the Following Environment Variables
+	JAVA_HOME
+	DERBY_INSTALL
+	DERBY_PATH
+	DERBY_LIB
+	DERBY_DATABASES	
+
+	
+Using Spring's DriverManagerDataSource
+
+	<!-- org.apache.derby.jdbc.ClientDataSource -->
+	<beans:bean id="clientDriver"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<beans:property name="driverClassName">
+			<beans:value>org.apache.derby.jdbc.ClientDriver</beans:value>
+		</beans:property>
+		<beans:property name="url">
+			<beans:value>jdbc:derby://localhost:1527/Logbook;create=true;user=admin;password=Pa$$w0rd
+			</beans:value>
+		</beans:property>
+		<beans:property name="username">
+			<beans:value>LogMyDive</beans:value>
+		</beans:property>
+		<beans:property name="password">
+			<beans:value>Pa$$w0rd</beans:value>
+		</beans:property>
+	</beans:bean>

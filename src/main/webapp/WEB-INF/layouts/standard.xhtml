@@ -47,24 +47,20 @@
 
 						<span class="title"><span id="site-title">#{resourceBundle['site.title']}</span></span>
 
-						<span class="right"> 
-							<span id="logout-button"> 
-								<p:commandButton
+						<span class="right"> <span id="logout-button"> <p:commandButton
 									id="topLogoutButton" value="logout" ajax="false"
 									onclick="window.open('#{request.contextPath}#{request.servletPath}/logout','_self');"
 									type="button"
 									rendered="#{request.isUserInRole('ROLE_GUESTUSER')}" />
-							</span>
 						</span>
-						
-						<span class="right">
-							<span id="login-button"> 
-								<p:commandButton
+						</span>
+
+						<span class="right"> <span id="login-button"> <p:commandButton
 									id="topLoginButton" value="login" ajax="false"
 									onclick="PF('loginDialog').show();" type="button"
 									rendered="#{!request.isUserInRole('ROLE_GUESTUSER')}" />
 
-							</span> 
+						</span>
 						</span>
 					</h:form>
 				</div>
@@ -76,17 +72,32 @@
 				<h:form id="leftAccordionMenu">
 					<p:accordionPanel>
 						<p:tab title="My Dives">
-							<br />
-							<p:calendar mode="inline" navigator="none" />
-							<br />
+						<br/>
+							<p:calendar id="myDivesCalendar" 
+							mode="inline" navigator="none" />
+							
+							<br/>
+					
+						</p:tab>
+
+						<p:tab title="My Dive Sites">
+							<h:outputText
+								value="See what's been happening at your favourite dive sites." />
+						</p:tab>
+
+						<p:tab title="My Dive Centres">
+							<h:outputText
+								value="See what the dive centres friends have been doing." />
 						</p:tab>
 
 						<p:tab title="My Kit">
-							<h:outputText value="Menu 2 Content" />
+							<h:outputText
+								value="View and manage your dive kit configurations" />
 						</p:tab>
 
 						<p:tab title="Dive Feeds">
-							<h:outputText value="Menu 3 Content" />
+							<h:outputText
+								value="See where everyone has been diving; filter by friends, family and dive centres" />
 						</p:tab>
 					</p:accordionPanel>
 				</h:form>

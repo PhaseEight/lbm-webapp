@@ -38,7 +38,6 @@ public class TextView extends AbstractUrlBasedView {
 		PrintWriter writer = response.getWriter();
 
 		if (session != null) {
-			@SuppressWarnings("unchecked")
 			Enumeration<String> sessionAttributeNames = session.getAttributeNames();
 			writer.write("<<Session Attributes>>");
 			while (sessionAttributeNames.hasMoreElements()) {
@@ -50,7 +49,6 @@ public class TextView extends AbstractUrlBasedView {
 			writer.write("<<Session Attributes>>");
 		}
 		writer.write("\n\n\n\n");
-		@SuppressWarnings({ "unchecked" })
 		Enumeration<String> requestAttributeNames = request.getAttributeNames();
 		writer.write("<<Request Attributes>>");
 		while (requestAttributeNames.hasMoreElements()) {

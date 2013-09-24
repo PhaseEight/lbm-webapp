@@ -34,9 +34,9 @@ http://www.springframework.org/schema/util http://www.springframework.org/schema
 	<beans profile="cloud">
 		<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close" abstract="false">
 			<property name="driverClass" value="org.postgresql.Driver" />
-			<property name="jdbcUrl" value="jdbc:postgresql://babar.elephantsql.com:5432/nvnxwswb" />
-			<property name="user" value="nvnxwswb" />
-			<property name="password" value="TD5_iSOxGEZdaXA8LY8PcTClv3P3kIwN" />
+			<property name="jdbcUrl" value="jdbc:postgresql://babar.elephantsql.com:5432/fdyqvhjp" />
+			<property name="user" value="fdyqvhjp" />
+			<property name="password" value="fdyqvhjp:wcvFVxqZLwvqlK6-L7tekBuUGd6T0UHd" />
 			<property name="maxPoolSize" value="1" />
 			<property name="maxStatements" value="50" />
 			<property name="minPoolSize" value="1" />

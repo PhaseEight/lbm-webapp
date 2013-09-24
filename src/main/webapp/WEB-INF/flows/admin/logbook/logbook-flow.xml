@@ -3,8 +3,7 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/webflow
         http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd"
 	start-state="start">
-	<secured attributes="ROLE_LOGBOOKUSER" match="any" />
-
+	<secured attributes="ROLE_ADMIN" match="any" />
 	<!-- 
 	• On flow start
 	• On state entry
