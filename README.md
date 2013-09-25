@@ -1,9 +1,23 @@
-lbm-webapp
+#lbm-webapp
 ==========
 
 Logbook Manager Web App
 
 
+##Setup
+===
+create a workspace directory e.g. 
+open Git shell
+cd to d:\development\GitHub
+md logbookmanger-web
+cd logbookmanger-web
+
+clone this repository with all Branches
+git clone -o github https://github.com/pedroneil/lbm-webapp.git lbm-webapp
+
+
+### Configuration
+===
 Set jsf ProjectStage
 
 @see javax.faces.application.ProjectStage for valid ProjectStatge values
