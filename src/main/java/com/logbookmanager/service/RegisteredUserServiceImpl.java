@@ -9,13 +9,13 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.logbookmanager.data.repository.UserRepository;
-import com.logbookmanager.domain.model.security.SecureUser;
+import com.logbookmanager.domain.model.security.RegisteredUser;
 import com.logbookmanager.domain.support.UserName;
 import com.logbookmanager.service.support.GenericService;
 
 @Transactional(readOnly = true)
 @TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = false)
-public class RegisteredUserServiceImpl extends GenericService<SecureUser, Long> implements
+public class RegisteredUserServiceImpl extends GenericService<RegisteredUser, Long> implements
 		RegisteredUserService {
 	
 	private static final long serialVersionUID = 1L;
@@ -40,61 +40,61 @@ public class RegisteredUserServiceImpl extends GenericService<SecureUser, Long> 
 
 	@Transactional(readOnly = false, isolation = Isolation.READ_UNCOMMITTED)
 	@Cacheable("createdUserCache")
-	public SecureUser createUser(SecureUser secureUser) throws RegisteredUserAlreadyExistsException {
-		if (secureUser == null || secureUser.getUsername() == null) {
+	public RegisteredUser createUser(RegisteredUser registeredUser) throws RegisteredUserAlreadyExistsException {
+		if (registeredUser == null || registeredUser.getUsername() == null) {
 			return null;
 		}
-		SecureUser existingUser = userRepository.findByNaturalId(secureUser);
+		RegisteredUser existingUser = userRepository.findByNaturalId(registeredUser);
 		if (existingUser == null) { // create the user
 			if(log.isInfoEnabled()){
-				log.info("Creating new user: " + secureUser.toString());
+				log.info("Creating new user: " + registeredUser.toString());
 			}
-			secureUser = userRepository.saveUser(secureUser);
+			registeredUser = userRepository.saveUser(registeredUser);
 		} else {
 			throw new RegisteredUserAlreadyExistsException(getResourcesUtil()
 					.getProperty("error.user.already.exists",
 							"user already exists",
-							new Object[] { secureUser.getUsername() }), existingUser,
-					secureUser);
+							new Object[] { registeredUser.getUsername() }), existingUser,
+					registeredUser);
 		}
-		return secureUser;
+		return registeredUser;
 	}
 
 	@Transactional(readOnly = true)
-	public SecureUser findUserByUsername(final UserName username) {
-		final SecureUser secureUser = new SecureUser(username);
-		return userRepository.findUniqueByExample(secureUser);
+	public RegisteredUser findUserByUsername(final UserName username) {
+		final RegisteredUser registeredUser = new RegisteredUser(username);
+		return userRepository.findUniqueByExample(registeredUser);
 	}
 
 	@Transactional(readOnly = true)
-	public SecureUser findActiveUserByUsername(final UserName username) {
-		final SecureUser secureUser = new SecureUser(username);
-		return findActiveUser(secureUser);
+	public RegisteredUser findActiveUserByUsername(final UserName username) {
+		final RegisteredUser registeredUser = new RegisteredUser(username);
+		return findActiveUser(registeredUser);
 	}
 
 	/**
 	 * Find Active Users
 	 */
 	@Transactional(readOnly = true)
-	public SecureUser findActiveUser(final SecureUser secureUser) {
-		secureUser.setActive(new Boolean(true));
-		secureUser.setDeleted(new Boolean(false));
-		return userRepository.findUniqueByExample(secureUser);
+	public RegisteredUser findActiveUser(final RegisteredUser registeredUser) {
+		registeredUser.setActive(new Boolean(true));
+		registeredUser.setDeleted(new Boolean(false));
+		return userRepository.findUniqueByExample(registeredUser);
 	}
 
-	public SecureUser findUser(SecureUser secureUser) {
-		return userRepository.getUser(secureUser);
+	public RegisteredUser findUser(RegisteredUser registeredUser) {
+		return userRepository.getUser(registeredUser);
 	}
 
 	@Transactional(readOnly = false)
-	public SecureUser removeUser(SecureUser secureUser) {
-		if (secureUser == null || secureUser.getUsername() == null) {
+	public RegisteredUser removeUser(RegisteredUser registeredUser) {
+		if (registeredUser == null || registeredUser.getUsername() == null) {
 			return null;
 		}
-		SecureUser userToDelete = userRepository.findByNaturalId(secureUser);
+		RegisteredUser userToDelete = userRepository.findByNaturalId(registeredUser);
 		if (userToDelete == null) {
 			return null;
 		}
-		return userRepository.removeUser(secureUser);
+		return userRepository.removeUser(registeredUser);
 	}
 }

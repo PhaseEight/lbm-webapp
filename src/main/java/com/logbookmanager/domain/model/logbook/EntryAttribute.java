@@ -41,12 +41,12 @@ public class EntryAttribute extends EntitySupport<EntryAttribute, Long>
 	/**
 	 * 
 	 */
-	public LogbookUserLogbookEntry getUserEntry() {
+	public LogbookUserLogbookEntry getLogbookUserLogbookEntry() {
 		return this.logbookUserLogbookEntry;
 	}
 
-	public void setUserEntry(LogbookUserLogbookEntry userEntry) {
-		this.logbookUserLogbookEntry = userEntry;
+	public void setLogbookUserLogbookEntry(LogbookUserLogbookEntry logbookUserLogbookEntry) {
+		this.logbookUserLogbookEntry = logbookUserLogbookEntry;
 	}
 
 	/**

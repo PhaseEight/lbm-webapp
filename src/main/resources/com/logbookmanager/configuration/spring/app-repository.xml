@@ -27,14 +27,13 @@ http://www.springframework.org/schema/util http://www.springframework.org/schema
 				<value>com/logbookmanager/persistence/hibernate/LogbookPageDetail.hbm.xml</value>
 				<value>com/logbookmanager/persistence/hibernate/Organisation.hbm.xml</value>
 				<value>com/logbookmanager/persistence/hibernate/OrganisationCountry.hbm.xml</value>
-				<value>com/logbookmanager/persistence/hibernate/Logbookuser.hbm.xml</value>
+				<value>com/logbookmanager/persistence/hibernate/LogbookUser.hbm.xml</value>
 				<value>com/logbookmanager/persistence/hibernate/LogbookUserLogbook.hbm.xml</value>
-				<value>com/logbookmanager/persistence/hibernate/LogbookUserQualification.hbm.xml</value>
 				<value>com/logbookmanager/persistence/hibernate/Qualification.hbm.xml</value>
 				<value>com/logbookmanager/persistence/hibernate/LogbookUserLogbookEntry.hbm.xml</value>
 				<value>com/logbookmanager/persistence/hibernate/LogbookUserLogbookDetail.hbm.xml</value>
 				<value>com/logbookmanager/persistence/hibernate/Role.hbm.xml</value>
-				<value>com/logbookmanager/persistence/hibernate/User.hbm.xml</value>
+				<value>com/logbookmanager/persistence/hibernate/RegisteredUser.hbm.xml</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -102,10 +101,6 @@ http://www.springframework.org/schema/util http://www.springframework.org/schema
 	<bean id="LogbookUserLogbookRepository" class="com.logbookmanager.data.repository.LogbookUserLogbookRepositoryImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	<bean id="LogbookUserQualificationRepository" class="com.logbookmanager.data.repository.LogbookUserQualificationRepositoryImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-	
 	<bean id="roleRepository" class="com.logbookmanager.data.repository.RoleRepositoryImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
@@ -182,7 +177,7 @@ http://www.springframework.org/schema/util http://www.springframework.org/schema
 					<!-- hibernate.hbm2ddl.auto Automatically validate 
 						or export schema DDL to the database when the SessionFactory is created. With create-drop, the database schema will be dropped 
 						when the SessionFactory is closed explicitly. eg. validate | update | create | create-drop -->
-					<prop key="hibernate.hbm2ddl.auto">create-drop</prop>
+					<prop key="hibernate.hbm2ddl.auto">create</prop>
 				</props>
 			</property>
 		</bean>
@@ -198,7 +193,7 @@ http://www.springframework.org/schema/util http://www.springframework.org/schema
 					<!-- hibernate.hbm2ddl.auto Automatically validate 
 						or export schema DDL to the database when the SessionFactory is created. With create-drop, the database schema will be dropped 
 						when the SessionFactory is closed explicitly. eg. validate | update | create | create-drop -->
-					<prop key="hibernate.hbm2ddl.auto">none</prop>
+					<prop key="hibernate.hbm2ddl.auto">create</prop>
 				</props>
 			</property>
 		</bean>

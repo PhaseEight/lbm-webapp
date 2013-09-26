@@ -1,6 +1,6 @@
 package com.logbookmanager.service;
 
-import com.logbookmanager.domain.model.security.SecureUser;
+import com.logbookmanager.domain.model.security.RegisteredUser;
 
 /**
  * An exception that is thrown by classes wanting to trap unique constraint
@@ -21,29 +21,29 @@ public class RegisteredUserAlreadyExistsException extends RegisteredUserExceptio
 	 * 
 	 * @param message
 	 */
-	private SecureUser existingUser;
-	private SecureUser newUser;
+	private RegisteredUser existingUser;
+	private RegisteredUser newUser;
 
-	public RegisteredUserAlreadyExistsException(String message, SecureUser existingUser,
-			SecureUser newUser) {
+	public RegisteredUserAlreadyExistsException(String message, RegisteredUser existingUser,
+			RegisteredUser newUser) {
 		super(message);
 		this.setExistingUser(existingUser);
 		this.setNewUser(newUser);
 	}
 
-	public SecureUser getExistingUser() {
+	public RegisteredUser getExistingUser() {
 		return existingUser;
 	}
 
-	public void setExistingUser(SecureUser existingUser) {
+	public void setExistingUser(RegisteredUser existingUser) {
 		this.existingUser = existingUser;
 	}
 
-	public SecureUser getNewUser() {
+	public RegisteredUser getNewUser() {
 		return newUser;
 	}
 
-	public void setNewUser(SecureUser newUser) {
+	public void setNewUser(RegisteredUser newUser) {
 		this.newUser = newUser;
 	}
 

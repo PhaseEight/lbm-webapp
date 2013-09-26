@@ -2,7 +2,7 @@ package com.logbookmanager.service;
 
 import java.util.List;
 
-import com.logbookmanager.domain.model.security.SecureUser;
+import com.logbookmanager.domain.model.security.RegisteredUser;
 import com.logbookmanager.domain.support.UserName;
 
 /**
@@ -17,19 +17,19 @@ import com.logbookmanager.domain.support.UserName;
  *         Modified by <a href="mailto:peter.neil@logbookmanager.com">Peter
  *         Neil</a>
  */
-public interface RegisteredUserService extends LBMService<SecureUser, Long> {
+public interface RegisteredUserService extends LBMService<RegisteredUser, Long> {
 
-	public List<SecureUser> findAll();
+	public List<RegisteredUser> findAll();
 
-	public SecureUser createUser(SecureUser secureUser) throws RegisteredUserAlreadyExistsException;
+	public RegisteredUser createUser(RegisteredUser registeredUser) throws RegisteredUserAlreadyExistsException;
 
-	public SecureUser removeUser(SecureUser secureUser);
+	public RegisteredUser removeUser(RegisteredUser registeredUser);
 
-	public SecureUser findActiveUserByUsername(UserName username);
+	public RegisteredUser findActiveUserByUsername(UserName username);
 
-	public SecureUser findUserByUsername(UserName username);
+	public RegisteredUser findUserByUsername(UserName username);
 
-	public SecureUser findActiveUser(SecureUser secureUser);
+	public RegisteredUser findActiveUser(RegisteredUser registeredUser);
 
-	public SecureUser findUser(SecureUser secureUser);
+	public RegisteredUser findUser(RegisteredUser registeredUser);
 }

@@ -1,6 +1,6 @@
 SET SCHEMA APP;
 
-select count(*) from sec_user;
+select *from sec_user;
 
 INSERT INTO SEC_USER 
 (active, username, first_name, last_name, version, password, email, postal_code, city, ID,country) 

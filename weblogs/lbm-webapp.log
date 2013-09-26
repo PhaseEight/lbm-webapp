@@ -1,5 +1,0 @@
-16:32:10.127 [main] DEBUG com.logbookmanager.web.pages.WelcomePageTest - Create HtmlUnitDriver for WebDriver
-16:32:12.253 [main] DEBUG com.logbookmanager.web.pages.WelcomePageTest - navigating to /web
-16:32:18.735 [main] DEBUG com.logbookmanager.web.pages.WelcomePageTest - make sure that there was redirect to /web/app/welcome
-16:32:18.736 [main] DEBUG com.logbookmanager.web.pages.WelcomePageTest - Finding the login controls
-16:32:18.753 [main] DEBUG com.logbookmanager.web.pages.WelcomePageTest - Showing login form

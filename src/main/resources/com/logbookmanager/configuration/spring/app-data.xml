@@ -6,7 +6,7 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
 http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
 	<!-- Derby Data Source Declaration -->
-	<beans profile="default,integration-test,mvc-integration-test">
+	<beans profile="default,integration-test,mvc-integration-test,!cloud">
 		<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close" abstract="false">
 			<property name="driverClass" value="org.apache.derby.jdbc.ClientDriver" />
 			<property name="jdbcUrl" value="jdbc:derby://localhost:1527/logbook;create=true;user=APP;password=Pa$$w0rd" />

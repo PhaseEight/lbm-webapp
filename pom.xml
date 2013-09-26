@@ -50,8 +50,8 @@
 		<wiser-version>1.2</wiser-version>
 		<net.sf.ehcache-version>2.6.5</net.sf.ehcache-version>
 		<beanutils-version>1.8.3</beanutils-version>
-		<hibernate-core-version>4.2.5.Final</hibernate-core-version>
-		<hibernate-c3p0-version>4.2.5.Final</hibernate-c3p0-version>
+		<hibernate-core-version>4.2.6.Final</hibernate-core-version>
+		<hibernate-c3p0-version>4.2.6.Final</hibernate-c3p0-version>
 		<hibernate-search-version>4.3.0.Final</hibernate-search-version>
 		<hibernate-validator-version>5.0.1.Final</hibernate-validator-version>
 		<hibernate-entitymanager-version>4.2.5.Final</hibernate-entitymanager-version>

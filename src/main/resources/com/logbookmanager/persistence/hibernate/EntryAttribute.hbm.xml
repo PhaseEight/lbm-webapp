@@ -30,7 +30,7 @@
         <many-to-one name="detailAttribute" class="com.logbookmanager.domain.model.logbook.DetailAttribute">
             <column name="DETAIL_ATTRIBUTE_ID" not-null="true" />
         </many-to-one>
-        <many-to-one name="LogbookUserLogbookEntry" class="com.logbookmanager.domain.model.logbook.LogbookUserLogbookEntry">
+        <many-to-one name="logbookUserLogbookEntry" class="com.logbookmanager.domain.model.logbook.LogbookUserLogbookEntry">
             <column name="LOGBOOKUSER_LOGBOOK_ENTRY_ID" not-null="true" />
         </many-to-one>
         <property name="displayValue" type="string">

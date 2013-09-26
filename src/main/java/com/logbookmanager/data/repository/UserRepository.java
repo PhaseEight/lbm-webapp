@@ -1,9 +1,9 @@
 package com.logbookmanager.data.repository;
 
-import com.logbookmanager.domain.model.security.SecureUser;
+import com.logbookmanager.domain.model.security.RegisteredUser;
 import com.logbookmanager.domain.support.UserName;
 
-public interface UserRepository extends Repository<SecureUser, Long> {
+public interface UserRepository extends Repository<RegisteredUser, Long> {
 
 	/**
 	 * Gets users information based on login name.
@@ -12,21 +12,21 @@ public interface UserRepository extends Repository<SecureUser, Long> {
 	 *            the current username
 	 * @return user populated user object
 	 */
-	public SecureUser getActiveUserByUsername(UserName username);
+	public RegisteredUser getActiveUserByUsername(UserName username);
 
-	public SecureUser getUserByUsername(UserName username);
+	public RegisteredUser getUserByUsername(UserName username);
 
-	public SecureUser getActiveUser(SecureUser secureUser);
+	public RegisteredUser getActiveUser(RegisteredUser registeredUser);
 
-	public SecureUser getUser(SecureUser secureUser);
+	public RegisteredUser getUser(RegisteredUser registeredUser);
 
 	/**
 	 * Saves a user's information
 	 * 
-	 * @param secureUser
+	 * @param registeredUser
 	 *            the object to be saved
 	 */
-	public SecureUser saveUser(SecureUser secureUser);
+	public RegisteredUser saveUser(RegisteredUser registeredUser);
 
 	/**
 	 * Removes a user from the database by exmple
@@ -34,6 +34,6 @@ public interface UserRepository extends Repository<SecureUser, Long> {
 	 * @param username
 	 *            the user's username
 	 */
-	public SecureUser removeUser(SecureUser secureUser);
+	public RegisteredUser removeUser(RegisteredUser registeredUser);
 
 }

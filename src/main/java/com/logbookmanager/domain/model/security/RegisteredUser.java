@@ -23,25 +23,25 @@ import com.logbookmanager.domain.support.UserDetails;
 import com.logbookmanager.domain.support.UserName;
 
 /**
- * SecureUser class
+ * RegisteredUser class
  * 
  * This class is used to generate Spring Validation rules as well as the
  * 
  * <p>
- * <a href="SecureUser.java.html"><i>View Source</i></a>
+ * <a href="RegisteredUser.java.html"><i>View Source</i></a>
  * </p>
  * 
  * @author <a href="mailto:peter.neil@logbookmanager.com">Peter Neil</a>
  * 
  */
 @Entity
-@Table(name = "SecureUser")
+@Table(name = "RegisteredUser")
 @DeleteType(type = DeletionType.LogicalDelete)
-public class SecureUser extends EntitySupport<com.logbookmanager.domain.model.security.SecureUser, Long> implements Serializable {
+public class RegisteredUser extends EntitySupport<com.logbookmanager.domain.model.security.RegisteredUser, Long> implements Serializable {
 
 	private static final long serialVersionUID = 912839123L;
 
-	private Log log = LogFactory.getLog(SecureUser.class);
+	private Log log = LogFactory.getLog(RegisteredUser.class);
 
 	@NaturalId
 	private UserName username;
@@ -56,15 +56,15 @@ public class SecureUser extends EntitySupport<com.logbookmanager.domain.model.se
 
 	private LogbookUser logbookUser = null;
 
-	public SecureUser() {
+	public RegisteredUser() {
 		log.info("empty user constructor");
 	}
 
-	public SecureUser(UserName username) {
+	public RegisteredUser(UserName username) {
 		this(username, true, false);
 	}
 
-	public SecureUser(UserName username, Boolean active, Boolean deleted) {
+	public RegisteredUser(UserName username, Boolean active, Boolean deleted) {
 		Validate.notNull(username, "error.username.null");
 		setUsername(username);
 		setActive(active);
@@ -81,17 +81,17 @@ public class SecureUser extends EntitySupport<com.logbookmanager.domain.model.se
 	 * @param userDetails
 	 * @param roles
 	 */
-	public SecureUser(UserName username, Password password, PasswordHint passwordHint, UserDetails userDetails, Set<Role> roles) {
+	public RegisteredUser(UserName username, Password password, PasswordHint passwordHint, UserDetails userDetails, Set<Role> roles) {
 		this(username, password, passwordHint, userDetails, roles, true, false);
 	}
 
-	public SecureUser(UserName username, Password password, PasswordHint passwordHint, UserDetails userDetails, Set<Role> roles,
+	public RegisteredUser(UserName username, Password password, PasswordHint passwordHint, UserDetails userDetails, Set<Role> roles,
 			Boolean active, Boolean deleted) {
 		this(username, password, passwordHint, userDetails, active, deleted);
 		this.setRoles(roles);
 	}
 
-	private SecureUser(UserName username, Password password, PasswordHint passwordHint, UserDetails userDetails, Boolean active,
+	private RegisteredUser(UserName username, Password password, PasswordHint passwordHint, UserDetails userDetails, Boolean active,
 			Boolean deleted) {
 		Validate.notNull(username, "error.username.null");
 		Validate.notNull(password, "error.password.null");
@@ -183,12 +183,12 @@ public class SecureUser extends EntitySupport<com.logbookmanager.domain.model.se
 	public boolean equals(Object o) {
 		if (this == o)
 			return true;
-		if (!(o instanceof SecureUser))
+		if (!(o instanceof RegisteredUser))
 			return false;
 
-		final SecureUser secureUser = (SecureUser) o;
+		final RegisteredUser registeredUser = (RegisteredUser) o;
 
-		if (getUsername() != null ? !getUsername().equals(secureUser.getUsername()) : secureUser.getUsername() != null) {
+		if (getUsername() != null ? !getUsername().equals(registeredUser.getUsername()) : registeredUser.getUsername() != null) {
 			return false;
 		} else {
 

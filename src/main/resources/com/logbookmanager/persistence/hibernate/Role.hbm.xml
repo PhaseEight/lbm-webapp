@@ -34,7 +34,7 @@
 		<set name="users" table="sec_user_role" lazy="false" cascade="save-update,delete"
 			inverse="true" fetch="join">
 			<key column="role_id" />
-			<many-to-many class="com.logbookmanager.domain.model.security.SecureUser"
+			<many-to-many class="com.logbookmanager.domain.model.security.RegisteredUser"
 				column="user_id" />
 		</set>
 

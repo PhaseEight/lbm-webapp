@@ -8,7 +8,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
 import com.logbookmanager.domain.model.organisation.Qualification;
-import com.logbookmanager.domain.model.security.SecureUser;
+import com.logbookmanager.domain.model.security.RegisteredUser;
 import com.logbookmanager.domain.support.EntitySupport;
 import com.logbookmanager.domain.support.PersonalDetails;
 
@@ -22,9 +22,9 @@ public class LogbookUser extends EntitySupport<LogbookUser, Long> implements
 	private static final long serialVersionUID = 912839123L;
 
 	// member entities
-	private SecureUser secUser;
+	private RegisteredUser secUser;
 
-	private List<LogbookUserQualification> logbookUserQualifications = new ArrayList<LogbookUserQualification>();
+	private List<Qualification> qualifications = new ArrayList<Qualification>();
 
 	private List<LogbookUserLogbook> logbookUserLogbooks = new ArrayList<LogbookUserLogbook>();
 	
@@ -38,13 +38,13 @@ public class LogbookUser extends EntitySupport<LogbookUser, Long> implements
 	/**
 	 *
 	 */
-	public List<LogbookUserQualification> getLogbookUserQualifications() {
-		return this.logbookUserQualifications;
+	public List<Qualification> getQualifications() {
+		return this.qualifications;
 	}
 
-	public void setLogbookUserQualifications(
-			List<LogbookUserQualification> logbookUserQualifications) {
-		this.logbookUserQualifications = logbookUserQualifications;
+	public void setQualifications(
+			List<Qualification> qualifications) {
+		this.qualifications = qualifications;
 	}
 
 	/**
@@ -67,23 +67,20 @@ public class LogbookUser extends EntitySupport<LogbookUser, Long> implements
 		}
 	}
 
-	public LogbookUserQualification addQualification(Qualification qualification) {
-		LogbookUserQualification pq = new LogbookUserQualification();
-		pq.setLogbookUser(this);
-		pq.setQualification(qualification);
-		if (!logbookUserQualifications.contains(pq)) {
-			logbookUserQualifications.add(pq);
+	public Qualification addQualification(Qualification qualification) {
+		if (!qualifications.contains(qualification)) {
+			qualifications.add(qualification);
 		} else {
-			return logbookUserQualifications.get(logbookUserQualifications.indexOf(pq));
+			return qualifications.get(qualifications.indexOf(qualification));
 		}
 		return null;
 	}
 
-	public SecureUser getSecUser() {
+	public RegisteredUser getSecUser() {
 		return secUser;
 	}
 
-	public void setSecUser(SecureUser secUser) {
+	public void setSecUser(RegisteredUser secUser) {
 		this.secUser = secUser;
 	}
 
@@ -92,18 +89,18 @@ public class LogbookUser extends EntitySupport<LogbookUser, Long> implements
 	 */
 	public String toString() {
 		return new ToStringBuilder(this)
-				.append("\nqualifications", this.logbookUserQualifications)
+				.append("\nqualifications", this.qualifications)
 				.append("\nid", this.id)
 				.append("\nlogbookUserLogbooks", this.logbookUserLogbooks)
 				.append("\nversion", this.version)
 				.append("\nuser", this.secUser).toString();
 	}
 
-	public PersonalDetails getLogbookUserDetails() {
+	public PersonalDetails getPersonalDetails() {
 		return personalDetails;
 	}
 
-	public void setLogbookUserDetails(PersonalDetails personalDetails) {
+	public void setPersonalDetails(PersonalDetails personalDetails) {
 		this.personalDetails = personalDetails;
 	}
 

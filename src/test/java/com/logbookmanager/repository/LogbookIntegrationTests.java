@@ -60,7 +60,7 @@ public class LogbookIntegrationTests extends IntegrationTestSupport {
 	@Transactional
 	@Rollback(false)
 	public void addLogbook() throws Throwable {
-		Title title = new Title("coarse_fishing", "Course Fishing");
+		Title title = new Title("coarse_fishing", "Coarse Fishing");
 		Logbook logbook = new Logbook(title);
 		Logbook newLogbook = addLogbook(logbook);
 		assertTrue("The logbook title code must be coarse_fishing",

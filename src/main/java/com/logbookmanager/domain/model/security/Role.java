@@ -30,8 +30,8 @@ public class Role extends
 
 	private String description;
 
-	// secureUsers with this role
-	private Set<com.logbookmanager.domain.model.security.SecureUser> secureUsers = new HashSet<com.logbookmanager.domain.model.security.SecureUser>();
+	// registeredUsers with this role
+	private Set<com.logbookmanager.domain.model.security.RegisteredUser> registeredUsers = new HashSet<com.logbookmanager.domain.model.security.RegisteredUser>();
 
 	public Role() {
 		super();
@@ -80,22 +80,22 @@ public class Role extends
 	}
 
 	/**
-	 * @return Returns the secureUsers. This inverse relation causes exceptions :-(
+	 * @return Returns the registeredUsers. This inverse relation causes exceptions :-(
 	 *         hibernate.set table="sec_user_role" cascade="save-update"
 	 *         lazy="false" inverse="true" hibernate.collection-key
 	 *         column="role_name" hibernate.collection-many-to-many
 	 *         class="com.logbookmanager.domain.model.User" column="username"
 	 */
-	public Set<SecureUser> getUsers() {
-		return secureUsers;
+	public Set<RegisteredUser> getUsers() {
+		return registeredUsers;
 	}
 
 	/**
-	 * @param secureUsers
-	 *            The secureUsers to set.
+	 * @param registeredUsers
+	 *            The registeredUsers to set.
 	 */
-	public void setUsers(Set<SecureUser> secureUsers) {
-		this.secureUsers = secureUsers;
+	public void setUsers(Set<RegisteredUser> registeredUsers) {
+		this.registeredUsers = registeredUsers;
 	}
 
 	@Override
