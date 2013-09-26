@@ -1,0 +1,14 @@
+14:11:49.690 [main] DEBUG com.logbookmanager.web.pages.WelcomePageTest - Create HtmlUnitDriver for WebDriver
+14:11:52.286 [main] DEBUG com.logbookmanager.web.pages.WelcomePageTest - navigating to /web
+14:12:04.462 [main] DEBUG com.logbookmanager.web.pages.WelcomePageTest - make sure that there was redirect to /web/app/welcome
+14:12:04.463 [main] DEBUG com.logbookmanager.web.pages.WelcomePageTest - Finding the login controls
+14:12:04.473 [main] DEBUG com.logbookmanager.web.pages.WelcomePageTest - Showing login form
+14:12:04.686 [main] DEBUG com.logbookmanager.web.pages.WelcomePageTest - entering username
+14:12:04.764 [main] DEBUG com.logbookmanager.web.pages.WelcomePageTest - entering password
+14:12:04.835 [main] DEBUG com.logbookmanager.web.pages.WelcomePageTest - submit login form
+14:12:08.211 [main] DEBUG com.logbookmanager.web.pages.WelcomePageTest - wait for the main page to load
+14:12:08.234 [main] DEBUG com.logbookmanager.web.pages.WelcomePageTest - Page title is: Dashboard @ Log My Dives
+14:12:08.234 [main] DEBUG com.logbookmanager.web.pages.WelcomePageTest - Page current URL: http://localhost:8080/web/app/main
+14:12:08.234 [main] DEBUG com.logbookmanager.web.pages.WelcomePageTest - checking logout button is available
+14:12:08.236 [main] DEBUG com.logbookmanager.web.pages.WelcomePageTest - make sure that the top login button has not rendered
+14:12:08.441 [main] DEBUG com.logbookmanager.web.pages.WelcomePageTest - login button is not in the page

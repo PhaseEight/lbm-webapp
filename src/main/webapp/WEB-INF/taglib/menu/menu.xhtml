@@ -7,7 +7,7 @@
 	<!-- Display Menu -->
 	<div id="site-menu">
 		<h:form id="menu-form" rendered="true">
-			<p:menubar id="main-menu-bar"
+			<p:menubar id="#{id}"
 				rendered="#{request.isUserInRole('ROLE_GUESTUSER')}">
 				<p:menuitem value="Home" url="#{request.servletPath}/main"
 					icon="ui-icon-home" />
@@ -17,13 +17,12 @@
 					<p:menuitem value="Kitbag" url="#{request.servletPath}/kitbag" />
 				</p:submenu>
 
-				<p:submenu label="Admin"
-					rendered="#{request.isUserInRole('ROLE_ADMIN')}">
-					<p:menuitem value="Logbooks"
-						url="#{request.servletPath}/admin/logbook" />
-					<p:menuitem value="Users" url="#{request.servletPath}/admin/user" />
+				<p:submenu id="admin" label="Admin" rendered="request.isUserInRole('ROLE_ADMIN')" >
+					<p:menuitem id="administerLogbooks" value="Logbooks"
+						url="#{request.servletPath}/admin/logbook" disabled="#{not request.isUserInRole('ROLE_LOGBOOKADMIN')}"/>
 					<p:menuitem value="Details"
-						url="#{request.servletPath}/admin/details" />
+						url="#{request.servletPath}/admin/details" disabled="#{not request.isUserInRole('ROLE_LOGBOOKADMIN')}"/>
+					<p:menuitem value="Users" url="#{request.servletPath}/admin/user" disabled="#{not request.isUserInRole('ROLE_USERADMIN')}"/>
 				</p:submenu>
 			</p:menubar>
 		</h:form>

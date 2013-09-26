@@ -234,13 +234,6 @@ public class LoginAndSecurityIntegrationTests extends org.apache.myfaces.test.ba
 	    org.junit.Assert.assertEquals(locale, facesContext.getViewRoot().getLocale());
 	}
 
-	protected class Select {
-		
-		public Select(){}
-		
-	}
-	
-	
 }
 
 

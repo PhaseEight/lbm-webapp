@@ -49,11 +49,13 @@
 			level="warng">
 		</logger>
 
-
+		<logger
+			name="com.gargoylesoftware"
+			level="info">
+		</logger>
 
 		<logger name="org.springframework.test" level="debug">
 		</logger>
-
 
 		<logger name="org.springframework.context" level="info">
 		</logger>
@@ -79,13 +81,24 @@
 		<logger name="org.springframework.jdbc" level="debug">
 		</logger>
 
-		<logger name="com.mchange.v2" level="debug">
+		<logger name="com.mchange.v2" level="info">
 		</logger>
 
-		<logger name="org.apache.commons.beanutils" level="debug">
+		<logger name="org.apache.commons.beanutils" level="info">
 		</logger>
 
-		<logger name="org.apache.catalina" level="debug">
+		<logger name="org.apache.catalina" level="info">
+		</logger>
+		
+		<logger name="org.apache.http.wire" level="info">
+		</logger>
+
+		<logger name="org.apache.http.impl" level="info">
+		</logger>
+
+		<logger name="org.apache.http.client" level="info">
+		</logger>
+		<logger name="org.apache.http.headers" level="info">
 		</logger>
 
 		<logger name="org.hibernate.SQL" level="debug">
