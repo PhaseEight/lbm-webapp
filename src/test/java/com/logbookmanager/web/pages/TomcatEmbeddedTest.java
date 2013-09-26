@@ -47,11 +47,11 @@ public class WelcomePageTest {
 	/** The temporary directory in which Tomcat and the app are deployed. */
 	private String mWorkingDir = System.getProperty("java.io.tmpdir");
 	
-	private int HTTP_PORT = 8080;
+	private int HTTP_PORT = 8787;
 
 	private String applicationId = "lbm-web";
 
-//	@Before
+	@Before
 	public void setup() throws Throwable {
 
 		mTomcat = new Tomcat();
@@ -145,7 +145,7 @@ public class WelcomePageTest {
 		this.applicationId = applicationId;
 	}
 
-//	@After
+	@After
 	public final void tearDown() throws Throwable {
 		if (mTomcat.getServer() != null && mTomcat.getServer().getState() != LifecycleState.DESTROYED) {
 			if (mTomcat.getServer().getState() != LifecycleState.STOPPED) {
