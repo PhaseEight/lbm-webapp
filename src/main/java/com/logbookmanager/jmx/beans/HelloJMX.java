@@ -5,7 +5,7 @@ import org.springframework.jmx.export.annotation.ManagedResource;
 import org.springframework.stereotype.Component;
 
 @Component
-@ManagedResource(objectName = "bean:name=HelloSpringJMX")
+@ManagedResource(objectName = "Spring-beans:name=HelloSpringJMX")
 public class HelloJMX {
 
 	String message = null;

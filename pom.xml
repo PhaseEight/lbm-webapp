@@ -34,7 +34,8 @@
 		<jackson-core-version>2.2.3</jackson-core-version>
 		<jackson-databind-version>2.2.3</jackson-databind-version>
 		<jackson-annotations-version>2.2.3</jackson-annotations-version>
-		<tomcat-jsp-api-version>7.0.42</tomcat-jsp-api-version>
+		<tomcat-version>7.0.42</tomcat-version>
+		<shrinkwrap-impl-base>1.2.0</shrinkwrap-impl-base>
 		<joda-time-version>2.2</joda-time-version>
 		<guava-version>14.0.1</guava-version>
 		<org.jadira.usertype.core-version>3.0.0.GA</org.jadira.usertype.core-version>
@@ -479,6 +480,39 @@
 
 		<!-- Test -->
 		<dependency>
+			<groupId>org.apache.tomcat.embed</groupId>
+			<artifactId>tomcat-embed-core</artifactId>
+			<version>${tomcat-version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.tomcat.embed</groupId>
+			<artifactId>tomcat-embed-logging-juli</artifactId>
+			<version>${tomcat-version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.jdt.core.compiler</groupId>
+			<artifactId>ecj</artifactId>
+			<version>3.7.1</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.tomcat.embed</groupId>
+			<artifactId>tomcat-embed-jasper</artifactId>
+			<version>${tomcat-version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jboss.shrinkwrap</groupId>
+			<artifactId>shrinkwrap-impl-base</artifactId>
+			<version>${shrinkwrap-impl-base}</version>
+			<scope>test</scope>
+		</dependency>
+
+
+		<dependency>
 			<groupId>org.apache.tomcat</groupId>
 			<artifactId>tomcat-servlet-api</artifactId>
 			<scope>test</scope>
@@ -528,21 +562,10 @@
 			<version>${myfaces-test20-version}</version>
 			<scope>test</scope>
 		</dependency>
-<!-- 
-		<dependency>
-			<groupId>org.jboss.arquillian</groupId>
-			<artifactId>arquillian-bom</artifactId>
-			<version>1.1.1.Final</version>
-			<scope>import</scope>
-			<type>pom</type>
-		</dependency>
-		<dependency>
-			<groupId>org.jboss.arquillian.junit</groupId>
-			<artifactId>arquillian-junit-container</artifactId>
-			<version>1.1.1.Final</version>
-			<scope>test</scope>
-		</dependency>
- -->
+		<!-- <dependency> <groupId>org.jboss.arquillian</groupId> <artifactId>arquillian-bom</artifactId> 
+			<version>1.1.1.Final</version> <scope>import</scope> <type>pom</type> </dependency> 
+			<dependency> <groupId>org.jboss.arquillian.junit</groupId> <artifactId>arquillian-junit-container</artifactId> 
+			<version>1.1.1.Final</version> <scope>test</scope> </dependency> -->
 		<dependency>
 			<groupId>org.subethamail</groupId>
 			<artifactId>subethasmtp-wiser</artifactId>
@@ -1067,12 +1090,12 @@
 			<dependency>
 				<groupId>org.apache.tomcat</groupId>
 				<artifactId>tomcat-servlet-api</artifactId>
-				<version>${tomcat-jsp-api-version}</version>
+				<version>${tomcat-version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.apache.tomcat</groupId>
 				<artifactId>tomcat-jsp-api</artifactId>
-				<version>${tomcat-jsp-api-version}</version>
+				<version>${tomcat-version}</version>
 			</dependency>
 
 			<dependency>
@@ -1137,7 +1160,6 @@
 				<artifactId>log4j-slf4j-impl</artifactId>
 				<version>${log4j-version}</version>
 			</dependency>
-
 			<dependency>
 				<groupId>com.fasterxml.jackson.core</groupId>
 				<artifactId>jackson-databind</artifactId>
