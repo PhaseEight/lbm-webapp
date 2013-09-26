@@ -27,12 +27,12 @@ http://www.springframework.org/schema/util http://www.springframework.org/schema
 				<value>com/logbookmanager/persistence/hibernate/LogbookPageDetail.hbm.xml</value>
 				<value>com/logbookmanager/persistence/hibernate/Organisation.hbm.xml</value>
 				<value>com/logbookmanager/persistence/hibernate/OrganisationCountry.hbm.xml</value>
-				<value>com/logbookmanager/persistence/hibernate/Person.hbm.xml</value>
-				<value>com/logbookmanager/persistence/hibernate/PersonLogbook.hbm.xml</value>
-				<value>com/logbookmanager/persistence/hibernate/PersonQualification.hbm.xml</value>
+				<value>com/logbookmanager/persistence/hibernate/Logbookuser.hbm.xml</value>
+				<value>com/logbookmanager/persistence/hibernate/LogbookUserLogbook.hbm.xml</value>
+				<value>com/logbookmanager/persistence/hibernate/LogbookUserQualification.hbm.xml</value>
 				<value>com/logbookmanager/persistence/hibernate/Qualification.hbm.xml</value>
-				<value>com/logbookmanager/persistence/hibernate/PersonEntry.hbm.xml</value>
-				<value>com/logbookmanager/persistence/hibernate/PersonLogbookDetail.hbm.xml</value>
+				<value>com/logbookmanager/persistence/hibernate/LogbookUserLogbookEntry.hbm.xml</value>
+				<value>com/logbookmanager/persistence/hibernate/LogbookUserLogbookDetail.hbm.xml</value>
 				<value>com/logbookmanager/persistence/hibernate/Role.hbm.xml</value>
 				<value>com/logbookmanager/persistence/hibernate/User.hbm.xml</value>
 			</list>
@@ -96,13 +96,13 @@ http://www.springframework.org/schema/util http://www.springframework.org/schema
 	<bean id="organisationRepository" class="com.logbookmanager.data.repository.OrganisationRepositoryImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	<bean id="personRepository" class="com.logbookmanager.data.repository.PersonRepositoryImpl">
+	<bean id="LogbookUserRepository" class="com.logbookmanager.data.repository.LogbookUserRepositoryImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	<bean id="personLogbookRepository" class="com.logbookmanager.data.repository.PersonLogbookRepositoryImpl">
+	<bean id="LogbookUserLogbookRepository" class="com.logbookmanager.data.repository.LogbookUserLogbookRepositoryImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	<bean id="personQualificationRepository" class="com.logbookmanager.data.repository.PersonQualificationRepositoryImpl">
+	<bean id="LogbookUserQualificationRepository" class="com.logbookmanager.data.repository.LogbookUserQualificationRepositoryImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	
@@ -113,11 +113,11 @@ http://www.springframework.org/schema/util http://www.springframework.org/schema
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
-	<bean id="userEntryRepository" class="com.logbookmanager.data.repository.PersonEntryRepositoryImpl">
+	<bean id="userEntryRepository" class="com.logbookmanager.data.repository.LogbookUserLogbookEntryRepositoryImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	
-	<bean id="userLogbookDetailRepository" class="com.logbookmanager.data.repository.PersonLogbookDetailRepositoryImpl">
+	<bean id="userLogbookDetailRepository" class="com.logbookmanager.data.repository.LogbookUserLogbookDetailRepositoryImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 

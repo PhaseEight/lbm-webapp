@@ -7,7 +7,7 @@ import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
-import com.logbookmanager.domain.model.person.PersonQualification;
+import com.logbookmanager.domain.model.logbook.LogbookUserQualification;
 import com.logbookmanager.domain.support.EntitySupport;
 
 /**
@@ -27,9 +27,9 @@ public class Qualification extends EntitySupport<Qualification, Long> implements
 	private Byte displayCommon;
 
 	/**
-	 * Provide a collection of all Persons with this specific Qualification
+	 * Provide a collection of all LogbookUsers with this specific Qualification
 	 */
-	private Set<PersonQualification> personQualifications = new HashSet<PersonQualification>();
+	private Set<LogbookUserQualification> logbookUserQualifications = new HashSet<LogbookUserQualification>();
 
 	// Constructors
 
@@ -84,13 +84,13 @@ public class Qualification extends EntitySupport<Qualification, Long> implements
 	/**
 	 * 
 	 */
-	public Set<PersonQualification> getPersonQualifications() {
-		return this.personQualifications;
+	public Set<LogbookUserQualification> getLogbookUserQualifications() {
+		return this.logbookUserQualifications;
 	}
 
-	public void setPersonQualifications(
-			Set<PersonQualification> personQualifications) {
-		this.personQualifications = personQualifications;
+	public void setLogbookUserQualifications(
+			Set<LogbookUserQualification> logbookUserQualifications) {
+		this.logbookUserQualifications = logbookUserQualifications;
 	}
 
 	/**
@@ -102,7 +102,7 @@ public class Qualification extends EntitySupport<Qualification, Long> implements
 		}
 		Qualification rhs = (Qualification) object;
 		return new EqualsBuilder()
-				.append(this.personQualifications, rhs.personQualifications)
+				.append(this.logbookUserQualifications, rhs.logbookUserQualifications)
 				.append(this.displayCommon, rhs.displayCommon)
 				.append(this.commonName, rhs.commonName)
 				.append(this.name, rhs.name)
@@ -117,7 +117,7 @@ public class Qualification extends EntitySupport<Qualification, Long> implements
 	@Override
 	public int hashCode() {
 		return new HashCodeBuilder(1500570745, -319488509)
-				.append(this.personQualifications).append(this.displayCommon)
+				.append(this.logbookUserQualifications).append(this.displayCommon)
 				.append(this.commonName).append(this.name)
 				.append(this.organisation).append(this.id).append(this.version)
 				.toHashCode();
@@ -129,7 +129,7 @@ public class Qualification extends EntitySupport<Qualification, Long> implements
 	@Override
 	public String toString() {
 		return new ToStringBuilder(this)
-				.append("qualifications", this.personQualifications)
+				.append("qualifications", this.logbookUserQualifications)
 				.append("name", this.name)
 				.append("displayCommon", this.displayCommon)
 				.append("organisation", this.organisation)

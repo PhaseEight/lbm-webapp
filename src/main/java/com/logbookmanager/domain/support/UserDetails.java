@@ -1,7 +1,7 @@
 package com.logbookmanager.domain.support;
 
 
-public class UserDetails extends ValueObjectSupport<PersonalDetails> {
+public class UserDetails extends ValueObjectSupport<UserDetails> {
 	/**
 	 * 
 	 */

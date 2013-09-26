@@ -44,7 +44,7 @@
 			<key>
 				<column name="DETAIL_ATTRIBUTE_ID" not-null="true" />
 			</key>
-			<one-to-many class="com.logbookmanager.domain.model.person.EntryAttribute" />
+			<one-to-many class="com.logbookmanager.domain.model.logbook.EntryAttribute" />
 		</set>
 	</class>
 </hibernate-mapping>

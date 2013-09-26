@@ -38,7 +38,7 @@ public class CreateUserController {
 	 */
 	@RequestMapping(method = RequestMethod.GET)
 	public String createUser(Locale locale, Model model) {
-		logger.info("Create a new {}.", "User");
+		logger.info("Create a new {}.", "SecureUser");
 
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG,

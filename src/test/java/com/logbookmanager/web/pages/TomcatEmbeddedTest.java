@@ -31,18 +31,18 @@ import org.slf4j.LoggerFactory;
  * @see <a
  *      href="http://www.hostettler.net/blog/2012/04/05/programmatically-build-web-archives-using-shrinkwrap/">programmatically-build-web-archives-using-shrinkwrap</a>
  * @see <a
- *      href="http://www.hostettler.net/blog/2012/04/09/embedded-jee-web-application-integration-testing-using-tomcat-7/">embedded-jee-web-application-integration-testing-using-tomcat-7</a>
+ *      href="http://www.hostettler.net/blog/2012/04/09/embedded-jee-web-application-integration-testing-using-Tomcat-7/">embedded-jee-web-application-integration-testing-using-Tomcat-7</a>
  * @author Peter
  * 
  */
-public class WelcomePageTest {
+public class TomcatEmbeddedTest {
 
-	final static Logger log = LoggerFactory.getLogger(WelcomePageTest.class.getName());
+	final static Logger log = LoggerFactory.getLogger(TomcatEmbeddedTest.class.getName());
 
 	private static final String WEBAPP_SRC = "src/main/webapp";
 	private static final String APP_RESOURCES = "src/main/resources";
 
-	/** The tomcat instance. */
+	/** The Tomcat instance. */
 	private Tomcat mTomcat;
 	/** The temporary directory in which Tomcat and the app are deployed. */
 	private String mWorkingDir = System.getProperty("java.io.tmpdir");

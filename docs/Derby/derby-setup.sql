@@ -57,8 +57,8 @@ SELECT username,password,active FROM sec_user WHERE username = 'peterneil';
 -- INSERT Roles
 INSERT INTO sec_role (version, name) VALUES(1,'logbookuser'); -- a user of logbooks
 INSERT INTO sec_role (version, name) VALUES(1,'admin'); -- administers logbooks
-INSERT INTO sec_role (version, name) VALUES(1,'guestuser'); -- guest to the web site who has not provided any personal information
-INSERT INTO sec_role (version, name) VALUES(1,'registereduser'); -- a person without a logbook, but they have registered
+INSERT INTO sec_role (version, name) VALUES(1,'guestuser'); -- guest to the web site who has not registered for a logbook
+INSERT INTO sec_role (version, name) VALUES(1,'registereduser'); -- a user without a logbook, but they have registered
 
 --INSERT SecUsers
 INSERT INTO sec_user (active, username, first_name, last_name, version, password, email, postal_code, city) VALUES(1, 'peterneil', 'Peter', 'Neil', 1, 'password', 'peterneil_world@yahoo.co.uk', 'WS149ZY', 'Lichfield');

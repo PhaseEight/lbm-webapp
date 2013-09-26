@@ -6,7 +6,7 @@
         Auto-generated mapping file from
         the hibernate.org cfg2hbm engine
 -->
-    <class name="com.logbookmanager.domain.model.person.EntryAttribute" table="entry_attribute" >
+    <class name="com.logbookmanager.domain.model.logbook.EntryAttribute" table="entry_attribute" >
         <id
             name="id"
             column="id"
@@ -30,8 +30,8 @@
         <many-to-one name="detailAttribute" class="com.logbookmanager.domain.model.logbook.DetailAttribute">
             <column name="DETAIL_ATTRIBUTE_ID" not-null="true" />
         </many-to-one>
-        <many-to-one name="userEntry" class="com.logbookmanager.domain.model.person.PersonEntry">
-            <column name="PERSON_ENTRY_ID" not-null="true" />
+        <many-to-one name="LogbookUserLogbookEntry" class="com.logbookmanager.domain.model.logbook.LogbookUserLogbookEntry">
+            <column name="LOGBOOKUSER_LOGBOOK_ENTRY_ID" not-null="true" />
         </many-to-one>
         <property name="displayValue" type="string">
             <column name="DISPLAY_VALUE" />

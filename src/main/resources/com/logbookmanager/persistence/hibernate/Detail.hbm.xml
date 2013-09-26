@@ -50,7 +50,7 @@
             <key>
                 <column name="DETAIL_ID" not-null="true" />
             </key>
-            <one-to-many class="com.logbookmanager.domain.model.person.PersonLogbookDetail" />
+            <one-to-many class="com.logbookmanager.domain.model.logbook.LogbookUserLogbookDetail" />
         </set>
     </class>
 </hibernate-mapping>

@@ -11,7 +11,6 @@ import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
-import com.logbookmanager.domain.model.person.PersonLogbook;
 import com.logbookmanager.domain.support.EntitySupport;
 import com.logbookmanager.domain.support.Title;
 
@@ -28,7 +27,7 @@ public class Logbook extends EntitySupport<Logbook, Long> implements
 	private Set<LogbookPage> logbookPages = new HashSet<LogbookPage>();
 
 	// a set of people this logbook belongs to
-	private Set<PersonLogbook> personLogbooks = new HashSet<PersonLogbook>();
+	private Set<LogbookUserLogbook> logbookUserLogbooks = new HashSet<LogbookUserLogbook>();
 
 	/** default constructor required by Hibernate */
 	Logbook() {
@@ -53,12 +52,12 @@ public class Logbook extends EntitySupport<Logbook, Long> implements
 	/**
 	 * 
 	 */
-	public Set<PersonLogbook> getPersonLogbooks() {
-		return this.personLogbooks;
+	public Set<LogbookUserLogbook> getLogbookUserLogbooks() {
+		return this.logbookUserLogbooks;
 	}
 
-	public void setPersonLogbooks(Set<PersonLogbook> personLogbooks) {
-		this.personLogbooks = personLogbooks;
+	public void setLogbookUserLogbooks(Set<LogbookUserLogbook> logbookUserLogbooks) {
+		this.logbookUserLogbooks = logbookUserLogbooks;
 	}
 
 	/**

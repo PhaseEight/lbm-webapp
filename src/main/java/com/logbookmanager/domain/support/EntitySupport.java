@@ -142,6 +142,9 @@ public abstract class EntitySupport<T extends Entity<T, ID>, ID extends Serializ
 	}
 
 	@Override
+	/**
+	 * TODO: natural-id must be tested for objects that have a natural id.
+	 */
 	public boolean sameIdentityAs(T other) {
 		return other != null && this.getId().equals(other.getId());
 	}

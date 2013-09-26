@@ -5,7 +5,7 @@ import java.io.Serializable;
 import org.springframework.stereotype.Repository;
 
 import com.logbookmanager.data.support.hibernate.HibernateRepository;
-import com.logbookmanager.domain.model.person.EntryAttribute;
+import com.logbookmanager.domain.model.logbook.EntryAttribute;
 
 @Repository
 public class EntryAttributeRepositoryImpl extends

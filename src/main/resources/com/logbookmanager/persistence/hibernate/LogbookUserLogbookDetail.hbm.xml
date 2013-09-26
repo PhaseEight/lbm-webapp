@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!-- 
+        Auto-generated mapping file from
+        the hibernate.org cfg2hbm engine
+-->
+    <class name="com.logbookmanager.domain.model.logbook.LogbookUserLogbookDetail" table="logbookuser_logbook_detail" >
+        <composite-id name="id" class="com.logbookmanager.domain.model.logbook.LogbookUserLogbookDetailId" unsaved-value="any">
+            <key-many-to-one name="logbookUser" class="com.logbookmanager.domain.model.logbook.LogbookUser">
+                <column name="USER_ID" />
+            </key-many-to-one>
+            <key-many-to-one name="detail" class="com.logbookmanager.domain.model.logbook.Detail">
+                <column name="DETAIL_ID" />
+            </key-many-to-one>
+            <key-property name="id" type="long">
+                <column name="ID" />
+            </key-property>
+            <key-property name="name" type="string">
+                <column name="NAME" />
+            </key-property>
+            <key-property name="displayValue" type="string">
+                <column name="DISPLAY_VALUE" length="50" />
+            </key-property>
+            <key-property name="version" type="long">
+                <column name="VERSION" />
+            </key-property>
+        </composite-id>
+    </class>
+</hibernate-mapping>

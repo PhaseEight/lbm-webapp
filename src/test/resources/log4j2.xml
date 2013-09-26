@@ -51,7 +51,7 @@
 
 		<logger
 			name="com.gargoylesoftware"
-			level="info">
+			level="error">
 		</logger>
 
 		<logger name="org.springframework.test" level="debug">

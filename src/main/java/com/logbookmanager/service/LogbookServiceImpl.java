@@ -7,9 +7,9 @@ import javax.inject.Inject;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 import com.logbookmanager.data.repository.LogbookRepository;
-import com.logbookmanager.data.repository.PersonRepository;
+import com.logbookmanager.data.repository.LogbookUserRepository;
 import com.logbookmanager.domain.model.logbook.Logbook;
-import com.logbookmanager.domain.model.person.Person;
+import com.logbookmanager.domain.model.logbook.LogbookUser;
 import com.logbookmanager.service.support.GenericService;
 
 /**
@@ -39,7 +39,7 @@ public class LogbookServiceImpl extends GenericService<Logbook, Long> implements
 	private LogbookRepository logbookRepository;
 
 	@Inject
-	private PersonRepository personRepository;
+	private LogbookUserRepository logbookUserRepository;
 
 	@Inject
 	public LogbookServiceImpl(LogbookRepository logbookRepository) {
@@ -54,29 +54,29 @@ public class LogbookServiceImpl extends GenericService<Logbook, Long> implements
 		this.logbookRepository = logbookRepository;
 	}
 
-	public PersonRepository getPersonRepository() {
-		return personRepository;
+	public LogbookUserRepository getLogbookUserRepository() {
+		return logbookUserRepository;
 	}
 
-	public void setPersonRepository(PersonRepository personRepository) {
-		this.personRepository = personRepository;
+	public void setLogbookUserRepository(LogbookUserRepository logbookUserRepository) {
+		this.logbookUserRepository = logbookUserRepository;
 	}
 
 	/**
 	 * 
-	 * @param person
-	 *            the Person signing up for a new logbook
+	 * @param logbookUser
+	 *            the LogbookUser signing up for a new logbook
 	 * @param logbook
 	 * 
-	 *            The logbook the person wants
+	 *            The logbook the registered user wants to use
 	 * 
 	 *            session.buildLockRequest().setLockMode(LockMode.
 	 *            PESSIMISTIC_WRITE).setTimeOut(60000).lock(entity);
 	 */
-	public void createLogbook(Person person, Logbook logbook) {
-		person.addLogbook(logbook);
+	public void createLogbook(LogbookUser logbookUser, Logbook logbook) {
+		logbookUser.addLogbook(logbook);
 
-		personRepository.makePersistent(person);
+		logbookUserRepository.makePersistent(logbookUser);
 	}
 
 }

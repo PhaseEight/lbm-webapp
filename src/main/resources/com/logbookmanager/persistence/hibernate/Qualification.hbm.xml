@@ -40,11 +40,11 @@
             <column name="DISPLAY_COMMON" not-null="true" />
         </property>
 
-        <set name="personQualifications" inverse="true">
+        <set name="logbookuserQualifications" inverse="true">
             <key>
                 <column name="QUALIFICATION_ID" not-null="true" />
             </key>
-            <one-to-many class="com.logbookmanager.domain.model.person.PersonQualification" />
+            <one-to-many class="com.logbookmanager.domain.model.logbook.LogbookUserQualification" />
         </set>
     </class>
 </hibernate-mapping>

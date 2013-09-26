@@ -23,7 +23,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.logbookmanager.data.repository.LogbookRepository;
 import com.logbookmanager.domain.model.logbook.Logbook;
-import com.logbookmanager.domain.model.person.Person;
+import com.logbookmanager.domain.model.logbook.LogbookUser;
 import com.logbookmanager.domain.support.Title;
 import com.logbookmanager.support.IntegrationTestSupport;
 
@@ -115,7 +115,7 @@ public class LogbookIntegrationTests extends IntegrationTestSupport {
 	@Test
 	@Transactional
 	public void findAllLogbookPeople() {
-		List<Person> people = logbookRepository.listLogobookUsers();
+		List<LogbookUser> people = logbookRepository.listLogobookUsers();
 		assertTrue("There should be 2 people ", people.size()==2);
 	}
 

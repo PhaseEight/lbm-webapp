@@ -10,13 +10,13 @@ import javax.inject.Named;
 
 import org.springframework.stereotype.Component;
 
-import com.logbookmanager.domain.model.security.User;
+import com.logbookmanager.domain.model.security.SecureUser;
 import com.logbookmanager.domain.support.UserName;
-import com.logbookmanager.service.UserService;
+import com.logbookmanager.service.RegisteredUserService;
 
 /**
  * 
- * User Managed Bean
+ * SecureUser Managed Bean
  * 
  * @author Peter Neil
  * @author onlinetechvision.com
@@ -31,24 +31,24 @@ public class UserBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	// Spring User Service is injected...
-	@ManagedProperty(value = "#{userService}")
-	UserService userService;
+	// Spring SecureUser Service is injected...
+	@ManagedProperty(value = "#{registeredUserService}")
+	RegisteredUserService registeredUserService;
 
-	private List<User> userList;
+	private List<SecureUser> userList;
 
 	private Long id;
 	private String name;
 	private String surname;
 
 	/**
-	 * Add User
+	 * Add SecureUser
 	 * 
 	 * @return String - Response Message
 	 */
 	public boolean addUser() {
-		User user = new User(new UserName(getName() + "." + getSurname()));
-		getUserService().save(user);
+		SecureUser secureUser = new SecureUser(new UserName(getName() + "." + getSurname()));
+		getUserService().save(secureUser);
 		return true;
 
 	}
@@ -64,96 +64,96 @@ public class UserBean implements Serializable {
 	}
 
 	/**
-	 * Get User List
+	 * Get SecureUser List
 	 * 
-	 * @return List - User List
+	 * @return List - SecureUser List
 	 */
-	public List<User> getUserList() {
-		userList = new ArrayList<User>();
+	public List<SecureUser> getUserList() {
+		userList = new ArrayList<SecureUser>();
 		userList.addAll(getUserService().findAll());
 		return userList;
 	}
 
 	/**
-	 * Get User Service
+	 * Get SecureUser Service
 	 * 
-	 * @return IuserService - User Service
+	 * @return IuserService - SecureUser Service
 	 */
-	public UserService getUserService() {
-		return userService;
+	public RegisteredUserService getUserService() {
+		return registeredUserService;
 	}
 
 	/**
-	 * Set User Service
+	 * Set SecureUser Service
 	 * 
 	 * @param IuserService
-	 *            - User Service
+	 *            - SecureUser Service
 	 */
-	public void setUserService(UserService userService) {
-		this.userService = userService;
+	public void setUserService(RegisteredUserService registeredUserService) {
+		this.registeredUserService = registeredUserService;
 	}
 
 	/**
-	 * Set User List
+	 * Set SecureUser List
 	 * 
 	 * @param List
-	 *            - User List
+	 *            - SecureUser List
 	 */
-	public void setUserList(List<User> userList) {
+	public void setUserList(List<SecureUser> userList) {
 		this.userList = userList;
 	}
 
 	/**
-	 * Get User Id
+	 * Get SecureUser Id
 	 * 
-	 * @return int - User Id
+	 * @return int - SecureUser Id
 	 */
 	public Long getId() {
 		return id;
 	}
 
 	/**
-	 * Set User Id
+	 * Set SecureUser Id
 	 * 
-	 * @param int - User Id
+	 * @param int - SecureUser Id
 	 */
 	public void setId(Long id) {
 		this.id = id;
 	}
 
 	/**
-	 * Get User Name
+	 * Get SecureUser Name
 	 * 
-	 * @return String - User Name
+	 * @return String - SecureUser Name
 	 */
 	public String getName() {
 		return name;
 	}
 
 	/**
-	 * Set User Name
+	 * Set SecureUser Name
 	 * 
 	 * @param String
-	 *            - User Name
+	 *            - SecureUser Name
 	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 
 	/**
-	 * Get User Surname
+	 * Get SecureUser Surname
 	 * 
-	 * @return String - User Surname
+	 * @return String - SecureUser Surname
 	 */
 	public String getSurname() {
 		return surname;
 	}
 
 	/**
-	 * Set User Surname
+	 * Set SecureUser Surname
 	 * 
 	 * @param String
-	 *            - User Surname
+	 *            - SecureUser Surname
 	 */
 	public void setSurname(String surname) {
 		this.surname = surname;

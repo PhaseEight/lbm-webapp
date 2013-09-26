@@ -7,7 +7,6 @@ import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
-import com.logbookmanager.domain.model.person.PersonLogbookDetail;
 import com.logbookmanager.domain.support.EntitySupport;
 
 /**
@@ -27,7 +26,7 @@ public class Detail extends EntitySupport<Detail, Long> implements
 	private Set<LogbookPageDetail> logbookPageDetails = new HashSet<LogbookPageDetail>();
 
 	// These are details assigned to the logbook by the logbook user/owner
-	private Set<PersonLogbookDetail> userLogbookDetails = new HashSet<PersonLogbookDetail>();
+	private Set<LogbookUserLogbookDetail> userLogbookDetails = new HashSet<LogbookUserLogbookDetail>();
 
 	// Constructors
 
@@ -82,12 +81,12 @@ public class Detail extends EntitySupport<Detail, Long> implements
 	/**
 	 * 
 	 */
-	public Set<PersonLogbookDetail> getUserLogbookDetails() {
+	public Set<LogbookUserLogbookDetail> getUserLogbookDetails() {
 		return this.userLogbookDetails;
 	}
 
 	public void setUserLogbookDetails(
-			Set<PersonLogbookDetail> userLogbookDetails) {
+			Set<LogbookUserLogbookDetail> userLogbookDetails) {
 		this.userLogbookDetails = userLogbookDetails;
 	}
 

@@ -3,64 +3,64 @@ package com.logbookmanager.data.repository;
 import org.springframework.stereotype.Repository;
 
 import com.logbookmanager.data.support.hibernate.HibernateRepository;
-import com.logbookmanager.domain.model.security.User;
+import com.logbookmanager.domain.model.security.SecureUser;
 import com.logbookmanager.domain.support.UserName;
 
 @Repository
-public class UserRepositoryImpl extends HibernateRepository<User, Long> implements
+public class UserRepositoryImpl extends HibernateRepository<SecureUser, Long> implements
 		UserRepository {
 
 	/**
 	 * the super must be called otherwise the Generics do not work
 	 */
 	public UserRepositoryImpl() {
-		super(User.class, Long.class);
+		super(SecureUser.class, Long.class);
 	}
 
 	/**
 	 */
-	public User getUserByUsername(UserName username) {
-		User eg = new User(username);
+	public SecureUser getUserByUsername(UserName username) {
+		SecureUser eg = new SecureUser(username);
 		return getUser(eg);
 	}
 
-	public User getActiveUserByUsername(UserName username) {
-		User eg = new User(username);
+	public SecureUser getActiveUserByUsername(UserName username) {
+		SecureUser eg = new SecureUser(username);
 		eg.setActive(true);
 		return getUser(eg);
 	}
 
-	public User getActiveUser(User user) {
-		User result = null;
-		user.setActive(true);
-		result = getUser(user);
+	public SecureUser getActiveUser(SecureUser secureUser) {
+		SecureUser result = null;
+		secureUser.setActive(true);
+		result = getUser(secureUser);
 		return result;
 	}
 
-	public User getUser(User user) {
-		User result = findUniqueByExample(user);
+	public SecureUser getUser(SecureUser secureUser) {
+		SecureUser result = findUniqueByExample(secureUser);
 		return result;
 	}
 
 	/**
 	 */
-	public User saveUser(User user) {
+	public SecureUser saveUser(SecureUser secureUser) {
 		if (this.log.isDebugEnabled()) {
-			this.log.debug("user's username: " + user.getUsername());
+			this.log.debug("user's username: " + secureUser.getUsername());
 		}
-		makePersistent(user);
+		makePersistent(secureUser);
 
 		// we have to flush to enable the propogation of a
 		// DataIntegrityViolation thrown by Spring.
 		getSessionFactory().getCurrentSession().flush();
 
-		return user;
+		return secureUser;
 	}
 
 	/**
 	 */
-	public User removeUser(User user) {
-		return delete(user);
+	public SecureUser removeUser(SecureUser secureUser) {
+		return delete(secureUser);
 	}
 
 }

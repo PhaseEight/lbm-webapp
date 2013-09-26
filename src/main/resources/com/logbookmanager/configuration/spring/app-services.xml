@@ -9,7 +9,7 @@
 
 	<import resource="app-tx.xml" />
 
-    <bean id="userService" class="com.logbookmanager.service.UserServiceImpl">
+    <bean id="userService" class="com.logbookmanager.service.RegisteredUserServiceImpl">
 	    <constructor-arg ref="userRepository" /> 
 	</bean>
 	
