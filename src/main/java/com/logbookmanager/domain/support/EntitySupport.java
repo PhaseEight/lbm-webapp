@@ -5,6 +5,7 @@ import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Transient;
@@ -24,7 +25,7 @@ import com.logbookmanager.support.BaseObject;
  *         by Peter
  * 
  */
-//@MappedSuperclass
+@MappedSuperclass
 public abstract class EntitySupport<T extends Entity<T, ID>, ID extends Serializable>
 		extends BaseObject<T> implements Entity<T, ID>, Serializable {
 
@@ -53,7 +54,7 @@ public abstract class EntitySupport<T extends Entity<T, ID>, ID extends Serializ
 	@Override
 	@Id
 	@Column(name = "id", unique = true, nullable = false)
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	public ID getId() {
 		return id;
 	}

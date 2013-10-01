@@ -3,6 +3,7 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 	<class name="com.logbookmanager.domain.model.Country" table="country">
+
 		<id name="id" column="id" type="java.lang.Long" unsaved-value="null">
 			<generator class="increment">
 			</generator>
