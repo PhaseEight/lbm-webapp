@@ -1,7 +1,7 @@
 package com.logbookmanager.data.repository;
 
-import com.logbookmanager.domain.model.organisation.Qualification;
+import com.logbookmanager.domain.model.organisation.Certification;
 
-public interface QualificationRepository extends Repository<Qualification, Long> {
+public interface CertificationRepository extends Repository<Certification, Long> {
 
 }

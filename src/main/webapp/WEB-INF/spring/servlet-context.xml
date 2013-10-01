@@ -77,7 +77,6 @@
 		<property name="defaultLocale" value="en" />
 	</bean>
 
-<!-- 
 	<context:component-scan use-default-filters="true"
 		base-package="com.logbookmanager" annotation-config="true" scoped-proxy="no">
 		<context:include-filter type="regex"
@@ -89,10 +88,11 @@
 		<context:include-filter type="regex"
 			expression="com.logbookmanager.util.*" />
 		<context:include-filter type="regex"
-			expression="com.logbookmanager.domain.model.*" />
+			expression="com.logbookmanager.domain.*" />
+		<!-- 
 		<context:exclude-filter type="regex" expression=".*" />
+		 -->
 	</context:component-scan>
--->
 	<context:annotation-config />
 
 	<!-- Enables the Spring MVC @Controller programming model -->

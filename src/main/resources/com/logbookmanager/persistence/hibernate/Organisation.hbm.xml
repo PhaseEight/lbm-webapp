@@ -2,62 +2,78 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-<!-- 
-        Auto-generated mapping file from
-        the hibernate.org cfg2hbm engine
--->
-    <class name="com.logbookmanager.domain.model.organisation.Organisation" table="organisation" >
-        <id
-            name="id"
-            column="id"
-            type="java.lang.Long"
-            unsaved-value="null"
-        >
-            <generator class="increment">
-            </generator>
-        </id>
+	<class name="com.logbookmanager.domain.model.organisation.Organisation"
+		table="organisation">
+		<id name="id" column="id" type="java.lang.Long" unsaved-value="null">
+			<generator class="increment">
+			</generator>
+		</id>
 
-		<version name="version" column="version" type="java.lang.Long"/>
-        
-        <property name="active" type="java.lang.Boolean" update="true">
-            <column name="ACTIVE" not-null="true" unique="false" default="true"/>
-        </property>
+		<version name="version" column="version" type="java.lang.Long" />
 
-        <property name="lastUpdateTimeStamp" type="java.sql.Timestamp">
-            <column name="LAST_UPDATE_DATE" length="10" not-null="true" unique="false" default="CURRENT_TIMESTAMP"/>
-        </property>
-        
-        <property name="name" type="string">
-            <column name="NAME" length="155" not-null="true" unique="true" />
-        </property>
-        <property name="commonName" type="string">
-            <column name="COMMON_NAME" unique="true" />
-        </property>
-        <property name="headOfficeAddress1" type="string">
-            <column name="HEAD_OFFICE_ADDRESS_1" />
-        </property>
-        <property name="headOfficeAddress2" type="string">
-            <column name="HEAD_OFFICE_ADDRESS_2" />
-        </property>
-        <property name="headOfficeAddress3" type="string">
-            <column name="HEAD_OFFICE_ADDRESS_3" />
-        </property>
-        <property name="postCode" type="string">
-            <column name="POST_CODE" length="15"/>
-        </property>
-        <property name="email" type="string">
-            <column name="EMAIL" unique="true" />
-        </property>
+		<property name="active" type="java.lang.Boolean" update="true">
+			<column name="ACTIVE" not-null="true" unique="false" default="true" />
+		</property>
 
-        <set name="qualifications" inverse="true">
-            <key>
-                <column name="ORGANISATION_ID" not-null="true" />
-            </key>
-            <one-to-many class="com.logbookmanager.domain.model.organisation.Qualification" />
-        </set>
-        <set name="organisationCountries" inverse="true" batch-size="0" lazy="true" cascade="all-delete-orphan">
-            <key column="COUNTRY_ID"/>
-            <one-to-many class="com.logbookmanager.domain.model.organisation.OrganisationCountry"></one-to-many>
-        </set>
-    </class>
+		<property name="lastUpdateTimeStamp" type="java.sql.Timestamp">
+			<column name="LAST_UPDATE_DATE" length="10" not-null="true"
+				unique="false" default="CURRENT_TIMESTAMP" />
+		</property>
+
+		<property name="name" type="string">
+			<column name="NAME" length="155" not-null="true" unique="true" />
+		</property>
+		<property name="commonName" type="string">
+			<column name="COMMON_NAME" unique="true" />
+		</property>
+
+
+		<component name="organisationDetails"
+			class="com.logbookmanager.domain.support.OrganisationDetails">
+
+			<component name="address"
+				class="com.logbookmanager.domain.model.support.Address">
+				<property name="nameOrNumber" type="java.lang.String"
+					update="true" insert="true" column="name_or_number" length="150"
+					not-null="false" />
+
+				<property name="street" type="java.lang.String" update="true"
+					insert="true" column="street" length="150" not-null="false" />
+
+				<property name="city" type="java.lang.String" update="true"
+					insert="true" column="city" length="150" not-null="false" />
+
+				<property name="province" type="java.lang.String" update="true"
+					insert="true" column="province" length="150" not-null="false" />
+
+				<many-to-one name="country"
+					class="com.logbookmanager.domain.model.Country" cascade="none"
+					column="country_id" not-null="false" insert="false" update="false"></many-to-one>
+
+				<property name="postCode" type="java.lang.String" update="true"
+					insert="true" column="postal_code" length="15" not-null="false" />
+			</component>
+
+		</component>
+
+
+
+
+
+
+
+		<set name="certifications" inverse="true">
+			<key>
+				<column name="ORGANISATION_ID" not-null="true" />
+			</key>
+			<one-to-many
+				class="com.logbookmanager.domain.model.organisation.Certification" />
+		</set>
+		<set name="organisationCountries" inverse="true" batch-size="0"
+			lazy="true" cascade="all-delete-orphan">
+			<key column="COUNTRY_ID" foreign-key="FK_ORGANISATION_ORGANISATION_CPINTRY_ID"/>
+			<one-to-many
+				class="com.logbookmanager.domain.model.organisation.OrganisationCountry"/>
+		</set>
+	</class>
 </hibernate-mapping>

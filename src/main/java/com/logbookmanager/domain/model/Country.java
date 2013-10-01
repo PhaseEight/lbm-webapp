@@ -1,20 +1,18 @@
 package com.logbookmanager.domain.model;
 
-import java.util.HashSet;
-import java.util.Set;
-
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.hibernate.annotations.NaturalId;
 
-import com.logbookmanager.domain.model.organisation.Organisation;
-import com.logbookmanager.domain.model.organisation.OrganisationCountry;
 import com.logbookmanager.domain.support.EntitySupport;
 
 /**
  * This class does not represent Locale. Use the Locale class and
  * LocaleContextHolder for Application specific Local sensitive operations.
+ * 
+ * @see com.logbookmanager.domain.model.organisation.OrganisationCountries 
+ * 
  */
 public class Country extends EntitySupport<Country, Long> implements java.io.Serializable {
 
@@ -22,33 +20,12 @@ public class Country extends EntitySupport<Country, Long> implements java.io.Ser
 
 	@NaturalId
 	private String ansiCode;
-
 	private String displayName;
-
-	private Set<OrganisationCountry> organisationCountries = new HashSet<OrganisationCountry>();
 
 	/** default constructor required by Hibernate */
 	public Country(String ansiCode, String displayName) {
 		this.ansiCode = ansiCode;
 		this.displayName = displayName;
-	}
-
-	/**
-	 * 
-	 */
-	public Set<OrganisationCountry> getOrganisationCountries() {
-		return this.organisationCountries;
-	}
-
-	public void setOrganisationCountries(Set<OrganisationCountry> organisationCountries) {
-		this.organisationCountries = organisationCountries;
-	}
-
-	public void addOrganisation(Organisation organisation) {
-		OrganisationCountry organisationCountry = new OrganisationCountry(this, organisation);
-		if (!organisationCountries.contains(organisationCountry)) {
-			organisationCountries.add(organisationCountry);
-		}
 	}
 
 	/**

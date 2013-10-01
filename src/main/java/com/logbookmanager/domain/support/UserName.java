@@ -12,6 +12,7 @@ public class UserName extends ValueObjectSupport<UserName> {
 	private static final long serialVersionUID = 1L;
 
 	private String value;
+	
 	/*required by Hibernate */
 	UserName(){
 		this.value = null;

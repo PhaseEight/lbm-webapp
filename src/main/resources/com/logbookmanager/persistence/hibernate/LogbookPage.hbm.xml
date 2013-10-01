@@ -2,46 +2,41 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-<!-- 
-        Auto-generated mapping file from
-        the hibernate.org cfg2hbm engine
--->
-    <class name="com.logbookmanager.domain.model.logbook.LogbookPage" table="logbook_page" >
-        <id
-            name="id"
-            column="id"
-            type="java.lang.Long"
-            unsaved-value="null"
-        >
-            <generator class="increment">
-            </generator>
-        </id>
+	<class name="com.logbookmanager.domain.model.logbook.LogbookPage"
+		table="logbook_page">
+		<id name="id" column="id" type="java.lang.Long" unsaved-value="null">
+			<generator class="increment">
+			</generator>
+		</id>
 
-		<version name="version" column="version" type="java.lang.Long"/>
-        
-        <property name="active" type="java.lang.Boolean" update="true">
-            <column name="ACTIVE" not-null="true" unique="false" default="true"/>
-        </property>
+		<version name="version" column="version" type="java.lang.Long" />
 
-        <property name="lastUpdateTimeStamp" type="java.sql.Timestamp">
-            <column name="LAST_UPDATE_DATE" length="10" not-null="true" unique="false" default="CURRENT_TIMESTAMP"/>
-        </property>
-        
-        <many-to-one name="logbook" class="com.logbookmanager.domain.model.logbook.Logbook">
-            <column name="LOGBOOK_ID" not-null="true" />
-        </many-to-one>
-        <property name="name" type="string">
-            <column name="NAME" unique="true" />
-        </property>
-        <property name="displayOrder" type="integer">
-            <column name="DISPLAY_ORDER" />
-        </property>
+		<property name="active" type="java.lang.Boolean" update="true">
+			<column name="ACTIVE" not-null="true" unique="false" default="true" />
+		</property>
 
-        <set name="logbookPageDetails" inverse="true">
-            <key>
-                <column name="PAGE_ID" not-null="true" />
-            </key>
-            <one-to-many class="com.logbookmanager.domain.model.logbook.LogbookPageDetail" />
-        </set>
-    </class>
+		<property name="lastUpdateTimeStamp" type="java.sql.Timestamp">
+			<column name="LAST_UPDATE_DATE" length="10" not-null="true"
+				unique="false" default="CURRENT_TIMESTAMP" />
+		</property>
+
+		<many-to-one name="logbook"
+			class="com.logbookmanager.domain.model.logbook.Logbook">
+			<column name="LOGBOOK_ID" not-null="true" />
+		</many-to-one>
+		<property name="name" type="string">
+			<column name="NAME" unique="true" />
+		</property>
+		<property name="displayOrder" type="integer">
+			<column name="DISPLAY_ORDER" />
+		</property>
+
+		<set name="logbookPageDetails" inverse="true">
+			<key>
+				<column name="PAGE_ID" not-null="true" />
+			</key>
+			<one-to-many
+				class="com.logbookmanager.domain.model.logbook.LogbookPageDetail" />
+		</set>
+	</class>
 </hibernate-mapping>

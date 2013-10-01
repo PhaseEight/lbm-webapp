@@ -6,8 +6,8 @@ import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-import org.apache.commons.lang.builder.ToStringBuilder;
-import org.apache.commons.lang.builder.ToStringStyle;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 import org.apache.commons.lang3.Validate;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -34,8 +34,10 @@ import com.logbookmanager.domain.support.UserName;
  * @author <a href="mailto:peter.neil@logbookmanager.com">Peter Neil</a>
  * 
  */
-@Entity
-@Table(name = "RegisteredUser")
+/*
+ * @Entity
+ * @Table(name = "RegisteredUser")
+*/
 @DeleteType(type = DeletionType.LogicalDelete)
 public class RegisteredUser extends EntitySupport<com.logbookmanager.domain.model.security.RegisteredUser, Long> implements Serializable {
 

@@ -29,7 +29,7 @@ http://www.springframework.org/schema/util http://www.springframework.org/schema
 				<value>com/logbookmanager/persistence/hibernate/OrganisationCountry.hbm.xml</value>
 				<value>com/logbookmanager/persistence/hibernate/LogbookUser.hbm.xml</value>
 				<value>com/logbookmanager/persistence/hibernate/LogbookUserLogbook.hbm.xml</value>
-				<value>com/logbookmanager/persistence/hibernate/Qualification.hbm.xml</value>
+				<value>com/logbookmanager/persistence/hibernate/Certification.hbm.xml</value>
 				<value>com/logbookmanager/persistence/hibernate/LogbookUserLogbookEntry.hbm.xml</value>
 				<value>com/logbookmanager/persistence/hibernate/LogbookUserLogbookDetail.hbm.xml</value>
 				<value>com/logbookmanager/persistence/hibernate/Role.hbm.xml</value>

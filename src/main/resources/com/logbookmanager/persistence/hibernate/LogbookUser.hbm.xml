@@ -2,7 +2,6 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-	<!-- Auto-generated mapping file from the hibernate.org cfg2hbm engine -->
 	<class name="com.logbookmanager.domain.model.logbook.LogbookUser"
 		table="logbookUser">
 
@@ -22,12 +21,14 @@
 				unique="false" default="CURRENT_TIMESTAMP" />
 		</property>
 
-		<set name="qualifications" lazy="false" table="LOGBOOKUSER_QUALIFICATION">
-			<key>
-				<column name="LOGBOOKUSER_ID" not-null="false" />
-			</key>
-			
-			<many-to-many unique="false" column="QUALIFICATION_ID" class="com.logbookmanager.domain.model.organisation.Qualification" />
+		<set name="certifications" lazy="false" table="LOGBOOKUSER_CERTIFICATION"
+			cascade="save-update,delete" fetch="join">
+
+			<key column="LOGBOOKUSER_ID" not-null="false" />
+
+			<many-to-many
+				class="com.logbookmanager.domain.model.organisation.Certification"
+				column="CERTIFICATION_ID" foreign-key="FK_CERTIFICATION_CERTIFICATION_ID" />
 		</set>
 
 		<list name="logbookUserLogbooks" inverse="true" batch-size="0"
@@ -42,7 +43,7 @@
 				class="com.logbookmanager.domain.model.logbook.LogbookUserLogbook" />
 		</list>
 
-		<many-to-one name="secUser"
+		<many-to-one name="registeredUser"
 			class="com.logbookmanager.domain.model.security.RegisteredUser" lazy="false"
 			foreign-key="FK_SEC_USER_ID" column="SEC_USER_ID" unique="true"
 			not-null="false" />

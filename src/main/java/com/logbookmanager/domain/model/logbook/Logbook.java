@@ -6,10 +6,10 @@ import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-import org.apache.commons.lang.Validate;
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang3.Validate;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import com.logbookmanager.domain.support.EntitySupport;
 import com.logbookmanager.domain.support.Title;

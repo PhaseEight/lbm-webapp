@@ -3,11 +3,11 @@ package com.logbookmanager.domain.model.logbook;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
-import com.logbookmanager.domain.model.organisation.Qualification;
+import com.logbookmanager.domain.model.organisation.Certification;
 import com.logbookmanager.domain.model.security.RegisteredUser;
 import com.logbookmanager.domain.support.EntitySupport;
 import com.logbookmanager.domain.support.PersonalDetails;
@@ -22,9 +22,9 @@ public class LogbookUser extends EntitySupport<LogbookUser, Long> implements
 	private static final long serialVersionUID = 912839123L;
 
 	// member entities
-	private RegisteredUser secUser;
+	private RegisteredUser registeredUser;
 
-	private List<Qualification> qualifications = new ArrayList<Qualification>();
+	private List<Certification> certifications = new ArrayList<Certification>();
 
 	private List<LogbookUserLogbook> logbookUserLogbooks = new ArrayList<LogbookUserLogbook>();
 	
@@ -38,13 +38,13 @@ public class LogbookUser extends EntitySupport<LogbookUser, Long> implements
 	/**
 	 *
 	 */
-	public List<Qualification> getQualifications() {
-		return this.qualifications;
+	public List<Certification> getCertifications() {
+		return this.certifications;
 	}
 
-	public void setQualifications(
-			List<Qualification> qualifications) {
-		this.qualifications = qualifications;
+	public void setCertifications(
+			List<Certification> certifications) {
+		this.certifications = certifications;
 	}
 
 	/**
@@ -67,21 +67,21 @@ public class LogbookUser extends EntitySupport<LogbookUser, Long> implements
 		}
 	}
 
-	public Qualification addQualification(Qualification qualification) {
-		if (!qualifications.contains(qualification)) {
-			qualifications.add(qualification);
+	public Certification addCertification(Certification certification) {
+		if (!certifications.contains(certification)) {
+			certifications.add(certification);
 		} else {
-			return qualifications.get(qualifications.indexOf(qualification));
+			return certifications.get(certifications.indexOf(certification));
 		}
 		return null;
 	}
 
-	public RegisteredUser getSecUser() {
-		return secUser;
+	public RegisteredUser getRegisteredUser() {
+		return registeredUser;
 	}
 
-	public void setSecUser(RegisteredUser secUser) {
-		this.secUser = secUser;
+	public void setRegisteredUser(RegisteredUser registeredUser) {
+		this.registeredUser = registeredUser;
 	}
 
 	/**
@@ -89,11 +89,11 @@ public class LogbookUser extends EntitySupport<LogbookUser, Long> implements
 	 */
 	public String toString() {
 		return new ToStringBuilder(this)
-				.append("\nqualifications", this.qualifications)
+				.append("\ncertifications", this.certifications)
 				.append("\nid", this.id)
 				.append("\nlogbookUserLogbooks", this.logbookUserLogbooks)
 				.append("\nversion", this.version)
-				.append("\nuser", this.secUser).toString();
+				.append("\nuser", this.registeredUser).toString();
 	}
 
 	public PersonalDetails getPersonalDetails() {
@@ -112,7 +112,7 @@ public class LogbookUser extends EntitySupport<LogbookUser, Long> implements
 			return false;
 		}
 		LogbookUser rhs = (LogbookUser) object;
-		return new EqualsBuilder().append(this.secUser, rhs.secUser).isEquals();
+		return new EqualsBuilder().append(this.registeredUser, rhs.registeredUser).isEquals();
 	}
 
 	/**
@@ -120,6 +120,6 @@ public class LogbookUser extends EntitySupport<LogbookUser, Long> implements
 	 */
 	public int hashCode() {
 		return new HashCodeBuilder(1471500779, -1755482979)
-				.append(this.secUser).toHashCode();
+				.append(this.registeredUser).toHashCode();
 	}
 }

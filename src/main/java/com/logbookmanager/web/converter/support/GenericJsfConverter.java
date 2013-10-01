@@ -8,8 +8,8 @@
  */
 package com.logbookmanager.web.converter.support;
 
-import static org.apache.commons.lang.StringUtils.removeEnd;
-import static org.apache.commons.lang.StringUtils.removeStart;
+import static org.apache.commons.lang3.StringUtils.removeEnd;
+import static org.apache.commons.lang3.StringUtils.removeStart;
 
 import java.io.Serializable;
 

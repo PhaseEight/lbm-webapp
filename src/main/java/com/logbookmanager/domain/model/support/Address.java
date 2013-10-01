@@ -32,6 +32,10 @@ public class Address extends ValueObjectSupport<Address> {
 	public Address() {
 	}
 
+	public Address(Country country) {
+		this.country = country;
+	}
+
 	public Address(String nameOrNumber, String street, String city, String province, Country country, String postCode) {
 		this.setNameOrNumber(nameOrNumber);
 		this.setStreet(street);

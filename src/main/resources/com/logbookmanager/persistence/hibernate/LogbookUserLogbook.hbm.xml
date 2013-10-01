@@ -2,55 +2,54 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-<!-- 
-        Auto-generated mapping file from
-        the hibernate.org cfg2hbm engine
--->
-    <class name="com.logbookmanager.domain.model.logbook.LogbookUserLogbook" table="logbookuser_logbook" >
-        <id
-            name="id"
-            column="id"
-            type="java.lang.Long"
-            unsaved-value="null"
-        >
-            <generator class="increment">
-            </generator>
-        </id>
+	<class name="com.logbookmanager.domain.model.logbook.LogbookUserLogbook"
+		table="logbookuser_logbook">
+		<id name="id" column="id" type="java.lang.Long" unsaved-value="null">
+			<generator class="increment">
+			</generator>
+		</id>
 
-		<version name="version" column="version" type="java.lang.Long"/>
+		<version name="version" column="version" type="java.lang.Long" />
 
-        <property name="active" type="java.lang.Boolean" update="true">
-            <column name="ACTIVE" not-null="true" unique="false" default="true"/>
-        </property>
+		<property name="active" type="java.lang.Boolean" update="true">
+			<column name="ACTIVE" not-null="true" unique="false" default="true" />
+		</property>
 
-        <property name="lastUpdateTimeStamp" type="java.sql.Timestamp">
-            <column name="LAST_UPDATE_DATE" length="10" not-null="true" unique="false" default="CURRENT_TIMESTAMP"/>
-        </property>
+		<property name="lastUpdateTimeStamp" type="java.sql.Timestamp">
+			<column name="LAST_UPDATE_DATE" length="10" not-null="true"
+				unique="false" default="CURRENT_TIMESTAMP" />
+		</property>
 
-        <property name="name" type="string">
-            <column name="NAME" length="50" />
-        </property>
-                
-        <many-to-one name="logbook" class="com.logbookmanager.domain.model.logbook.Logbook">
-            <column name="LOGBOOK_ID" not-null="true" unique="false"/>
-        </many-to-one>
-        <many-to-one name="logbookUser" class="com.logbookmanager.domain.model.logbook.LogbookUser">
-            <column name="LOGBOOKUSER_ID" not-null="true" unique="false" />
-        </many-to-one>
+		<property name="name" type="string">
+			<column name="NAME" length="50" />
+		</property>
 
-		<set name="logbookDetails" inverse="true" batch-size="0" cascade="save-update" lazy="true">
+		<many-to-one name="logbook"
+			class="com.logbookmanager.domain.model.logbook.Logbook">
+			<column name="LOGBOOK_ID" not-null="true" unique="false" />
+		</many-to-one>
+		<many-to-one name="logbookUser"
+			class="com.logbookmanager.domain.model.logbook.LogbookUser">
+			<column name="LOGBOOKUSER_ID" not-null="true" unique="false" />
+		</many-to-one>
+
+		<set name="logbookDetails" inverse="true" batch-size="0" cascade="save-update"
+			lazy="true">
 			<key>
 				<column name="LOGBOOK_ID" not-null="true" />
 			</key>
-			<one-to-many class="com.logbookmanager.domain.model.logbook.LogbookUserLogbookDetail" />
+			<one-to-many
+				class="com.logbookmanager.domain.model.logbook.LogbookUserLogbookDetail" />
 		</set>
-		
-		<set name="userEntries" inverse="true" batch-size="0" cascade="all-delete-orphan" lazy="true">
+
+		<set name="userEntries" inverse="true" batch-size="0"
+			cascade="all-delete-orphan" lazy="true">
 			<key>
 				<column name="LOGBOOKUSER_LOGBOOK_ID" not-null="true" />
 			</key>
-			<one-to-many class="com.logbookmanager.domain.model.logbook.LogbookUserLogbookEntry" />
+			<one-to-many
+				class="com.logbookmanager.domain.model.logbook.LogbookUserLogbookEntry" />
 		</set>
 
-    </class>
+	</class>
 </hibernate-mapping>

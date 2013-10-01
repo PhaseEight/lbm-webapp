@@ -2,7 +2,7 @@
 <flow xmlns="http://www.springframework.org/schema/webflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/webflow
         http://www.springframework.org/schema/webflow/spring-webflow.xsd"
-	start-state="admin-home">
+	start-state="admin-home" parent="../global.xml" >
 	
 	<secured attributes="ROLE_ADMIN" match="any"/> 
 

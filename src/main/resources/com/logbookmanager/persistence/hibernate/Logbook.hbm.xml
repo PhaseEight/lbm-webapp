@@ -2,44 +2,44 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-    <class name="com.logbookmanager.domain.model.logbook.Logbook" table="logbook" >
-        <id name="id" column="id" type="java.lang.Long" unsaved-value="null">
-            <generator class="increment"/>
-        </id>
+	<class name="com.logbookmanager.domain.model.logbook.Logbook"
+		table="logbook">
+		<id name="id" column="id" type="java.lang.Long" unsaved-value="null">
+			<generator class="increment" />
+		</id>
 
-		<version name="version" column="version" type="java.lang.Long"/>
-        
-        <property name="active" type="java.lang.Boolean" update="true">
-            <column name="ACTIVE" not-null="true" unique="false" default="true"/>
-        </property>
+		<version name="version" column="version" type="java.lang.Long" />
 
-        <property name="lastUpdateTimeStamp" type="java.sql.Timestamp">
-            <column name="LAST_UPDATE_DATE" length="10" not-null="true" unique="false" default="CURRENT_TIMESTAMP"/>
-        </property>
-        
-		<component name="title"
-			class="com.logbookmanager.domain.support.Title">
-			<property name="name" type="java.lang.String"
-				update="true" insert="true" column="name" length="100"
-				not-null="true" />
+		<property name="active" type="java.lang.Boolean" update="true">
+			<column name="ACTIVE" not-null="true" unique="false" default="true" />
+		</property>
 
-			<property name="code" type="java.lang.String"
-				update="true" insert="true" column="code" length="50"
-				not-null="true" />
+		<property name="lastUpdateTimeStamp" type="java.sql.Timestamp">
+			<column name="LAST_UPDATE_DATE" length="10" not-null="true"
+				unique="false" default="CURRENT_TIMESTAMP" />
+		</property>
+
+		<component name="title" class="com.logbookmanager.domain.support.Title">
+			<property name="name" type="java.lang.String" update="true"
+				insert="true" column="name" length="100" not-null="true" />
+
+			<property name="code" type="java.lang.String" update="true"
+				insert="true" column="code" length="50" not-null="true" />
 		</component>
 
 
-        <set name="logbookPages" inverse="true" lazy="false">
-            <key>
-                <column name="LOGBOOK_ID" not-null="true" />
-            </key>
-            <one-to-many class="com.logbookmanager.domain.model.logbook.LogbookPage" />
-        </set>
-        <set name="logbookUserLogbooks" inverse="true" lazy="false">
-            <key>
-                <column name="LOGBOOK_ID" not-null="true" />
-            </key>
-            <one-to-many class="com.logbookmanager.domain.model.logbook.LogbookUserLogbook" />
-        </set>
-    </class>
+		<set name="logbookPages" inverse="true" lazy="false">
+			<key>
+				<column name="LOGBOOK_ID" not-null="true" />
+			</key>
+			<one-to-many class="com.logbookmanager.domain.model.logbook.LogbookPage" />
+		</set>
+		<set name="logbookUserLogbooks" inverse="true" lazy="false">
+			<key>
+				<column name="LOGBOOK_ID" not-null="true" />
+			</key>
+			<one-to-many
+				class="com.logbookmanager.domain.model.logbook.LogbookUserLogbook" />
+		</set>
+	</class>
 </hibernate-mapping>
