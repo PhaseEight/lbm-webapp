@@ -22,7 +22,7 @@ import com.logbookmanager.service.support.GenericService;
  * 
  * @author <a href="mailto:peter.neil@logbookmanager.com">Peter Neil</a>
  */
-@Service("LogbookUserService")
+@Service("logbookUserService")
 public class LogbookUserServiceImpl extends GenericService<LogbookUser, Long> implements
 		LogbookUserService {
 

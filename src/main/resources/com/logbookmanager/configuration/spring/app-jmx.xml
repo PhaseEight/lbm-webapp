@@ -11,7 +11,7 @@ http://www.springframework.org/schema/context/spring-context.xsd">
 		lazy-init="false" factory-method="getPlatformMBeanServer">
 	</bean>
 
-	<context:component-scan base-package="com.logbookmanager" />
+	<context:component-scan base-package="com.logbookmanager.jmx.bean" />
 	<context:mbean-export server="mbeanServer" />
 
 </beans>

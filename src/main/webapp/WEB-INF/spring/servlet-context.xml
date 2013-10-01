@@ -89,9 +89,7 @@
 			expression="com.logbookmanager.util.*" />
 		<context:include-filter type="regex"
 			expression="com.logbookmanager.domain.*" />
-		<!-- 
 		<context:exclude-filter type="regex" expression=".*" />
-		 -->
 	</context:component-scan>
 	<context:annotation-config />
 

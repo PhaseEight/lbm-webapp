@@ -13,7 +13,7 @@ public class OrganisationDetails extends ValueObjectSupport<OrganisationDetails>
 	private static final long serialVersionUID = 1L;
 	
 	private Address address;
-	private EmailAddress emailAddress;
+	private EmailAddress email;
 	private PhoneNumber landline;
 	private PhoneNumber fax;
 
@@ -28,6 +28,7 @@ public class OrganisationDetails extends ValueObjectSupport<OrganisationDetails>
 	
 	public OrganisationDetails(Address address, EmailAddress email, PhoneNumber phoneNumber, PhoneNumber fax, WebSite website ) {
 		setAddress(address);
+		setEmail(email);
 	}
 
 	public Address getAddress() {
@@ -38,12 +39,12 @@ public class OrganisationDetails extends ValueObjectSupport<OrganisationDetails>
 		this.address = address;
 	}
 
-	public EmailAddress getEmailAddress() {
-		return emailAddress;
+	public EmailAddress getEmail() {
+		return email;
 	}
 
-	public void setEmailAddress(EmailAddress emailAddress) {
-		this.emailAddress = emailAddress;
+	public void setEmail(EmailAddress emailAddress) {
+		this.email = emailAddress;
 	}
 
 	public PhoneNumber getLandline() {

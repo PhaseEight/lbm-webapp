@@ -77,7 +77,7 @@ INSERT INTO LOGBOOKUSER_LOGBOOK (id, version, logbook_id, LOGBOOKUSER_id, name) 
 INSERT INTO LOGBOOKUSER_LOGBOOK_ENTRY (id, version, LOGBOOKUSER_id, entry_number, LOGBOOKUSER_logbook_id) values(1, 0, 2, 1, 2);
 INSERT INTO ENTRY_ATTRIBUTE (id, version, detail_attribute_id, LOGBOOKUSER_LOGBOOK_entry_id, display_value, sort_value) values(1, 0, 1, 1, '100', 100);
 
-INSERT INTO ORGANISATION (id, VERSION, NAME, common_name, head_office_address_1, head_office_address_2, head_office_address_3, post_code, email) values(1, 0, 'Professional Association of Diving Instructors', 'PADI','ho1', 'ho2', 'ho3', 'pc2', 'head-contact@padi.com');
+INSERT INTO ORGANISATION (id, VERSION, code, name, name_or_number, street, province, postal_code, email) values(1, 0, 'Professional Association of Diving Instructors', 'PADI','ho1', 'ho2', 'ho3', 'pc2', 'head-contact@padi.com');
 INSERT INTO ORGANISATION_COUNTRY (id, version, phone, fax, organisation_id, country_id) values(1, 0, '0044020710810', '0044020710810', 1, 1);
 
 --SELECT * from SEC_ROLE;

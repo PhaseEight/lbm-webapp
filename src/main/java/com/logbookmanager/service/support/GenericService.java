@@ -34,7 +34,6 @@ abstract public class GenericService<T extends EntitySupport<T, ID>, ID extends 
 	protected Repository<T, ID> repository = null;
 
 	// required by cglib to create a proxy around the object we are using
-	// @Transactional
 	protected GenericService() {
 		super();
 	}

@@ -15,8 +15,6 @@ import com.logbookmanager.service.support.GenericService;
 /**
  * Class responsible for management of Logbooks.
  * 
- * Will manage logbook layouts.
- * 
  * Create attributes for a detail, create the details themselves. Create pages
  * and place details on the page. Allow managing lists and grouping of details
  * 
@@ -34,16 +32,14 @@ public class LogbookServiceImpl extends GenericService<Logbook, Long> implements
 	 */
 	private static final long serialVersionUID = 1L;
 
-	@Inject
-	@Qualifier("logbookRepository")
 	private LogbookRepository logbookRepository;
 
-	@Inject
 	private LogbookUserRepository logbookUserRepository;
 
 	@Inject
-	public LogbookServiceImpl(LogbookRepository logbookRepository) {
+	public LogbookServiceImpl(@Qualifier("logbookRepository") LogbookRepository logbookRepository, LogbookUserRepository logbookUserRepository) {
 		super(logbookRepository);
+		this.logbookUserRepository = logbookUserRepository;
 	}
 
 	public LogbookRepository getLogbookRepository() {
