@@ -1,5 +1,9 @@
 SET SCHEMA APP;
 
+--DROP TABLE APP.PERSISTENT_LOGIN;
+
+SELECT * FROM APP.PERSISTENT_LOGINS;
+
 select *from sec_user;
 
 INSERT INTO SEC_USER 
@@ -11,7 +15,6 @@ select * from sec_user
 
 select id, version, active, LAST_UPDATE_DATE as luts, name as "title_name", code as "title_code" from Logbook
 
-SELECT * FROM APP.PERSISTENT_LOGINS;
 
 SELECT * FROM APP.SEC_USER;
 

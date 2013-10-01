@@ -9,21 +9,14 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
-import org.junit.FixMethodOrder;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.MethodSorters;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.binding.message.MessageContext;
-import org.springframework.faces.webflow.FlowFacesContext;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
@@ -38,67 +31,37 @@ import org.springframework.security.core.context.SecurityContextImpl;
 import org.springframework.security.web.FilterChainProxy;
 import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.TestExecutionListeners;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
-import org.springframework.test.context.support.DirtiesContextTestExecutionListener;
-import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
-import org.springframework.test.context.web.ServletTestExecutionListener;
-import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.web.context.WebApplicationContext;
-import org.springframework.web.context.request.ServletWebRequest;
 import org.springframework.web.util.NestedServletException;
-import org.springframework.webflow.context.ExternalContext;
-import org.springframework.webflow.core.collection.MutableAttributeMap;
-import org.springframework.webflow.core.collection.ParameterMap;
-import org.springframework.webflow.definition.FlowDefinition;
-import org.springframework.webflow.definition.StateDefinition;
-import org.springframework.webflow.definition.TransitionDefinition;
-import org.springframework.webflow.execution.Event;
-import org.springframework.webflow.execution.FlowExecutionContext;
-import org.springframework.webflow.execution.RequestContext;
-import org.springframework.webflow.execution.View;
 
-import com.github.springtestdbunit.DbUnitTestExecutionListener;
-
-@ActiveProfiles({ "mvc-integration-test" })
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(name = "servlet", locations = { "file:src/main/webapp/WEB-INF/spring/servlet-context.xml",
-		"file:src/main/resources/com/logbookmanager/configuration/spring/app-root.xml"
-
-})
-@WebAppConfiguration(value = "src/main/webapp")
-@FixMethodOrder(MethodSorters.NAME_ASCENDING)
-@TestExecutionListeners({ ServletTestExecutionListener.class, DependencyInjectionTestExecutionListener.class,
-		DirtiesContextTestExecutionListener.class, TransactionalTestExecutionListener.class, DbUnitTestExecutionListener.class })
+import com.logbookmanager.support.IntegrationTestSupport;
 
 /**
- * @see https://cwiki.apache.org/confluence/display/MFTEST/Configure+MyFaces+Test+using+Maven
+ * @see https
+ *      ://cwiki.apache.org/confluence/display/MFTEST/Configure+MyFaces+Test
+ *      +using+Maven
  * @see https://cwiki.apache.org/confluence/display/MFTEST/Index
  * @author Peter
  */
-public class LoginAndSecurityIntegrationTests extends org.apache.myfaces.test.base.junit4.AbstractJsfTestCase {
+@ActiveProfiles({ "mvc-integration-test" })
+public class LoginAndSecurityIntegrationTests extends IntegrationTestSupport {
 
 	@Autowired
 	WebApplicationContext wac; // cached
 
-	@Autowired
-	MockServletContext servletContext; // cached
+//	@Autowired
+//	MockServletContext servletContext; // cached
 
-	@Autowired
-	MockHttpServletRequest request;
+//	@Autowired
+//	MockHttpServletRequest request;
 
-	@Autowired
-	MockHttpServletResponse response;
+//	@Autowired
+//	MockHttpServletResponse response;
 
 	@Autowired
 	MockHttpSession session;
-
-	@Autowired
-	ServletWebRequest webRequest;
 
 	@Autowired
 	private FilterChainProxy springSecurityFilterChain;
@@ -111,10 +74,8 @@ public class LoginAndSecurityIntegrationTests extends org.apache.myfaces.test.ba
 		mockMvc = webAppContextSetup(wac).alwaysDo(print())
 				.defaultRequest(get("/web/app").accept(MediaType.APPLICATION_FORM_URLENCODED)).addFilter(springSecurityFilterChain)
 				.build();
-		
-	}		
-		
-		
+
+	}
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -138,7 +99,7 @@ public class LoginAndSecurityIntegrationTests extends org.apache.myfaces.test.ba
 			this.mockMvc.perform(get("/web/app/welcome").contextPath("/web").servletPath("/app")).andExpect(status().isOk())
 					.andExpect(view().name("app/welcome"));
 		} catch (IllegalStateException | NestedServletException e) {
-			if ("Could not find backup for factory javax.faces.lifecycle.LifecycleFactory. ".equals(e.getCause().getMessage())) {
+			if ("Could not find backup for factory javax.faces.lifecycle.LifecycleFactory.".equals(e.getCause().getMessage())) {
 				return;
 			} else {
 				throw e;
@@ -161,11 +122,11 @@ public class LoginAndSecurityIntegrationTests extends org.apache.myfaces.test.ba
 
 		this.mockMvc
 				.perform(
-						post("/web/app/doLogin").param("loginForm:j_username", "loginerrorusername").param("loginForm:j_password", "password")
-								.contextPath("/web").servletPath("/app")).andExpect(status().is(302))
-				.andExpect(redirectedUrl("/web/app/welcome?login_error=1"));
+						post("/web/app/doLogin").param("loginForm:j_username", "loginerrorusername")
+								.param("loginForm:j_password", "password").contextPath("/web").servletPath("/app"))
+				.andExpect(status().is(302)).andExpect(redirectedUrl("/web/app/welcome?login_error=1"));
 	}
-	
+
 	@Test
 	public void getUnauthenticatedMainViewReturnsWelcomeUrl() throws Exception {
 
@@ -190,18 +151,20 @@ public class LoginAndSecurityIntegrationTests extends org.apache.myfaces.test.ba
 		session.setAttribute(
 				org.springframework.security.web.context.HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY, sc);
 
-//		try {
-			MvcResult result = this.mockMvc
-					.perform(get("/web/app/main").session(session).principal(authToken).contextPath("/web").servletPath("/app"))
-					.andExpect(status().is(200)).andReturn();
-			org.junit.Assert.assertNull("There should be no redirect url", result.getResponse().getRedirectedUrl());
-//		} catch (IllegalStateException | NestedServletException e) {
-//			if ("Could not find backup for factory javax.faces.lifecycle.LifecycleFactory. ".equals(e.getCause().getMessage())) {
-//				return;
-//			} else {
-//				throw e;
-//			}
-//		}
+		// try {
+		MvcResult result = this.mockMvc
+				.perform(get("/web/app/main").session(session).principal(authToken).contextPath("/web").servletPath("/app"))
+				.andExpect(status().is(200)).andReturn();
+		org.junit.Assert.assertNull("There should be no redirect url", result.getResponse().getRedirectedUrl());
+		// } catch (IllegalStateException | NestedServletException e) {
+		// if
+		// ("Could not find backup for factory javax.faces.lifecycle.LifecycleFactory. ".equals(e.getCause().getMessage()))
+		// {
+		// return;
+		// } else {
+		// throw e;
+		// }
+		// }
 	}
 
 	@Test
@@ -223,17 +186,5 @@ public class LoginAndSecurityIntegrationTests extends org.apache.myfaces.test.ba
 				.perform(get("/web/app/admin/logbook").contextPath("/web").servletPath("/app").session(session).principal(authToken))
 				.andExpect(status().is(403)).andExpect(redirectedUrl(null));
 	}
-	
-
-	// Test behavior of select() with an invalid value
-	@Test
-	public void testSelectInvalid() {
-	 
-	    Locale locale = new Locale("en");
-	    facesContext.getViewRoot().setLocale(locale);
-	    org.junit.Assert.assertEquals(locale, facesContext.getViewRoot().getLocale());
-	}
 
 }
-
-

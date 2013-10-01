@@ -23,7 +23,6 @@ import com.github.springtestdbunit.DbUnitTestExecutionListener;
 
 //http://www.petrikainulainen.net/programming/spring-framework/integration-testing-of-spring-mvc-applications-migrating-to-spring-3-2/
 
-
 @Profile(value = "integration-test")
 @RunWith(SpringJUnit4ClassRunner.class)
 /*
@@ -31,20 +30,22 @@ import com.github.springtestdbunit.DbUnitTestExecutionListener;
  * AbstractTransactionalJUnit4SpringContextTests
  */
 @TestExecutionListeners({ DependencyInjectionTestExecutionListener.class, DirtiesContextTestExecutionListener.class,
-	TransactionalTestExecutionListener.class, DbUnitTestExecutionListener.class })
+		TransactionalTestExecutionListener.class, DbUnitTestExecutionListener.class })
 /*
  * not necessary as this is declared in the
  * AbstractTransactionalJUnit4SpringContextTests
  */
-@ContextHierarchy({ @ContextConfiguration("classpath:com/logbookmanager/configuration/spring/app-root.xml"),
-		@ContextConfiguration("file:src/main/webapp/WEB-INF/spring/servlet-context.xml") })
+@ContextConfiguration(name = "servlet", locations = { "file:src/main/webapp/WEB-INF/spring/servlet-context.xml",
+		"file:src/main/resources/com/logbookmanager/configuration/spring/app-root.xml"
+
+})
 @WebAppConfiguration(value = "src/main/webapp")
 // not really necessary because these are the defaults
-@TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = true )
+@TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = true)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public abstract class IntegrationTestSupport extends AbstractTransactionalJUnit4SpringContextTests {
 
-	/** Inject session Factory for flushing objects to the database*/
+	/** Inject session Factory for flushing objects to the database */
 	@Inject
 	private SessionFactory sessionFactory;
 

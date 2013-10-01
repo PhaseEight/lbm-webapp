@@ -20,7 +20,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  * A Hibernate class used to create the table for the "remember-me"
  * persistent token mechanism.
  *
- * @author skashani
+ * @author Peter Neil
  *
  */
 public class PersistentLogin implements java.io.Serializable {

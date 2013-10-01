@@ -5,19 +5,30 @@ import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
+import java.util.Locale;
 
 import javax.inject.Inject;
 
+import org.apache.derby.client.am.CallableStatement;
 import org.junit.Test;
 import org.mockito.Mock;
+import org.springframework.jdbc.core.ResultSetExtractor;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.test.annotation.Rollback;
+import org.springframework.test.context.transaction.AfterTransaction;
+import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.logbookmanager.data.repository.CountryRepository;
 import com.logbookmanager.data.repository.CountryRepositoryImpl;
 import com.logbookmanager.domain.model.Country;
+import com.logbookmanager.support.IntegrationTestSupport;
 
-public class CountryRepositoryIntegrationTests {
+public class CountryRepositoryIntegrationTests extends IntegrationTestSupport{
+	
 	
 	@Inject
 	@Mock
@@ -37,8 +48,35 @@ public class CountryRepositoryIntegrationTests {
 	
 	@Test
 	@Transactional
+	@Rollback(false)
 	public void saveCountry() {
-		countryRepository.getCountry("GB");
+		Country country = countryRepository.getCountry(Locale.FRANCE.getCountry());
+		saveCountry(country);
 	}
+
+	@Transactional
+	@Rollback(false)
+	private void saveCountry(Country country) {
+		countryRepository.makePersistent(country);
+		getSessionFactory().getCurrentSession().flush();
+	}
+	
+	@AfterTransaction
+	public void afterTransaction(){
+		
+		List<Country> countries = jdbcTemplate.query("select ID, VERSION, ANSI_CODE, DISPLAY_NAME from COUNTRY where ANSI_CODE='FR'",new RowMapper<Country>(){
+			@Override
+			public Country mapRow(ResultSet rs, int rowNum) throws SQLException {
+				return new Country(rs.getString(3),rs.getString(4));
+			}});
+		
+		
+		assertTrue("there must be only 1 country found; found: " + countries.size(),countries.size() == 1);
+		
+		assertEquals("there must be a country with the Ansi Code FR","FR",countries.get(0).getAnsiCode());
+		
+		
+	}
+	
 	
 }

@@ -23,6 +23,10 @@ public class Country extends EntitySupport<Country, Long> implements java.io.Ser
 	private String displayName;
 
 	/** default constructor required by Hibernate */
+	/* required by Hibernate */
+	Country() {
+	}
+
 	public Country(String ansiCode, String displayName) {
 		this.ansiCode = ansiCode;
 		this.displayName = displayName;
@@ -58,10 +62,6 @@ public class Country extends EntitySupport<Country, Long> implements java.io.Ser
 	public int hashCode() {
 		return new HashCodeBuilder(-722875075, 618856429).append(this.ansiCode).append(this.displayName)
 				.append(this.id).toHashCode();
-	}
-
-	/* required by Hibernate */
-	Country() {
 	}
 
 	public String getAnsiCode() {
