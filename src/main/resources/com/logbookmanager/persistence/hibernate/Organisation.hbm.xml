@@ -8,6 +8,15 @@
 			<generator class="increment">
 			</generator>
 		</id>
+		<natural-id>
+			<component name="title" class="com.logbookmanager.domain.support.Title">
+				<property name="name" type="java.lang.String" update="true"
+					insert="true" column="name" length="100" not-null="true" />
+
+				<property name="code" type="java.lang.String" update="true"
+					insert="true" column="code" length="50" not-null="true" />
+			</component>
+		</natural-id>
 
 		<version name="version" column="version" type="java.lang.Long" />
 
@@ -19,15 +28,7 @@
 			<column name="LAST_UPDATE_DATE" length="10" not-null="true"
 				unique="false" default="CURRENT_TIMESTAMP" />
 		</property>
-
-		<component name="title" class="com.logbookmanager.domain.support.Title">
-			<property name="name" type="java.lang.String" update="true"
-				insert="true" column="name" length="100" not-null="true" />
-
-			<property name="code" type="java.lang.String" update="true"
-				insert="true" column="code" length="50" not-null="true" />
-		</component>
-
+		
 		<component name="details"
 			class="com.logbookmanager.domain.model.organisation.support.OrganisationDetails">
 
@@ -53,8 +54,8 @@
 					insert="true" column="province" length="150" not-null="false" />
 
 				<many-to-one name="country"
-					class="com.logbookmanager.domain.model.Country" cascade="none"
-					column="country_id" not-null="false" insert="false" update="false"></many-to-one>
+					class="com.logbookmanager.domain.model.Country" cascade="save-update"
+					column="country_id" not-null="true" insert="true" update="true"></many-to-one>
 
 				<property name="postCode" type="java.lang.String" update="true"
 					insert="true" column="postal_code" length="15" not-null="false" />

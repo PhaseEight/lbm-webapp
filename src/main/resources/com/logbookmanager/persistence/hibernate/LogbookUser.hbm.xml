@@ -68,7 +68,7 @@
 
 				<many-to-one name="country"
 					class="com.logbookmanager.domain.model.Country" cascade="none"
-					column="country_id" not-null="false" insert="false" update="false"></many-to-one>
+					column="country_id" not-null="true" insert="true" update="true"></many-to-one>
 
 				<property name="postCode" type="java.lang.String" update="true"
 					insert="true" column="postal_code" length="15" not-null="false" />

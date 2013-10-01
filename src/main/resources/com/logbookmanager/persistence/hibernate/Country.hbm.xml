@@ -21,9 +21,8 @@
 			<column name="ACTIVE" not-null="true" unique="false" default="true" />
 		</property>
 
-		<property name="lastUpdateTimeStamp" type="java.sql.Timestamp">
-			<column name="LAST_UPDATE_DATE" length="10" not-null="true"
-				unique="false" default="CURRENT_TIMESTAMP" />
+		<property name="lastUpdateTimeStamp" type="java.sql.Timestamp" insert="false">
+			<column name="LAST_UPDATE_DATE" length="10" not-null="true" unique="false" default="CURRENT_TIMESTAMP" />
 		</property>
 
 		<property name="displayName" type="string">

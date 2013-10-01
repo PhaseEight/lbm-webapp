@@ -24,7 +24,7 @@ import com.logbookmanager.support.BaseObject;
  *         by Peter
  * 
  */
-@MappedSuperclass
+//@MappedSuperclass
 public abstract class EntitySupport<T extends Entity<T, ID>, ID extends Serializable>
 		extends BaseObject<T> implements Entity<T, ID>, Serializable {
 
@@ -79,7 +79,7 @@ public abstract class EntitySupport<T extends Entity<T, ID>, ID extends Serializ
 		this.version = Long.valueOf(version.longValue());
 	}
 
-	@Column(name = "lastUpdateTimeStamp")
+	@Column(insertable=false, name = "lastUpdateTimeStamp")
 	public Timestamp getlastUpdateTimeStamp() {
 		if (this.lastUpdateTimeStamp != null) {
 			return new Timestamp(this.lastUpdateTimeStamp.getTime());

@@ -7,6 +7,7 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
+import org.hibernate.annotations.NaturalId;
 
 import com.logbookmanager.domain.model.Country;
 import com.logbookmanager.domain.model.organisation.support.OrganisationDetails;
@@ -20,7 +21,7 @@ public class Organisation extends EntitySupport<Organisation, Long> implements
 		java.io.Serializable {
 	private static final long serialVersionUID = 912839123L;
 
-
+	@NaturalId
 	private Title title; 
 	
 	private OrganisationDetails details;
