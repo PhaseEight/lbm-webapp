@@ -27,56 +27,49 @@ import com.logbookmanager.data.repository.CountryRepositoryImpl;
 import com.logbookmanager.domain.model.Country;
 import com.logbookmanager.support.IntegrationTestSupport;
 
-public class CountryRepositoryIntegrationTests extends IntegrationTestSupport{
-	
-	
+public class CountryRepositoryIntegrationTests extends IntegrationTestSupport {
+
 	@Inject
 	@Mock
 	CountryRepository countryRepository = new CountryRepositoryImpl();
 
 	@Test
-	public void getISOCountries(){
+	public void getISOCountries() {
 		List<Country> countries = countryRepository.getISOCountries();
 		assertEquals("there aren't enough countries: ", 249, countries.size());
-		for(Country country: countries){
+		for (Country country : countries) {
 			System.out.println(country.toString());
 		}
-		CountryRepository mockrepo = mock(CountryRepositoryImpl.class); 
+		CountryRepository mockrepo = mock(CountryRepositoryImpl.class);
 		when(mockrepo.findAll()).thenReturn(countries);
-		assertTrue("there weren't enough countries found in Mock",mockrepo.findAll().size() == 249);
+		assertTrue("there weren't enough countries found in Mock", mockrepo.findAll().size() == 249);
 	}
-	
+
 	@Test
 	@Transactional
-	@Rollback(false)
+	@Rollback(true)
 	public void saveCountry() {
 		Country country = countryRepository.getCountry(Locale.FRANCE.getCountry());
 		saveCountry(country);
+		
+		
+		List<Country> countries = jdbcTemplate.query("select ID, VERSION, ANSI_CODE, DISPLAY_NAME from COUNTRY where ANSI_CODE='FR'",
+				new RowMapper<Country>() {
+					@Override
+					public Country mapRow(ResultSet rs, int rowNum) throws SQLException {
+						return new Country(rs.getString(3), rs.getString(4));
+					}
+				});
+
+		assertTrue("there must be only 1 country found; found: " + countries.size(), countries.size() == 1);
+
+		assertEquals("there must be a country with the Ansi Code FR", "FR", countries.get(0).getAnsiCode());
+
 	}
 
-	@Transactional
-	@Rollback(false)
 	private void saveCountry(Country country) {
 		countryRepository.makePersistent(country);
 		getSessionFactory().getCurrentSession().flush();
 	}
-	
-	@AfterTransaction
-	public void afterTransaction(){
-		
-		List<Country> countries = jdbcTemplate.query("select ID, VERSION, ANSI_CODE, DISPLAY_NAME from COUNTRY where ANSI_CODE='FR'",new RowMapper<Country>(){
-			@Override
-			public Country mapRow(ResultSet rs, int rowNum) throws SQLException {
-				return new Country(rs.getString(3),rs.getString(4));
-			}});
-		
-		
-		assertTrue("there must be only 1 country found; found: " + countries.size(),countries.size() == 1);
-		
-		assertEquals("there must be a country with the Ansi Code FR","FR",countries.get(0).getAnsiCode());
-		
-		
-	}
-	
-	
+
 }
