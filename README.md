@@ -16,6 +16,16 @@ clone this repository with all Branches
 git clone -o github https://github.com/pedroneil/lbm-webapp.git lbm-webapp
 
 
+pulling/pushing from/to guidelines using remote/github repository:
+
+git stash - to make sure your changes are stash and your copy is reverted to the last commit that is in-sync with the remote.
+git pull - pull changes from remote
+git stash pop - to merge your changes to latest source code
+git mergetool - if there are conflicts, you need to do this before the changes are merged.
+git commit - to commit your changes in your local repo
+git push - to push your changes to remote.
+
+
 ### Configuration
 ===
 Set jsf ProjectStage
