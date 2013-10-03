@@ -77,3 +77,8 @@ Remove the resource-ref.
 	<res-type>java.lang.String</res-type>
     </resource-ref>
     
+ ===
+ 
+ # Third Party Libraries used by Logbook Manager
+ ===
+ 
