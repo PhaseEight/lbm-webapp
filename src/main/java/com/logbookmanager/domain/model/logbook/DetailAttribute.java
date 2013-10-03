@@ -22,9 +22,6 @@ public class DetailAttribute extends EntitySupport<DetailAttribute, Long>
 
 	private String commonName;
 
-	// this will actually be, which entries have this attribute of this detail
-	private Set<EntryAttribute> entryAttributes = new HashSet<EntryAttribute>();
-
 	// Constructors
 
 	// required by Hibernate
@@ -62,17 +59,6 @@ public class DetailAttribute extends EntitySupport<DetailAttribute, Long>
 
 	public void setCommonName(String commonName) {
 		this.commonName = commonName;
-	}
-
-	/**
-	 * 
-	 */
-	public Set<EntryAttribute> getEntryAttributes() {
-		return this.entryAttributes;
-	}
-
-	public void setEntryAttributes(Set<EntryAttribute> entryAttributes) {
-		this.entryAttributes = entryAttributes;
 	}
 
 	/**

@@ -32,14 +32,5 @@
 			<column name="DETAIL_ID" not-null="true" />
 		</many-to-one>
 
-
-		<set name="entryAttributes" inverse="true" lazy="true">
-			<comment>All the Entries which have this Attribute associated with
-				it. This is lazy loaded so ensure less objects to be loaded</comment>
-			<key>
-				<column name="DETAIL_ATTRIBUTE_ID" not-null="true" />
-			</key>
-			<one-to-many class="com.logbookmanager.domain.model.logbook.EntryAttribute" />
-		</set>
 	</class>
 </hibernate-mapping>

@@ -10,7 +10,10 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import com.logbookmanager.domain.support.EntitySupport;
 
 /**
- * LogbookPage
+ * =LogbookPage
+ * 
+ * ==
+ * 
  */
 public class LogbookPage extends EntitySupport<LogbookPage, Long> implements
 		java.io.Serializable {
