@@ -12,14 +12,10 @@ import java.util.Locale;
 
 import javax.inject.Inject;
 
-import org.apache.derby.client.am.CallableStatement;
 import org.junit.Test;
 import org.mockito.Mock;
-import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.test.annotation.Rollback;
-import org.springframework.test.context.transaction.AfterTransaction;
-import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.logbookmanager.data.repository.CountryRepository;
