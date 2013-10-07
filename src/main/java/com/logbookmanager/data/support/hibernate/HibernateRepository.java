@@ -1,5 +1,12 @@
 package com.logbookmanager.data.support.hibernate;
 
+/**
+ * protected Logger log;
+ * this.log = LoggerFactory.getLogger(getClass());
+ */
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.Serializable;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
@@ -13,8 +20,6 @@ import java.util.TreeMap;
 
 import javax.persistence.TypedQuery;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -41,8 +46,8 @@ public class HibernateRepository<T extends BaseObject<T>, ID extends Serializabl
 
 	protected ID id;
 
-	protected Log log;
-
+	protected final Logger log;
+	
 	private Class<T> typeClass;
 	private Class<ID> typeIdClass;
 	private String cacheRegion;
@@ -56,8 +61,10 @@ public class HibernateRepository<T extends BaseObject<T>, ID extends Serializabl
 		if (typeArguments != null) {
 			this.typeClass = (Class<T>) typeArguments[0];
 			this.typeIdClass = (Class<ID>) typeArguments[1];
-			this.log = LogFactory.getLog(typeClass);
+			this.log = LoggerFactory.getLogger(typeClass);
 			this.cacheRegion = typeClass.getCanonicalName();
+		} else {
+			log = LoggerFactory.getLogger(HibernateRepository.class.getName());
 		}
 	}
 	
@@ -68,7 +75,10 @@ public class HibernateRepository<T extends BaseObject<T>, ID extends Serializabl
 			this.typeClass = (Class<T>) typeArguments[0];
 			this.typeIdClass = (Class<ID>) typeArguments[1];
 			this.cacheRegion = this.typeClass.getCanonicalName();
-			this.log = LogFactory.getLog(this.typeClass);
+			this.log = LoggerFactory.getLogger(this.typeClass);
+		}
+		else {
+			this.log = LoggerFactory.getLogger(getClass());
 		}
 	}
 

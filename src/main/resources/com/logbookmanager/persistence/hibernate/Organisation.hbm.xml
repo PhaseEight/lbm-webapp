@@ -10,11 +10,12 @@
 		</id>
 		<natural-id>
 			<component name="title" class="com.logbookmanager.domain.support.Title">
+				<property name="code" type="java.lang.String" update="true"
+					insert="true" column="code" length="50" not-null="true" />
+
 				<property name="name" type="java.lang.String" update="true"
 					insert="true" column="name" length="100" not-null="true" />
 
-				<property name="code" type="java.lang.String" update="true"
-					insert="true" column="code" length="50" not-null="true" />
 			</component>
 		</natural-id>
 
@@ -28,7 +29,7 @@
 			<column name="LAST_UPDATE_DATE" length="10" not-null="true"
 				unique="false" default="CURRENT_TIMESTAMP" />
 		</property>
-		
+
 		<component name="details"
 			class="com.logbookmanager.domain.model.organisation.support.OrganisationDetails">
 
@@ -73,7 +74,7 @@
 		</set>
 		<set name="organisationCountries" inverse="true" batch-size="0"
 			lazy="true" cascade="all-delete-orphan">
-			<key column="COUNTRY_ID" foreign-key="FK_ORGANISATION_ORGANISATION_CPINTRY_ID" />
+			<key column="COUNTRY_ID" foreign-key="FK_ORGANISATION_ORGANISATION_COUNTRY_ID" />
 			<one-to-many
 				class="com.logbookmanager.domain.model.organisation.OrganisationCountry" />
 		</set>

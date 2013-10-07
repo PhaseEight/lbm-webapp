@@ -2,13 +2,12 @@ package com.logbookmanager.repository;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Locale;
+import java.util.Set;
 
 import javax.inject.Inject;
 
@@ -30,15 +29,12 @@ public class CountryRepositoryIntegrationTests extends IntegrationTestSupport {
 	CountryRepository countryRepository = new CountryRepositoryImpl();
 
 	@Test
-	public void getISOCountries() {
-		List<Country> countries = countryRepository.getISOCountries();
+	public void getCountries() {
+		Set<Country> countries = countryRepository.getCountries();
 		assertEquals("there aren't enough countries: ", 249, countries.size());
 		for (Country country : countries) {
 			System.out.println(country.toString());
 		}
-		CountryRepository mockrepo = mock(CountryRepositoryImpl.class);
-		when(mockrepo.findAll()).thenReturn(countries);
-		assertTrue("there weren't enough countries found in Mock", mockrepo.findAll().size() == 249);
 	}
 
 	@Test

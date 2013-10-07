@@ -1,9 +1,12 @@
 package com.logbookmanager.service;
 
-import java.util.logging.Logger;
-
 import javax.inject.Inject;
 
+/**
+ * protected Logger log;
+ * this.log = LoggerFactory.getLogger(getClass());
+ */
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 import com.logbookmanager.data.repository.LogbookRepository;

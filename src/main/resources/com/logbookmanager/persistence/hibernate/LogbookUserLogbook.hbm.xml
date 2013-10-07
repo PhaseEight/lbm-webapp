@@ -33,23 +33,5 @@
 			<column name="LOGBOOKUSER_ID" not-null="true" unique="false" />
 		</many-to-one>
 
-		<set name="logbookDetails" inverse="true" batch-size="0" cascade="save-update"
-			lazy="true">
-			<key>
-				<column name="LOGBOOK_ID" not-null="true" />
-			</key>
-			<one-to-many
-				class="com.logbookmanager.domain.model.logbook.LogbookUserLogbookDetail" />
-		</set>
-
-		<set name="userEntries" inverse="true" batch-size="0"
-			cascade="all-delete-orphan" lazy="true">
-			<key>
-				<column name="LOGBOOKUSER_LOGBOOK_ID" not-null="true" />
-			</key>
-			<one-to-many
-				class="com.logbookmanager.domain.model.logbook.LogbookUserLogbookEntry" />
-		</set>
-
 	</class>
 </hibernate-mapping>

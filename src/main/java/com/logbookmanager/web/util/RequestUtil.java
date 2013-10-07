@@ -1,5 +1,11 @@
 package com.logbookmanager.web.util;
 
+/**
+ * protected Logger log;
+ * this.log = LoggerFactory.getLogger(getClass());
+ */
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.Iterator;
@@ -10,8 +16,6 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestWrapper;
 
 /**
@@ -21,7 +25,7 @@ import org.springframework.security.web.servletapi.SecurityContextHolderAwareReq
  */
 public class RequestUtil {
 
-	private transient static Log log = LogFactory.getLog(RequestUtil.class);
+	private transient static Logger log = LoggerFactory.getLogger(RequestUtil.class);
 
 	/**
 	 * Creates query String from request body parameters

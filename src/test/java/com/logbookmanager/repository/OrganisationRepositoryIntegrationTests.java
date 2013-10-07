@@ -67,9 +67,11 @@ public class OrganisationRepositoryIntegrationTests extends IntegrationTestSuppo
 	@Transactional
 	@Rollback(false)
 	public void addOrganisation() throws Throwable {
-		Title orgTitle = new Title("padi", "Professional Association of Diving Instructors");
+		Title orgTitle = new Title("padisa", "Professional Association of Diving Instructors in South Africa");
 		Country country = countryRepository.getCountry("ZA");
+		
 		Address orgAddress = new Address(country);
+		
 		EmailAddress orgEmail = new EmailAddress("info@padi.com");
 		WebSite orgWebsite = new WebSite("http://www.padi.com");
 	
@@ -85,6 +87,7 @@ public class OrganisationRepositoryIntegrationTests extends IntegrationTestSuppo
 	public void addOrganisationUnregisteredCountry() throws Throwable {
 		Title orgTitle = new Title("padi", "Professional Association of Diving Instructors");
 		Country country = countryRepository.getCountry("DE");
+		
 		Address orgAddress = new Address(country);
 		EmailAddress orgEmail = new EmailAddress("info@padi.com");
 		WebSite orgWebsite = new WebSite("http://www.padi.com");

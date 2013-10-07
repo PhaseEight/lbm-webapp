@@ -1,13 +1,18 @@
 package com.logbookmanager.service;
 
+/**
+ * protected Logger log;
+ * this.log = LoggerFactory.getLogger(getClass());
+ */
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.Serializable;
 import java.util.Map;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.mail.MailException;
 import org.springframework.mail.MailSender;
@@ -26,7 +31,7 @@ import org.springframework.mail.javamail.MimeMessageHelper;
  * @author Peter Neil
  */
 public class MailEngine {
-	protected static final Log log = LogFactory.getLog(MailEngine.class);
+	protected static final Logger log = LoggerFactory.getLogger(MailEngine.class);
 
 	private MailSender mailSender;
 

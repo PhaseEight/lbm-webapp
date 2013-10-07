@@ -1,5 +1,11 @@
 package com.logbookmanager.domain.model;
 
+/**
+ * protected Logger log;
+ * this.log = LoggerFactory.getLogger(getClass());
+ */
+import java.util.Locale;
+
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -11,16 +17,17 @@ import com.logbookmanager.domain.support.EntitySupport;
  * This class does not represent Locale. Use the Locale class and
  * LocaleContextHolder for Application specific Local sensitive operations.
  * 
- * @see com.logbookmanager.domain.model.organisation.OrganisationCountries 
+ * @see com.logbookmanager.domain.model.organisation.OrganisationCountries
  * 
  */
-public class Country extends EntitySupport<Country, Long> implements java.io.Serializable {
+public class Country extends EntitySupport<Country, Long> implements java.io.Serializable, Comparable<Country> {
 
 	private static final long serialVersionUID = 912839123L;
 
 	@NaturalId
 	private String ansiCode;
 	private String displayName;
+	private Locale locale;
 
 	/** default constructor required by Hibernate */
 	/* required by Hibernate */
@@ -28,8 +35,8 @@ public class Country extends EntitySupport<Country, Long> implements java.io.Ser
 	}
 
 	public Country(String ansiCode, String displayName) {
-		this.ansiCode = ansiCode;
 		this.displayName = displayName;
+		setAnsiCode(ansiCode);
 	}
 
 	/**
@@ -51,8 +58,7 @@ public class Country extends EntitySupport<Country, Long> implements java.io.Ser
 			return false;
 		}
 		Country rhs = (Country) object;
-		return new EqualsBuilder().append(this.ansiCode, rhs.ansiCode).append(this.displayName, rhs.displayName)
-				.append(this.id, rhs.id).isEquals();
+		return new EqualsBuilder().append(this.ansiCode, rhs.ansiCode).append(this.displayName, rhs.displayName).isEquals();
 	}
 
 	/**
@@ -60,8 +66,7 @@ public class Country extends EntitySupport<Country, Long> implements java.io.Ser
 	 */
 	@Override
 	public int hashCode() {
-		return new HashCodeBuilder(-722875075, 618856429).append(this.ansiCode).append(this.displayName)
-				.append(this.id).toHashCode();
+		return new HashCodeBuilder(-722875075, 618856429).append(this.ansiCode).append(this.displayName).toHashCode();
 	}
 
 	public String getAnsiCode() {
@@ -69,6 +74,7 @@ public class Country extends EntitySupport<Country, Long> implements java.io.Ser
 	}
 
 	public void setAnsiCode(String ansiCode) {
+		this.locale = new Locale("", ansiCode);
 		this.ansiCode = ansiCode;
 	}
 
@@ -78,6 +84,22 @@ public class Country extends EntitySupport<Country, Long> implements java.io.Ser
 
 	public void setDisplayName(String displayName) {
 		this.displayName = displayName;
+	}
+
+	@Override
+	public int compareTo(Country o) {
+		if (o.getAnsiCode().equals(ansiCode))
+			return -1;
+
+		return o.getAnsiCode().compareToIgnoreCase(ansiCode);
+	}
+
+	public Locale getLocale() {
+		return locale;
+	}
+
+	public void setLocale(Locale locale) {
+		this.locale = locale;
 	}
 
 }

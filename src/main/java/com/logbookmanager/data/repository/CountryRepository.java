@@ -1,6 +1,6 @@
 package com.logbookmanager.data.repository;
 
-import java.util.List;
+import java.util.Set;
 
 import com.logbookmanager.domain.model.Country;
 
@@ -13,7 +13,7 @@ public interface CountryRepository extends Repository<Country, Long> {
 	 *  
 	 * @return list of Country objects
 	 */
-	public List<Country> getISOCountries();
+	public Set<Country> getCountries();
 	
 	public Country getCountry(String isoCode);
 

@@ -1,6 +1,10 @@
 package com.logbookmanager.web.authentication;
 
 import java.io.Serializable;
+/**
+ * protected Logger log;
+ * this.log = LoggerFactory.getLogger(getClass());
+ */
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

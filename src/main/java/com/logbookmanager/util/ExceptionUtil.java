@@ -1,13 +1,17 @@
 package com.logbookmanager.util;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+/**
+ * protected Logger log;
+ * this.log = LoggerFactory.getLogger(getClass());
+ */
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 //TODO: use this to create an advice for ObjectDeleted type exceptions
 public class ExceptionUtil {
 
-	protected static final Log log = LogFactory.getLog(ExceptionUtil.class
-			.getName());
+	protected static final Logger log = LoggerFactory.getLogger(ExceptionUtil.class.getName());
 
 	public static Throwable retrieveCause(Throwable t, Class<?>[] searchForAny)
 			throws Exception {

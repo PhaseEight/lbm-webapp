@@ -1,9 +1,13 @@
 package com.logbookmanager.util;
 
+/**
+ * protected Logger log;
+ * this.log = LoggerFactory.getLogger(getClass());
+ */
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.security.MessageDigest;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.bouncycastle.util.encoders.Base64;
 
 /**
@@ -17,7 +21,7 @@ import org.bouncycastle.util.encoders.Base64;
  */
 public class PasswordUtil {
 
-	private final static Log log = LogFactory.getLog(PasswordUtil.class);
+	protected static final Logger log = LoggerFactory.getLogger(PasswordUtil.class.getName());
 
 	/**
 	 * Encode a string using specified algorithm and return the

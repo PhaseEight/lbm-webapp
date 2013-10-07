@@ -6,6 +6,10 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.hibernate.criterion.Criterion;
+/**
+ * protected Logger log;
+ * this.log = LoggerFactory.getLogger(getClass());
+ */
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

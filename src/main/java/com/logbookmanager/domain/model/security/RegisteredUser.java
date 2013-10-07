@@ -1,13 +1,17 @@
 package com.logbookmanager.domain.model.security;
 
+/**
+ * protected Logger log;
+ * this.log = LoggerFactory.getLogger(getClass());
+ */
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.io.Serializable;
 import java.util.Set;
 
 import org.apache.commons.lang3.Validate;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.hibernate.annotations.NaturalId;
 
 import com.logbookmanager.annotations.DeleteType;
@@ -40,7 +44,7 @@ public class RegisteredUser extends EntitySupport<com.logbookmanager.domain.mode
 
 	private static final long serialVersionUID = 912839123L;
 
-	private Log log = LogFactory.getLog(RegisteredUser.class);
+	private Logger log = LoggerFactory.getLogger(RegisteredUser.class);
 
 	@NaturalId
 	private UserName username;
