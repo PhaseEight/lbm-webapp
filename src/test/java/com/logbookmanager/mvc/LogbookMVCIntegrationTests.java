@@ -15,50 +15,28 @@ import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
-import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.junit.runners.MethodSorters;
-import org.springframework.context.annotation.Profile;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.security.web.FilterChainProxy;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.ContextHierarchy;
-import org.springframework.test.context.TestExecutionListeners;
-import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
-import org.springframework.test.context.support.DirtiesContextTestExecutionListener;
 import org.springframework.test.context.transaction.AfterTransaction;
 import org.springframework.test.context.transaction.BeforeTransaction;
-import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
-import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import com.github.springtestdbunit.DbUnitTestExecutionListener;
 import com.logbookmanager.domain.model.logbook.Logbook;
 import com.logbookmanager.domain.support.Title;
+import com.logbookmanager.support.IntegrationTestSupport;
 
-@Profile(value = "mvc-integration-test")
+@ActiveProfiles (value = "default, mvc-integration-test")
 @RunWith(SpringJUnit4ClassRunner.class)
 /*
  * not necessary as this is declared in the
- * AbstractTransactionalJUnit4SpringContextTests
  */
-@TestExecutionListeners({ DependencyInjectionTestExecutionListener.class, DirtiesContextTestExecutionListener.class,
-	TransactionalTestExecutionListener.class, DbUnitTestExecutionListener.class })
-/*
- * not necessary as this is declared in the
- * AbstractTransactionalJUnit4SpringContextTests
- */
-@ContextHierarchy({ 
-		@ContextConfiguration("file:src/main/webapp/WEB-INF/spring/servlet-context.xml") })
-@WebAppConfiguration(value = "src/main/webapp")
-// not really necessary because these are the defaults
-@FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class LogbookMVCIntegrationTests extends AbstractTransactionalJUnit4SpringContextTests {
+public class LogbookMVCIntegrationTests extends IntegrationTestSupport {
 
 	@Inject
 	private WebApplicationContext webApplicationContext;

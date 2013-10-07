@@ -4,7 +4,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
-@Suite.SuiteClasses({CreateUserControllerIntegrationTests.class,LogbookMVCIntegrationTests.class,SignupControllerIntegrationTests.class})
+@Suite.SuiteClasses({LogbookMVCIntegrationTests.class,SignupControllerIntegrationTests.class})
 public class MVCIntegrationTestSuite{
 	
 }
