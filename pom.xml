@@ -15,8 +15,8 @@
 		<!-- Spring versions 3.2.4.RELEASE -->
 		<!-- <springframework-version>4.0.0.M3</springframework-version> -->
 		<!-- Versions 4.0.0.M3 -->
-		<springframework-version>4.0.0.M3</springframework-version>
-		<spring-security-version>3.2.0.M2</spring-security-version>
+		<springframework-version>4.0.0.BUILD-SNAPSHOT</springframework-version>
+		<spring-security-version>3.2.0.CI-SNAPSHOT</spring-security-version>
 		<spring-security-javaconfig-version>1.0.0.M1</spring-security-javaconfig-version>
 		<spring-faces-version>2.4.0.M1</spring-faces-version>
 		<!-- Webflow version 2.4.0.M1 -->
@@ -29,14 +29,17 @@
 		<primefaces-version>4.0.RC1</primefaces-version>
 		<primefaces-ext-version>1.0.0.RC1</primefaces-ext-version>
 		<primefaces.themes-version>1.0.10</primefaces.themes-version>
-		<!-- all-themes, afternoon, trontastic -->
+		<!-- 
+			all-themes, afternoon, trontastic
+			metroui is inlcuded in the project's webapp/WEB-INF/lib folder 
+		-->
 		<primefaces.theme-artifactId>all-themes</primefaces.theme-artifactId>
 		<jackson-core-version>2.2.3</jackson-core-version>
 		<jackson-databind-version>2.2.3</jackson-databind-version>
 		<jackson-annotations-version>2.2.3</jackson-annotations-version>
 		<tomcat-version>7.0.42</tomcat-version>
 		<shrinkwrap-impl-base>1.2.0</shrinkwrap-impl-base>
-		<joda-time-version>2.2</joda-time-version>
+		<joda-time-version>2.3</joda-time-version>
 		<guava-version>14.0.1</guava-version>
 		<org.jadira.usertype.core-version>3.0.0.GA</org.jadira.usertype.core-version>
 		<jrebel-maven-plugin-version>1.1.3</jrebel-maven-plugin-version>
@@ -162,6 +165,7 @@
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-java</artifactId>
 			<version>${selenium-java-version}</version>
+			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
@@ -219,7 +223,7 @@
 		<dependency>
 			<groupId>postgresql</groupId>
 			<artifactId>postgresql</artifactId>
-			<scope>compile</scope>
+			<scope>provided</scope>
 		</dependency>
 
 		<dependency>
@@ -267,6 +271,12 @@
 			<groupId>org.springframework.webflow</groupId>
 			<artifactId>spring-js</artifactId>
 			<scope>compile</scope>
+			<exclusions>
+				<exclusion>
+					<artifactId>spring-js-resources</artifactId>
+					<groupId>org.springframework.webflow</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 
 		<dependency>
@@ -365,10 +375,12 @@
 			<artifactId>primefaces</artifactId>
 		</dependency>
 		<!-- Choose your theme http://primefaces.org/themes.html -->
+		<!-- 
 		<dependency>
 			<groupId>org.primefaces.themes</groupId>
 			<artifactId>${primefaces.theme-artifactId}</artifactId>
 		</dependency>
+		 -->
 		<dependency>
 			<groupId>org.primefaces.extensions</groupId>
 			<artifactId>primefaces-extensions</artifactId>
@@ -1017,11 +1029,13 @@
 				<artifactId>primefaces</artifactId>
 				<version>${primefaces-version}</version>
 			</dependency>
+			<!-- 
 			<dependency>
 				<groupId>org.primefaces.themes</groupId>
 				<artifactId>${primefaces.theme-artifactId}</artifactId>
 				<version>${primefaces.themes-version}</version>
 			</dependency>
+			 -->
 			<dependency>
 				<groupId>org.primefaces.extensions</groupId>
 				<artifactId>primefaces-extensions</artifactId>

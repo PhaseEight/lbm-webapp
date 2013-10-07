@@ -65,7 +65,8 @@
 
 			</p:layoutUnit>
 			<p:layoutUnit id="left" position="west" size="315" resizable="false"
-				closable="true" collapsible="true" header="Options" minSize="200" collapsed="false">
+				closable="true" collapsible="true" header="Options" minSize="200"
+				collapsed="false">
 
 				<h:form id="leftAccordionMenu">
 					<p:accordionPanel id="leftPanelMenu">
@@ -103,25 +104,25 @@
 			<p:layoutUnit id="right" position="east" size="250" header="Gallery"
 				resizable="true" closable="true" collapsible="true">
 				<h:form id="rightLightBox">
-					<p:lightBox style="text-align:center;margin-top:20px;">
+					<p:lightBox style="text-align:center;margin-top:20px;" rendered="false">
 						<h:outputLink value="#{request.contextPath}/images/nature1.jpg"
 							title="Nature 1" style="margin-bottom:5px;">
-							<h:graphicImage value="/images/nature1_small.jpg" />
+							<h:graphicImage value="" />
 						</h:outputLink>
 
 						<h:outputLink value="#{request.contextPath}/images/nature2.jpg"
 							title="Nature 2" style="margin-bottom:2px;">
-							<h:graphicImage value="/images/nature2_small.jpg" />
+							<h:graphicImage value="" />
 						</h:outputLink>
 
 						<h:outputLink value="#{request.contextPath}/images/nature3.jpg"
 							title="Nature 3" style="margin-bottom:2px;">
-							<h:graphicImage value="/images/nature3_small.jpg" />
+							<h:graphicImage value="" />
 						</h:outputLink>
 
 						<h:outputLink value="#{request.contextPath}/images/nature4.jpg"
 							title="Nature 4" style="margin-bottom:2px;">
-							<h:graphicImage value="/images/nature4_small.jpg" />
+							<h:graphicImage value="" />
 						</h:outputLink>
 					</p:lightBox>
 
@@ -177,7 +178,7 @@
 
 		<c:set var="loginFormAction"
 			value="#{request.contextPath}#{request.servletPath}/doLogin"></c:set>
-			
+
 		<p:dialog id="dialog" header="Login" widgetVar="loginDialog"
 			resizable="false">
 			<div id="login-form-wrapper">
@@ -188,24 +189,24 @@
 						<p:fieldset role="login" legend="Login Information"
 							id="login-fields">
 							<div id="login-username">
-								<span id="login-username-label"><label for="j_username">Username:</label></span>
+								<span id="login-username-label"><label for="username">Username:</label></span>
 								<span id="login-username-input"> <p:inputText type="text"
-										id="j_username" value="#{username}" size="25"
+										id="username" value="#{username}" size="25"
 										title="Your Username is Case Sensitive" /> <!-- 
 								<input type="text"
-									name="j_username" value="#{username}" class="ui-widget"
+									name="username" value="#{username}" class="ui-widget"
 									title="Your Username is Case Sensitive" size="25" />
 									 -->
 								</span>
 							</div>
 
 							<div id="login-password">
-								<span id="login-password-label"><label for="j_password">Password:</label></span>
+								<span id="login-password-label"><label for="password">Password:</label></span>
 								<span id="login-password-input"> <p:inputText
-										type="password" id="j_password" value="" size="25"
+										type="password" id="password" value="" size="25"
 										title="Your Password is Case Sensitive." /> <!-- 
 								<input type="password"
-									id="j_password" name="j_password" class="ui-widget"
+									id="password" name="j_password" class="ui-widget"
 									title="Your Password is Case Sensitive." size="25" />
 									 -->
 								</span>
@@ -215,9 +216,9 @@
 								<span id="login-remember-me"><input type="checkbox"
 									name="_spring_security_remember_me" class="ui-widget" />
 									Remember me for two weeks.</span> <span id="loginButton"><p:commandButton
-										value="Login" id="loginButton" onclick="$('#loginForm').attr('action', '#{loginFormAction}'); return true;"
-										
-										 ajax="false" /></span>
+										value="Login" id="loginButton"
+										onclick="$('#loginForm').attr('action', '#{loginFormAction}'); return true;"
+										ajax="true" /></span>
 							</div>
 						</p:fieldset>
 					</h:form>

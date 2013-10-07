@@ -18,8 +18,8 @@ DELETE FROM ORGANISATION_COUNTRY;
 DELETE FROM ENTRY_ATTRIBUTE;
 DELETE FROM LOGBOOKUSER_LOGBOOK_ENTRY;
 DELETE FROM LOGBOOKUSER_LOGBOOK; 
-DELETE FROM DETAIL_ATTRIBUTE; 
-DELETE FROM DETAIL;
+--DELETE FROM DETAIL_ATTRIBUTE; 
+--DELETE FROM DETAIL;
 DELETE FROM LOGBOOK;
 DELETE FROM LOGBOOKUSER; 
 DELETE FROM SEC_USER_ROLE;
@@ -61,12 +61,6 @@ INSERT INTO LOGBOOKUSER (id, version, sec_user_id, country_id) values(2,1,1,1);
 INSERT INTO LOGBOOKUSER (id, version, sec_user_id, country_id) values(3,1,2,2);
 INSERT INTO LOGBOOKUSER (id, version, sec_user_id, country_id) values(4,1,3,1);
 
--- insert Details
-INSERT INTO DETAIL (id, VERSION, NAME, display_value) values(1,0,'exposure_suit', 'Exposure suite');
-INSERT INTO DETAIL (id, VERSION, NAME, display_value) values(2,0,'cylinder', 'Cylinder');
-INSERT INTO DETAIL (id, VERSION, NAME, display_value) values(3,0,'propelsion', 'Propelsion');
-INSERT INTO DETAIL_ATTRIBUTE (id, version, detail_id, name, common_name) values(1, 0, 2, 'start_pressure','Start pressure');
-
 -- insert logbooks
 INSERT INTO LOGBOOK (id, VERSION,CODE, NAME) values (1,1,'dm_logbook', 'Divemaster Logbook');
 INSERT INTO LOGBOOK (id, VERSION,CODE, NAME) values (5,1,'coarse_fishing_logbook', 'Coarse Fishing Logbook');
@@ -75,10 +69,19 @@ INSERT INTO LOGBOOKUSER_LOGBOOK (id, version, logbook_id, LOGBOOKUSER_id, name) 
 INSERT INTO LOGBOOKUSER_LOGBOOK (id, version, logbook_id, LOGBOOKUSER_id, name) values(2,1,5,3,'Carp Fishing Logbook');
 
 INSERT INTO LOGBOOKUSER_LOGBOOK_ENTRY (id, version, LOGBOOKUSER_id, entry_number, LOGBOOKUSER_logbook_id) values(1, 0, 2, 1, 2);
-INSERT INTO ENTRY_ATTRIBUTE (id, version, detail_attribute_id, LOGBOOKUSER_LOGBOOK_entry_id, display_value, sort_value) values(1, 0, 1, 1, '100', 100);
 
 INSERT INTO ORGANISATION (id, VERSION, name, code, name_or_number, street, province, postal_code, email, country_id) values(1, 0, 'Professional Association of Diving Instructors', 'PADI','ho1', 'ho2', 'ho3', 'pc2', 'head-contact@padi.com',1);
 INSERT INTO ORGANISATION_COUNTRY (id, version, phone, fax, organisation_id, country_id) values(1, 0, '0044020710810', '0044020710810', 1, 1);
+
+
+-- insert Details
+--INSERT INTO DETAIL (id, VERSION, NAME, display_value) values(1,0,'exposure_suit', 'Exposure suite');
+--INSERT INTO DETAIL (id, VERSION, NAME, display_value) values(2,0,'cylinder', 'Cylinder');
+--INSERT INTO DETAIL (id, VERSION, NAME, display_value) values(3,0,'propelsion', 'Propelsion');
+--INSERT INTO DETAIL_ATTRIBUTE (id, version, detail_id, name, common_name) values(1, 0, 2, 'start_pressure','Start pressure');
+
+-- This is the user's captured value for their dive's start_pressure
+--INSERT INTO ENTRY_ATTRIBUTE (id, version, detail_attribute_id, LOGBOOKUSER_LOGBOOK_entry_id, display_value, sort_value) values(1, 0, 1, 1, '100', 100);
 
 --SELECT * from SEC_ROLE;
 --SELECT * FROM SEC_USER;

@@ -34,19 +34,5 @@
 			<one-to-many
 				class="com.logbookmanager.domain.model.logbook.DetailAttribute" />
 		</set>
-		<set name="logbookPageDetails" inverse="true">
-			<key>
-				<column name="DETAIL_ID" not-null="true" />
-			</key>
-			<one-to-many
-				class="com.logbookmanager.domain.model.logbook.LogbookPageDetail" />
-		</set>
-		<set name="userLogbookDetails" inverse="true">
-			<key>
-				<column name="DETAIL_ID" not-null="true" />
-			</key>
-			<one-to-many
-				class="com.logbookmanager.domain.model.logbook.LogbookUserLogbookDetail" />
-		</set>
 	</class>
 </hibernate-mapping>

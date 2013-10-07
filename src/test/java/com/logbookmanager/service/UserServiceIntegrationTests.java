@@ -26,14 +26,15 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.transaction.AfterTransaction;
 import org.springframework.test.context.transaction.BeforeTransaction;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
 
-import com.logbookmanager.domain.model.security.Role;
 import com.logbookmanager.domain.model.security.RegisteredUser;
+import com.logbookmanager.domain.model.security.Role;
 import com.logbookmanager.domain.support.Password;
 import com.logbookmanager.domain.support.PasswordHint;
 import com.logbookmanager.domain.support.UserDetails;
@@ -111,7 +112,7 @@ public class UserServiceIntegrationTests extends IntegrationTestSupport {
 	}
 
 	@Test(expected = NullPointerException.class)
-	public void userAddFails() throws Throwable {
+	public void addUserFails() throws Throwable {
 		RegisteredUser newUser = addUser(new RegisteredUser(null));
 		assertNull("The new RegisteredUser should not be able to be added with a Null username", newUser);
 	}
@@ -166,7 +167,10 @@ public class UserServiceIntegrationTests extends IntegrationTestSupport {
 	}
 
 	@Test
-	public void userAddSucceeds() throws Throwable {
+	public void addUserSucceeds() throws Throwable {
+		
+		BCryptPasswordEncoder passwordEncoder = (BCryptPasswordEncoder)webApplicationContext.getBean("bcryptEncoder");
+		
 		HashSet<Role> roles = new HashSet<Role>();
 		Role role = roleService.findRole("logbookuser");
 		assertNotNull("No logbookuser role found", role);
@@ -175,7 +179,7 @@ public class UserServiceIntegrationTests extends IntegrationTestSupport {
 		UserDetails userDetails = new UserDetails("thenewuserfirstname", "thenewusersurname",
 				"thenewuser@phaseeightltd.co.uk", "01543898462", "07908708064", "http://www.phaseeightltd.co.uk", "en_GB");
 		RegisteredUser registeredUser = new RegisteredUser(new UserName("thenewuser_username"),
-				new Password("thenewuser_password", "thenewuser_password"), null, userDetails, roles);
+				new Password(passwordEncoder.encode("thenewuser_password"), passwordEncoder.encode("thenewuser_password")), null, userDetails, roles);
 
 		registeredUser.setlastUpdateTimeStamp(new Timestamp(Calendar.getInstance(LocaleContextHolder.getLocale()).getTimeInMillis()));
 

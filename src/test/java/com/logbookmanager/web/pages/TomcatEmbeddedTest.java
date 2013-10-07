@@ -93,8 +93,8 @@ public class TomcatEmbeddedTest {
 
 			log.debug("Finding the login controls");
 			WebElement topLoginButton = driver.findElement(By.name("topLoginLogoutForm:topLoginButton"));
-			WebElement loginFormUsername = driver.findElement(By.name("loginForm:j_username"));
-			WebElement loginFormPassword = driver.findElement(By.name("loginForm:j_password"));
+			WebElement loginFormUsername = driver.findElement(By.name("loginForm:username"));
+			WebElement loginFormPassword = driver.findElement(By.name("loginForm:password"));
 			WebElement loginFormLoginButton = driver.findElement(By.name("loginForm:loginButton"));
 
 			log.debug("Showing login form");

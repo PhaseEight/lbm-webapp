@@ -1,8 +1,5 @@
 package com.logbookmanager.domain.model.logbook;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -10,6 +7,9 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import com.logbookmanager.domain.support.EntitySupport;
 
 /**
+ * 
+ * A logbook user logbook is linked to the loggable activity in which a logbook user participates e.g. scuba diving
+ * 
  * LogbookUserLogbook 
  */
 public class LogbookUserLogbook extends EntitySupport<LogbookUserLogbook, Long> implements
@@ -23,10 +23,6 @@ public class LogbookUserLogbook extends EntitySupport<LogbookUserLogbook, Long> 
 	private LogbookUser logbookUser;
 
 	private String name;
-
-	private Set<LogbookUserLogbookDetail> logbookDetails = new HashSet<LogbookUserLogbookDetail>();
-
-	private Set<LogbookUserLogbookEntry> userEntries = new HashSet<LogbookUserLogbookEntry>();
 
 	// Constructors
 
@@ -65,22 +61,6 @@ public class LogbookUserLogbook extends EntitySupport<LogbookUserLogbook, Long> 
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public Set<LogbookUserLogbookDetail> getLogbookDetails() {
-		return logbookDetails;
-	}
-
-	public void setLogbookDetails(Set<LogbookUserLogbookDetail> logbookDetails) {
-		this.logbookDetails = logbookDetails;
-	}
-
-	public Set<LogbookUserLogbookEntry> getUserEntries() {
-		return userEntries;
-	}
-
-	public void setUserEntries(Set<LogbookUserLogbookEntry> userEntries) {
-		this.userEntries = userEntries;
 	}
 
 	/**

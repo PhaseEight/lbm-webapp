@@ -1,7 +1,8 @@
 package com.logbookmanager.support;
 
+import static org.mockito.Mockito.mock;
+
 import javax.faces.context.FacesContext;
-import static org.mockito.Mockito.*;
 
 import org.mockito.Mockito;
 import org.mockito.invocation.InvocationOnMock;

@@ -1,13 +1,9 @@
 package com.logbookmanager.domain.model.organisation;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-import com.logbookmanager.domain.model.logbook.LogbookUser;
 import com.logbookmanager.domain.support.EntitySupport;
 
 /**

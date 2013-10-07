@@ -31,12 +31,5 @@
 			<column name="DISPLAY_ORDER" />
 		</property>
 
-		<set name="logbookPageDetails" inverse="true">
-			<key>
-				<column name="PAGE_ID" not-null="true" />
-			</key>
-			<one-to-many
-				class="com.logbookmanager.domain.model.logbook.LogbookPageDetail" />
-		</set>
 	</class>
 </hibernate-mapping>

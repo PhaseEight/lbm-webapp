@@ -18,10 +18,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.mock.web.MockHttpServletRequest;
-import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.mock.web.MockHttpSession;
-import org.springframework.mock.web.MockServletContext;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -112,7 +109,7 @@ public class LoginAndSecurityIntegrationTests extends IntegrationTestSupport {
 
 		this.mockMvc
 				.perform(
-						post("/web/app/doLogin").param("loginForm:j_username", "peterneil").param("loginForm:j_password", "password")
+						post("/web/app/doLogin").param("loginForm:username", "peterneil").param("loginForm:password", "password")
 								.contextPath("/web").servletPath("/app")).andExpect(status().is(302))
 				.andExpect(redirectedUrl("/web/app/main"));
 	}
@@ -122,8 +119,8 @@ public class LoginAndSecurityIntegrationTests extends IntegrationTestSupport {
 
 		this.mockMvc
 				.perform(
-						post("/web/app/doLogin").param("loginForm:j_username", "loginerrorusername")
-								.param("loginForm:j_password", "password").contextPath("/web").servletPath("/app"))
+						post("/web/app/doLogin").param("loginForm:username", "loginerrorusername")
+								.param("loginForm:password", "password").contextPath("/web").servletPath("/app"))
 				.andExpect(status().is(302)).andExpect(redirectedUrl("/web/app/welcome?login_error=1"));
 	}
 

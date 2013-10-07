@@ -3,13 +3,11 @@ package com.logbookmanager.support;
 import javax.inject.Inject;
 
 import org.hibernate.SessionFactory;
-import org.hibernate.type.TrueFalseType;
 import org.junit.FixMethodOrder;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
 import org.springframework.context.annotation.Profile;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.ContextHierarchy;
 import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;

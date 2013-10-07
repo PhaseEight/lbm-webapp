@@ -37,7 +37,13 @@ import java.util.WeakHashMap;
  * @author Juergen Hoeller
  * @since 1.2.2
  */
+@SuppressWarnings("rawtypes")
 public abstract class CachingMapDecorator implements Map, Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	private static Object NULL_VALUE = new Object();
 
@@ -57,6 +63,7 @@ public abstract class CachingMapDecorator implements Map, Serializable {
 	 * using an underlying synchronized Map.
 	 * @param weakKeys whether to use weak references for keys
 	 */
+	@SuppressWarnings("unchecked")
 	public CachingMapDecorator(boolean weakKeys) {
 		Map internalMap = weakKeys ? (Map) new WeakHashMap() : new HashMap();
 		this.targetMap = Collections.synchronizedMap(internalMap);
@@ -68,6 +75,7 @@ public abstract class CachingMapDecorator implements Map, Serializable {
 	 * @param weakKeys whether to use weak references for keys
 	 * @param size the initial cache size
 	 */
+	@SuppressWarnings("unchecked")
 	public CachingMapDecorator(boolean weakKeys, int size) {
 		Map internalMap = weakKeys ? (Map) new WeakHashMap(size) : new HashMap(size);
 		this.targetMap = Collections.synchronizedMap(internalMap);
@@ -101,6 +109,7 @@ public abstract class CachingMapDecorator implements Map, Serializable {
 		return this.targetMap.containsValue(value);
 	}
 
+	@SuppressWarnings("unchecked")
 	public Object put(Object key, Object value) {
 		return this.targetMap.put(key, value);
 	}
@@ -109,6 +118,7 @@ public abstract class CachingMapDecorator implements Map, Serializable {
 		return this.targetMap.remove(key);
 	}
 
+	@SuppressWarnings("unchecked")
 	public void putAll(Map t) {
 		this.targetMap.putAll(t);
 	}
