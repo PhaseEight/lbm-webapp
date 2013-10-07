@@ -8,8 +8,12 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class UserNameTests {
+	
+	private static final Logger logger = LoggerFactory.getLogger(UserNameTests.class.getName());
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -45,8 +49,8 @@ public class UserNameTests {
 		assertTrue("The two valueobjects must be equal if the value property is the same string",username1.equals(username2));
 		assertTrue("The two valueobjects must be see the USERNAME value of to be the same",username1.sameValueAs(username2));
 
-		System.out.println(username1.toString());
-		System.out.println(username2.toString());
+		logger.debug(username1.toString());
+		logger.debug(username2.toString());
 
 	}
 
@@ -64,7 +68,7 @@ public class UserNameTests {
 		assertFalse("The two valueobjects must NOT be equal if the value property is the same string",username1.equals(username2));
 		assertFalse("The two valueobjects must NOT be see the USERNAME value of to be the same",username1.sameValueAs(username2));
 		
-		System.out.println(username1.toString());
-		System.out.println(username2.toString());
+		logger.debug(username1.toString());
+		logger.debug(username2.toString());
 	}
 }	

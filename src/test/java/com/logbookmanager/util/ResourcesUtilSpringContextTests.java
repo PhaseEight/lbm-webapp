@@ -58,7 +58,7 @@ public class ResourcesUtilSpringContextTests extends AbstractJUnit4SpringContext
 
 	@After
 	public void tearDown() throws Exception {
-		System.out.println("We're tearing it down!");
+		logger.debug("We're tearing it down!");
 	}
 
 	@Test

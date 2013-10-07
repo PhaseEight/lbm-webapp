@@ -53,7 +53,7 @@ public class LogbookIntegrationTests extends IntegrationTestSupport {
 
 	@After
 	public void tearDown() throws Exception {
-		System.out.println("We're tearing it down!");
+		logger.debug("We're tearing it down!");
 	}
 
 	@Test
@@ -107,7 +107,7 @@ public class LogbookIntegrationTests extends IntegrationTestSupport {
 
 		);
 		for (Logbook logbook : logbooks) {
-			System.out.println(logbook.toString());
+			logger.debug(logbook.toString());
 		}
 		assertNotNull("There must be some logbooks", logbooks);
 	}
@@ -121,7 +121,7 @@ public class LogbookIntegrationTests extends IntegrationTestSupport {
 
 	@AfterTransaction
 	public void afterTransaction() {
-		System.out.println("Transaction Completed");
+		logger.debug("Transaction Completed");
 	}
 
 	public LogbookRepository getLogbookRepository() {

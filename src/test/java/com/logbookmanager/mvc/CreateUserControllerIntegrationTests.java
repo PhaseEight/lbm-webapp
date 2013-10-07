@@ -12,6 +12,8 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Profile;
 import org.springframework.security.web.FilterChainProxy;
 import org.springframework.test.context.ContextConfiguration;
@@ -48,6 +50,8 @@ import com.github.springtestdbunit.DbUnitTestExecutionListener;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class CreateUserControllerIntegrationTests extends ModelAndViewAssert {
 
+	private static final Logger logger = LoggerFactory.getLogger(CreateUserControllerIntegrationTests.class.getName());
+	
 	@Inject
 	private WebApplicationContext webApplicationContext;
 
@@ -78,7 +82,7 @@ public class CreateUserControllerIntegrationTests extends ModelAndViewAssert {
 
 	@After
 	public void tearDown() throws Exception {
-		System.out.println("We're tearing it down!");
+		logger.debug("We're tearing it down!");
 	}
 
 	

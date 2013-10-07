@@ -21,7 +21,7 @@
 				unique="false" default="CURRENT_TIMESTAMP" />
 		</property>
 
-		<set name="certifications" lazy="false" table="LOGBOOKUSER_CERTIFICATION"
+		<set name="certifications" lazy="true" table="LOGBOOKUSER_CERTIFICATION"
 			cascade="save-update,delete" fetch="join">
 
 			<key column="LOGBOOKUSER_ID" not-null="false" />
@@ -31,17 +31,14 @@
 				column="CERTIFICATION_ID" foreign-key="FK_CERTIFICATION_CERTIFICATION_ID" />
 		</set>
 
-		<list name="logbookUserLogbooks" inverse="true" batch-size="0"
-			outer-join="true" lazy="true" cascade="all-delete-orphan">
+		<set name="logbookUserLogbooks" inverse="true" batch-size="0"
+			outer-join="true" lazy="true" cascade="all-delete-orphan" table="LOGBOOKUSER_LOGBOOK">
 			<key>
 				<column name="LOGBOOKUSER_ID" not-null="true" unique="true" />
 			</key>
-			<index>
-				<column name="ID" />
-			</index>
 			<one-to-many
 				class="com.logbookmanager.domain.model.logbook.LogbookUserLogbook" />
-		</list>
+		</set>
 
 		<many-to-one name="registeredUser"
 			class="com.logbookmanager.domain.model.security.RegisteredUser" lazy="false"

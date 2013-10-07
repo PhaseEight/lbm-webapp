@@ -12,7 +12,7 @@ public class StringValidatorTests {
 
 	@Test
 	public void stringIsNotAlphanumeric() {
-		Assert.assertFalse("String was not UnderscoreAlphaNumericWithoutSpaces",StringValidator.isUnderscoreAlphaNumericWithoutSpaces("!this_.is4lph4numeric", 3));
+		Assert.assertFalse("String was not UnderscoreAlphaNumericWithoutSpaces",StringValidator.isUnderscoreAlphaNumericWithoutSpaces("@this_.is4lph4numeric", 3));
 	}
 
 	@Test
@@ -27,7 +27,7 @@ public class StringValidatorTests {
 
 	@Test
 	public void stringIsAtLeastOneCharacterLongAndNotAlphaNumeric() {
-		Assert.assertFalse(StringValidator.isUnderscoreAlphaNumericWithoutSpaces("!", 1));
+		Assert.assertFalse(StringValidator.isUnderscoreAlphaNumericWithoutSpaces("@", 1));
 	}
 
 }

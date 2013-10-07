@@ -13,6 +13,8 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.security.web.FilterChainProxy;
@@ -37,6 +39,8 @@ import org.springframework.web.context.WebApplicationContext;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class SignupControllerIntegrationTests {
 
+	private static final Logger logger = LoggerFactory.getLogger(SignupControllerIntegrationTests.class.getName());
+	
 	@Autowired
 	private WebApplicationContext webApplicationContext;
 
@@ -63,7 +67,7 @@ public class SignupControllerIntegrationTests {
 
 	@After
 	public void tearDown() throws Exception {
-		System.out.println("We're tearing it down!");
+		logger.debug("We're tearing it down!");
 	}
 
 	
@@ -77,7 +81,7 @@ public class SignupControllerIntegrationTests {
 
 	@Test
 	public void doSignup() throws Exception {
-		System.out.println("createUploadFile called");
+		logger.debug("createUploadFile called");
 		this.mockMvc.perform(post("/user/signup").accept(MediaType.APPLICATION_FORM_URLENCODED))
 		.andExpect(status().isOk())
 		.andExpect(view().name("signup-success"));

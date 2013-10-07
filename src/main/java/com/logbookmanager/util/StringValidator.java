@@ -2,6 +2,8 @@ package com.logbookmanager.util;
 
 public class StringValidator {
 
+	final public static String VALID_CHARACTERS = "#$%&'*+-/=?^_`{|}~A-Za-z0-9-\\+";
+	
 	final public static String EMAIL_PATTERN = "^[!#$%&'*+-/=?^_`{|}~A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.([A-Za-z]{2,4}|museum))$";
 
 	public static final StringValidator instance = new StringValidator();
@@ -20,9 +22,8 @@ public class StringValidator {
 		 * only test the string if it's at least the minimum Length
 		 */
 		if (value.length() >= (minimumLength - 1)) {
-			String pattern = "^[a-zA-Z0-9_]*$";
-			String pattern2 = "^\\w*$";
-			return matches(value, new String[] { pattern, pattern2 });
+			String pattern = "^[!#$%&'*+-/=?^_`{|}~A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*$";
+			return matches(value, new String[] { pattern });
 		} else {
 			return false;
 		}

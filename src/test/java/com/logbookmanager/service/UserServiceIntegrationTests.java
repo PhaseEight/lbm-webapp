@@ -74,7 +74,7 @@ public class UserServiceIntegrationTests extends IntegrationTestSupport {
 
 	@After
 	public void tearDown() throws Exception {
-		System.out.println("We're tearing it down!");
+		logger.debug("We're tearing it down!");
 	}
 
 	@Test
@@ -125,54 +125,12 @@ public class UserServiceIntegrationTests extends IntegrationTestSupport {
 	}
 
 	@Test
-	@Rollback(false)
-	public void addOneThousandUsers() throws Throwable {
-		HashSet<Role> roles = new HashSet<Role>();
-		Role role = roleService.findRole("logbookuser");
-		roles.add(role);
-
-		Long startTimestamp = Calendar.getInstance(LocaleContextHolder.getLocale()).getTimeInMillis();
-
-		for (int i = 0; i < 1000; i++) {
-
-			Long startCreateUser = Calendar.getInstance(LocaleContextHolder.getLocale()).getTimeInMillis();
-
-			logger.debug("Creating user: " + 1);
-
-			UserDetails userDetails = new UserDetails("thenewuserfirstname" + i, "thenewusersurname" + i, "thenewuser" + i
-					+ "@phaseeightltd.co.uk", "01543898462", "07908708064", "http://www.phaseeightltd" + i + ".co.uk",
-					"en_GB");
-			RegisteredUser registeredUser = new RegisteredUser(new UserName("thenewuser_username" + i), new Password("thenewuser_password" + i,
-					"thenewuser_password" + i), null, userDetails, roles);
-
-			registeredUser.setlastUpdateTimeStamp(new Timestamp(Calendar.getInstance(LocaleContextHolder.getLocale())
-					.getTimeInMillis()));
-
-			addUser(registeredUser);
-
-			Long endCreateUser = Calendar.getInstance(LocaleContextHolder.getLocale()).getTimeInMillis();
-
-			Long runtime = endCreateUser - startCreateUser;
-
-			logger.debug("Execution time: " + runtime);
-
-		}
-
-		Long endTimestamp = Calendar.getInstance(LocaleContextHolder.getLocale()).getTimeInMillis();
-
-		Long runtimeLong = endTimestamp - startTimestamp;
-
-		System.out.println("Execution time: " + runtimeLong);
-
-	}
-
-	@Test
 	public void addUserSucceeds() throws Throwable {
 		
 		BCryptPasswordEncoder passwordEncoder = (BCryptPasswordEncoder)webApplicationContext.getBean("bcryptEncoder");
 		
 		HashSet<Role> roles = new HashSet<Role>();
-		Role role = roleService.findRole("logbookuser");
+		Role role = roleService.findRole("LOGBOOKUSER");
 		assertNotNull("No logbookuser role found", role);
 		roles.add(role);
 
@@ -232,7 +190,7 @@ public class UserServiceIntegrationTests extends IntegrationTestSupport {
 
 	@AfterTransaction
 	public void afterTransaction() {
-		System.out.println("Transaction Completed");
+		logger.debug("Transaction Completed");
 	}
 
 	public WebApplicationContext getWebApplicationContext() {

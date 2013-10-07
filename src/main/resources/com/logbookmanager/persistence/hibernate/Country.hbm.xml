@@ -13,9 +13,6 @@
 			<property name="ansiCode" type="string">
 				<column name="ANSI_CODE" length="3" unique="true" />
 			</property>
-			<property name="displayName" type="string">
-				<column name="DISPLAY_NAME" unique="true" />
-			</property>
 		</natural-id>
 
 		<version name="version" column="version" type="java.lang.Long" />

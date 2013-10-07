@@ -1,7 +1,7 @@
 package com.logbookmanager.domain.model.logbook;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
@@ -24,9 +24,9 @@ public class LogbookUser extends EntitySupport<LogbookUser, Long> implements
 	// member entities
 	private RegisteredUser registeredUser;
 
-	private List<Certification> certifications = new ArrayList<Certification>();
+	private Set<Certification> certifications = new LinkedHashSet<Certification>();
 
-	private List<LogbookUserLogbook> logbookUserLogbooks = new ArrayList<LogbookUserLogbook>();
+	private Set<LogbookUserLogbook> logbookUserLogbooks = new LinkedHashSet<LogbookUserLogbook>();
 	
 	private PersonalDetails personalDetails;
 
@@ -38,23 +38,23 @@ public class LogbookUser extends EntitySupport<LogbookUser, Long> implements
 	/**
 	 *
 	 */
-	public List<Certification> getCertifications() {
+	public Set<Certification> getCertifications() {
 		return this.certifications;
 	}
 
 	public void setCertifications(
-			List<Certification> certifications) {
+			Set<Certification> certifications) {
 		this.certifications = certifications;
 	}
 
 	/**
 	 *
 	 */
-	public List<LogbookUserLogbook> getLogbookUserLogbooks() {
+	public Set<LogbookUserLogbook> getLogbookUserLogbooks() {
 		return this.logbookUserLogbooks;
 	}
 
-	public void setLogbookUserLogbooks(List<LogbookUserLogbook> logbookUserLogbooks) {
+	public void setLogbookUserLogbooks(Set<LogbookUserLogbook> logbookUserLogbooks) {
 		this.logbookUserLogbooks = logbookUserLogbooks;
 	}
 
@@ -70,10 +70,8 @@ public class LogbookUser extends EntitySupport<LogbookUser, Long> implements
 	public Certification addCertification(Certification certification) {
 		if (!certifications.contains(certification)) {
 			certifications.add(certification);
-		} else {
-			return certifications.get(certifications.indexOf(certification));
-		}
-		return null;
+		} 
+		return certification;
 	}
 
 	public RegisteredUser getRegisteredUser() {

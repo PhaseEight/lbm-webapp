@@ -13,9 +13,13 @@ import javax.validation.ValidatorFactory;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class EmailAddressTests {
 
+	private static final Logger logger = LoggerFactory.getLogger(EmailAddressTests.class.getName());
+	
 	private static Validator validator;
 
 	@BeforeClass
@@ -70,7 +74,7 @@ public class EmailAddressTests {
 			Set<ConstraintViolation<EmailAddress>> constraintViolations = validator.validate(email);
 
 			if(constraintViolations.size() > 0){
-				System.out.println(constraintViolations.iterator().next().getMessage() + "; " + email.getAddress());
+				logger.debug(constraintViolations.iterator().next().getMessage() + "; " + email.getAddress());
 			}
 			
 			assertEquals(0, constraintViolations.size());
@@ -112,7 +116,7 @@ public class EmailAddressTests {
 			EmailAddress email = new EmailAddress("");
 			fail("email addresses creation should have failed before reaching this Assertion" + email.getAddress());
 		} catch (IllegalArgumentException iae) {
-			System.out.println(iae.getMessage());
+			logger.debug(iae.getMessage());
 		}
 	}
 

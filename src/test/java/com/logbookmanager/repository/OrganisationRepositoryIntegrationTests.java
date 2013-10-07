@@ -13,6 +13,7 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.transaction.AfterTransaction;
 import org.springframework.test.context.transaction.BeforeTransaction;
@@ -60,19 +61,19 @@ public class OrganisationRepositoryIntegrationTests extends IntegrationTestSuppo
 
 	@After
 	public void tearDown() throws Exception {
-		System.out.println("We're tearing it down!");
+		logger.debug("We're tearing it down!");
 	}
 
 	@Test
 	@Transactional
 	@Rollback(false)
 	public void addOrganisation() throws Throwable {
-		Title orgTitle = new Title("padisa", "Professional Association of Diving Instructors in South Africa");
-		Country country = countryRepository.getCountry("ZA");
+		Title orgTitle = new Title("padisa", "PADI South Africa");
+		Country country = countryRepository.getCountry("ZA",LocaleContextHolder.getLocale());
 		
 		Address orgAddress = new Address(country);
 		
-		EmailAddress orgEmail = new EmailAddress("info@padi.com");
+		EmailAddress orgEmail = new EmailAddress("za-info@padi.com");
 		WebSite orgWebsite = new WebSite("http://www.padi.com");
 	
 		OrganisationDetails orgDetails = new OrganisationDetails(orgAddress,orgEmail,null,null,orgWebsite);
@@ -85,11 +86,11 @@ public class OrganisationRepositoryIntegrationTests extends IntegrationTestSuppo
 	@Transactional
 	@Rollback(false)
 	public void addOrganisationUnregisteredCountry() throws Throwable {
-		Title orgTitle = new Title("padi", "Professional Association of Diving Instructors");
+		Title orgTitle = new Title("padi-germany", "PADI Germany");
 		Country country = countryRepository.getCountry("DE");
 		
 		Address orgAddress = new Address(country);
-		EmailAddress orgEmail = new EmailAddress("info@padi.com");
+		EmailAddress orgEmail = new EmailAddress("de-info@padi.com");
 		WebSite orgWebsite = new WebSite("http://www.padi.com");
 	
 		OrganisationDetails orgDetails = new OrganisationDetails(orgAddress,orgEmail,null,null,orgWebsite);
@@ -122,7 +123,7 @@ public class OrganisationRepositoryIntegrationTests extends IntegrationTestSuppo
 	}	
 	@AfterTransaction
 	public void afterTransaction() {
-		System.out.println("Transaction Completed");
+		logger.debug("Transaction Completed");
 	}
 
 }

@@ -20,6 +20,17 @@
 			<appender-ref ref="stdout" />
 		</logger>
 
+		<logger name="com.logbookmanager.data.repository.CountryRepositoryImpl$CountryComparator" level="error" additivity="false">
+			<appender-ref ref="file" />
+			<appender-ref ref="stdout" />
+		</logger>
+
+		<logger name="com.logbookmanager.domain.model.Country" level="error" additivity="false">
+			<appender-ref ref="file" />
+			<appender-ref ref="stdout" />
+		</logger>
+
+
 
 		<!-- 3rdparty Loggers -->
 		<logger name="org.springframework.core.env.StandardEnvironment"
@@ -134,6 +145,8 @@
 
 		<logger name="jsf.spi" level="debug">
 		</logger>
+
+
 
 		<!-- Root Logger -->
 		<root level="debug">

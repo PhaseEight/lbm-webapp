@@ -90,7 +90,7 @@ public class LogbookMVCIntegrationTests extends AbstractTransactionalJUnit4Sprin
 
 	@After
 	public void tearDown() throws Exception {
-		System.out.println("We're tearing it down!");
+		logger.debug("We're tearing it down!");
 	}
 
 	@Test
@@ -118,14 +118,14 @@ public class LogbookMVCIntegrationTests extends AbstractTransactionalJUnit4Sprin
 			}
 		});
 		for (Logbook logbook : logbooks) {
-			System.out.println(logbook.toString());
+			logger.debug(logbook.toString());
 		}
 		assertNotNull("There must be some logbooks", logbooks);
 	}
 
 	@AfterTransaction
 	public void afterTransaction() {
-		System.out.println("Transaction Completed");
+		logger.debug("Transaction Completed");
 	}
 
 	public WebApplicationContext getWebApplicationContext() {
