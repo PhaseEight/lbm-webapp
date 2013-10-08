@@ -1,0 +1,3 @@
+[submodule "spring-webflow"]
+	path = spring-webflow
+	url = git://github.com/SpringSource/spring-webflow.git

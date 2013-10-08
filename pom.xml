@@ -22,17 +22,15 @@
 		<!-- Webflow version 2.4.0.M1 -->
 		<!-- <spring-webflow-version>2.4.0.M1</spring-webflow-version> -->
 		<!-- Webflow version 2.4.0.BUILD-SNAPSHOT -->
-		<spring-webflow-version>2.4.0.BUILD-20130620.194537-39</spring-webflow-version>
-		<spring-webflow-binding-version>2.4.0.BUILD-20130620.194537-39</spring-webflow-binding-version>
+		<spring-webflow-version>2.4.0.M1</spring-webflow-version>
+		<spring-webflow-binding-version>2.4.0.M1</spring-webflow-binding-version>
 		<myfaces-test20-version>1.0.4</myfaces-test20-version>
 		<cloudfoundry-runtime-version>0.8.4</cloudfoundry-runtime-version>
 		<primefaces-version>4.0.RC1</primefaces-version>
 		<primefaces-ext-version>1.0.0.RC1</primefaces-ext-version>
 		<primefaces.themes-version>1.0.10</primefaces.themes-version>
-		<!-- 
-			all-themes, afternoon, trontastic
-			metroui is inlcuded in the project's webapp/WEB-INF/lib folder 
-		-->
+		<!-- all-themes, afternoon, trontastic metroui is inlcuded in the project's 
+			webapp/WEB-INF/lib folder -->
 		<primefaces.theme-artifactId>all-themes</primefaces.theme-artifactId>
 		<jackson-core-version>2.2.3</jackson-core-version>
 		<jackson-databind-version>2.2.3</jackson-databind-version>
@@ -278,14 +276,46 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.webflow</groupId>
 			<artifactId>spring-faces</artifactId>
 			<scope>compile</scope>
 		</dependency>
 
+		<dependency>
+			<groupId>javax.portlet</groupId>
+			<artifactId>portlet-api</artifactId>
+			<scope>test</scope>
+			<version>2.0</version>
+		</dependency>
 
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc-portlet</artifactId>
+			<scope>test</scope>
+			<version>${springframework-version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.myfaces.core</groupId>
+			<artifactId>myfaces-impl</artifactId>
+			<scope>test</scope>
+			<version>2.1.12</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>myfaces-api</artifactId>
+					<groupId>org.apache.myfaces.core</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.easymock</groupId>
+			<artifactId>easymock</artifactId>
+			<scope>test</scope>
+			<version>3.2</version>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
@@ -375,12 +405,8 @@
 			<artifactId>primefaces</artifactId>
 		</dependency>
 		<!-- Choose your theme http://primefaces.org/themes.html -->
-		<!-- 
-		<dependency>
-			<groupId>org.primefaces.themes</groupId>
-			<artifactId>${primefaces.theme-artifactId}</artifactId>
-		</dependency>
-		 -->
+		<!-- <dependency> <groupId>org.primefaces.themes</groupId> <artifactId>${primefaces.theme-artifactId}</artifactId> 
+			</dependency> -->
 		<dependency>
 			<groupId>org.primefaces.extensions</groupId>
 			<artifactId>primefaces-extensions</artifactId>
@@ -1029,13 +1055,8 @@
 				<artifactId>primefaces</artifactId>
 				<version>${primefaces-version}</version>
 			</dependency>
-			<!-- 
-			<dependency>
-				<groupId>org.primefaces.themes</groupId>
-				<artifactId>${primefaces.theme-artifactId}</artifactId>
-				<version>${primefaces.themes-version}</version>
-			</dependency>
-			 -->
+			<!-- <dependency> <groupId>org.primefaces.themes</groupId> <artifactId>${primefaces.theme-artifactId}</artifactId> 
+				<version>${primefaces.themes-version}</version> </dependency> -->
 			<dependency>
 				<groupId>org.primefaces.extensions</groupId>
 				<artifactId>primefaces-extensions</artifactId>
