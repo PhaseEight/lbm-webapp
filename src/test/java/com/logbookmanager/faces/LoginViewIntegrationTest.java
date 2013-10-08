@@ -2,22 +2,14 @@ package com.logbookmanager.faces;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup;
-
-import java.util.HashMap;
 
 import javax.faces.component.UIViewRoot;
 import javax.faces.context.FacesContext;
 
-import org.apache.myfaces.test.base.junit4.AbstractJsfConfigurableMockTestCase;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.FixMethodOrder;
@@ -30,9 +22,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.faces.webflow.JSFMockHelper;
 import org.springframework.faces.webflow.MockViewHandler;
 import org.springframework.http.MediaType;
-import org.springframework.mock.web.MockHttpServletRequest;
-import org.springframework.mock.web.MockHttpServletResponse;
-import org.springframework.mock.web.MockServletContext;
 import org.springframework.security.web.FilterChainProxy;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
@@ -45,11 +34,6 @@ import org.springframework.test.context.transaction.TransactionalTestExecutionLi
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.context.WebApplicationContext;
-import org.springframework.webflow.core.collection.LocalAttributeMap;
-import org.springframework.webflow.core.collection.LocalParameterMap;
-import org.springframework.webflow.execution.RequestContext;
-import org.springframework.webflow.execution.RequestContextHolder;
-import org.springframework.webflow.test.MockExternalContext;
 
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
 
@@ -59,13 +43,12 @@ import com.github.springtestdbunit.DbUnitTestExecutionListener;
 		TransactionalTestExecutionListener.class, DbUnitTestExecutionListener.class })
 @ContextConfiguration(name = "lbm-test-dispatcher-servlet", locations = {
 		"file:src/main/webapp/WEB-INF/spring/servlet-context.xml",
-		"file:src/main/resources/com/logbookmanager/configuration/spring/app-root.xml"
-})
+		"file:src/main/resources/com/logbookmanager/configuration/spring/app-root.xml" })
 @WebAppConfiguration(value = "src/main/webapp")
 // not really necessary because these are the defaults
 @TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = true)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class LoginViewIntegrationTest extends AbstractJsfConfigurableMockTestCase {
+public class LoginViewIntegrationTest {
 
 	private static final Logger logger = LoggerFactory.getLogger(LoginViewIntegrationTest.class.getName());
 
@@ -76,36 +59,30 @@ public class LoginViewIntegrationTest extends AbstractJsfConfigurableMockTestCas
 	private MockMvc mockMvc;
 
 	private final JSFMockHelper jsfMock = new JSFMockHelper();
-
-	private final RequestContext context = mock(RequestContext.class);
-
-	private final LocalAttributeMap<Object> flashMap = new LocalAttributeMap<Object>();
-
-	private final MockExternalContext extContext = new MockExternalContext();
-
-	private final MockServletContext servletContext = new MockServletContext();
-
-	private final MockHttpServletRequest request = new MockHttpServletRequest();
-
-	private final MockHttpServletResponse response = new MockHttpServletResponse();
-
-	private LocalAttributeMap<Object> viewScope = new LocalAttributeMap<Object>();
+//	private final RequestContext context = mock(RequestContext.class);
+//	private final LocalAttributeMap<Object> flashMap = new LocalAttributeMap<Object>();
+//	private final MockExternalContext externalContext = new MockExternalContext();
+//	private final MockServletContext servletContext = new MockServletContext();
+//	private final MockHttpServletRequest request = new MockHttpServletRequest();
+//	private final MockHttpServletResponse response = new MockHttpServletResponse();
+//	private LocalAttributeMap<Object> viewScope = new LocalAttributeMap<Object>();
 
 	@Before
 	public void setup() throws Exception {
 
-//		configureJsf();
-		
+		this.jsfMock.setUp();
+
 		this.jsfMock.facesContext().getApplication().setViewHandler(new ResourceCheckingViewHandler());
 
-		this.extContext.setNativeContext(this.servletContext);
-		this.extContext.setNativeRequest(this.request);
-		this.extContext.setNativeResponse(this.response);
-		RequestContextHolder.setRequestContext(this.context);
-		when(this.context.getViewScope()).thenReturn(this.viewScope);
-		when(this.context.getFlashScope()).thenReturn(this.flashMap);
-		when(this.context.getExternalContext()).thenReturn(this.extContext);
-		when(this.context.getRequestParameters()).thenReturn(new LocalParameterMap(new HashMap<String, Object>()));
+		// externalContext.setNativeContext(this.servletContext);
+		// externalContext.setNativeRequest(this.request);
+		// externalContext.setNativeResponse(this.response);
+		// RequestContextHolder.setRequestContext(this.context);
+		// when(this.context.getViewScope()).thenReturn(this.viewScope);
+		// when(this.context.getFlashScope()).thenReturn(this.flashMap);
+		// when(this.context.getExternalContext()).thenReturn(this.externalContext);
+		// when(this.context.getRequestParameters()).thenReturn(new
+		// LocalParameterMap(new HashMap<String, Object>()));
 
 		mockMvc = webAppContextSetup(wac).alwaysDo(print())
 				.defaultRequest(get("/web/app").accept(MediaType.APPLICATION_FORM_URLENCODED))
@@ -124,23 +101,17 @@ public class LoginViewIntegrationTest extends AbstractJsfConfigurableMockTestCas
 
 		this.mockMvc.perform(get("/web/app/welcome").contextPath("/web").servletPath("/app"))
 				.andExpect(status().isOk());
-		
-	}
 
-	private void configureJsf() throws Exception {
-		this.jsfMock.setUp();
-		this.jsfMock.facesContext().getApplication().setViewHandler(new ResourceCheckingViewHandler());
 	}
 
 	private class ResourceCheckingViewHandler extends MockViewHandler {
 
 		public UIViewRoot createView(FacesContext context, String viewId) {
 			assertNotNull(viewId);
-			assertEquals("welcome.xhtml", viewId);
+			assertEquals("welcome2.xhtml", viewId);
 			return new UIViewRoot();
 		}
 
 	}
-
 
 }
