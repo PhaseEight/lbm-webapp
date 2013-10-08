@@ -33,6 +33,7 @@ import org.junit.runners.MethodSorters;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.faces.webflow.JSFMockHelper;
 import org.springframework.faces.webflow.JsfView;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpSession;
