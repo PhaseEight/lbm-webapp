@@ -112,9 +112,6 @@ public class LoginViewIntegrationTest extends AbstractJsfTestCase {
 	private FilterChainProxy springSecurityFilterChain;
 	private MockMvc mockMvc;
 
-
-	
-	
 	private static final String VIEW_ID = "/testView.xhtml";
 
 	private ViewFactory factory;
@@ -148,7 +145,6 @@ public class LoginViewIntegrationTest extends AbstractJsfTestCase {
 
 		configureJsf();
 
-		
 		this.extContext.setNativeContext(this.servletContext);
 		this.extContext.setNativeRequest(this.request);
 		this.extContext.setNativeResponse(this.response);
@@ -156,11 +152,8 @@ public class LoginViewIntegrationTest extends AbstractJsfTestCase {
 		when(this.context.getViewScope()).thenReturn(this.viewScope);
 		when(this.context.getFlashScope()).thenReturn(this.flashMap);
 		when(this.context.getExternalContext()).thenReturn(this.extContext);
-		when(this.context.getRequestParameters()).thenReturn(
-				new LocalParameterMap(new HashMap<String, Object>()));
-		
-		
-		
+		when(this.context.getRequestParameters()).thenReturn(new LocalParameterMap(new HashMap<String, Object>()));
+
 		mockMvc = webAppContextSetup(wac).alwaysDo(print())
 				.defaultRequest(get("/web/app").accept(MediaType.APPLICATION_FORM_URLENCODED))
 				.addFilter(springSecurityFilterChain).build();
@@ -190,16 +183,16 @@ public class LoginViewIntegrationTest extends AbstractJsfTestCase {
 				.andExpect(status().is(302)).andExpect(redirectedUrl("/web/app/main"));
 	}
 
-	
 	/**
 	 * View has not yet been created
 	 */
 	@Test
 	public final void createNewView() {
 
-		this.factory = new JsfViewFactory(this.parser.parseExpression(VIEW_ID,
-				new FluentParserContext().template().evaluate(RequestContext.class).expectResult(String.class)),
-				this.lifecycle);
+		//TODO: copy org.springframework.faces.webflow.JsfViewFactoryTests
+		
+		this.factory = new JsfViewFactory(this.parser.parseExpression(VIEW_ID, new FluentParserContext().template()
+				.evaluate(RequestContext.class).expectResult(String.class)), this.lifecycle);
 
 		MockUIViewRoot newRoot = new MockUIViewRoot();
 		newRoot.setViewId(VIEW_ID);
@@ -213,7 +206,7 @@ public class LoginViewIntegrationTest extends AbstractJsfTestCase {
 		assertEquals("View name did not match", VIEW_ID, ((JsfView) newView).getViewRoot().getViewId());
 		assertFalse("An unexpected event was signaled,", newView.hasFlowEvent());
 	}
-	
+
 	private void configureJsf() throws Exception {
 		this.jsfMock.setUp();
 		ExceptionEventAwareMockApplication application = new ExceptionEventAwareMockApplication();
@@ -223,7 +216,7 @@ public class LoginViewIntegrationTest extends AbstractJsfTestCase {
 		this.jsfMock.facesContext().setViewRoot(null);
 		this.jsfMock.facesContext().getApplication().setViewHandler(this.viewHandler);
 	}
-	
+
 	private class TrackingPhaseListener implements PhaseListener {
 
 		/**
@@ -251,7 +244,6 @@ public class LoginViewIntegrationTest extends AbstractJsfTestCase {
 		}
 	}
 
-	
 	protected class TestBean {
 
 		UIOutput output;
@@ -273,7 +265,7 @@ public class LoginViewIntegrationTest extends AbstractJsfTestCase {
 			this.input = input;
 		}
 	}
-	
+
 	private static class MockUIViewRoot extends UIViewRoot {
 
 		private boolean throwOnPostRestoreStateEvent;
@@ -289,7 +281,7 @@ public class LoginViewIntegrationTest extends AbstractJsfTestCase {
 			}
 		}
 	}
-	
+
 	private static class ExceptionEventAwareMockApplication extends MockApplication20 {
 
 		public void publishEvent(FacesContext facesContext, Class<? extends SystemEvent> systemEventClass, Object source) {
@@ -299,6 +291,5 @@ public class LoginViewIntegrationTest extends AbstractJsfTestCase {
 			}
 		}
 	}
-	
-	
+
 }
