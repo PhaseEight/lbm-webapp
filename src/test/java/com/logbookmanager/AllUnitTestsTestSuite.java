@@ -4,11 +4,11 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
 import com.logbookmanager.domain.support.DomainSupportTestSuite;
-import com.logbookmanager.util.DateBeanTests;
+import com.logbookmanager.spring.beans.SimpleDateFormatBeanDefinitionParserTests;
 import com.logbookmanager.util.StringValidatorTests;
 
 @RunWith(Suite.class)
-@Suite.SuiteClasses({ DateBeanTests.class, StringValidatorTests.class, DomainSupportTestSuite.class })
+@Suite.SuiteClasses({ SimpleDateFormatBeanDefinitionParserTests.class, StringValidatorTests.class, DomainSupportTestSuite.class })
 public class AllUnitTestsTestSuite {
 
 }

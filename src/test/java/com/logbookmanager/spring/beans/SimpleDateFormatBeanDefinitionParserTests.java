@@ -1,4 +1,4 @@
-package com.logbookmanager.util;
+package com.logbookmanager.spring.beans;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
@@ -12,11 +12,10 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.logbookmanager.date.ValidateableSimpleDateFormat;
-
-public class DateBeanTests {
+public class SimpleDateFormatBeanDefinitionParserTests {
 
 	private static ClassPathXmlApplicationContext ctx;
 
@@ -37,10 +36,9 @@ public class DateBeanTests {
 		Pattern validDatePattern = Pattern.compile(datedSuffixDateFormatRegEx);
 		Matcher matcher = validDatePattern.matcher(datedSuffixDateFormat.format(new Date()));
 
-		Logger log = org.slf4j.LoggerFactory.getLogger(DateBeanTests.class);
-		log.debug("Here's a slf4j then!");
+		Logger logger = LoggerFactory.getLogger(SimpleDateFormatBeanDefinitionParserTests.class.getName());
+		logger.debug("Here's slf4j then!");
 		assertTrue(matcher.matches());
-
 	}
 
 	@Test
@@ -54,13 +52,6 @@ public class DateBeanTests {
 		Matcher matcher = validDatePattern.matcher(theDate);
 		assertTrue("could not find any matches for RegEx: " + timeOfDayOfYearDateFormatRegEx + " and date " + theDate,
 				matcher.matches());
-	}
-
-	@Test
-	public void validateableDatedSuffixDateFormat() {
-		ValidateableSimpleDateFormat validateableDatedSuffixDateFormat = (ValidateableSimpleDateFormat) ctx
-				.getBean("validateableDatedSuffixDateFormat");
-		assertTrue(validateableDatedSuffixDateFormat.isValid());
 	}
 
 }
