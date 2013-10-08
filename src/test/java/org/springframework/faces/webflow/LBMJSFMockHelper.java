@@ -1,4 +1,4 @@
-package com.logbookmanager.support;
+package org.springframework.faces.webflow;
 
 import java.io.IOException;
 import java.net.URL;
@@ -37,7 +37,7 @@ import org.apache.myfaces.test.mock.visit.MockVisitContextFactory;
  * @author Jeremy Grelle
  * @author Phillip Webb
  */
-public class JSFMockHelper {
+public class LBMJSFMockHelper {
 
 	private final JSFMock mock = new JSFMock();
 
@@ -135,7 +135,7 @@ public class JSFMockHelper {
 
 			// Set up JSF API Objects
 			FactoryFinder.setFactory(FactoryFinder.APPLICATION_FACTORY, MockApplicationFactory.class.getName());
-			FactoryFinder.setFactory(FactoryFinder.FACES_CONTEXT_FACTORY, MockBaseFacesContextFactory.class.getName());
+			FactoryFinder.setFactory(FactoryFinder.FACES_CONTEXT_FACTORY, LBMMockBaseFacesContextFactory.class.getName());
 			FactoryFinder.setFactory(FactoryFinder.LIFECYCLE_FACTORY, MockLifecycleFactory.class.getName());
 			FactoryFinder.setFactory(FactoryFinder.RENDER_KIT_FACTORY, MockRenderKitFactory.class.getName());
 			FactoryFinder.setFactory(FactoryFinder.PARTIAL_VIEW_CONTEXT_FACTORY,

@@ -1,4 +1,4 @@
-package com.logbookmanager.support;
+package org.springframework.faces.webflow;
 
 import javax.faces.FacesException;
 import javax.faces.context.ExternalContext;
@@ -12,13 +12,13 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.myfaces.test.mock.MockExternalContext20;
 import org.apache.myfaces.test.mock.MockHttpServletResponse;
 
-public class MockBaseFacesContextFactory extends FacesContextFactory {
+public class LBMMockBaseFacesContextFactory extends FacesContextFactory {
 
 	public FacesContext getFacesContext(Object context, Object request, Object response, Lifecycle lifecycle)
 			throws FacesException {
 
 		if (FacesContext.getCurrentInstance() != null
-				&& FacesContext.getCurrentInstance() instanceof MockBaseFacesContext) {
+				&& FacesContext.getCurrentInstance() instanceof LBMMockBaseFacesContext) {
 			return FacesContext.getCurrentInstance();
 		} else {
 
@@ -43,7 +43,7 @@ public class MockBaseFacesContextFactory extends FacesContextFactory {
 
 			};
 
-			return new MockBaseFacesContext(ext, lifecycle);
+			return new LBMMockBaseFacesContext(ext, lifecycle);
 		}
 	}
 

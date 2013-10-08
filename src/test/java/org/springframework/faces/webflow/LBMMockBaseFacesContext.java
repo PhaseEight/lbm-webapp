@@ -1,4 +1,4 @@
-package com.logbookmanager.support;
+package org.springframework.faces.webflow;
 
 import java.util.Map;
 
@@ -10,19 +10,19 @@ import javax.faces.lifecycle.Lifecycle;
 
 import org.apache.myfaces.test.mock.MockFacesContext20;
 
-public class MockBaseFacesContext extends MockFacesContext20 {
+public class LBMMockBaseFacesContext extends MockFacesContext20 {
 
 	private Application application;
 
-	public MockBaseFacesContext() {
+	public LBMMockBaseFacesContext() {
 		super();
 	}
 
-	public MockBaseFacesContext(ExternalContext externalContext) {
+	public LBMMockBaseFacesContext(ExternalContext externalContext) {
 		super(externalContext);
 	}
 
-	public MockBaseFacesContext(ExternalContext externalContext, Lifecycle lifecycle) {
+	public LBMMockBaseFacesContext(ExternalContext externalContext, Lifecycle lifecycle) {
 		super(externalContext, lifecycle);
 	}
 

@@ -15,11 +15,7 @@ import org.springframework.webflow.test.MockExternalContext;
 import org.springframework.webflow.test.MockFlowBuilderContext;
 import org.springframework.webflow.test.execution.AbstractXmlFlowExecutionTests;
 
-import com.logbookmanager.web.component.DashboardBean;
-
 public class MainFlowTests extends AbstractXmlFlowExecutionTests {
-
-	private DashboardBean dashboardBean = new DashboardBean();
 
 	@Autowired
 	private WebApplicationContext wac;

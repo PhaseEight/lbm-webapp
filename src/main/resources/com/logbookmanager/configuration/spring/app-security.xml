@@ -51,8 +51,9 @@
 	<!-- Secure per URL pattern com.logbookmanager.service.UserManager.findAll=ROLE_ADMIN 
 		com.logbookmanager.service.UserManager.removeUser=ROLE_ADMIN If we want to 
 		add our own filters, we do it as documented at: http://static.springsource.org/spring-security/site/docs/3.1.x/reference/ns-config.html -->
-	<security:http security="none" pattern="/app/resources/**" />
 	<security:http security="none" pattern="/app/javax.faces.resource/**" />
+	<security:http security="none" pattern="/app/resources/**" />
+	<security:http security="none" pattern="/app/welcome" />
 
 	<security:http auto-config="false" create-session="ifRequired"
 		authentication-manager-ref="authenticationManager" request-matcher="ant"
