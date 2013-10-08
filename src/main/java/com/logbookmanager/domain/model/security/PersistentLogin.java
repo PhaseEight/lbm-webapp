@@ -87,8 +87,7 @@ public class PersistentLogin implements java.io.Serializable {
 			return false;
 		}
 		final PersistentLogin castOther = (PersistentLogin) other;
-		return new EqualsBuilder().append(userName, castOther.userName)
-				.append(token, castOther.token)
+		return new EqualsBuilder().append(userName, castOther.userName).append(token, castOther.token)
 				.append(lastUsed, castOther.lastUsed).isEquals();
 	}
 
@@ -99,8 +98,7 @@ public class PersistentLogin implements java.io.Serializable {
 	 */
 	@Override
 	public int hashCode() {
-		return new HashCodeBuilder().append(userName).append(token)
-				.append(lastUsed).toHashCode();
+		return new HashCodeBuilder().append(userName).append(token).append(lastUsed).toHashCode();
 	}
 
 	/*
@@ -110,8 +108,7 @@ public class PersistentLogin implements java.io.Serializable {
 	 */
 	@Override
 	public String toString() {
-		return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
-				.append("userName", userName).append("series", series)
-				.append("token", token).append("lastUsed", lastUsed).toString();
+		return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE).append("userName", userName)
+				.append("series", series).append("token", token).append("lastUsed", lastUsed).toString();
 	}
 }

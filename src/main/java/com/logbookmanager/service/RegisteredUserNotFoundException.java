@@ -30,9 +30,8 @@ public class RegisteredUserNotFoundException extends RegisteredUserException {
 
 	@Override
 	public String getMessage() {
-		return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
-				.append(super.getMessage()).append(getUser().toString())
-				.toString();
+		return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE).append(super.getMessage())
+				.append(getUser().toString()).toString();
 	}
 
 }

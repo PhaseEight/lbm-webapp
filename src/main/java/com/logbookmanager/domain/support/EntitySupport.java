@@ -16,7 +16,7 @@ import com.logbookmanager.support.BaseObject;
 
 /**
  * Base class for Model objects. Child objects should implement toString(),
- * equals()  * 
+ * equals() *
  * <p>
  * <a href="BaseObject.java.html"><i>View Source</i></a>
  * </p>
@@ -26,8 +26,8 @@ import com.logbookmanager.support.BaseObject;
  * 
  */
 @MappedSuperclass
-public abstract class EntitySupport<T extends Entity<T, ID>, ID extends Serializable>
-		extends BaseObject<T> implements Entity<T, ID>, Serializable {
+public abstract class EntitySupport<T extends Entity<T, ID>, ID extends Serializable> extends BaseObject<T> implements
+		Entity<T, ID>, Serializable {
 
 	private static final long serialVersionUID = 1912839123L;
 
@@ -54,7 +54,7 @@ public abstract class EntitySupport<T extends Entity<T, ID>, ID extends Serializ
 	@Override
 	@Id
 	@Column(name = "id", unique = true, nullable = false)
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	public ID getId() {
 		return id;
 	}
@@ -80,7 +80,7 @@ public abstract class EntitySupport<T extends Entity<T, ID>, ID extends Serializ
 		this.version = Long.valueOf(version.longValue());
 	}
 
-	@Column(insertable=false, name = "lastUpdateTimeStamp")
+	@Column(insertable = false, name = "lastUpdateTimeStamp")
 	public Timestamp getlastUpdateTimeStamp() {
 		if (this.lastUpdateTimeStamp != null) {
 			return new Timestamp(this.lastUpdateTimeStamp.getTime());
@@ -150,7 +150,6 @@ public abstract class EntitySupport<T extends Entity<T, ID>, ID extends Serializ
 		return other != null && this.getId().equals(other.getId());
 	}
 
-	
 	@Override
 	public boolean equals(final Object obj) {
 		if (this == obj) {
@@ -176,10 +175,8 @@ public abstract class EntitySupport<T extends Entity<T, ID>, ID extends Serializ
 			}
 		}
 		// or if last update date is different
-		if (this.lastUpdateTimeStamp != null
-				&& other.lastUpdateTimeStamp != null) {
-			if (this.lastUpdateTimeStamp.getTime() != other.lastUpdateTimeStamp
-					.getTime()) {
+		if (this.lastUpdateTimeStamp != null && other.lastUpdateTimeStamp != null) {
+			if (this.lastUpdateTimeStamp.getTime() != other.lastUpdateTimeStamp.getTime()) {
 				return false;
 			}
 		}
@@ -187,5 +184,4 @@ public abstract class EntitySupport<T extends Entity<T, ID>, ID extends Serializ
 		return true;
 	}
 
-	
 }

@@ -3,7 +3,7 @@ package com.logbookmanager.util;
 public class StringValidator {
 
 	final public static String VALID_CHARACTERS = "#$%&'*+-/=?^_`{|}~A-Za-z0-9-\\+";
-	
+
 	final public static String EMAIL_PATTERN = "^[!#$%&'*+-/=?^_`{|}~A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.([A-Za-z]{2,4}|museum))$";
 
 	public static final StringValidator instance = new StringValidator();

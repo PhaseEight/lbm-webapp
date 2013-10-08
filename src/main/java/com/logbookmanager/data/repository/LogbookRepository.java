@@ -8,5 +8,5 @@ import com.logbookmanager.domain.model.logbook.LogbookUser;
 public interface LogbookRepository extends Repository<Logbook, Long> {
 
 	public List<LogbookUser> listLogobookUsers();
-	
+
 }

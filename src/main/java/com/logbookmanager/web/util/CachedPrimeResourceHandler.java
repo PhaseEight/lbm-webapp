@@ -39,14 +39,12 @@ public class CachedPrimeResourceHandler extends PrimeResourceHandler {
 	}
 
 	@Override
-	public Resource createResource(String resourceName, String libraryName,
-			String contentType) {
+	public Resource createResource(String resourceName, String libraryName, String contentType) {
 		String key = resourceName + "__" + libraryName + "__" + contentType;
 		if (resCache.containsKey(key)) {
 			return resCache.get(key);
 		}
-		Resource resource = super.createResource(resourceName, libraryName,
-				contentType);
+		Resource resource = super.createResource(resourceName, libraryName, contentType);
 		resCache.put(key, resource);
 		return resource;
 	}

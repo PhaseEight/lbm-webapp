@@ -53,8 +53,7 @@ public class LocaleService {
 	}
 
 	private String redirectToSelf() {
-		String viewId = FacesContext.getCurrentInstance().getViewRoot()
-				.getViewId();
+		String viewId = FacesContext.getCurrentInstance().getViewRoot().getViewId();
 		return viewId + "?faces-redirect=true";
 	}
 
@@ -63,17 +62,14 @@ public class LocaleService {
 	}
 
 	private void updateSpringLocale(Locale locale) {
-		ExternalContext externalContext = FacesContext.getCurrentInstance()
-				.getExternalContext();
-		localeResolver.setLocale(
-				(HttpServletRequest) externalContext.getRequest(),
+		ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+		localeResolver.setLocale((HttpServletRequest) externalContext.getRequest(),
 				(HttpServletResponse) externalContext.getResponse(), locale);
 		LocaleContextHolder.setLocale(locale);
 	}
 
 	public boolean isFrench() {
 		// check 'fr_FR' or simply 'fr'
-		return FRENCH.equals(LocaleContextHolder.getLocale())
-				|| FRENCH.getLanguage().equals(getLanguage());
+		return FRENCH.equals(LocaleContextHolder.getLocale()) || FRENCH.getLanguage().equals(getLanguage());
 	}
 }

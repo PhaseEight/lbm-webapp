@@ -18,5 +18,5 @@ public interface ValueObject<T> extends Serializable {
 	 *         object's attributes are the same.
 	 */
 	boolean sameValueAs(T other);
-	
+
 }

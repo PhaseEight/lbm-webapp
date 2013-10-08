@@ -18,12 +18,12 @@
 	</view-state>
 
 	<view-state id="reviewLogbook">
-		<transition on="confirm" to="logbookConfirmed" />
-		<transition on="revise" to="enterLogbookDetails" />
+		<transition on="create" to="logbookCreated" />
+		<transition on="edit" to="enterLogbookDetails" />
 		<transition on="cancel" to="logbookCancelled" />
 	</view-state>
 
-	<end-state id="logbookConfirmed" />
+	<end-state id="logbookCreated" />
 	<end-state id="logbookCancelled" />
 
 

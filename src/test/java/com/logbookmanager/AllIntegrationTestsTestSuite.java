@@ -9,8 +9,8 @@ import com.logbookmanager.repository.RepositoryIntegrationTestSuite;
 import com.logbookmanager.service.ServicesIntegrationTestSuite;
 
 @RunWith(Suite.class)
-@Suite.SuiteClasses({ FacesIntegrationTestSuite.class, MVCIntegrationTestSuite.class, RepositoryIntegrationTestSuite.class,
-		ServicesIntegrationTestSuite.class })
+@Suite.SuiteClasses({ FacesIntegrationTestSuite.class, MVCIntegrationTestSuite.class,
+		RepositoryIntegrationTestSuite.class, ServicesIntegrationTestSuite.class })
 public class AllIntegrationTestsTestSuite {
 
 }

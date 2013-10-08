@@ -65,7 +65,8 @@ public class LogbookIntegrationTests extends IntegrationTestSupport {
 		Logbook newLogbook = addLogbook(logbook);
 		assertTrue("The logbook title code must be coarse_fishing",
 				newLogbook.getTitle().getCode().equals(logbook.getTitle().getCode()));
-		assertTrue("The logbook title code must be coarse_fishing", newLogbook.getTitle().getCode().equals(title.getCode()));
+		assertTrue("The logbook title code must be coarse_fishing",
+				newLogbook.getTitle().getCode().equals(title.getCode()));
 		assertTrue("The logbook title code must be coarse_fishing",
 				logbook.getTitle().getCode().equals(newLogbook.getTitle().getCode()));
 	}
@@ -111,12 +112,12 @@ public class LogbookIntegrationTests extends IntegrationTestSupport {
 		}
 		assertNotNull("There must be some logbooks", logbooks);
 	}
-	
+
 	@Test
 	@Transactional
 	public void findAllLogbookPeople() {
 		List<LogbookUser> people = logbookRepository.listLogobookUsers();
-		assertTrue("There should be 2 people ", people.size()==2);
+		assertTrue("There should be 2 people ", people.size() == 2);
 	}
 
 	@AfterTransaction

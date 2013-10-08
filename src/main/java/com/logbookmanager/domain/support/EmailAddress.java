@@ -13,8 +13,8 @@ import com.logbookmanager.util.StringValidator;
 public class EmailAddress extends ValueObjectSupport<EmailAddress> {
 
 	private static final long serialVersionUID = 1L;
-	
-	@Email(regexp=StringValidator.EMAIL_PATTERN, message="{Email.com.logbookmanager.domain.support.EmailAddress.address.message}")
+
+	@Email(regexp = StringValidator.EMAIL_PATTERN, message = "{Email.com.logbookmanager.domain.support.EmailAddress.address.message}")
 	private String address;
 
 	EmailAddress() {
@@ -25,17 +25,18 @@ public class EmailAddress extends ValueObjectSupport<EmailAddress> {
 		setAddress(address);
 	}
 
-	public @NotEmpty String getAddress() {
+	public @NotEmpty
+	String getAddress() {
 		return address;
 	}
 
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	
+
 	@Override
-	public String toString(){
-		return ToStringBuilder.reflectionToString(this,ToStringStyle.MULTI_LINE_STYLE,false).toString();
+	public String toString() {
+		return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE, false).toString();
 	}
 
 }

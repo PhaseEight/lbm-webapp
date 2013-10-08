@@ -20,8 +20,7 @@ public class ColourPreferences implements Serializable {
 
 	// getBackground and setBackground
 	public String getStyle() {
-		String style = String.format("Colour: %s; background-Colour: %s",
-				foreground, background);
+		String style = String.format("Colour: %s; background-Colour: %s", foreground, background);
 		return (style);
 	}
 }

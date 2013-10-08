@@ -10,13 +10,12 @@ public class PersonalDetails extends ValueObjectSupport<PersonalDetails> {
 	private Address address;
 
 	/** this is required by Hibernate **/
-	PersonalDetails (){
-		
+	PersonalDetails() {
+
 	}
 
-	public PersonalDetails(String firstName, String lastName, Address address,
-			String email, String phoneNumber, String website
-			) {
+	public PersonalDetails(String firstName, String lastName, Address address, String email, String phoneNumber,
+			String website) {
 		setAddress(address);
 	}
 
@@ -27,5 +26,5 @@ public class PersonalDetails extends ValueObjectSupport<PersonalDetails> {
 	public void setAddress(Address address) {
 		this.address = address;
 	}
-	
+
 }

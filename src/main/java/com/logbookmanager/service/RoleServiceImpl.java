@@ -23,8 +23,7 @@ import com.logbookmanager.service.support.GenericService;
 @Transactional(readOnly = true)
 @Service("roleService")
 @TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = true)
-public class RoleServiceImpl extends GenericService<Role, Long> implements
-		RoleService {
+public class RoleServiceImpl extends GenericService<Role, Long> implements RoleService {
 
 	private static final long serialVersionUID = 1L;
 

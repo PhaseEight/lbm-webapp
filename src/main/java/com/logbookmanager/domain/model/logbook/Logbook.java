@@ -18,8 +18,7 @@ import com.logbookmanager.domain.support.Title;
  */
 @Entity
 @Table(name = "Logbook")
-public class Logbook extends EntitySupport<Logbook, Long> implements
-		java.io.Serializable {
+public class Logbook extends EntitySupport<Logbook, Long> implements java.io.Serializable {
 	private static final long serialVersionUID = 912839123L;
 
 	private Title title;
@@ -69,8 +68,7 @@ public class Logbook extends EntitySupport<Logbook, Long> implements
 			return false;
 		}
 		Logbook rhs = (Logbook) object;
-		return new EqualsBuilder().append(this.id, rhs.id)
-				.append(this.version, rhs.version).isEquals();
+		return new EqualsBuilder().append(this.id, rhs.id).append(this.version, rhs.version).isEquals();
 	}
 
 	/**
@@ -78,8 +76,8 @@ public class Logbook extends EntitySupport<Logbook, Long> implements
 	 */
 	@Override
 	public int hashCode() {
-		return new HashCodeBuilder(-421608611, -181807385).append(this.id).append((title == null)?5:title.hashCode())
-				.append(this.version).toHashCode();
+		return new HashCodeBuilder(-421608611, -181807385).append(this.id)
+				.append((title == null) ? 5 : title.hashCode()).append(this.version).toHashCode();
 	}
 
 	/**
@@ -87,7 +85,7 @@ public class Logbook extends EntitySupport<Logbook, Long> implements
 	 */
 	@Override
 	public String toString() {
-		return new ToStringBuilder(this).append("id", this.id).append("title",title.toString())
+		return new ToStringBuilder(this).append("id", this.id).append("title", title.toString())
 				.append("version", this.version).toString();
 	}
 

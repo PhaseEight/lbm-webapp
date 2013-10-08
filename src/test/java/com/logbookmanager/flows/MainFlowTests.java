@@ -17,28 +17,16 @@ import org.springframework.webflow.test.execution.AbstractXmlFlowExecutionTests;
 
 import com.logbookmanager.web.component.DashboardBean;
 
-/*
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextHierarchy({
-		@ContextConfiguration("file:src/main/resources/com/logbookmanager/configuration/spring/app-root.xml"),
-		@ContextConfiguration({ "file:src/main/webapp/WEB-INF/spring/servlet-context.xml" }) })
-@WebAppConfiguration(value = "src/main/webapp")
-@FixMethodOrder(MethodSorters.NAME_ASCENDING)
-@TestExecutionListeners({ DependencyInjectionTestExecutionListener.class, ServletTestExecutionListener.class,DirtiesContextTestExecutionListener.class,
-	TransactionalTestExecutionListener.class, DbUnitTestExecutionListener.class })
-*/
 public class MainFlowTests extends AbstractXmlFlowExecutionTests {
 
 	private DashboardBean dashboardBean = new DashboardBean();
-	
+
 	@Autowired
 	private WebApplicationContext wac;
 
-	
 	@Autowired
 	private HttpSession session;
 
-	
 	@Autowired
 	private FilterChainProxy springSecurityFilterChain;
 
@@ -51,7 +39,6 @@ public class MainFlowTests extends AbstractXmlFlowExecutionTests {
 
 	@Override
 	protected void configureFlowBuilderContext(MockFlowBuilderContext builderContext) {
-		builderContext.registerBean("dashboardBean", dashboardBean);
 	}
 
 	@Test
@@ -59,9 +46,8 @@ public class MainFlowTests extends AbstractXmlFlowExecutionTests {
 		MutableAttributeMap<?> input = new LocalAttributeMap<Object>();
 		MockExternalContext context = new MockExternalContext();
 		context.setCurrentUser("peterneiladmin");
-		startFlow(input,context);
+		startFlow(input, context);
 		assertCurrentStateEquals("start");
-		assertTrue(getRequiredFlowAttribute("dashboardBean") instanceof DashboardBean);
 	}
 
 	public MockMvc getMockMvc() {

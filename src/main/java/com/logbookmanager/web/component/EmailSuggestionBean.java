@@ -28,13 +28,8 @@ public class EmailSuggestionBean implements Serializable {
 			return lastName + "@fastmail.com";
 
 		} else {
-			context.getMessageContext()
-					.addMessage(
-							new MessageBuilder()
-									.error()
-									.defaultText(
-											"Please enter a first or a last name of both!")
-									.build());
+			context.getMessageContext().addMessage(
+					new MessageBuilder().error().defaultText("Please enter a first or a last name of both!").build());
 			return "";
 		}
 	}

@@ -1,6 +1,5 @@
 package com.logbookmanager.domain.support;
 
-
 public class PasswordHint extends ValueObjectSupport<Password> {
 	/**
 	 * 

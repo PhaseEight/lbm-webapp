@@ -24,7 +24,6 @@ public class ResourcesUtil {
 	private static ResourcesUtil instance;
 	private MessageSource messageSource;
 
-	
 	@Autowired
 	public ResourcesUtil(@Qualifier("applicationMessageSource") MessageSource messageSource) {
 		this.messageSource = messageSource;
@@ -55,8 +54,7 @@ public class ResourcesUtil {
 			return "";
 		}
 
-		return messageSource.getMessage(key, args,
-				LocaleContextHolder.getLocale());
+		return messageSource.getMessage(key, args, LocaleContextHolder.getLocale());
 	}
 
 	/**

@@ -7,12 +7,14 @@ public class StringValidatorTests {
 
 	@Test
 	public void stringIsAlphanumeric() {
-		Assert.assertTrue("String was not UnderscoreAlphaNumericWithSpaces",StringValidator.isUnderscoreAlphaNumericWithSpaces("thisis 4lph4numeric_", 3));
+		Assert.assertTrue("String was not UnderscoreAlphaNumericWithSpaces",
+				StringValidator.isUnderscoreAlphaNumericWithSpaces("thisis 4lph4numeric_", 3));
 	}
 
 	@Test
 	public void stringIsNotAlphanumeric() {
-		Assert.assertFalse("String was not UnderscoreAlphaNumericWithoutSpaces",StringValidator.isUnderscoreAlphaNumericWithoutSpaces("@this_.is4lph4numeric", 3));
+		Assert.assertFalse("String was not UnderscoreAlphaNumericWithoutSpaces",
+				StringValidator.isUnderscoreAlphaNumericWithoutSpaces("@this_.is4lph4numeric", 3));
 	}
 
 	@Test

@@ -6,7 +6,8 @@ package com.logbookmanager.service;
  * it's checked in the web layer.
  * 
  * <p>
- * <a href="RegisteredUserAlreadyExistsException.java.html"><i>View Source</i></a>
+ * <a href="RegisteredUserAlreadyExistsException.java.html"><i>View
+ * Source</i></a>
  * </p>
  * 
  * @author <a href="mailto:peter.neil@logbookmanager.com">Peter Neil</a>

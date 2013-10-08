@@ -58,23 +58,38 @@
 		authentication-manager-ref="authenticationManager" request-matcher="ant"
 		use-expressions="true">
 
-		<security:remember-me services-alias="rememberMeService"
-			data-source-ref="dataSource" token-validity-seconds="86400" />
+		<security:remember-me
+			services-alias="rememberMeService"
+			data-source-ref="dataSource"
+			token-validity-seconds="86400" 
+		/>
 
-		<security:intercept-url pattern="/app/logout*"
+		<security:intercept-url
+			pattern="/app/logout*"
 			access="permitAll" />
-		<security:intercept-url pattern="/app/session-timeout*"
+			
+		<security:intercept-url
+			pattern="/app/session-timeout*"
 			access="permitAll" />
-		<security:intercept-url pattern="/app/main"
+			
+		<security:intercept-url 
+			pattern="/app/main"
 			access="hasRole('ROLE_LOGBOOKUSER')" />
-		<security:intercept-url pattern="/app/admin/*"
+			
+		<security:intercept-url 
+			pattern="/app/admin/*"
 			access="hasRole('ROLE_ADMIN')" />
 
 		<!-- A user will always go to default-target-url on successful login -->
-		<security:form-login login-processing-url="/app/doLogin"
-			username-parameter="loginForm:username" password-parameter="loginForm:password"
-			login-page="/app/welcome" default-target-url="/app/main"
-			always-use-default-target="false" authentication-failure-url="/app/loginFailed" />
+		<security:form-login 
+			login-processing-url="/app/doLogin"
+			username-parameter="loginForm:username" 
+			password-parameter="loginForm:password"
+			login-page="/app/welcome"
+			default-target-url="/app/main"
+			always-use-default-target="false"
+			authentication-failure-url="/app/welcome?login_error=1" 
+		/>
 
 		<security:logout 
 			success-handler-ref=""

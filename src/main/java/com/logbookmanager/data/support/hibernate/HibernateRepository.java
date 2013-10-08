@@ -4,9 +4,6 @@ package com.logbookmanager.data.support.hibernate;
  * protected Logger log;
  * this.log = LoggerFactory.getLogger(getClass());
  */
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.io.Serializable;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
@@ -29,6 +26,8 @@ import org.hibernate.criterion.Example;
 import org.hibernate.criterion.NaturalIdentifier;
 import org.hibernate.criterion.Restrictions;
 import org.jodah.typetools.TypeResolver;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanWrapper;
 import org.springframework.beans.BeanWrapperImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,7 +46,7 @@ public class HibernateRepository<T extends BaseObject<T>, ID extends Serializabl
 	protected ID id;
 
 	protected final Logger log;
-	
+
 	private Class<T> typeClass;
 	private Class<ID> typeIdClass;
 	private String cacheRegion;
@@ -67,7 +66,7 @@ public class HibernateRepository<T extends BaseObject<T>, ID extends Serializabl
 			log = LoggerFactory.getLogger(HibernateRepository.class.getName());
 		}
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public HibernateRepository(Class<T> typeClass, Class<ID> typeIdClass) {
 		Class<?>[] typeArguments = TypeResolver.resolveArguments(getClass(), HibernateRepository.class);
@@ -76,8 +75,7 @@ public class HibernateRepository<T extends BaseObject<T>, ID extends Serializabl
 			this.typeIdClass = (Class<ID>) typeArguments[1];
 			this.cacheRegion = this.typeClass.getCanonicalName();
 			this.log = LoggerFactory.getLogger(this.typeClass);
-		}
-		else {
+		} else {
 			this.log = LoggerFactory.getLogger(getClass());
 		}
 	}

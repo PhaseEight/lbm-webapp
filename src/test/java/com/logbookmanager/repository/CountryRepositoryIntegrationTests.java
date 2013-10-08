@@ -27,8 +27,7 @@ import com.logbookmanager.support.IntegrationTestSupport;
 public class CountryRepositoryIntegrationTests extends IntegrationTestSupport {
 
 	private static final Logger logger = LoggerFactory.getLogger(CountryRepositoryIntegrationTests.class.getName());
-	
-	
+
 	@Inject
 	@Mock
 	CountryRepository countryRepository = new CountryRepositoryImpl();
@@ -42,7 +41,8 @@ public class CountryRepositoryIntegrationTests extends IntegrationTestSupport {
 		for (Country country : countries) {
 			logger.debug(i++ + ": " + country.toString());
 		}
-		assertTrue("The 2nd country must be ZA, South Afique du Sud", countries.get(1).getAnsiCode().equalsIgnoreCase("ZA"));
+		assertTrue("The 2nd country must be ZA, South Afique du Sud",
+				countries.get(1).getAnsiCode().equalsIgnoreCase("ZA"));
 
 	}
 
@@ -72,7 +72,6 @@ public class CountryRepositoryIntegrationTests extends IntegrationTestSupport {
 
 	}
 
-	
 	@Test
 	@Transactional
 	@Rollback(true)

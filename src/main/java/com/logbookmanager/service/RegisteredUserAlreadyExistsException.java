@@ -8,7 +8,8 @@ import com.logbookmanager.domain.model.security.RegisteredUser;
  * it's checked in the web layer.
  * 
  * <p>
- * <a href="RegisteredUserAlreadyExistsException.java.html"><i>View Source</i></a>
+ * <a href="RegisteredUserAlreadyExistsException.java.html"><i>View
+ * Source</i></a>
  * </p>
  * 
  * @author <a href="mailto:peter.neil@logbookmanager.com">Peter Neil</a>
@@ -24,8 +25,7 @@ public class RegisteredUserAlreadyExistsException extends RegisteredUserExceptio
 	private RegisteredUser existingUser;
 	private RegisteredUser newUser;
 
-	public RegisteredUserAlreadyExistsException(String message, RegisteredUser existingUser,
-			RegisteredUser newUser) {
+	public RegisteredUserAlreadyExistsException(String message, RegisteredUser existingUser, RegisteredUser newUser) {
 		super(message);
 		this.setExistingUser(existingUser);
 		this.setNewUser(newUser);

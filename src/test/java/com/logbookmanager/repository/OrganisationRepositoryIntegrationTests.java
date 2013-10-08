@@ -31,16 +31,16 @@ import com.logbookmanager.domain.support.Title;
 import com.logbookmanager.domain.support.WebSite;
 import com.logbookmanager.support.IntegrationTestSupport;
 
-@TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = false )
+@TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = false)
 public class OrganisationRepositoryIntegrationTests extends IntegrationTestSupport {
 
 	/** Inject Services */
 	@Inject
 	private OrganisationRepository organisationRepository;
-	
+
 	@Inject
 	private CountryRepository countryRepository;
-	
+
 	/** Inject session Factory for flushing */
 	@Inject
 	private SessionFactory sessionFactory;
@@ -69,17 +69,17 @@ public class OrganisationRepositoryIntegrationTests extends IntegrationTestSuppo
 	@Rollback(false)
 	public void addOrganisation() throws Throwable {
 		Title orgTitle = new Title("padisa", "PADI South Africa");
-		Country country = countryRepository.getCountry("ZA",LocaleContextHolder.getLocale());
-		
+		Country country = countryRepository.getCountry("ZA", LocaleContextHolder.getLocale());
+
 		Address orgAddress = new Address(country);
-		
+
 		EmailAddress orgEmail = new EmailAddress("za-info@padi.com");
 		WebSite orgWebsite = new WebSite("http://www.padi.com");
-	
-		OrganisationDetails orgDetails = new OrganisationDetails(orgAddress,orgEmail,null,null,orgWebsite);
+
+		OrganisationDetails orgDetails = new OrganisationDetails(orgAddress, orgEmail, null, null, orgWebsite);
 		Organisation org = new Organisation(orgTitle, orgDetails);
 		addOrganisation(org);
-		
+
 	}
 
 	@Test
@@ -88,19 +88,19 @@ public class OrganisationRepositoryIntegrationTests extends IntegrationTestSuppo
 	public void addOrganisationUnregisteredCountry() throws Throwable {
 		Title orgTitle = new Title("padi-germany", "PADI Germany");
 		Country country = countryRepository.getCountry("DE");
-		
+
 		Address orgAddress = new Address(country);
 		EmailAddress orgEmail = new EmailAddress("de-info@padi.com");
 		WebSite orgWebsite = new WebSite("http://www.padi.com");
-	
-		OrganisationDetails orgDetails = new OrganisationDetails(orgAddress,orgEmail,null,null,orgWebsite);
+
+		OrganisationDetails orgDetails = new OrganisationDetails(orgAddress, orgEmail, null, null, orgWebsite);
 		Organisation org = new Organisation(orgTitle, orgDetails);
 		Organisation newOrg = addOrganisation(org);
-		
-		assertTrue("Organisation must be active",newOrg.isActive());
-		
+
+		assertTrue("Organisation must be active", newOrg.isActive());
+
 	}
-	
+
 	@Transactional
 	@Rollback(false)
 	private Organisation addOrganisation(Organisation organisation) throws Throwable {
@@ -119,8 +119,9 @@ public class OrganisationRepositoryIntegrationTests extends IntegrationTestSuppo
 
 	@BeforeTransaction
 	public void beforeTransaction() {
-		
-	}	
+
+	}
+
 	@AfterTransaction
 	public void afterTransaction() {
 		logger.debug("Transaction Completed");

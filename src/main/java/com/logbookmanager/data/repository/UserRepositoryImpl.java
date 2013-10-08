@@ -11,8 +11,7 @@ import com.logbookmanager.domain.model.security.RegisteredUser;
 import com.logbookmanager.domain.support.UserName;
 
 @Repository
-public class UserRepositoryImpl extends HibernateRepository<RegisteredUser, Long> implements
-		UserRepository {
+public class UserRepositoryImpl extends HibernateRepository<RegisteredUser, Long> implements UserRepository {
 
 	/**
 	 * the super must be called otherwise the Generics do not work

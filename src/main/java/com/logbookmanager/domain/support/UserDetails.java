@@ -1,6 +1,5 @@
 package com.logbookmanager.domain.support;
 
-
 public class UserDetails extends ValueObjectSupport<UserDetails> {
 	/**
 	 * 
@@ -13,10 +12,9 @@ public class UserDetails extends ValueObjectSupport<UserDetails> {
 	private String mobileNumber;
 	private String website;
 	private String locale;
-	
 
-	public UserDetails(String firstName, String lastName, String email, String string, String mobileNumber, String website, String locale
-			) {
+	public UserDetails(String firstName, String lastName, String email, String string, String mobileNumber,
+			String website, String locale) {
 		setFirstName(firstName);
 		setLastName(lastName);
 		setEmail(email);
@@ -81,10 +79,10 @@ public class UserDetails extends ValueObjectSupport<UserDetails> {
 	public void setWebsite(String website) {
 		this.website = website;
 	}
-	
+
 	/** required by Hibernate **/
-	UserDetails(){
-		
+	UserDetails() {
+
 	}
 
 }

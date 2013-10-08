@@ -16,8 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping(value = "/user/signup")
 public class SignupController {
 
-	private static final Logger logger = LoggerFactory
-			.getLogger(SignupController.class.getName());
+	private static final Logger logger = LoggerFactory.getLogger(SignupController.class.getName());
 
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -32,7 +31,7 @@ public class SignupController {
 
 	@RequestMapping(method = RequestMethod.POST)
 	public String doSignup(Locale locale, Model model) {
-		logger.info("doSignup {}.", locale);
+		logger.debug("doSignup {}.", locale);
 
 		model.addAttribute("signup-success-message", "doSignup has loaded");
 

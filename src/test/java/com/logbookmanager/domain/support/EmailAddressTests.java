@@ -19,7 +19,7 @@ import org.slf4j.LoggerFactory;
 public class EmailAddressTests {
 
 	private static final Logger logger = LoggerFactory.getLogger(EmailAddressTests.class.getName());
-	
+
 	private static Validator validator;
 
 	@BeforeClass
@@ -35,7 +35,8 @@ public class EmailAddressTests {
 		Set<ConstraintViolation<EmailAddress>> constraintViolations = validator.validate(email);
 
 		assertEquals(1, constraintViolations.size());
-		assertEquals("The email address does not match the prescribed pattern", constraintViolations.iterator().next().getMessage());
+		assertEquals("The email address does not match the prescribed pattern", constraintViolations.iterator().next()
+				.getMessage());
 
 	}
 
@@ -61,29 +62,28 @@ public class EmailAddressTests {
 
 		}
 	}
-	
+
 	@Test
-	public void allValidLocalPart(){
-		
-		//! # $ % & ' * + - / = ? ^ _ ` { | } ~
-		String[] validLocalPartChars = {"!","#","$","%","&","'","*","+","-","/","=","?","^","_","`","{","|","}","~"};
-		
+	public void allValidLocalPart() {
+
+		// ! # $ % & ' * + - / = ? ^ _ ` { | } ~
+		String[] validLocalPartChars = { "!", "#", "$", "%", "&", "'", "*", "+", "-", "/", "=", "?", "^", "_", "`",
+				"{", "|", "}", "~" };
+
 		for (String validLocalPartChar : validLocalPartChars) {
 			EmailAddress email = new EmailAddress("peter" + validLocalPartChar + "neil@logmydiv.es");
 
 			Set<ConstraintViolation<EmailAddress>> constraintViolations = validator.validate(email);
 
-			if(constraintViolations.size() > 0){
+			if (constraintViolations.size() > 0) {
 				logger.debug(constraintViolations.iterator().next().getMessage() + "; " + email.getAddress());
 			}
-			
+
 			assertEquals(0, constraintViolations.size());
 
 		}
-		
-		
+
 	}
-	
 
 	@Test
 	public void invalidTLDs() {
@@ -126,15 +126,15 @@ public class EmailAddressTests {
 		EmailAddress email = new EmailAddress();
 		Set<ConstraintViolation<EmailAddress>> constraintViolations = validator.validate(email);
 
-		assertEquals(MessageFormat.format("this should fail for email address {0};", testAddress), 1, constraintViolations.size());
+		assertEquals(MessageFormat.format("this should fail for email address {0};", testAddress), 1,
+				constraintViolations.size());
 
-		
-		
 		testAddress = "peter neil@logmydiv.es";
 		email = new EmailAddress();
 		constraintViolations = validator.validate(email);
 
-		assertEquals(MessageFormat.format("this should fail for email address {0};", testAddress), 1, constraintViolations.size());
+		assertEquals(MessageFormat.format("this should fail for email address {0};", testAddress), 1,
+				constraintViolations.size());
 
 	}
 

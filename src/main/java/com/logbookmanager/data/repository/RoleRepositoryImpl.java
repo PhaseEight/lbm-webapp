@@ -16,8 +16,7 @@ import com.logbookmanager.domain.model.security.Role;
  * @author <a href="mailto:dan@getrolling.com">Dan Kibler</a>
  */
 @Repository
-public class RoleRepositoryImpl extends HibernateRepository<Role, Long> implements
-		RoleRepository {
+public class RoleRepositoryImpl extends HibernateRepository<Role, Long> implements RoleRepository {
 
 	public RoleRepositoryImpl() {
 	}

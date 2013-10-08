@@ -12,9 +12,9 @@ public class UserName extends ValueObjectSupport<UserName> {
 	private static final long serialVersionUID = 1L;
 
 	private String value;
-	
-	/*required by Hibernate */
-	UserName(){
+
+	/* required by Hibernate */
+	UserName() {
 		this.value = null;
 	}
 
@@ -27,7 +27,7 @@ public class UserName extends ValueObjectSupport<UserName> {
 	}
 
 	public void setValue(String value) {
-		Validate.isTrue(StringValidator.isUnderscoreAlphaNumericWithoutSpaces(value, 8),"error.username.invalid");
+		Validate.isTrue(StringValidator.isUnderscoreAlphaNumericWithoutSpaces(value, 8), "error.username.invalid");
 		this.value = value;
 	}
 

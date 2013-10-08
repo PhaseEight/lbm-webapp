@@ -23,8 +23,7 @@ import com.logbookmanager.service.support.GenericService;
  * @author <a href="mailto:peter.neil@logbookmanager.com">Peter Neil</a>
  */
 @Service("logbookUserService")
-public class LogbookUserServiceImpl extends GenericService<LogbookUser, Long> implements
-		LogbookUserService {
+public class LogbookUserServiceImpl extends GenericService<LogbookUser, Long> implements LogbookUserService {
 
 	/**
 	 * 
@@ -44,6 +43,5 @@ public class LogbookUserServiceImpl extends GenericService<LogbookUser, Long> im
 	public List<LogbookUser> findAll() {
 		return super.findAll();
 	}
-	
 
 }

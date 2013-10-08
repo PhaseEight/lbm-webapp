@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.SessionScoped;
 import javax.inject.Named;
 
 import org.springframework.stereotype.Component;
@@ -26,7 +25,6 @@ import com.logbookmanager.service.RegisteredUserService;
  */
 @Component
 @Named("userBean")
-@SessionScoped
 public class UserBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;

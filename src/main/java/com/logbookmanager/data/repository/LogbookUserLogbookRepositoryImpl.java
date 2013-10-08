@@ -8,9 +8,8 @@ import com.logbookmanager.data.support.hibernate.HibernateRepository;
 import com.logbookmanager.domain.model.logbook.LogbookUserLogbook;
 
 @Repository
-public class LogbookUserLogbookRepositoryImpl extends
-		HibernateRepository<LogbookUserLogbook, Long> implements LogbookUserLogbookRepository,
-		Serializable {
+public class LogbookUserLogbookRepositoryImpl extends HibernateRepository<LogbookUserLogbook, Long> implements
+		LogbookUserLogbookRepository, Serializable {
 
 	private static final long serialVersionUID = 912839123L;
 

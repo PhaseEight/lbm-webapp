@@ -48,7 +48,7 @@ public class DashboardBean implements Serializable {
 		model.addColumn(column3);
 
 		this.facesContextBroker = facesContextBroker;
-	
+
 	}
 
 	/*
@@ -65,8 +65,9 @@ public class DashboardBean implements Serializable {
 		FacesMessage message = new FacesMessage();
 		message.setSeverity(FacesMessage.SEVERITY_INFO);
 		message.setSummary("Moved: " + event.getSenderColumnIndex());
-		message.setDetail("Item index: " + event.getItemIndex() + ", Column index: " + event.getColumnIndex() + ", Sender index: " + event.getSenderColumnIndex());
-		
+		message.setDetail("Item index: " + event.getItemIndex() + ", Column index: " + event.getColumnIndex()
+				+ ", Sender index: " + event.getSenderColumnIndex());
+
 		DashboardColumn selectedColumn = model.getColumn(event.getColumnIndex());
 		String movedWidget = selectedColumn.getWidget(event.getItemIndex());
 
@@ -78,13 +79,12 @@ public class DashboardBean implements Serializable {
 	}
 
 	private void addMessage(FacesMessage message) {
-		FacesContext context = facesContextBroker.getContext(); 
+		FacesContext context = facesContextBroker.getContext();
 		context.addMessage(null, message);
 	}
 
 	public DashboardModel getModel() {
 		return model;
 	}
-	
-	
+
 }

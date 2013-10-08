@@ -6,8 +6,5 @@ public class PhoneNumber extends ValueObjectSupport<PhoneNumber> {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
-	
-	
 
 }

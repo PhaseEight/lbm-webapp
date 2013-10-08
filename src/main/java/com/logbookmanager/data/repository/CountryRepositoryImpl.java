@@ -23,7 +23,8 @@ import com.logbookmanager.domain.model.Country;
 import com.logbookmanager.support.CollationStrength;
 
 @Repository
-public class CountryRepositoryImpl extends HibernateRepository<Country, Long> implements CountryRepository, Serializable {
+public class CountryRepositoryImpl extends HibernateRepository<Country, Long> implements CountryRepository,
+		Serializable {
 	protected final Logger log = LoggerFactory.getLogger(getClass());
 
 	private static final long serialVersionUID = 912839123L;

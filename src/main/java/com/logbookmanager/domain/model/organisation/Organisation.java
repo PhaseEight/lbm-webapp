@@ -15,29 +15,28 @@ import com.logbookmanager.domain.support.EntitySupport;
 import com.logbookmanager.domain.support.Title;
 
 /**
- * Organisation 
+ * Organisation
  */
-public class Organisation extends EntitySupport<Organisation, Long> implements
-		java.io.Serializable {
+public class Organisation extends EntitySupport<Organisation, Long> implements java.io.Serializable {
 	private static final long serialVersionUID = 912839123L;
 
 	@NaturalId
-	private Title title; 
-	
+	private Title title;
+
 	private OrganisationDetails details;
-	
+
 	private Set<Certification> certifications = new HashSet<Certification>();
 	private Set<OrganisationCountry> organisationCountries = new HashSet<OrganisationCountry>();
-
 
 	/** default constructor */
 	Organisation() {
 	}
 
-	public Organisation(Title title, OrganisationDetails details){
+	public Organisation(Title title, OrganisationDetails details) {
 		this.setTitle(title);
 		this.setDetails(details);
 	}
+
 	/**
 	 * 
 	 */
@@ -65,8 +64,7 @@ public class Organisation extends EntitySupport<Organisation, Long> implements
 		return this.organisationCountries;
 	}
 
-	public void setOrganisationCountries(
-			Set<OrganisationCountry> organisationCountries) {
+	public void setOrganisationCountries(Set<OrganisationCountry> organisationCountries) {
 		this.organisationCountries = organisationCountries;
 	}
 
@@ -78,8 +76,7 @@ public class Organisation extends EntitySupport<Organisation, Long> implements
 			return false;
 		}
 		Organisation rhs = (Organisation) object;
-		
-		
+
 		return new EqualsBuilder().append(this.version, rhs.version).isEquals() && this.sameIdentityAs(rhs);
 	}
 
@@ -87,18 +84,15 @@ public class Organisation extends EntitySupport<Organisation, Long> implements
 	 * @see java.lang.Object#hashCode()
 	 */
 	public int hashCode() {
-		return new HashCodeBuilder(1137867691, 280120237)
-				.append(this.id)
-				.append(this.version).toHashCode();
+		return new HashCodeBuilder(1137867691, 280120237).append(this.id).append(this.version).toHashCode();
 	}
 
 	/**
 	 * @see java.lang.Object#toString()
 	 */
 	public String toString() {
-		return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
-				.append("id", this.id).append("version", this.version)
-				.toString();
+		return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE).append("id", this.id)
+				.append("version", this.version).toString();
 	}
 
 	public OrganisationDetails getDetails() {
@@ -116,6 +110,5 @@ public class Organisation extends EntitySupport<Organisation, Long> implements
 	public void setTitle(Title title) {
 		this.title = title;
 	}
-
 
 }

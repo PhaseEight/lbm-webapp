@@ -48,7 +48,7 @@ public class IdleMonitorController implements Serializable {
 	public long getPermittedIdleTimeSeconds() {
 		return permittedIdleTimeMillis / 1000;
 	}
-	
+
 	public void setPermittedIdleTimeMillis(long permittedIdleTimeMillis) {
 		this.permittedIdleTimeMillis = permittedIdleTimeMillis;
 	}
@@ -60,7 +60,7 @@ public class IdleMonitorController implements Serializable {
 	public long getAutologoutIdleTimeSeconds() {
 		return autologoutIdleTimeMillis / 1000;
 	}
-	
+
 	public void setAutologoutIdleTimeMillis(long autologoutIdleTimeMillis) {
 		this.autologoutIdleTimeMillis = autologoutIdleTimeMillis;
 	}

@@ -28,10 +28,11 @@ import java.util.WeakHashMap;
 /**
  * A simple decorator for a Map, encapsulating the workflow for caching
  * expensive values in a target Map. Supports caching weak or strong keys.
- *
- * <p>This class is also an abstract template. Caching Map implementations
- * should subclass and override the <code>create(key)</code> method which
- * encapsulates expensive creation of a new object.
+ * 
+ * <p>
+ * This class is also an abstract template. Caching Map implementations should
+ * subclass and override the <code>create(key)</code> method which encapsulates
+ * expensive creation of a new object.
  * 
  * @author Keith Donald
  * @author Juergen Hoeller
@@ -49,19 +50,19 @@ public abstract class CachingMapDecorator implements Map, Serializable {
 
 	private final Map targetMap;
 
-
 	/**
-	 * Create a CachingMapDecorator with strong keys,
-	 * using an underlying synchronized Map.
+	 * Create a CachingMapDecorator with strong keys, using an underlying
+	 * synchronized Map.
 	 */
 	public CachingMapDecorator() {
 		this(false);
 	}
 
 	/**
-	 * Create a CachingMapDecorator,
-	 * using an underlying synchronized Map.
-	 * @param weakKeys whether to use weak references for keys
+	 * Create a CachingMapDecorator, using an underlying synchronized Map.
+	 * 
+	 * @param weakKeys
+	 *            whether to use weak references for keys
 	 */
 	@SuppressWarnings("unchecked")
 	public CachingMapDecorator(boolean weakKeys) {
@@ -70,10 +71,13 @@ public abstract class CachingMapDecorator implements Map, Serializable {
 	}
 
 	/**
-	 * Create a CachingMapDecorator with initial size,
-	 * using an underlying synchronized Map.
-	 * @param weakKeys whether to use weak references for keys
-	 * @param size the initial cache size
+	 * Create a CachingMapDecorator with initial size, using an underlying
+	 * synchronized Map.
+	 * 
+	 * @param weakKeys
+	 *            whether to use weak references for keys
+	 * @param size
+	 *            the initial cache size
 	 */
 	@SuppressWarnings("unchecked")
 	public CachingMapDecorator(boolean weakKeys, int size) {
@@ -83,15 +87,17 @@ public abstract class CachingMapDecorator implements Map, Serializable {
 
 	/**
 	 * Create a CachingMapDecorator for the given Map.
-	 * <p>The passed-in Map won't get synchronized explicitly,
-	 * so make sure to pass in a properly synchronized Map, if desired.
-	 * @param targetMap the Map to decorate
+	 * <p>
+	 * The passed-in Map won't get synchronized explicitly, so make sure to pass
+	 * in a properly synchronized Map, if desired.
+	 * 
+	 * @param targetMap
+	 *            the Map to decorate
 	 */
 	public CachingMapDecorator(Map targetMap) {
 		Assert.notNull(targetMap, "Target Map is required");
 		this.targetMap = targetMap;
 	}
-
 
 	public int size() {
 		return this.targetMap.size();
@@ -139,14 +145,15 @@ public abstract class CachingMapDecorator implements Map, Serializable {
 		return this.targetMap.entrySet();
 	}
 
-
 	/**
-	 * Get value for key.
-	 * Creates and caches value if it doesn't already exist in the cache.
-	 * <p>This implementation is <i>not</i> synchronized: This is highly
-	 * concurrent but does not guarantee unique instances in the cache,
-	 * as multiple values for the same key could get created in parallel.
-	 * Consider overriding this method to synchronize it, if desired.
+	 * Get value for key. Creates and caches value if it doesn't already exist
+	 * in the cache.
+	 * <p>
+	 * This implementation is <i>not</i> synchronized: This is highly concurrent
+	 * but does not guarantee unique instances in the cache, as multiple values
+	 * for the same key could get created in parallel. Consider overriding this
+	 * method to synchronize it, if desired.
+	 * 
 	 * @see #create(Object)
 	 */
 	public Object get(Object key) {
@@ -166,13 +173,14 @@ public abstract class CachingMapDecorator implements Map, Serializable {
 	}
 
 	/**
-	 * Create a value to cache for the given key.
-	 * Called by <code>get</code> if there is no value cached already.
-	 * @param key the cache key
+	 * Create a value to cache for the given key. Called by <code>get</code> if
+	 * there is no value cached already.
+	 * 
+	 * @param key
+	 *            the cache key
 	 * @see #get(Object)
 	 */
 	protected abstract Object create(Object key);
-
 
 	public String toString() {
 		return "CachingMapDecorator [" + getClass().getName() + "]:" + this.targetMap;

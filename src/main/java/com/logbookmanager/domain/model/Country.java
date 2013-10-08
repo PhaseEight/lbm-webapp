@@ -31,16 +31,15 @@ import com.logbookmanager.support.CollationStrength;
 public class Country extends EntitySupport<Country, Long> implements java.io.Serializable, Comparable<Country> {
 
 	private static final long serialVersionUID = 912839123L;
-	
+
 	private static final Logger log = LoggerFactory.getLogger(Country.class.getName());
 
 	@NaturalId
 	private String ansiCode;
 	private Locale locale;
-	
+
 	@Transient
 	private String displayName;
-
 
 	/** default constructor required by Hibernate */
 	/* required by Hibernate */
@@ -49,15 +48,17 @@ public class Country extends EntitySupport<Country, Long> implements java.io.Ser
 
 	/**
 	 * 
-	 * @param ansiCode this is the 2 or 3 letter iso code for the country
-	 * @param displayName this is the 
+	 * @param ansiCode
+	 *            this is the 2 or 3 letter iso code for the country
+	 * @param displayName
+	 *            this is the
 	 * @param locale
 	 */
 	public Country(@NotNull String ansiCode, @NotNull Locale locale) {
 		Assert.notNull(ansiCode);
 		Assert.notNull(locale);
 		this.ansiCode = ansiCode;
-		this.displayName = (new Locale("",ansiCode).getDisplayCountry(locale));
+		this.displayName = (new Locale("", ansiCode).getDisplayCountry(locale));
 		this.locale = locale;
 	}
 
@@ -104,7 +105,8 @@ public class Country extends EntitySupport<Country, Long> implements java.io.Ser
 			return false;
 		}
 		Country rhs = (Country) object;
-		return new EqualsBuilder().append(this.ansiCode, rhs.ansiCode).append(this.displayName, rhs.displayName).isEquals();
+		return new EqualsBuilder().append(this.ansiCode, rhs.ansiCode).append(this.displayName, rhs.displayName)
+				.isEquals();
 	}
 
 	/**
@@ -121,9 +123,9 @@ public class Country extends EntitySupport<Country, Long> implements java.io.Ser
 	 */
 	@Override
 	public int compareTo(Country other) {
-		
-//		final int AFTER = 1;
-//		final int BEFORE = -1;
+
+		// final int AFTER = 1;
+		// final int BEFORE = -1;
 		final int EQUAL = 0;
 		int comparison;
 
@@ -133,14 +135,15 @@ public class Country extends EntitySupport<Country, Long> implements java.io.Ser
 		} else {
 			// Use collator to compare the country display name
 			Collator collator = Collator.getInstance(Locale.getDefault());
-		    collator.setStrength(CollationStrength.Secondary.getStrength());
-		    comparison = collator.compare(this.getDisplayName(), other.getDisplayName());
-		    if ( comparison == 0 ) {
-		      log.debug("Collator sees them as the same : " + this.getDisplayName() + ", " + other.getDisplayName() + " - " + CollationStrength.Identical);
-		    }
-		    else {
-		    	log.debug("Collator sees them as DIFFERENT  : " + this.getDisplayName() + ", " + other.getDisplayName() + " - " + CollationStrength.Identical);
-		    }
+			collator.setStrength(CollationStrength.Secondary.getStrength());
+			comparison = collator.compare(this.getDisplayName(), other.getDisplayName());
+			if (comparison == 0) {
+				log.debug("Collator sees them as the same : " + this.getDisplayName() + ", " + other.getDisplayName()
+						+ " - " + CollationStrength.Identical);
+			} else {
+				log.debug("Collator sees them as DIFFERENT  : " + this.getDisplayName() + ", " + other.getDisplayName()
+						+ " - " + CollationStrength.Identical);
+			}
 		}
 		return comparison;
 	}

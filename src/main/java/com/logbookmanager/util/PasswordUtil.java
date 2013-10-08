@@ -4,11 +4,11 @@ package com.logbookmanager.util;
  * protected Logger log;
  * this.log = LoggerFactory.getLogger(getClass());
  */
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import java.security.MessageDigest;
 
 import org.bouncycastle.util.encoders.Base64;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * String Utility Class This is used to encode passwords programmatically
@@ -24,9 +24,8 @@ public class PasswordUtil {
 	protected static final Logger log = LoggerFactory.getLogger(PasswordUtil.class.getName());
 
 	/**
-	 * Encode a string using specified algorithm and return the
-	 * resulting encrypted password. If exception, the plain password string
-	 * is returned
+	 * Encode a string using specified algorithm and return the resulting
+	 * encrypted password. If exception, the plain password string is returned
 	 * 
 	 * @param password
 	 *            Password or other credentials to use in authenticating this
@@ -94,19 +93,17 @@ public class PasswordUtil {
 	public static String decodeString(String str) {
 		return new String(Base64.decode(str.getBytes()));
 	}
-	
+
 	public static boolean isComplexPassword(String value, int minimumLength) {
 		if (value.length() >= minimumLength) {
-			String pattern = "(?=^[!-~]{" + minimumLength + ",}$)(?=.*[a-z])(?=.*[A-Z])(?=.*[^A-Za-z0-9])(?=^.*[^\\s].*$)(?=.*[\\d]).*$";
-			return StringValidator.matches(value, new String[]{pattern});
-			
-		}
-		else {
+			String pattern = "(?=^[!-~]{" + minimumLength
+					+ ",}$)(?=.*[a-z])(?=.*[A-Z])(?=.*[^A-Za-z0-9])(?=^.*[^\\s].*$)(?=.*[\\d]).*$";
+			return StringValidator.matches(value, new String[] { pattern });
+
+		} else {
 			return false;
 		}
-		
+
 	}
 
-
-	
 }

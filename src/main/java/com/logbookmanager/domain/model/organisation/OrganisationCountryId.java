@@ -57,18 +57,17 @@ public class OrganisationCountryId implements java.io.Serializable {
 		OrganisationCountryId castOther = (OrganisationCountryId) other;
 
 		return (this.getOrganisation() == castOther.getOrganisation())
-				|| (this.getOrganisation() != null
-						&& castOther.getOrganisation() != null && this
-						.getOrganisation().equals(castOther.getOrganisation()))
+				|| (this.getOrganisation() != null && castOther.getOrganisation() != null && this.getOrganisation()
+						.equals(castOther.getOrganisation()))
 				&& (this.getCountry() == castOther.getCountry())
-				|| (this.getCountry() != null && castOther.getCountry() != null && this
-						.getCountry().equals(castOther.getCountry()));
+				|| (this.getCountry() != null && castOther.getCountry() != null && this.getCountry().equals(
+						castOther.getCountry()));
 	}
 
 	public int hashCode() {
 		int result = 17;
-		result = 37 * result + ((country==null)?3:country.hashCode()); 
-		result = 37 * result + ((organisation==null)?5:organisation.hashCode());
+		result = 37 * result + ((country == null) ? 3 : country.hashCode());
+		result = 37 * result + ((organisation == null) ? 5 : organisation.hashCode());
 		return result;
 	}
 

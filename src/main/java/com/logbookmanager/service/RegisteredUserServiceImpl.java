@@ -15,12 +15,10 @@ import com.logbookmanager.service.support.GenericService;
 
 @Transactional(readOnly = true)
 @TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = false)
-public class RegisteredUserServiceImpl extends GenericService<RegisteredUser, Long> implements
-		RegisteredUserService {
-	
+public class RegisteredUserServiceImpl extends GenericService<RegisteredUser, Long> implements RegisteredUserService {
+
 	private static final long serialVersionUID = 1L;
 
-	
 	@Inject
 	@Qualifier("userRepository")
 	private UserRepository userRepository = null;
@@ -46,16 +44,13 @@ public class RegisteredUserServiceImpl extends GenericService<RegisteredUser, Lo
 		}
 		RegisteredUser existingUser = userRepository.findByNaturalId(registeredUser);
 		if (existingUser == null) { // create the user
-			if(log.isInfoEnabled()){
+			if (log.isInfoEnabled()) {
 				log.info("Creating new user: " + registeredUser.toString());
 			}
 			registeredUser = userRepository.saveUser(registeredUser);
 		} else {
-			throw new RegisteredUserAlreadyExistsException(getResourcesUtil()
-					.getProperty("error.user.already.exists",
-							"user already exists",
-							new Object[] { registeredUser.getUsername() }), existingUser,
-					registeredUser);
+			throw new RegisteredUserAlreadyExistsException(getResourcesUtil().getProperty("error.user.already.exists",
+					"user already exists", new Object[] { registeredUser.getUsername() }), existingUser, registeredUser);
 		}
 		return registeredUser;
 	}

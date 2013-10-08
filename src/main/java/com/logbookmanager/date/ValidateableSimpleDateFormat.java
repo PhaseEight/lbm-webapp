@@ -18,16 +18,13 @@ public class ValidateableSimpleDateFormat extends SimpleDateFormat {
 
 	private String validationRegEx;
 
-	public ValidateableSimpleDateFormat(String pattern, String validationRegEx,
-			boolean validateNow) {
+	public ValidateableSimpleDateFormat(String pattern, String validationRegEx, boolean validateNow) {
 		super(pattern);
 		this.setValidationRegEx(validationRegEx);
 		if (validateNow && !this.isValid()) {
-			throw new RuntimeException(
-					"The provided date pattern "
-							+ this.toPattern()
-							+ " does not validate against the provided validationg regular expression "
-							+ this.getValidationRegEx());
+			throw new RuntimeException("The provided date pattern " + this.toPattern()
+					+ " does not validate against the provided validationg regular expression "
+					+ this.getValidationRegEx());
 		}
 
 	}

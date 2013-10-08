@@ -5,6 +5,6 @@ import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses(LoginAndSecurityIntegrationTests.class)
-public class FacesIntegrationTestSuite{
-	
+public class FacesIntegrationTestSuite {
+
 }

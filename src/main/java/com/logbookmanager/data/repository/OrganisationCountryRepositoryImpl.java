@@ -8,8 +8,7 @@ import com.logbookmanager.data.support.hibernate.HibernateRepository;
 import com.logbookmanager.domain.model.organisation.OrganisationCountry;
 
 @Repository
-public class OrganisationCountryRepositoryImpl extends
-		HibernateRepository<OrganisationCountry, Long> implements
+public class OrganisationCountryRepositoryImpl extends HibernateRepository<OrganisationCountry, Long> implements
 		OrganisationCountryRepository, Serializable {
 
 	private static final long serialVersionUID = 912839123L;

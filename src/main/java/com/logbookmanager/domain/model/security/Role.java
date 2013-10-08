@@ -20,9 +20,7 @@ import com.logbookmanager.domain.support.EntitySupport;
  * @author <a href="mailto:peter.neil@logbookmanager.com">Peter Neil</a>
  * 
  */
-public class Role extends
-		EntitySupport<com.logbookmanager.domain.model.security.Role, Long> implements
-		Serializable {
+public class Role extends EntitySupport<com.logbookmanager.domain.model.security.Role, Long> implements Serializable {
 	private static final long serialVersionUID = 3690197650654049848L;
 
 	@NaturalId
@@ -80,10 +78,11 @@ public class Role extends
 	}
 
 	/**
-	 * @return Returns the registeredUsers. This inverse relation causes exceptions :-(
-	 *         hibernate.set table="sec_user_role" cascade="save-update"
-	 *         lazy="false" inverse="true" hibernate.collection-key
-	 *         column="role_name" hibernate.collection-many-to-many
+	 * @return Returns the registeredUsers. This inverse relation causes
+	 *         exceptions :-( hibernate.set table="sec_user_role"
+	 *         cascade="save-update" lazy="false" inverse="true"
+	 *         hibernate.collection-key column="role_name"
+	 *         hibernate.collection-many-to-many
 	 *         class="com.logbookmanager.domain.model.User" column="username"
 	 */
 	public Set<RegisteredUser> getUsers() {
@@ -100,8 +99,7 @@ public class Role extends
 
 	@Override
 	public boolean equals(Object other) {
-		return (this == other || (other instanceof Role && hashCode() == other
-				.hashCode()));
+		return (this == other || (other instanceof Role && hashCode() == other.hashCode()));
 	}
 
 	@Override
@@ -113,8 +111,7 @@ public class Role extends
 	 */
 	@Override
 	public String toString() {
-		return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
-				.append("name", this.name)
+		return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE).append("name", this.name)
 				.append("description", this.description).toString();
 	}
 

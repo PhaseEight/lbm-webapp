@@ -9,13 +9,14 @@ public class Password extends ValueObjectSupport<Password> {
 	private static final long serialVersionUID = 1L;
 	private String value;
 	private String comparison;
-	
-	/*required by Hibernate*/
-	Password(){}
-	
+
+	/* required by Hibernate */
+	Password() {
+	}
+
 	public Password(String value, String comparison) {
-		Validate.notBlank(value,"error.password.blank");
-		Validate.notBlank(comparison,"error.password.comparison.blank");
+		Validate.notBlank(value, "error.password.blank");
+		Validate.notBlank(comparison, "error.password.comparison.blank");
 		setValue(value);
 		setComparison(comparison);
 	}
@@ -35,5 +36,5 @@ public class Password extends ValueObjectSupport<Password> {
 	protected void setComparison(String comparison) {
 		this.comparison = comparison;
 	}
-	
+
 }

@@ -24,8 +24,7 @@ import com.logbookmanager.service.support.GenericService;
  * @author Peter
  * 
  */
-public class LogbookServiceImpl extends GenericService<Logbook, Long> implements
-		LogbookService {
+public class LogbookServiceImpl extends GenericService<Logbook, Long> implements LogbookService {
 
 	@Inject
 	Logger logger = null;
@@ -40,7 +39,8 @@ public class LogbookServiceImpl extends GenericService<Logbook, Long> implements
 	private LogbookUserRepository logbookUserRepository;
 
 	@Inject
-	public LogbookServiceImpl(@Qualifier("logbookRepository") LogbookRepository logbookRepository, LogbookUserRepository logbookUserRepository) {
+	public LogbookServiceImpl(@Qualifier("logbookRepository") LogbookRepository logbookRepository,
+			LogbookUserRepository logbookUserRepository) {
 		super(logbookRepository);
 		this.logbookUserRepository = logbookUserRepository;
 	}

@@ -7,7 +7,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import com.logbookmanager.domain.support.EntitySupport;
 
 /**
- * Certification 
+ * Certification
  */
 public class Certification extends EntitySupport<Certification, Long> implements java.io.Serializable {
 	private static final long serialVersionUID = 912839123L;
@@ -20,7 +20,6 @@ public class Certification extends EntitySupport<Certification, Long> implements
 	private String commonName;
 
 	private Byte displayCommon;
-
 
 	// Constructors
 
@@ -81,8 +80,9 @@ public class Certification extends EntitySupport<Certification, Long> implements
 		}
 		Certification rhs = (Certification) object;
 		return new EqualsBuilder().append(this.displayCommon, rhs.displayCommon)
-				.append(this.commonName, rhs.commonName).append(this.name, rhs.name).append(this.organisation, rhs.organisation)
-				.append(this.id, rhs.id).append(this.version, rhs.version).isEquals();
+				.append(this.commonName, rhs.commonName).append(this.name, rhs.name)
+				.append(this.organisation, rhs.organisation).append(this.id, rhs.id).append(this.version, rhs.version)
+				.isEquals();
 	}
 
 	/**
@@ -90,8 +90,8 @@ public class Certification extends EntitySupport<Certification, Long> implements
 	 */
 	@Override
 	public int hashCode() {
-		return new HashCodeBuilder(1500570745, -319488509).append(this.displayCommon)
-				.append(this.commonName).append(this.name).append(this.organisation).append(this.id).append(this.version).toHashCode();
+		return new HashCodeBuilder(1500570745, -319488509).append(this.displayCommon).append(this.commonName)
+				.append(this.name).append(this.organisation).append(this.id).append(this.version).toHashCode();
 	}
 
 	/**
@@ -99,9 +99,9 @@ public class Certification extends EntitySupport<Certification, Long> implements
 	 */
 	@Override
 	public String toString() {
-		return new ToStringBuilder(this).append("name", this.name)
-				.append("displayCommon", this.displayCommon).append("organisation", this.organisation).append("id", this.id)
-				.append("version", this.version).append("commonName", this.commonName).toString();
+		return new ToStringBuilder(this).append("name", this.name).append("displayCommon", this.displayCommon)
+				.append("organisation", this.organisation).append("id", this.id).append("version", this.version)
+				.append("commonName", this.commonName).toString();
 	}
 
 }

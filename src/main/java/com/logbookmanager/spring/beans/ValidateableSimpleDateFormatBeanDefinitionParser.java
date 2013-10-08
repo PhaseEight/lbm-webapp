@@ -7,8 +7,7 @@ import org.w3c.dom.Element;
 
 import com.logbookmanager.date.ValidateableSimpleDateFormat;
 
-public class ValidateableSimpleDateFormatBeanDefinitionParser extends
-		AbstractSingleBeanDefinitionParser {
+public class ValidateableSimpleDateFormatBeanDefinitionParser extends AbstractSingleBeanDefinitionParser {
 	protected Class<ValidateableSimpleDateFormat> getBeanClass(Element element) {
 		return ValidateableSimpleDateFormat.class;
 	}
@@ -16,10 +15,8 @@ public class ValidateableSimpleDateFormatBeanDefinitionParser extends
 	protected void doParse(Element element, BeanDefinitionBuilder bean) {
 		// this will never be null since the schema explicitly requires that a
 		// value be supplied
-		if (element == null || !element.hasAttributes()
-				|| !element.hasAttribute("pattern")) {
-			throw new IllegalArgumentException(
-					"Element can not be null and must have a pattern attribute");
+		if (element == null || !element.hasAttributes() || !element.hasAttribute("pattern")) {
+			throw new IllegalArgumentException("Element can not be null and must have a pattern attribute");
 		}
 		String pattern = element.getAttribute("pattern");
 		bean.addConstructorArgValue(pattern);

@@ -42,5 +42,5 @@ public class Title extends ValueObjectSupport<Title> {
 		this.name = null;
 		this.code = null;
 	}
-	
+
 }

@@ -18,7 +18,7 @@ public class ValueObjectSupport<T> extends BaseObject<T> implements ValueObject<
 	public String toString() {
 		return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE, false);
 	}
-	
+
 	@Override
 	public boolean sameValueAs(T other) {
 		return EqualsBuilder.reflectionEquals(this, other, false);
@@ -29,14 +29,14 @@ public class ValueObjectSupport<T> extends BaseObject<T> implements ValueObject<
 		if (object == null) {
 			return false;
 		}
-		
-		if(! (object instanceof ValueObject)) {
+
+		if (!(object instanceof ValueObject)) {
 			return false;
 		}
-		
+
 		@SuppressWarnings("unchecked")
-		T other = (T)object;
-		
+		T other = (T) object;
+
 		return sameValueAs(other);
 	}
 

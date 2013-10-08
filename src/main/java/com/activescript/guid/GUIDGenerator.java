@@ -147,8 +147,7 @@ public class GUIDGenerator {
 			this.midValueUnformated = stringbuilder1.toString();
 			this.seeder.nextInt();
 		} catch (Exception exception) {
-			throw new GUIDException(
-					"error - failure to instantiate GUIDGenerator" + exception);
+			throw new GUIDException("error - failure to instantiate GUIDGenerator" + exception);
 		}
 	}
 

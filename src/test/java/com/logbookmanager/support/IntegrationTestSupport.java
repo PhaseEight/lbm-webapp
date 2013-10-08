@@ -33,7 +33,8 @@ import com.github.springtestdbunit.DbUnitTestExecutionListener;
  * not necessary as this is declared in the
  * AbstractTransactionalJUnit4SpringContextTests
  */
-@ContextConfiguration(name = "servlet", locations = { "file:src/main/webapp/WEB-INF/spring/servlet-context.xml",
+@ContextConfiguration(name = "lbm-test-dispatcher-servlet", locations = {
+		"file:src/main/webapp/WEB-INF/spring/servlet-context.xml",
 		"file:src/main/resources/com/logbookmanager/configuration/spring/app-root.xml"
 
 })

@@ -27,14 +27,11 @@ public class AuthenticationService implements Serializable {
 		logger.info("doLogin");
 
 		try {
-			
-		}
-		catch(Throwable t) {
+
+		} catch (Throwable t) {
 			throw new IncorrectLoginCredentialsException();
 		}
 
-
-		
 		// return the name of the View to be loaded
 		return "loggedloggedIn";
 	}

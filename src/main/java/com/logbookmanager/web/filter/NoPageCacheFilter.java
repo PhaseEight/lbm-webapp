@@ -32,16 +32,15 @@ import org.springframework.stereotype.Service;
 public class NoPageCacheFilter implements Filter {
 
 	@Override
-	public void doFilter(ServletRequest servletRequest,
-			ServletResponse servletResponse, FilterChain filterChain)
+	public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)
 			throws IOException, ServletException {
 		HttpServletRequest request = (HttpServletRequest) servletRequest;
 
 		if (!request.getRequestURI().contains("/javax.faces.resource/")) {
 			HttpServletResponse response = (HttpServletResponse) servletResponse;
 
-			response.setHeader("Cache-Control",
-					"no-cache, no-store, must-revalidate"); // HTTP 1.1.
+			response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP
+																						// 1.1.
 			response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
 			response.setDateHeader("Expires", 0); // Proxies.
 		}

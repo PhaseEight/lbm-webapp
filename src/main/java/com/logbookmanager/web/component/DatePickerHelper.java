@@ -42,8 +42,7 @@ public class DatePickerHelper {
 
 		for (int i = 1; i <= 12; i++) {
 			c.set(MONTH, i - 1);
-			String label = c.getDisplayName(MONTH, LONG,
-					LocaleContextHolder.getLocale());
+			String label = c.getDisplayName(MONTH, LONG, LocaleContextHolder.getLocale());
 			result.add(new SelectItem(normalize(i), label));
 		}
 
@@ -51,8 +50,7 @@ public class DatePickerHelper {
 	}
 
 	public List<SelectItem> getDays(String ccClientId, boolean appendDayOfWeek) {
-		UIInput ccDatepicker = (UIInput) FacesContext.getCurrentInstance()
-				.getViewRoot().findComponent(ccClientId);
+		UIInput ccDatepicker = (UIInput) FacesContext.getCurrentInstance().getViewRoot().findComponent(ccClientId);
 		UIInput year = (UIInput) ccDatepicker.findComponent("year");
 		UIInput month = (UIInput) ccDatepicker.findComponent("month");
 
@@ -75,9 +73,7 @@ public class DatePickerHelper {
 			StringBuilder sb = new StringBuilder();
 			sb.append(day);
 			if (appendDayOfWeek) {
-				sb.append(" ").append(
-						c.getDisplayName(DAY_OF_WEEK, LONG,
-								LocaleContextHolder.getLocale()));
+				sb.append(" ").append(c.getDisplayName(DAY_OF_WEEK, LONG, LocaleContextHolder.getLocale()));
 			}
 			result.add(new SelectItem(day, sb.toString()));
 		}

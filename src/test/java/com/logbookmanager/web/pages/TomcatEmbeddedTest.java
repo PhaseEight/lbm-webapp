@@ -46,7 +46,7 @@ public class TomcatEmbeddedTest {
 	private Tomcat mTomcat;
 	/** The temporary directory in which Tomcat and the app are deployed. */
 	private String mWorkingDir = System.getProperty("java.io.tmpdir");
-	
+
 	private int HTTP_PORT = 8787;
 
 	private String applicationId = "lbm-web";
@@ -88,8 +88,8 @@ public class TomcatEmbeddedTest {
 			driver.navigate().to("http://localhost:" + HTTP_PORT + "/web");
 
 			log.debug("make sure that there was redirect to /web/app/welcome");
-			assertTrue("request to /web must redirect to /web/app/welcome; currentUrl is: " + driver.getCurrentUrl(), driver
-					.getCurrentUrl().equals("http://localhost:" + HTTP_PORT + "/web/app/welcome"));
+			assertTrue("request to /web must redirect to /web/app/welcome; currentUrl is: " + driver.getCurrentUrl(),
+					driver.getCurrentUrl().equals("http://localhost:" + HTTP_PORT + "/web/app/welcome"));
 
 			log.debug("Finding the login controls");
 			WebElement topLoginButton = driver.findElement(By.name("topLoginLogoutForm:topLoginButton"));
@@ -109,14 +109,15 @@ public class TomcatEmbeddedTest {
 			loginFormLoginButton.submit();
 
 			log.debug("wait for the main page to load");
-			assertTrue("Main page must be loaded", (new WebDriverWait(driver, 10)).until(new ExpectedCondition<Boolean>() {
-				public Boolean apply(WebDriver d) {
-					log.debug("Page title is: " + d.getTitle());
-					log.debug("Page current URL: " + d.getCurrentUrl());
-					return ((d.getTitle().toLowerCase().startsWith("dashboard")) && d.getCurrentUrl().equalsIgnoreCase(
-							"http://localhost:" + HTTP_PORT + "/web/app/main"));
-				}
-			}));
+			assertTrue("Main page must be loaded",
+					(new WebDriverWait(driver, 10)).until(new ExpectedCondition<Boolean>() {
+						public Boolean apply(WebDriver d) {
+							log.debug("Page title is: " + d.getTitle());
+							log.debug("Page current URL: " + d.getCurrentUrl());
+							return ((d.getTitle().toLowerCase().startsWith("dashboard")) && d.getCurrentUrl()
+									.equalsIgnoreCase("http://localhost:" + HTTP_PORT + "/web/app/main"));
+						}
+					}));
 
 			// check that the logout button is visible
 			log.debug("checking logout button is available");
@@ -161,15 +162,14 @@ public class TomcatEmbeddedTest {
 		war.merge(
 				ShrinkWrap.create(GenericArchive.class).as(ExplodedImporter.class).importDirectory(WEBAPP_SRC)
 						.as(GenericArchive.class), "/", Filters.includeAll());
-		
+
 		war.merge(
 				ShrinkWrap.create(GenericArchive.class).as(ExplodedImporter.class).importDirectory(APP_RESOURCES)
 						.as(GenericArchive.class), "/WEB-INF/classes", Filters.includeAll());
-		
-		
-		war.setWebXML(new File(WEBAPP_SRC, "WEB-INF/web.xml"))
-				.addPackage("com.logbookmanager")
-				.addClass(org.springframework.util.CachingMapDecorator.class).addClass(org.jodah.typetools.TypeResolver.class)
+
+		war.setWebXML(new File(WEBAPP_SRC, "WEB-INF/web.xml")).addPackage("com.logbookmanager")
+				.addClass(org.springframework.util.CachingMapDecorator.class)
+				.addClass(org.jodah.typetools.TypeResolver.class)
 				.addAsWebInfResource(new File(WEBAPP_SRC, "WEB-INF/faces-config.xml"))
 				.addAsWebResource(new File(WEBAPP_SRC, "index.htm"));
 

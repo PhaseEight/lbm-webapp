@@ -11,22 +11,23 @@ public class OrganisationDetails extends ValueObjectSupport<OrganisationDetails>
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	private Address address;
 	private EmailAddress email;
 	private PhoneNumber landline;
 	private PhoneNumber fax;
 
 	/** this is required by Hibernate **/
-	OrganisationDetails (){
-		
+	OrganisationDetails() {
+
 	}
 
-	public OrganisationDetails(Address address, EmailAddress email, WebSite website ) {
-		this(address, email, null, null, website );
+	public OrganisationDetails(Address address, EmailAddress email, WebSite website) {
+		this(address, email, null, null, website);
 	}
-	
-	public OrganisationDetails(Address address, EmailAddress email, PhoneNumber phoneNumber, PhoneNumber fax, WebSite website ) {
+
+	public OrganisationDetails(Address address, EmailAddress email, PhoneNumber phoneNumber, PhoneNumber fax,
+			WebSite website) {
 		setAddress(address);
 		setEmail(email);
 	}
@@ -63,5 +64,4 @@ public class OrganisationDetails extends ValueObjectSupport<OrganisationDetails>
 		this.fax = fax;
 	}
 
-	
 }

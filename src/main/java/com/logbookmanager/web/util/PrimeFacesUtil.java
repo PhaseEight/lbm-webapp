@@ -15,8 +15,7 @@ public class PrimeFacesUtil {
 	 */
 	public static void updateSearchResultsRegion(String text) {
 		if (RequestContext.getCurrentInstance() != null) {
-			RequestContext.getCurrentInstance().execute(
-					"APP.updateSearchResultsRegion(\"" + text + "\")");
+			RequestContext.getCurrentInstance().execute("APP.updateSearchResultsRegion(\"" + text + "\")");
 		}
 	}
 

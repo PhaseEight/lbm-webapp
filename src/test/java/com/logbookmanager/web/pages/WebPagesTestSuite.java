@@ -5,6 +5,6 @@ import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses(WelcomePageTest.class)
-public class WebPagesTestSuite{
-	
+public class WebPagesTestSuite {
+
 }

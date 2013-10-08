@@ -99,8 +99,10 @@ public class UserServiceIntegrationTests extends IntegrationTestSupport {
 		RegisteredUser exampleUser = new RegisteredUser(new UserName("peterneil"), false, true);
 		registeredUser = registeredUserService.findUser(exampleUser);
 		assertNotNull("user expected in database: ", registeredUser);
-		assertTrue("RegisteredUser is not deleted (i.e. user.isDeleted: " + registeredUser.isDeleted(), registeredUser.isDeleted());
-		assertFalse("RegisteredUser is still active (i.e. user.isActive: " + registeredUser.isActive(), registeredUser.isActive());
+		assertTrue("RegisteredUser is not deleted (i.e. user.isDeleted: " + registeredUser.isDeleted(),
+				registeredUser.isDeleted());
+		assertFalse("RegisteredUser is still active (i.e. user.isActive: " + registeredUser.isActive(),
+				registeredUser.isActive());
 	}
 
 	@Test
@@ -108,7 +110,8 @@ public class UserServiceIntegrationTests extends IntegrationTestSupport {
 	@Transactional
 	public void findAllUsers() {
 		List<RegisteredUser> registeredUsers = (List<RegisteredUser>) registeredUserService.findAll();
-		Assert.assertTrue("there should be at least 6 security users: users.size: " + registeredUsers.size(), registeredUsers.size() >= 6);
+		Assert.assertTrue("there should be at least 6 security users: users.size: " + registeredUsers.size(),
+				registeredUsers.size() >= 6);
 	}
 
 	@Test(expected = NullPointerException.class)
@@ -126,20 +129,23 @@ public class UserServiceIntegrationTests extends IntegrationTestSupport {
 
 	@Test
 	public void addUserSucceeds() throws Throwable {
-		
-		BCryptPasswordEncoder passwordEncoder = (BCryptPasswordEncoder)webApplicationContext.getBean("bcryptEncoder");
-		
+
+		BCryptPasswordEncoder passwordEncoder = (BCryptPasswordEncoder) webApplicationContext.getBean("bcryptEncoder");
+
 		HashSet<Role> roles = new HashSet<Role>();
 		Role role = roleService.findRole("LOGBOOKUSER");
 		assertNotNull("No logbookuser role found", role);
 		roles.add(role);
 
 		UserDetails userDetails = new UserDetails("thenewuserfirstname", "thenewusersurname",
-				"thenewuser@phaseeightltd.co.uk", "01543898462", "07908708064", "http://www.phaseeightltd.co.uk", "en_GB");
-		RegisteredUser registeredUser = new RegisteredUser(new UserName("thenewuser_username"),
-				new Password(passwordEncoder.encode("thenewuser_password"), passwordEncoder.encode("thenewuser_password")), null, userDetails, roles);
+				"thenewuser@phaseeightltd.co.uk", "01543898462", "07908708064", "http://www.phaseeightltd.co.uk",
+				"en_GB");
+		RegisteredUser registeredUser = new RegisteredUser(new UserName("thenewuser_username"), new Password(
+				passwordEncoder.encode("thenewuser_password"), passwordEncoder.encode("thenewuser_password")), null,
+				userDetails, roles);
 
-		registeredUser.setlastUpdateTimeStamp(new Timestamp(Calendar.getInstance(LocaleContextHolder.getLocale()).getTimeInMillis()));
+		registeredUser.setlastUpdateTimeStamp(new Timestamp(Calendar.getInstance(LocaleContextHolder.getLocale())
+				.getTimeInMillis()));
 
 		RegisteredUser newUser = addUser(registeredUser);
 
@@ -165,24 +171,25 @@ public class UserServiceIntegrationTests extends IntegrationTestSupport {
 
 		String sql = "select * from SEC_USER where username=?";
 
-		RegisteredUser registeredUser = (RegisteredUser) jdbcTemplate.queryForObject(sql, new Object[] { "peterneil" }, new RowMapper<RegisteredUser>() {
-			public RegisteredUser mapRow(ResultSet rs, int rowNum) throws SQLException {
+		RegisteredUser registeredUser = (RegisteredUser) jdbcTemplate.queryForObject(sql, new Object[] { "peterneil" },
+				new RowMapper<RegisteredUser>() {
+					public RegisteredUser mapRow(ResultSet rs, int rowNum) throws SQLException {
 
-				PasswordHint passwordHint = new PasswordHint(rs.getString("password_hint_question"), rs
-						.getString("password_hint_answer"));
-				Password password = new Password(rs.getString("password"), rs.getString("password"));
-				Set<Role> roles = Collections.emptySet();
+						PasswordHint passwordHint = new PasswordHint(rs.getString("password_hint_question"), rs
+								.getString("password_hint_answer"));
+						Password password = new Password(rs.getString("password"), rs.getString("password"));
+						Set<Role> roles = Collections.emptySet();
 
-				RegisteredUser u = new RegisteredUser(new UserName(rs.getString("username")), password, passwordHint, null, roles, rs
-						.getBoolean("active"), rs.getBoolean("deleted"));
+						RegisteredUser u = new RegisteredUser(new UserName(rs.getString("username")), password,
+								passwordHint, null, roles, rs.getBoolean("active"), rs.getBoolean("deleted"));
 
-				u.setId(rs.getLong("id"));
-				u.setVersion(rs.getLong("version"));
-				u.setlastUpdateTimeStamp(rs.getTimestamp("last_update_date"));
+						u.setId(rs.getLong("id"));
+						u.setVersion(rs.getLong("version"));
+						u.setlastUpdateTimeStamp(rs.getTimestamp("last_update_date"));
 
-				return u;
-			}
-		});
+						return u;
+					}
+				});
 		assertNotNull("RegisteredUser should exist", registeredUser);
 		assertFalse("RegisteredUser should NOT be deleted (i.e. deleted: false)", registeredUser.isDeleted());
 		assertTrue("RegisteredUser should be active (i.e. active: true)", registeredUser.isActive());

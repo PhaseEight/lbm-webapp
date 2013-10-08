@@ -16,7 +16,6 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.junit.Test;
 import org.primefaces.event.DashboardReorderEvent;
 
-import com.logbookmanager.support.MockFacesContext;
 import com.logbookmanager.web.component.DashboardBean;
 import com.logbookmanager.web.faces.FacesContextBroker;
 
@@ -24,12 +23,12 @@ public class DashboardBeanTest {
 
 	@Test
 	public void testDashboardBean() {
-		FacesContext context = MockFacesContext.mockFacesContext();
+		FacesContext context = mock(FacesContext.class);
 		Map<String, Object> session = new HashMap<String, Object>();
 		ExternalContext ext = mock(ExternalContext.class);
 		when(ext.getSessionMap()).thenReturn(session);
 		when(context.getExternalContext()).thenReturn(ext);
-		
+
 		FacesContextBroker broker = mock(FacesContextBroker.class);
 		when(broker.getContext()).thenReturn(context);
 
@@ -44,25 +43,22 @@ public class DashboardBeanTest {
 
 		FacesMessage message = new FacesMessage() {
 			private static final long serialVersionUID = 1L;
+
 			@Override
 			public boolean equals(Object o) {
-				FacesMessage fm = (FacesMessage)o;
+				FacesMessage fm = (FacesMessage) o;
 				EqualsBuilder eb = new EqualsBuilder();
-				return eb
-				.append(this.getDetail(), fm.getDetail())
-				.append(this.getSeverity(), fm.getSeverity())
-				.append(this.getSummary(), fm.getSummary())
-				.isEquals();
+				return eb.append(this.getDetail(), fm.getDetail()).append(this.getSeverity(), fm.getSeverity())
+						.append(this.getSummary(), fm.getSummary()).isEquals();
 			}
 		};
 		message.setSeverity(FacesMessage.SEVERITY_INFO);
 		message.setSummary("Moved: " + event.getSenderColumnIndex());
 		message.setDetail("Item index: 1, Column index: 1, Sender index: 1; movedWidget:topDiveSites");
-		
+
 		verify(context, atLeastOnce()).addMessage(null, message);
-		
+
 		if (context != null)
 			context.release();
 	}
 }
-

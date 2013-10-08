@@ -15,7 +15,7 @@ public class TextView extends AbstractUrlBasedView {
 
 	protected TextView(String url) {
 		super(url);
-		//TODO: Load the body from the File using views 
+		// TODO: Load the body from the File using views
 	}
 
 	public TextView() {
@@ -58,8 +58,8 @@ public class TextView extends AbstractUrlBasedView {
 			writer.write("]");
 		}
 		writer.write("<<Request Attributes>>");
-		
-		if(body != null) {
+
+		if (body != null) {
 			writer.write("<<Body>>");
 			writer.write(body);
 			writer.write("<</Body>>");

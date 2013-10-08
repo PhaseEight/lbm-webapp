@@ -1,8 +1,8 @@
 package com.logbookmanager.web.authentication;
 
-public class IncorrectLoginCredentialsException extends Exception{
-	 
-    private static final long serialVersionUID = 1L;
+public class IncorrectLoginCredentialsException extends Exception {
+
+	private static final long serialVersionUID = 1L;
 
 	@Override
 	public String getMessage() {
@@ -14,7 +14,5 @@ public class IncorrectLoginCredentialsException extends Exception{
 		// TODO let there be locale
 		return super.getLocalizedMessage();
 	}
-    
-    
- 
+
 }

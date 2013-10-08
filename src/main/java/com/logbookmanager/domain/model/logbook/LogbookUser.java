@@ -13,10 +13,9 @@ import com.logbookmanager.domain.support.EntitySupport;
 import com.logbookmanager.domain.support.PersonalDetails;
 
 /**
- * LogbookUser 
+ * LogbookUser
  */
-public class LogbookUser extends EntitySupport<LogbookUser, Long> implements
-		java.io.Serializable {
+public class LogbookUser extends EntitySupport<LogbookUser, Long> implements java.io.Serializable {
 
 	// Fields
 	private static final long serialVersionUID = 912839123L;
@@ -27,7 +26,7 @@ public class LogbookUser extends EntitySupport<LogbookUser, Long> implements
 	private Set<Certification> certifications = new LinkedHashSet<Certification>();
 
 	private Set<LogbookUserLogbook> logbookUserLogbooks = new LinkedHashSet<LogbookUserLogbook>();
-	
+
 	private PersonalDetails personalDetails;
 
 	// Constructors
@@ -42,8 +41,7 @@ public class LogbookUser extends EntitySupport<LogbookUser, Long> implements
 		return this.certifications;
 	}
 
-	public void setCertifications(
-			Set<Certification> certifications) {
+	public void setCertifications(Set<Certification> certifications) {
 		this.certifications = certifications;
 	}
 
@@ -70,7 +68,7 @@ public class LogbookUser extends EntitySupport<LogbookUser, Long> implements
 	public Certification addCertification(Certification certification) {
 		if (!certifications.contains(certification)) {
 			certifications.add(certification);
-		} 
+		}
 		return certification;
 	}
 
@@ -86,11 +84,8 @@ public class LogbookUser extends EntitySupport<LogbookUser, Long> implements
 	 * @see java.lang.Object#toString()
 	 */
 	public String toString() {
-		return new ToStringBuilder(this)
-				.append("\ncertifications", this.certifications)
-				.append("\nid", this.id)
-				.append("\nlogbookUserLogbooks", this.logbookUserLogbooks)
-				.append("\nversion", this.version)
+		return new ToStringBuilder(this).append("\ncertifications", this.certifications).append("\nid", this.id)
+				.append("\nlogbookUserLogbooks", this.logbookUserLogbooks).append("\nversion", this.version)
 				.append("\nuser", this.registeredUser).toString();
 	}
 
@@ -117,7 +112,6 @@ public class LogbookUser extends EntitySupport<LogbookUser, Long> implements
 	 * @see java.lang.Object#hashCode()
 	 */
 	public int hashCode() {
-		return new HashCodeBuilder(1471500779, -1755482979)
-				.append(this.registeredUser).toHashCode();
+		return new HashCodeBuilder(1471500779, -1755482979).append(this.registeredUser).toHashCode();
 	}
 }

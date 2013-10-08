@@ -79,10 +79,8 @@ public class LogbookPage extends EntitySupport<LogbookPage, Long> implements jav
 	 */
 	@Override
 	public int hashCode() {
-		return new HashCodeBuilder(-1573721405, 1508961587)
-				.append(this.displayOrder).append(this.logbook).
-				append(this.name)
-				.append(this.id).append(this.version).toHashCode();
+		return new HashCodeBuilder(-1573721405, 1508961587).append(this.displayOrder).append(this.logbook)
+				.append(this.name).append(this.id).append(this.version).toHashCode();
 	}
 
 	/**
@@ -90,9 +88,9 @@ public class LogbookPage extends EntitySupport<LogbookPage, Long> implements jav
 	 */
 	@Override
 	public String toString() {
-		return new ToStringBuilder(this).append("name", this.name).append("id", this.id).append("version", this.version)
-				.append("displayOrder", this.displayOrder).append("logbook", this.logbook)
-				.toString();
+		return new ToStringBuilder(this).append("name", this.name).append("id", this.id)
+				.append("version", this.version).append("displayOrder", this.displayOrder)
+				.append("logbook", this.logbook).toString();
 	}
 
 }

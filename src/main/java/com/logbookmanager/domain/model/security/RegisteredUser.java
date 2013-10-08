@@ -4,8 +4,6 @@ package com.logbookmanager.domain.model.security;
  * protected Logger log;
  * this.log = LoggerFactory.getLogger(getClass());
  */
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import java.io.Serializable;
 import java.util.Set;
 
@@ -13,6 +11,8 @@ import org.apache.commons.lang3.Validate;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import org.hibernate.annotations.NaturalId;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.logbookmanager.annotations.DeleteType;
 import com.logbookmanager.annotations.DeletionType;
@@ -37,10 +37,12 @@ import com.logbookmanager.domain.support.UserName;
  */
 /*
  * @Entity
+ * 
  * @Table(name = "RegisteredUser")
-*/
+ */
 @DeleteType(type = DeletionType.LogicalDelete)
-public class RegisteredUser extends EntitySupport<com.logbookmanager.domain.model.security.RegisteredUser, Long> implements Serializable {
+public class RegisteredUser extends EntitySupport<com.logbookmanager.domain.model.security.RegisteredUser, Long>
+		implements Serializable {
 
 	private static final long serialVersionUID = 912839123L;
 
@@ -84,18 +86,19 @@ public class RegisteredUser extends EntitySupport<com.logbookmanager.domain.mode
 	 * @param userDetails
 	 * @param roles
 	 */
-	public RegisteredUser(UserName username, Password password, PasswordHint passwordHint, UserDetails userDetails, Set<Role> roles) {
+	public RegisteredUser(UserName username, Password password, PasswordHint passwordHint, UserDetails userDetails,
+			Set<Role> roles) {
 		this(username, password, passwordHint, userDetails, roles, true, false);
 	}
 
-	public RegisteredUser(UserName username, Password password, PasswordHint passwordHint, UserDetails userDetails, Set<Role> roles,
-			Boolean active, Boolean deleted) {
+	public RegisteredUser(UserName username, Password password, PasswordHint passwordHint, UserDetails userDetails,
+			Set<Role> roles, Boolean active, Boolean deleted) {
 		this(username, password, passwordHint, userDetails, active, deleted);
 		this.setRoles(roles);
 	}
 
-	private RegisteredUser(UserName username, Password password, PasswordHint passwordHint, UserDetails userDetails, Boolean active,
-			Boolean deleted) {
+	private RegisteredUser(UserName username, Password password, PasswordHint passwordHint, UserDetails userDetails,
+			Boolean active, Boolean deleted) {
 		Validate.notNull(username, "error.username.null");
 		Validate.notNull(password, "error.password.null");
 
@@ -191,7 +194,8 @@ public class RegisteredUser extends EntitySupport<com.logbookmanager.domain.mode
 
 		final RegisteredUser registeredUser = (RegisteredUser) o;
 
-		if (getUsername() != null ? !getUsername().equals(registeredUser.getUsername()) : registeredUser.getUsername() != null) {
+		if (getUsername() != null ? !getUsername().equals(registeredUser.getUsername())
+				: registeredUser.getUsername() != null) {
 			return false;
 		} else {
 

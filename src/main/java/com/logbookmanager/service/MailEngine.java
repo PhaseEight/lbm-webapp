@@ -4,15 +4,14 @@ package com.logbookmanager.service;
  * protected Logger log;
  * this.log = LoggerFactory.getLogger(getClass());
  */
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.io.Serializable;
 import java.util.Map;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.mail.MailException;
 import org.springframework.mail.MailSender;
@@ -46,8 +45,7 @@ public class MailEngine {
 	 * @param templateName
 	 * @param model
 	 */
-	public void sendMessage(SimpleMailMessage msg, String templateName,
-			Map<String, Serializable> model) {
+	public void sendMessage(SimpleMailMessage msg, String templateName, Map<String, Serializable> model) {
 		String result = null;
 		msg.setText(result);
 		send(msg);
@@ -78,11 +76,9 @@ public class MailEngine {
 	 * @throws MessagingException
 	 * @author Ben Gill
 	 */
-	public void sendMessage(String[] emailAddresses,
-			ClassPathResource resource, String bodyText, String subject,
+	public void sendMessage(String[] emailAddresses, ClassPathResource resource, String bodyText, String subject,
 			String attachmentName) throws MessagingException {
-		MimeMessage message = ((JavaMailSenderImpl) mailSender)
-				.createMimeMessage();
+		MimeMessage message = ((JavaMailSenderImpl) mailSender).createMimeMessage();
 
 		// use the true flag to indicate you need a multipart mailMessage
 		MimeMessageHelper helper = new MimeMessageHelper(message, true);

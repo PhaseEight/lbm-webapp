@@ -137,47 +137,42 @@ public class Address extends ValueObjectSupport<Address> {
 	}
 
 	/**
-	@Override
-	public boolean equals(Object object) {
-
-		if (!(object instanceof Address)) {
-			return false;
-		}
-
-		Address rhs = (Address) object;
-
-		return new EqualsBuilder().append(this.getPostCode(), rhs.getPostCode()).append(this.getCountry(), rhs.getCountry())
-				.append(this.getNameOrNumber(), rhs.getNameOrNumber()).append(this.getProvince(), rhs.getProvince())
-				.append(this.getCity(), rhs.getCity()).isEquals();
-	}
-	 */
-	
-	/**
-	@Override
-	public int hashCode() {
-		return new HashCodeBuilder(-426830461, 631494429).append(this.getPostCode()).append(this.getCountry())
-				.append(this.getNameOrNumber()).append(this.getProvince()).append(this.getCity()).toHashCode();
-	}
+	 * @Override public boolean equals(Object object) {
+	 * 
+	 *           if (!(object instanceof Address)) { return false; }
+	 * 
+	 *           Address rhs = (Address) object;
+	 * 
+	 *           return new EqualsBuilder().append(this.getPostCode(),
+	 *           rhs.getPostCode()).append(this.getCountry(), rhs.getCountry())
+	 *           .append(this.getNameOrNumber(),
+	 *           rhs.getNameOrNumber()).append(this.getProvince(),
+	 *           rhs.getProvince()) .append(this.getCity(),
+	 *           rhs.getCity()).isEquals(); }
 	 */
 
 	/**
-	@Override
-	public String toString() {
-		return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
-				.append("country", (this.getCountry() != null) ? this.getCountry().toString() : "[...]")
-				.append("address", (this.getNameOrNumber() != null) ? this.getNameOrNumber() : "[...]")
-				.append("province", this.getProvince()).append("postCode", this.getPostCode()).append("city", this.getCity())
-				.toString();
-	}
+	 * @Override public int hashCode() { return new HashCodeBuilder(-426830461,
+	 *           631494429).append(this.getPostCode()).append(this.getCountry())
+	 *           .append(this.getNameOrNumber()).append(this.getProvince()).
+	 *           append(this.getCity()).toHashCode(); }
 	 */
 
-/*	
- * @Override
-	public boolean sameValueAs(Address other) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-*/
+	/**
+	 * @Override public String toString() { return new ToStringBuilder(this,
+	 *           ToStringStyle.MULTI_LINE_STYLE) .append("country",
+	 *           (this.getCountry() != null) ? this.getCountry().toString() :
+	 *           "[...]") .append("address", (this.getNameOrNumber() != null) ?
+	 *           this.getNameOrNumber() : "[...]") .append("province",
+	 *           this.getProvince()).append("postCode",
+	 *           this.getPostCode()).append("city", this.getCity()) .toString();
+	 *           }
+	 */
+
+	/*
+	 * @Override public boolean sameValueAs(Address other) { // TODO
+	 * Auto-generated method stub return false; }
+	 */
 	protected String getNameOrNumber() {
 		return nameOrNumber;
 	}

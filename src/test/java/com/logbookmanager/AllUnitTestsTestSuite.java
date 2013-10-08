@@ -8,7 +8,7 @@ import com.logbookmanager.util.DateBeanTests;
 import com.logbookmanager.util.StringValidatorTests;
 
 @RunWith(Suite.class)
-@Suite.SuiteClasses({ DateBeanTests.class, StringValidatorTests.class, DomainSupportTestSuite.class})
+@Suite.SuiteClasses({ DateBeanTests.class, StringValidatorTests.class, DomainSupportTestSuite.class })
 public class AllUnitTestsTestSuite {
 
 }

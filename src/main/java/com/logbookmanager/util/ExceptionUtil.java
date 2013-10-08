@@ -7,14 +7,12 @@ package com.logbookmanager.util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
 //TODO: use this to create an advice for ObjectDeleted type exceptions
 public class ExceptionUtil {
 
 	protected static final Logger log = LoggerFactory.getLogger(ExceptionUtil.class.getName());
 
-	public static Throwable retrieveCause(Throwable t, Class<?>[] searchForAny)
-			throws Exception {
+	public static Throwable retrieveCause(Throwable t, Class<?>[] searchForAny) throws Exception {
 		// protect from a null
 		if (t == null) {
 			return null;
@@ -39,8 +37,7 @@ public class ExceptionUtil {
 		return null;
 	}
 
-	public static Throwable retrieveCause(Throwable t, Class<?> searchFor)
-			throws Exception {
+	public static Throwable retrieveCause(Throwable t, Class<?> searchFor) throws Exception {
 		Throwable e2 = t.getCause();
 		while (e2 != null) {
 			if (e2.getClass().equals(searchFor)) {

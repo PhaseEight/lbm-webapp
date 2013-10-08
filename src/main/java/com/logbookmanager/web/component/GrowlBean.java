@@ -32,9 +32,7 @@ public class GrowlBean implements Serializable {
 	public void save(ActionEvent actionEvent) {
 		FacesContext context = FacesContext.getCurrentInstance();
 
-		context.addMessage(null,
-				new FacesMessage("Successful", "Hello " + text));
-		context.addMessage(null, new FacesMessage("Second Message",
-				"Additional Info Here..."));
+		context.addMessage(null, new FacesMessage("Successful", "Hello " + text));
+		context.addMessage(null, new FacesMessage("Second Message", "Additional Info Here..."));
 	}
 }

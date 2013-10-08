@@ -17,5 +17,5 @@ public interface Entity<T, ID extends Serializable> {
 	boolean isIdSet();
 
 	public boolean sameIdentityAs(T other);
-	
+
 }

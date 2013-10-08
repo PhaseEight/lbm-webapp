@@ -22,15 +22,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping(value = "/admin/user")
 public class CreateUserController {
 
-	private static final Logger logger = LoggerFactory
-			.getLogger(CreateUserController.class.getName());
+	private static final Logger logger = LoggerFactory.getLogger(CreateUserController.class.getName());
 
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		dateFormat.setLenient(false);
-		binder.registerCustomEditor(Date.class, new CustomDateEditor(
-				dateFormat, false));
+		binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
 	}
 
 	/**
@@ -41,8 +39,7 @@ public class CreateUserController {
 		logger.info("Create a new {}.", "RegisteredUser");
 
 		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG,
-				DateFormat.LONG, locale);
+		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
 
 		String formattedDate = dateFormat.format(date);
 

@@ -8,12 +8,12 @@ import com.logbookmanager.domain.support.EntitySupport;
 
 /**
  * 
- * A logbook user logbook is linked to the loggable activity in which a logbook user participates e.g. scuba diving
+ * A logbook user logbook is linked to the loggable activity in which a logbook
+ * user participates e.g. scuba diving
  * 
- * LogbookUserLogbook 
+ * LogbookUserLogbook
  */
-public class LogbookUserLogbook extends EntitySupport<LogbookUserLogbook, Long> implements
-		java.io.Serializable {
+public class LogbookUserLogbook extends EntitySupport<LogbookUserLogbook, Long> implements java.io.Serializable {
 	private static final long serialVersionUID = 912839123L;
 
 	// Fields
@@ -71,12 +71,9 @@ public class LogbookUserLogbook extends EntitySupport<LogbookUserLogbook, Long> 
 			return false;
 		}
 		LogbookUserLogbook rhs = (LogbookUserLogbook) object;
-		return new EqualsBuilder()
-				.append(this.logbook.getId(), rhs.logbook.getId())
-				.append(this.id, rhs.id)
-				.append(this.logbookUser.getId(), rhs.logbookUser.getId())
-				.append(this.name, rhs.name).append(this.version, rhs.version)
-				.isEquals();
+		return new EqualsBuilder().append(this.logbook.getId(), rhs.logbook.getId()).append(this.id, rhs.id)
+				.append(this.logbookUser.getId(), rhs.logbookUser.getId()).append(this.name, rhs.name)
+				.append(this.version, rhs.version).isEquals();
 	}
 
 	/**
@@ -84,9 +81,8 @@ public class LogbookUserLogbook extends EntitySupport<LogbookUserLogbook, Long> 
 	 */
 	@Override
 	public int hashCode() {
-		return new HashCodeBuilder(-94869041, 2116460323)
-				.append((logbook==null)?5:this.logbook.getId()).append(this.id)
-				.append((logbookUser==null)?5:this.logbookUser.getId()).append(this.name)
+		return new HashCodeBuilder(-94869041, 2116460323).append((logbook == null) ? 5 : this.logbook.getId())
+				.append(this.id).append((logbookUser == null) ? 5 : this.logbookUser.getId()).append(this.name)
 				.append(this.version).toHashCode();
 	}
 
@@ -95,11 +91,10 @@ public class LogbookUserLogbook extends EntitySupport<LogbookUserLogbook, Long> 
 	 */
 	@Override
 	public String toString() {
-		return new ToStringBuilder(this).append("name", this.name)
-				.append("version", this.version)
-				.append("LogbookUserId", (logbookUser==null)?"[null]":this.logbookUser.getId())
-				.append("logbookId", (logbook==null)?"[null]":this.logbook.getId())
-				.append("id", this.id).toString();
+		return new ToStringBuilder(this).append("name", this.name).append("version", this.version)
+				.append("LogbookUserId", (logbookUser == null) ? "[null]" : this.logbookUser.getId())
+				.append("logbookId", (logbook == null) ? "[null]" : this.logbook.getId()).append("id", this.id)
+				.toString();
 	}
 
 }

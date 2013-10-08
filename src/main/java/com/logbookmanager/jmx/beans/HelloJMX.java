@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 public class HelloJMX {
 
 	String message = null;
- 
+
 	@ManagedAttribute(description = "get the message")
 	public String getMessage() {
 
