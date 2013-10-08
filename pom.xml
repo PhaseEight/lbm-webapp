@@ -18,12 +18,12 @@
 		<springframework-version>4.0.0.BUILD-SNAPSHOT</springframework-version>
 		<spring-security-version>3.2.0.CI-SNAPSHOT</spring-security-version>
 		<spring-security-javaconfig-version>1.0.0.M1</spring-security-javaconfig-version>
-		<spring-faces-version>2.4.0.M1</spring-faces-version>
+
 		<!-- Webflow version 2.4.0.M1 -->
-		<!-- <spring-webflow-version>2.4.0.M1</spring-webflow-version> -->
 		<!-- Webflow version 2.4.0.BUILD-SNAPSHOT -->
-		<spring-webflow-version>2.4.0.M1</spring-webflow-version>
-		<spring-webflow-binding-version>2.4.0.M1</spring-webflow-binding-version>
+		<spring-faces-version>2.4.0.BUILD-SNAPSHOT</spring-faces-version>
+		<spring-webflow-version>2.4.0.BUILD-SNAPSHOT</spring-webflow-version>
+		<spring-webflow-binding-version>2.4.0.BUILD-SNAPSHOT</spring-webflow-binding-version>
 		<myfaces-test20-version>1.0.4</myfaces-test20-version>
 		<cloudfoundry-runtime-version>0.8.4</cloudfoundry-runtime-version>
 		<primefaces-version>4.0.RC1</primefaces-version>
@@ -281,22 +281,6 @@
 			<artifactId>spring-faces</artifactId>
 			<scope>compile</scope>
 		</dependency>
-
-		<dependency>
-			<groupId>javax.portlet</groupId>
-			<artifactId>portlet-api</artifactId>
-			<scope>test</scope>
-			<version>2.0</version>
-		</dependency>
-
-
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-webmvc-portlet</artifactId>
-			<scope>test</scope>
-			<version>${springframework-version}</version>
-		</dependency>
-
 		<dependency>
 			<groupId>org.apache.myfaces.core</groupId>
 			<artifactId>myfaces-impl</artifactId>
@@ -308,13 +292,6 @@
 					<groupId>org.apache.myfaces.core</groupId>
 				</exclusion>
 			</exclusions>
-		</dependency>
-		
-		<dependency>
-			<groupId>org.easymock</groupId>
-			<artifactId>easymock</artifactId>
-			<scope>test</scope>
-			<version>3.2</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
