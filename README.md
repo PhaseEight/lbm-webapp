@@ -1,11 +1,11 @@
 #lbm-webapp
-==========
+
 
 Logbook Manager Web App
 
 
 ##Setup
-===
+
 create a workspace directory e.g.
 
     open Git shell
@@ -13,12 +13,20 @@ create a workspace directory e.g.
     md logbookmanger-web
     cd logbookmanger-web
 
-clone this repository with all Branches
+###clone this repository with all Branches
 
     git clone -o github https://github.com/pedroneil/lbm-webapp.git lbm-webapp
 
+###clone spring-webflow
 
-pulling/pushing from/to guidelines using remote/github repository:
+	change to your workspace
+	cd D:\Development\GitHub\logbookmanager-web
+	git clone git://github.com/SpringSource/spring-webflow.git spring-webflow
+	
+
+	
+
+##pulling/pushing from/to guidelines using remote/github repository:
 
     git stash - to make sure your changes are stash and your copy is reverted to the last commit that is in-sync with the remote.
     git pull - pull changes from remote
@@ -28,12 +36,12 @@ pulling/pushing from/to guidelines using remote/github repository:
     git push - to push your changes to remote.
 
 
-### Configuration
-===
+## Configuration
 
 Set jsf ProjectStage
 
-    @see javax.faces.application.ProjectStage for valid ProjectStatge values
+see **javax.faces.application.ProjectStage** for valid ProjectStatge values    
+	
     Development,
     UnitTest,
     SystemTest,
