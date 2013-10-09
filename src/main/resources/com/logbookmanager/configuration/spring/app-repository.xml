@@ -65,10 +65,10 @@ http://www.springframework.org/schema/util http://www.springframework.org/schema
 	<bean id="countryRepository" class="com.logbookmanager.data.repository.CountryRepositoryImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	<bean id="logbookRepository" class="com.logbookmanager.data.repository.LogbookRepositoryImpl">
+	<bean id="logbookRepository" class="com.logbookmanager.data.repository.DefaultLogbookRepository">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	<bean id="logbookPageRepository" class="com.logbookmanager.data.repository.LogbookPageRepositoryImpl">
+	<bean id="logbookPageRepository" class="com.logbookmanager.data.repository.DefaultLogbookPageRepository">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	<bean id="organisationCountrdyRepository" class="com.logbookmanager.data.repository.OrganisationCountryRepositoryImpl">

@@ -1,4 +1,4 @@
-package com.logbookmanager.repository;
+package com.logbookmanager.data.repository;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
