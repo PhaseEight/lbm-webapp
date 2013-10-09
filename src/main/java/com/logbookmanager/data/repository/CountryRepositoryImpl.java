@@ -12,24 +12,25 @@ import java.util.TreeSet;
 
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.stereotype.Repository;
 import org.springframework.util.Assert;
 
 import com.logbookmanager.data.support.hibernate.HibernateRepository;
 import com.logbookmanager.domain.model.Country;
 import com.logbookmanager.support.CollationStrength;
 
-@Repository
-public class CountryRepositoryImpl extends HibernateRepository<Country, Long> implements CountryRepository,
-		Serializable {
+public class CountryRepositoryImpl implements CountryRepository, Serializable {
 	protected final Logger log = LoggerFactory.getLogger(getClass());
 
 	private static final long serialVersionUID = 912839123L;
 
-	public CountryRepositoryImpl() {
+	Repository<Country, Long> countryRepository;
+
+	public CountryRepositoryImpl(SessionFactory sessionFactory) {
+		this.countryRepository = new HibernateRepository<Country, Long>(sessionFactory);
 
 	}
 
@@ -54,12 +55,12 @@ public class CountryRepositoryImpl extends HibernateRepository<Country, Long> im
 		Locale localeCountry = new Locale("", isoCode);
 		Country country = new Country(localeCountry.getCountry(), locale);
 
-		// check if there is a database record for this country and if there is,
-		// then return that Country Entity
-		Country check = findByNaturalId(country);
-		if (check != null) {
-			country = check;
-		}
+//		 check if there is a database record for this country and if there is,
+//		 then return that Country Entity
+		 Country check = countryRepository.findByNaturalId(country);
+		 if (check != null) {
+		 country = check;
+		 }
 
 		return country;
 	}

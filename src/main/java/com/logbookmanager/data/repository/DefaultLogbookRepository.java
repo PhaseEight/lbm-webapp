@@ -1,11 +1,11 @@
 package com.logbookmanager.data.repository;
 
 import java.io.Serializable;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Criterion;
 
 import com.logbookmanager.data.support.hibernate.HibernateRepository;
@@ -13,17 +13,14 @@ import com.logbookmanager.domain.model.logbook.Logbook;
 import com.logbookmanager.domain.model.logbook.LogbookUser;
 import com.logbookmanager.domain.model.logbook.LogbookUserLogbook;
 
-
-public class DefaultLogbookRepository implements LogbookRepository,
-		Serializable {
+public class DefaultLogbookRepository implements LogbookRepository, Serializable {
 
 	private static final long serialVersionUID = 912839123L;
-	
-	
-	Repository<Logbook,Long> logbook = new HibernateRepository<Logbook, Long>() ;
-	
 
-	public DefaultLogbookRepository() {
+	Repository<Logbook, Long> logbookRepository;
+
+	public DefaultLogbookRepository(SessionFactory sessionFactory) {
+		logbookRepository = new HibernateRepository<Logbook, Long>(sessionFactory, Logbook.class, Long.class);
 	}
 
 	@Override

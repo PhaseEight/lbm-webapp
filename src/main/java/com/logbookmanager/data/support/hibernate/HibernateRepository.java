@@ -55,7 +55,7 @@ public class HibernateRepository<T extends BaseObject<T>, ID extends Serializabl
 	protected SessionFactory sessionFactory;
 
 	@SuppressWarnings("unchecked")
-	public HibernateRepository() {
+	public HibernateRepository(SessionFactory sessionFactory) {
 		Class<?>[] typeArguments = TypeResolver.resolveArguments(getClass(), HibernateRepository.class);
 		if (typeArguments != null) {
 			this.typeClass = (Class<T>) typeArguments[0];
@@ -68,7 +68,7 @@ public class HibernateRepository<T extends BaseObject<T>, ID extends Serializabl
 	}
 
 	@SuppressWarnings("unchecked")
-	public HibernateRepository(Class<T> typeClass, Class<ID> typeIdClass) {
+	public HibernateRepository(SessionFactory sessionFactory, Class<T> typeClass, Class<ID> typeIdClass) {
 		Class<?>[] typeArguments = TypeResolver.resolveArguments(getClass(), HibernateRepository.class);
 		if (typeArguments != null) {
 			this.typeClass = (Class<T>) typeArguments[0];
