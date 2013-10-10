@@ -30,7 +30,7 @@ public class CountryRepositoryIntegrationTests extends IntegrationTestSupport {
 
 	@Inject
 	@Mock
-	CountryRepository countryRepository = new CountryRepositoryImpl();
+	CountryRepository countryRepository = new CountryRepositoryImpl(super.getSessionFactory());
 
 	@Test
 	public void getCountriesAsFrenchList() {

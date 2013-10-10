@@ -52,7 +52,7 @@ public class HibernateRepository<T extends BaseObject<T>, ID extends Serializabl
 	private String cacheRegion;
 
 	@Autowired(required = true)
-	protected SessionFactory sessionFactory;
+	final protected SessionFactory sessionFactory;
 
 	@SuppressWarnings("unchecked")
 	public HibernateRepository(SessionFactory sessionFactory) {
@@ -65,6 +65,7 @@ public class HibernateRepository<T extends BaseObject<T>, ID extends Serializabl
 		} else {
 			log = LoggerFactory.getLogger(HibernateRepository.class.getName());
 		}
+		this.sessionFactory = sessionFactory;
 	}
 
 	@SuppressWarnings("unchecked")
@@ -78,6 +79,7 @@ public class HibernateRepository<T extends BaseObject<T>, ID extends Serializabl
 		} else {
 			this.log = LoggerFactory.getLogger(getClass());
 		}
+		this.sessionFactory = sessionFactory;
 	}
 
 	public Class<T> getType() {
@@ -327,10 +329,6 @@ public class HibernateRepository<T extends BaseObject<T>, ID extends Serializabl
 
 	public SessionFactory getSessionFactory() {
 		return this.sessionFactory;
-	}
-
-	public void setSessionFactory(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
 	}
 
 }

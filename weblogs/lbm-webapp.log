@@ -1,0 +1,23 @@
+16:22:40.943 [main] DEBUG com.logbookmanager.spring.beans.SimpleDateFormatBeanDefinitionParserTests - Here's slf4j then!
+16:22:41.012 [main] DEBUG com.logbookmanager.domain.support.UserNameTests - com.logbookmanager.domain.support.UserName@3d86d805[
+  value=PeterNeil
+]
+16:22:41.013 [main] DEBUG com.logbookmanager.domain.support.UserNameTests - com.logbookmanager.domain.support.UserName@5fd04fd1[
+  value=PeterNeil
+]
+16:22:41.015 [main] DEBUG com.logbookmanager.domain.support.UserNameTests - com.logbookmanager.domain.support.UserName@41acbb99[
+  value=PeterNeil
+]
+16:22:41.016 [main] DEBUG com.logbookmanager.domain.support.UserNameTests - com.logbookmanager.domain.support.UserName@33505b7e[
+  value=PeterNeil1
+]
+16:22:41.262 [main] DEBUG com.logbookmanager.domain.support.EmailAddressTests - The validated string is empty
+16:22:55.484 [main] DEBUG com.logbookmanager.faces.LoginAndSecurityIntegrationTests - We're tearing it down!
+16:22:55.718 [main] DEBUG com.logbookmanager.faces.LoginAndSecurityIntegrationTests - We're tearing it down!
+16:22:55.797 [main] DEBUG com.logbookmanager.faces.LoginAndSecurityIntegrationTests - We're tearing it down!
+16:22:55.977 [main] DEBUG com.logbookmanager.faces.LoginAndSecurityIntegrationTests - Request processing failed; nested exception is org.springframework.webflow.execution.FlowExecutionException: Exception thrown in state 'start' of flow 'main'
+16:22:55.978 [main] DEBUG com.logbookmanager.faces.LoginAndSecurityIntegrationTests - We're tearing it down!
+16:22:56.048 [main] DEBUG com.logbookmanager.faces.LoginAndSecurityIntegrationTests - We're tearing it down!
+16:23:17.746 [main] DEBUG com.logbookmanager.web.pages.WelcomePageTest - Create HtmlUnitDriver for WebDriver
+16:23:18.733 [main] DEBUG com.logbookmanager.web.pages.WelcomePageTest - navigating to /web
+16:23:20.827 [main] DEBUG com.logbookmanager.web.pages.WelcomePageTest - make sure that there was redirect to /web/app/welcome

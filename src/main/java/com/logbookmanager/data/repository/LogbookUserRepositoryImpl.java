@@ -2,6 +2,7 @@ package com.logbookmanager.data.repository;
 
 import java.io.Serializable;
 
+import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 
 import com.logbookmanager.data.support.hibernate.HibernateRepository;
@@ -13,7 +14,8 @@ public class LogbookUserRepositoryImpl extends HibernateRepository<LogbookUser, 
 
 	private static final long serialVersionUID = 912839123L;
 
-	public LogbookUserRepositoryImpl() {
+	public LogbookUserRepositoryImpl(SessionFactory sessionFactory) {
+		super(sessionFactory);
 	}
 
 }

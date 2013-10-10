@@ -22,16 +22,13 @@ import com.logbookmanager.data.support.hibernate.HibernateRepository;
 import com.logbookmanager.domain.model.Country;
 import com.logbookmanager.support.CollationStrength;
 
-public class CountryRepositoryImpl implements CountryRepository, Serializable {
+public class CountryRepositoryImpl extends HibernateRepository<Country, Long> implements CountryRepository, Serializable {
 	protected final Logger log = LoggerFactory.getLogger(getClass());
 
 	private static final long serialVersionUID = 912839123L;
 
-	Repository<Country, Long> countryRepository;
-
 	public CountryRepositoryImpl(SessionFactory sessionFactory) {
-		this.countryRepository = new HibernateRepository<Country, Long>(sessionFactory);
-
+		super(sessionFactory);
 	}
 
 	@Override
@@ -57,7 +54,7 @@ public class CountryRepositoryImpl implements CountryRepository, Serializable {
 
 //		 check if there is a database record for this country and if there is,
 //		 then return that Country Entity
-		 Country check = countryRepository.findByNaturalId(country);
+		 Country check = findByNaturalId(country);
 		 if (check != null) {
 		 country = check;
 		 }

@@ -4,6 +4,7 @@ package com.logbookmanager.data.repository;
  * protected Logger log;
  * this.log = LoggerFactory.getLogger(getClass());
  */
+import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 
 import com.logbookmanager.data.support.hibernate.HibernateRepository;
@@ -16,8 +17,8 @@ public class UserRepositoryImpl extends HibernateRepository<RegisteredUser, Long
 	/**
 	 * the super must be called otherwise the Generics do not work
 	 */
-	public UserRepositoryImpl() {
-		super(RegisteredUser.class, Long.class);
+	public UserRepositoryImpl(SessionFactory sessionFactory) {
+		super(sessionFactory, RegisteredUser.class, Long.class);
 	}
 
 	/**

@@ -63,36 +63,34 @@ http://www.springframework.org/schema/util http://www.springframework.org/schema
 	</bean>
 
 	<bean id="countryRepository" class="com.logbookmanager.data.repository.CountryRepositoryImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
+		<constructor-arg ref="sessionFactory" />
 	</bean>
 	<bean id="logbookRepository" class="com.logbookmanager.data.repository.DefaultLogbookRepository">
-		<property name="sessionFactory" ref="sessionFactory" />
+		<constructor-arg ref="sessionFactory" />
 	</bean>
 	<bean id="logbookPageRepository" class="com.logbookmanager.data.repository.DefaultLogbookPageRepository">
-		<property name="sessionFactory" ref="sessionFactory" />
+		<constructor-arg ref="sessionFactory" />
 	</bean>
 	<bean id="organisationCountrdyRepository" class="com.logbookmanager.data.repository.OrganisationCountryRepositoryImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
+		<constructor-arg ref="sessionFactory" />
 	</bean>
 	<bean id="organisationRepository" class="com.logbookmanager.data.repository.OrganisationRepositoryImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
+		<constructor-arg ref="sessionFactory" />
 	</bean>
 	<bean id="LogbookUserRepository" class="com.logbookmanager.data.repository.LogbookUserRepositoryImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
+		<constructor-arg ref="sessionFactory" />
 	</bean>
 	<bean id="LogbookUserLogbookRepository" class="com.logbookmanager.data.repository.LogbookUserLogbookRepositoryImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
+		<constructor-arg ref="sessionFactory" />
 	</bean>
 	<bean id="roleRepository" class="com.logbookmanager.data.repository.RoleRepositoryImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
+		<constructor-arg ref="sessionFactory" />
 	</bean>
 	<bean id="userRepository" class="com.logbookmanager.data.repository.UserRepositoryImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
+		<constructor-arg ref="sessionFactory" />
 	</bean>
 
 	<!-- Add new Repositories here -->
-
-
 	<beans profile="default">
 		<bean id="sessionFactory" parent="defaultSessionFactory">
 			<property name="hibernateProperties">

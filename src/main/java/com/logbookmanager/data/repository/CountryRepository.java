@@ -8,7 +8,7 @@ import com.logbookmanager.domain.model.Country;
 /**
  * @author <a href="mailto:peter.neil@logbookmanager.com">Peter Neil</a>
  */
-public interface CountryRepository {
+public interface CountryRepository extends Repository<Country, Long> {
 
 	/**
 	 * 

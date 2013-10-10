@@ -59,6 +59,14 @@ public class Logbook extends EntitySupport<Logbook, Long> implements java.io.Ser
 		this.logbookUserLogbooks = logbookUserLogbooks;
 	}
 
+	public Title getTitle() {
+		return title;
+	}
+
+	public void setTitle(Title title) {
+		this.title = title;
+	}
+
 	/**
 	 * @see java.lang.Object#equals(Object)
 	 */
@@ -76,8 +84,8 @@ public class Logbook extends EntitySupport<Logbook, Long> implements java.io.Ser
 	 */
 	@Override
 	public int hashCode() {
-		return new HashCodeBuilder(-421608611, -181807385).append(this.id)
-				.append((title == null) ? 5 : title.hashCode()).append(this.version).toHashCode();
+		return new HashCodeBuilder(-421608611, -181807385).append(this.id).append((title == null) ? 5 : title.hashCode())
+				.append(this.version).toHashCode();
 	}
 
 	/**
@@ -85,16 +93,8 @@ public class Logbook extends EntitySupport<Logbook, Long> implements java.io.Ser
 	 */
 	@Override
 	public String toString() {
-		return new ToStringBuilder(this).append("id", this.id).append("title", title.toString())
-				.append("version", this.version).toString();
-	}
-
-	public Title getTitle() {
-		return title;
-	}
-
-	public void setTitle(Title title) {
-		this.title = title;
+		return new ToStringBuilder(this).append("id", this.id).append("title", title.toString()).append("version", this.version)
+				.toString();
 	}
 
 }
