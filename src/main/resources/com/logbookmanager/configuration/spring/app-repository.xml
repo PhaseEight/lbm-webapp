@@ -62,31 +62,31 @@ http://www.springframework.org/schema/util http://www.springframework.org/schema
 		</property>
 	</bean>
 
-	<bean id="countryRepository" class="com.logbookmanager.data.repository.CountryRepositoryImpl">
+	<bean id="countryRepository" class="com.logbookmanager.data.repository.hibernate.CountryRepositoryImpl">
 		<constructor-arg ref="sessionFactory" />
 	</bean>
-	<bean id="logbookRepository" class="com.logbookmanager.data.repository.DefaultLogbookRepository">
+	<bean id="logbookRepository" class="com.logbookmanager.data.repository.LogbookRepositoryImpl">
 		<constructor-arg ref="sessionFactory" />
 	</bean>
-	<bean id="logbookPageRepository" class="com.logbookmanager.data.repository.DefaultLogbookPageRepository">
+	<bean id="logbookPageRepository" class="com.logbookmanager.data.repository.hibernate.LogbookPageRepositoryImpl">
 		<constructor-arg ref="sessionFactory" />
 	</bean>
-	<bean id="organisationCountrdyRepository" class="com.logbookmanager.data.repository.OrganisationCountryRepositoryImpl">
+	<bean id="organisationCountrdyRepository" class="com.logbookmanager.data.repository.hibernate.OrganisationCountryRepositoryImpl">
 		<constructor-arg ref="sessionFactory" />
 	</bean>
-	<bean id="organisationRepository" class="com.logbookmanager.data.repository.OrganisationRepositoryImpl">
+	<bean id="organisationRepository" class="com.logbookmanager.data.repository.hibernate.OrganisationRepositoryImpl">
 		<constructor-arg ref="sessionFactory" />
 	</bean>
-	<bean id="LogbookUserRepository" class="com.logbookmanager.data.repository.LogbookUserRepositoryImpl">
+	<bean id="LogbookUserRepository" class="com.logbookmanager.data.repository.hibernate.LogbookUserRepositoryImpl">
 		<constructor-arg ref="sessionFactory" />
 	</bean>
-	<bean id="LogbookUserLogbookRepository" class="com.logbookmanager.data.repository.LogbookUserLogbookRepositoryImpl">
+	<bean id="LogbookUserLogbookRepository" class="com.logbookmanager.data.repository.hibernate.LogbookUserLogbookRepositoryImpl">
 		<constructor-arg ref="sessionFactory" />
 	</bean>
-	<bean id="roleRepository" class="com.logbookmanager.data.repository.RoleRepositoryImpl">
+	<bean id="roleRepository" class="com.logbookmanager.data.repository.hibernate.RoleRepositoryImpl">
 		<constructor-arg ref="sessionFactory" />
 	</bean>
-	<bean id="userRepository" class="com.logbookmanager.data.repository.UserRepositoryImpl">
+	<bean id="userRepository" class="com.logbookmanager.data.repository.hibernate.UserRepositoryImpl">
 		<constructor-arg ref="sessionFactory" />
 	</bean>
 

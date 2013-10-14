@@ -9,7 +9,8 @@
 package com.logbookmanager.service;
 
 import com.logbookmanager.domain.model.security.Role;
+import com.logbookmanager.service.support.DefaultService;
 
-public interface RoleService extends LBMService<Role, Long> {
+public interface RoleService extends DefaultService<Role, Long> {
 	public Role findRole(String rolename);
 }

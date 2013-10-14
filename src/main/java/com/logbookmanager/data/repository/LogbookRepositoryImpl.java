@@ -12,12 +12,12 @@ import com.logbookmanager.domain.model.logbook.Logbook;
 import com.logbookmanager.domain.model.logbook.LogbookUser;
 import com.logbookmanager.domain.model.logbook.LogbookUserLogbook;
 
-public class DefaultLogbookRepository extends HibernateRepository<Logbook, Long> implements LogbookRepository, Serializable {
+public class LogbookRepositoryImpl extends HibernateRepository<Logbook, Long> implements LogbookRepository, Serializable {
 
 	private static final long serialVersionUID = 912839123L;
 
 
-	public DefaultLogbookRepository(SessionFactory sessionFactory){
+	public LogbookRepositoryImpl(SessionFactory sessionFactory){
 		super(sessionFactory);
 	}
 

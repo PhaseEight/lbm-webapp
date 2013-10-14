@@ -63,7 +63,7 @@ public class SignupControllerIntegrationTests extends IntegrationTestSupport {
 	public void getSignupForm() throws Exception {
 		this.mockMvc.perform(get("/user/signup").accept(MediaType.APPLICATION_FORM_URLENCODED))
 				.andExpect(status().isOk()).andExpect(view().name("signup-form"))
-				.andExpect(model().attribute("signup-success-message", "doSignup has loaded")).andReturn();
+				.andExpect(view().name("signup-form")).andReturn();
 	}
 
 	@Test

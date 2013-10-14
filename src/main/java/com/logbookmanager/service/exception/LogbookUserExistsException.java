@@ -1,4 +1,4 @@
-package com.logbookmanager.service;
+package com.logbookmanager.service.exception;
 
 /**
  * An exception that is thrown by classes wanting to trap unique constraint
@@ -6,21 +6,20 @@ package com.logbookmanager.service;
  * it's checked in the web layer.
  * 
  * <p>
- * <a href="RegisteredUserAlreadyExistsException.java.html"><i>View
- * Source</i></a>
+ * <a href="PeronExistsException.java.html"><i>View Source</i></a>
  * </p>
  * 
  * @author <a href="mailto:peter.neil@logbookmanager.com">Peter Neil</a>
  */
-public class RegisteredUserException extends Exception {
+public class LogbookUserExistsException extends Exception {
 	private static final long serialVersionUID = 912839123L;
 
 	/**
-	 * Constructor for RegisteredUserAlreadyExistsException.
+	 * Constructor for PeronExistsException.
 	 * 
-	 * @param message
+	 * @param mailMessage
 	 */
-	public RegisteredUserException(String message) {
+	public LogbookUserExistsException(String message) {
 		super(message);
 	}
 }

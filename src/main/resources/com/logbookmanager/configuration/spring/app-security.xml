@@ -23,12 +23,8 @@
 		</property>
 	</bean>
 	<bean name="ulmUserCacheFB" class="org.springframework.cache.ehcache.EhCacheFactoryBean">
-		<property name="cacheManager">
-			<ref bean="ulmEhCacheMgr" />
-		</property>
-		<property name="cacheName">
-			<value>securityUserCache</value>
-		</property>
+		<property name="cacheManager" ref="ulmEhCacheMgr" />
+		<property name="cacheName" value="securityUserCache" />
 	</bean>
 	<bean id="securityUserCache"
 		class="org.springframework.security.core.userdetails.cache.EhCacheBasedUserCache">
@@ -45,8 +41,10 @@
 	<security:global-method-security
 		secured-annotations="enabled" pre-post-annotations="enabled" />
 
-	<bean id="webexpressionHandler"
-		class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler" />
+	<bean id="defaultWebSecurityExpressionHandler" name="webSecurityExpressionHandler"
+		class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler">
+		<property name="roleHierarchy" ref="roleHierarchy" />
+	</bean>
 
 	<!-- Secure per URL pattern com.logbookmanager.service.UserManager.findAll=ROLE_ADMIN 
 		com.logbookmanager.service.UserManager.removeUser=ROLE_ADMIN If we want to 
@@ -59,45 +57,33 @@
 		authentication-manager-ref="authenticationManager" request-matcher="ant"
 		use-expressions="true">
 
-		<security:remember-me
-			services-alias="rememberMeService"
-			data-source-ref="dataSource"
-			token-validity-seconds="86400" 
-		/>
+		<security:remember-me services-alias="rememberMeService"
+			data-source-ref="dataSource" token-validity-seconds="86400" />
 
-		<security:intercept-url
-			pattern="/app/logout*"
+		<security:intercept-url pattern="/app/logout*"
 			access="permitAll" />
-			
-		<security:intercept-url
-			pattern="/app/session-timeout*"
+
+		<security:intercept-url pattern="/app/session-timeout*"
 			access="permitAll" />
-			
-		<security:intercept-url 
-			pattern="/app/main"
+
+		<security:intercept-url pattern="/app/main"
 			access="hasRole('ROLE_LOGBOOKUSER')" />
-			
-		<security:intercept-url 
-			pattern="/app/admin/*"
+
+		<security:intercept-url pattern="/app/admin/logbook*"
+			access="hasRole('ROLE_LOGBOOKADMIN')" />
+
+		<security:intercept-url pattern="/app/admin/*"
 			access="hasRole('ROLE_ADMIN')" />
 
 		<!-- A user will always go to default-target-url on successful login -->
-		<security:form-login 
-			login-processing-url="/app/doLogin"
-			username-parameter="loginForm:username" 
-			password-parameter="loginForm:password"
-			login-page="/app/welcome"
-			default-target-url="/app/main"
-			always-use-default-target="false"
-			authentication-failure-url="/app/welcome?login_error=1" 
-		/>
+		<security:form-login login-processing-url="/app/doLogin"
+			username-parameter="loginForm:username" password-parameter="loginForm:password"
+			login-page="/app/welcome" default-target-url="/app/main"
+			always-use-default-target="false" authentication-failure-url="/app/welcome?login_error=1" />
 
-		<security:logout 
-			success-handler-ref=""
-			delete-cookies="JSESSIONID"
-			logout-success-url="/app/welcome?logout_success=1" 
-			logout-url="/app/logout"
-			invalidate-session="true" />
+		<security:logout success-handler-ref=""
+			delete-cookies="JSESSIONID" logout-success-url="/app/welcome?logout_success=1"
+			logout-url="/app/logout" invalidate-session="true" />
 
 		<security:port-mappings>
 			<security:port-mapping http="8080" https="8443" />
@@ -109,7 +95,7 @@
 				max-sessions="1" />
 		</security:session-management>
 		<security:anonymous enabled="true" username="guest"
-			granted-authority="ROLE_GUESTUSER" />
+			granted-authority="ROLE_REGISTEREDUSER" />
 	</security:http>
 
 	<bean id="remoteUserFilter"
@@ -142,7 +128,7 @@
 
 
 		<security:authentication-provider>
-		
+
 			<security:password-encoder hash="plaintext" />
 
 			<security:jdbc-user-service id="jdbcUserService"
@@ -164,5 +150,32 @@
 
 
 	</security:authentication-manager>
+
+	<bean id="accessDecisionManager"
+		class="org.springframework.security.access.vote.AffirmativeBased">
+		<property name="decisionVoters">
+			<list>
+				<ref bean="roleHierarchyVoter" />
+				<bean
+					class="org.springframework.security.web.access.expression.WebExpressionVoter">
+					<property name="expressionHandler" ref="defaultWebSecurityExpressionHandler" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="roleHierarchyVoter"
+		class="org.springframework.security.access.vote.RoleHierarchyVoter">
+		<constructor-arg ref="roleHierarchy" />
+	</bean>
+	<bean id="roleHierarchy"
+		class="org.springframework.security.access.hierarchicalroles.RoleHierarchyImpl">
+		<property name="hierarchy">
+			<value>
+				ROLE_ADMIN>ROLE_LOGBOOKADMIN>ROLE_USERADMIN
+				ROLE_USERADMIN>ROLE_LOGBOOKUSER>ROLE_REGISTEREDUSER
+			</value>
+		</property>
+	</bean>
 
 </beans>

@@ -74,7 +74,6 @@ public class MailEngine {
 	 * @param subject
 	 * @param attachmentName
 	 * @throws MessagingException
-	 * @author Ben Gill
 	 */
 	public void sendMessage(String[] emailAddresses, ClassPathResource resource, String bodyText, String subject,
 			String attachmentName) throws MessagingException {

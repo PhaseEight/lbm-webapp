@@ -1,11 +1,11 @@
-package com.logbookmanager.service;
+package com.logbookmanager.service.support;
 
 import java.io.Serializable;
 import java.util.List;
 
 import org.hibernate.criterion.Criterion;
 
-public interface LBMService<T, ID extends Serializable> extends Serializable {
+public interface DefaultService<T, ID extends Serializable> extends Serializable {
 
 	public T findById(ID id);
 
@@ -13,7 +13,7 @@ public interface LBMService<T, ID extends Serializable> extends Serializable {
 
 	public List<T> findByExample(T exampleInstance);
 
-	public T findUniqueByExample(T exampleInstance);
+	public T findOneByExample(T exampleInstance);
 
 	public T findByNaturalId(T exampleInstance);
 

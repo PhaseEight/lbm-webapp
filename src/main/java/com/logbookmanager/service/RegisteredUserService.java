@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.logbookmanager.domain.model.security.RegisteredUser;
 import com.logbookmanager.domain.support.UserName;
+import com.logbookmanager.service.exception.RegisteredUserAlreadyExistsException;
+import com.logbookmanager.service.support.DefaultService;
 
 /**
  * Business Service Interface to handle communication between web and
@@ -17,7 +19,7 @@ import com.logbookmanager.domain.support.UserName;
  *         Modified by <a href="mailto:peter.neil@logbookmanager.com">Peter
  *         Neil</a>
  */
-public interface RegisteredUserService extends LBMService<RegisteredUser, Long> {
+public interface RegisteredUserService extends DefaultService<RegisteredUser, Long> {
 
 	public List<RegisteredUser> findAll();
 

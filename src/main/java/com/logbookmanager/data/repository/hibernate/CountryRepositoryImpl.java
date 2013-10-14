@@ -1,4 +1,4 @@
-package com.logbookmanager.data.repository;
+package com.logbookmanager.data.repository.hibernate;
 
 import java.io.Serializable;
 import java.text.Collator;
@@ -18,6 +18,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.util.Assert;
 
+import com.logbookmanager.data.repository.CountryRepository;
 import com.logbookmanager.data.support.hibernate.HibernateRepository;
 import com.logbookmanager.domain.model.Country;
 import com.logbookmanager.support.CollationStrength;

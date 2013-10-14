@@ -7,7 +7,14 @@ import org.hibernate.criterion.Criterion;
 
 import com.logbookmanager.support.BaseObject;
 
-public interface Repository<T extends BaseObject<T>, ID extends Serializable> {
+/**
+ * Each Repository represents 1 Data object
+ * 
+ * The data objects will be used by Domain Objects and a Data Repository will be used by a Domain Repository. 
+ *
+ */
+ public interface Repository<T extends BaseObject<T> & Serializable, ID extends Serializable> {
+ 
 
 	T findById(ID id);
 
@@ -15,7 +22,7 @@ public interface Repository<T extends BaseObject<T>, ID extends Serializable> {
 
 	List<T> findByExample(T exampleInstance);
 
-	T findUniqueByExample(T exampleInstance);
+	T findOneByExample(T exampleInstance);
 
 	T findByNaturalId(T exampleInstance);
 

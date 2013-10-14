@@ -16,16 +16,13 @@ import org.springframework.stereotype.Service;
  * case, you obtain the reference thanks to the static method
  * ResourcesUtil.getInstance()
  */
-@Service("resourceUtil")
-@Lazy(false)
-@Singleton
 public class ResourcesUtil {
 
 	private static ResourcesUtil instance;
 	private MessageSource messageSource;
 
 	@Autowired
-	public ResourcesUtil(@Qualifier("applicationMessageSource") MessageSource messageSource) {
+	public ResourcesUtil(@Qualifier("messageSource") MessageSource messageSource) {
 		this.messageSource = messageSource;
 		instance = this;
 	}

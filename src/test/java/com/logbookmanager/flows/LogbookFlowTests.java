@@ -28,7 +28,8 @@ import org.springframework.webflow.test.execution.AbstractXmlFlowExecutionTests;
 
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
 
-@RunWith(SpringJUnit4ClassRunner.class)
+/*
+ * @RunWith(SpringJUnit4ClassRunner.class)
 @ContextHierarchy({
 		@ContextConfiguration("file:src/main/resources/com/logbookmanager/configuration/spring/app-root.xml"),
 		@ContextConfiguration({ "file:src/main/webapp/WEB-INF/spring/servlet-context.xml" }) })
@@ -37,6 +38,7 @@ import com.github.springtestdbunit.DbUnitTestExecutionListener;
 @TestExecutionListeners({ DependencyInjectionTestExecutionListener.class, ServletTestExecutionListener.class,
 		DirtiesContextTestExecutionListener.class, TransactionalTestExecutionListener.class,
 		DbUnitTestExecutionListener.class })
+*/
 public class LogbookFlowTests extends AbstractXmlFlowExecutionTests {
 
 	@Autowired

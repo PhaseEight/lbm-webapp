@@ -1,4 +1,4 @@
-package com.logbookmanager.data.repository;
+package com.logbookmanager.data.repository.hibernate;
 
 /**
  * protected Logger log;
@@ -7,6 +7,7 @@ package com.logbookmanager.data.repository;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 
+import com.logbookmanager.data.repository.UserRepository;
 import com.logbookmanager.data.support.hibernate.HibernateRepository;
 import com.logbookmanager.domain.model.security.RegisteredUser;
 import com.logbookmanager.domain.support.UserName;
@@ -42,7 +43,7 @@ public class UserRepositoryImpl extends HibernateRepository<RegisteredUser, Long
 	}
 
 	public RegisteredUser getUser(RegisteredUser registeredUser) {
-		RegisteredUser result = findUniqueByExample(registeredUser);
+		RegisteredUser result = findOneByExample(registeredUser);
 		return result;
 	}
 

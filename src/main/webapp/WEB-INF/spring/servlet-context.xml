@@ -18,20 +18,17 @@
 	<description><![CDATA[
 		Main entry point for web spring configuration
 	]]></description>
+	<import resource="classpath://com/logbookmanager/configuration/spring/app-property-configurator.xml" />
+	<import resource="classpath://com/logbookmanager/configuration/spring/app-infrastructure.xml" />
 	<import resource="controllers.xml" />
 	<import resource="webflow.xml" />
 	<import resource="components.xml" />
 
 	<!-- <mvc:default-servlet-handler /> -->
-	<bean id="messageSource"
-		class="org.springframework.context.support.ReloadableResourceBundleMessageSource"
-		name="resourceBundle" p:fallbackToSystemLocale="false" p:cacheSeconds="0">
-		<property name="useCodeAsDefaultMessage" value="true" />
+	<bean id="messageSource" parent="applicationMessageSource" name="resourceBundle" class="org.springframework.context.support.ReloadableResourceBundleMessageSource" >
 		<property name="basenames">
-			<list>
-				<value>classpath:com/logbookmanager/messages/application</value>
+			<list merge="true">
 				<value>classpath:com/logbookmanager/messages/head-meta</value>
-				<value>classpath:com/logbookmanager/messages/errors</value>
 				<value>classpath:com/logbookmanager/messages/forms</value>
 				<value>classpath:com/logbookmanager/messages/templates</value>
 				<value>classpath:com/logbookmanager/messages/login</value>

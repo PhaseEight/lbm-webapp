@@ -65,8 +65,7 @@ public class ResourcesUtilSpringContextTests extends AbstractJUnit4SpringContext
 	public void generalErrorMessage() {
 		String message = "The process did not complete. Details should follow.";
 		String key = "errors.general";
-		assertTrue("key value does no equal: " + message,
-				resourcesUtil.getProperty(key, new Object[] {}).equals(message));
+		assertTrue("key value does no equal: " + message, resourcesUtil.getProperty(key, new Object[] {}).equals(message));
 
 	}
 

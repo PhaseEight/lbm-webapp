@@ -122,7 +122,7 @@ public class HibernateRepository<T extends BaseObject<T>, ID extends Serializabl
 		return findByCriteria(false, crit);
 	}
 
-	public T findUniqueByExample(T exampleInstance) {
+	public T findOneByExample(T exampleInstance) {
 		Criterion crit = Example.create(exampleInstance);
 		T result = (T) findUniqueByCriteria(false, crit);
 		return (T) result;

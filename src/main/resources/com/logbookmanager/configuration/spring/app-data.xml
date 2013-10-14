@@ -5,47 +5,44 @@
 http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
+	<bean id="c3p0DataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" abstract="true"  destroy-method="close">
+			<property name="maxPoolSize" value="1" />
+			<property name="maxStatements" value="50" />
+			<property name="minPoolSize" value="1" />
+	</bean>
+
 	<!-- Derby Data Source Declaration -->
 	<beans profile="default,integration-test,mvc-integration-test,!cloud">
-		<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close" abstract="false">
+		<bean id="dataSource" parent="c3p0DataSource">
 			<property name="driverClass" value="org.apache.derby.jdbc.ClientDriver" />
 			<property name="jdbcUrl" value="jdbc:derby://localhost:1527/logbook;create=true;user=APP;password=Pa$$w0rd" />
 			<property name="user" value="APP" />
 			<property name="password" value="Pa$$w0rd" />
-			<property name="maxPoolSize" value="1" />
-			<property name="maxStatements" value="50" />
-			<property name="minPoolSize" value="1" />
 		</bean>
 	</beans>
 
 	<!-- Cloud Data Source Declaration -->
 	<beans profile="cloud-broken">
-		<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close" abstract="false">
+		<bean id="dataSource" parent="c3p0DataSource" >
 			<property name="driverClass" value="org.postgresql.Driver" />
 			<property name="jdbcUrl" value="jdbc:postgresql://${cloud.services.p8postgresql.connection.host}:${cloud.services.p8postgresql.connection.port}/${cloud.services.p8postgresql.connection.name}" />
 			<property name="user" value="${cloud.services.p8postgresql.connection.username}" />
 			<property name="password" value="${cloud.services.p8postgresql.connection.password}" />
-			<property name="maxPoolSize" value="1" />
-			<property name="maxStatements" value="50" />
-			<property name="minPoolSize" value="1" />
 		</bean>
 	</beans>
 
 	<beans profile="cloud">
-		<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close" abstract="false">
+		<bean id="dataSource" parent="c3p0DataSource">
 			<property name="driverClass" value="org.postgresql.Driver" />
 			<property name="jdbcUrl" value="jdbc:postgresql://babar.elephantsql.com:5432/fdyqvhjp" />
 			<property name="user" value="fdyqvhjp" />
 			<property name="password" value="fdyqvhjp:wcvFVxqZLwvqlK6-L7tekBuUGd6T0UHd" />
-			<property name="maxPoolSize" value="1" />
-			<property name="maxStatements" value="50" />
-			<property name="minPoolSize" value="1" />
 		</bean>
 	</beans>
 
 	<!-- h2 Data Source Declaration -->
 	<beans profile="h2">
-		<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close" abstract="false">
+		<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" abstract="false">
 			<property name="driverClassName" value="org.h2.Driver" />
 			<property name="url" value="j-dbc:h2:mem:APP;INIT=CREATE SCHEMA IF NOT EXISTS APP AUTHORIZATION SA" />
 			<property name="username" value="sa" />

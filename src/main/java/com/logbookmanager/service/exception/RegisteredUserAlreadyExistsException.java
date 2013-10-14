@@ -1,4 +1,4 @@
-package com.logbookmanager.service;
+package com.logbookmanager.service.exception;
 
 import com.logbookmanager.domain.model.security.RegisteredUser;
 

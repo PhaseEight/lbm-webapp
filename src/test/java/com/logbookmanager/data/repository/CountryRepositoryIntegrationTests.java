@@ -20,7 +20,7 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.logbookmanager.data.repository.CountryRepository;
-import com.logbookmanager.data.repository.CountryRepositoryImpl;
+import com.logbookmanager.data.repository.hibernate.CountryRepositoryImpl;
 import com.logbookmanager.domain.model.Country;
 import com.logbookmanager.support.IntegrationTestSupport;
 

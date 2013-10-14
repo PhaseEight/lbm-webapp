@@ -15,14 +15,13 @@ import org.slf4j.LoggerFactory;
 
 import com.logbookmanager.data.repository.Repository;
 import com.logbookmanager.domain.support.EntitySupport;
-import com.logbookmanager.service.LBMService;
 import com.logbookmanager.util.ResourcesUtil;
 
 /**
  * @author <a HREF="mailto:peter.neil@logbookmanager.com">Peter Neil</a>
  */
 abstract public class GenericService<T extends EntitySupport<T, ID>, ID extends Serializable> implements
-		LBMService<T, ID> {
+		DefaultService<T, ID> {
 	/**
 	 * 
 	 */
@@ -75,8 +74,8 @@ abstract public class GenericService<T extends EntitySupport<T, ID>, ID extends 
 		return repository.findByNaturalId(exampleInstance, naturalIdRestriction);
 	}
 
-	public T findUniqueByExample(T exampleInstance) {
-		return repository.findUniqueByExample(exampleInstance);
+	public T findOneByExample(T exampleInstance) {
+		return repository.findOneByExample(exampleInstance);
 	}
 
 	/**

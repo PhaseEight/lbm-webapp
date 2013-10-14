@@ -40,7 +40,7 @@ public class RoleServiceImpl extends GenericService<Role, Long> implements RoleS
 	public Role findRole(String rolename) {
 		Role exampleInstance = new Role();
 		exampleInstance.setName(rolename);
-		return roleRepository.findUniqueByExample(exampleInstance);
+		return roleRepository.findOneByExample(exampleInstance);
 	}
 
 }

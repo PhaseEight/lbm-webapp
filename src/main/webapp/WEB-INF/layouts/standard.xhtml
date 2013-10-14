@@ -49,14 +49,14 @@
 									id="topLogoutButton" value="logout" ajax="false"
 									onclick="window.open('#{request.contextPath}#{request.servletPath}/logout','_self');"
 									type="button"
-									rendered="#{request.isUserInRole('ROLE_GUESTUSER')}" />
+									rendered="#{request.isUserInRole('ROLE_REGISTEREDUSER')}" />
 						</span>
 						</span>
 
 						<span class="right"> <span id="login-button"> <p:commandButton
 									id="topLoginButton" value="login" ajax="false"
 									onclick="PF('loginDialog').show();" type="button"
-									rendered="#{!request.isUserInRole('ROLE_GUESTUSER')}" />
+									rendered="#{!request.isUserInRole('ROLE_REGISTEREDUSER')}" />
 
 						</span>
 						</span>
@@ -150,7 +150,7 @@
 			<p:idleMonitor id="idleMonitor"
 				timeout="#{idleMonitorController.permittedIdleTimeMillis}"
 				onidle="PF('idleDialog').show()"
-				rendered="#{request.isUserInRole('ROLE_GUESTUSER')}" />
+				rendered="#{request.isUserInRole('ROLE_REGISTEREDUSER')}" />
 
 			<p:confirmDialog id="idleConfirmDialog"
 				message="You have been idle for #{idleMonitorController.permittedIdleTimeSeconds} seconds, 

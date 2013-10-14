@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.logbookmanager.data.repository.UserRepository;
 import com.logbookmanager.domain.model.security.RegisteredUser;
 import com.logbookmanager.domain.support.UserName;
+import com.logbookmanager.service.exception.RegisteredUserAlreadyExistsException;
 import com.logbookmanager.service.support.GenericService;
 
 @Transactional(readOnly = true)
@@ -58,7 +59,7 @@ public class RegisteredUserServiceImpl extends GenericService<RegisteredUser, Lo
 	@Transactional(readOnly = true)
 	public RegisteredUser findUserByUsername(final UserName username) {
 		final RegisteredUser registeredUser = new RegisteredUser(username);
-		return userRepository.findUniqueByExample(registeredUser);
+		return userRepository.findOneByExample(registeredUser);
 	}
 
 	@Transactional(readOnly = true)
@@ -74,7 +75,7 @@ public class RegisteredUserServiceImpl extends GenericService<RegisteredUser, Lo
 	public RegisteredUser findActiveUser(final RegisteredUser registeredUser) {
 		registeredUser.setActive(new Boolean(true));
 		registeredUser.setDeleted(new Boolean(false));
-		return userRepository.findUniqueByExample(registeredUser);
+		return userRepository.findOneByExample(registeredUser);
 	}
 
 	public RegisteredUser findUser(RegisteredUser registeredUser) {

@@ -1,4 +1,4 @@
-package com.logbookmanager.service;
+package com.logbookmanager.service.exception;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
