@@ -56,6 +56,22 @@
 	<security:http auto-config="false" create-session="ifRequired"
 		authentication-manager-ref="authenticationManager" request-matcher="ant"
 		use-expressions="true">
+		
+		
+		<!-- 
+		@see http://spring.io/blog/2013/08/23/spring-security-3-2-0-rc1-highlights-security-headers
+		 -->
+		<security:headers>
+			<security:cache-control/>
+			<security:content-type-options />
+			<!--
+				Trust this application domain for a year 
+				Strict-Transport-Security: max-age=31536000 ; includeSubDomains 
+			-->
+			<security:frame-options />
+			<security:hsts />
+			<security:xss-protection />
+		</security:headers>
 
 		<security:remember-me services-alias="rememberMeService"
 			data-source-ref="dataSource" token-validity-seconds="86400" />
@@ -153,7 +169,7 @@
 
 	<bean id="accessDecisionManager"
 		class="org.springframework.security.access.vote.AffirmativeBased">
-		<property name="decisionVoters">
+		<constructor-arg>
 			<list>
 				<ref bean="roleHierarchyVoter" />
 				<bean
@@ -161,7 +177,7 @@
 					<property name="expressionHandler" ref="defaultWebSecurityExpressionHandler" />
 				</bean>
 			</list>
-		</property>
+		</constructor-arg>
 	</bean>
 
 	<bean id="roleHierarchyVoter"

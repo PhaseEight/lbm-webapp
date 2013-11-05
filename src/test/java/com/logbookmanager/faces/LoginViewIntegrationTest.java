@@ -2,19 +2,14 @@ package com.logbookmanager.faces;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup;
 
-import java.util.HashMap;
-
 import javax.faces.component.UIViewRoot;
 import javax.faces.context.FacesContext;
 
-import org.apache.myfaces.test.base.junit4.AbstractJsfTestCase;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.FixMethodOrder;
@@ -27,9 +22,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.faces.webflow.JSFMockHelper;
 import org.springframework.faces.webflow.MockViewHandler;
 import org.springframework.http.MediaType;
-import org.springframework.mock.web.MockHttpServletRequest;
-import org.springframework.mock.web.MockHttpServletResponse;
-import org.springframework.mock.web.MockServletContext;
 import org.springframework.security.web.FilterChainProxy;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
@@ -42,11 +34,6 @@ import org.springframework.test.context.transaction.TransactionalTestExecutionLi
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.context.WebApplicationContext;
-import org.springframework.webflow.core.collection.LocalAttributeMap;
-import org.springframework.webflow.core.collection.LocalParameterMap;
-import org.springframework.webflow.execution.RequestContext;
-import org.springframework.webflow.execution.RequestContextHolder;
-import org.springframework.webflow.test.MockExternalContext;
 
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
 
