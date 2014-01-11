@@ -153,15 +153,15 @@
 
 	<bean id="accessDecisionManager"
 		class="org.springframework.security.access.vote.AffirmativeBased">
-		<property name="decisionVoters">
+		<constructor-arg name="decisionVoters">
 			<list>
 				<ref bean="roleHierarchyVoter" />
 				<bean
 					class="org.springframework.security.web.access.expression.WebExpressionVoter">
 					<property name="expressionHandler" ref="defaultWebSecurityExpressionHandler" />
 				</bean>
-			</list>
-		</property>
+			</list>		
+		</constructor-arg>
 	</bean>
 
 	<bean id="roleHierarchyVoter"
