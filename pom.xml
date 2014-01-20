@@ -12,15 +12,9 @@
 	<properties>
 		<m2eclipse.wtp.contextRoot>/web</m2eclipse.wtp.contextRoot>
 		<javassist-version>3.18.0-GA</javassist-version>
-		<!-- Spring versions 3.2.4.RELEASE -->
-		<!-- <springframework-version>4.0.0.M3</springframework-version> -->
-		<!-- Versions 4.0.0.M3 -->
-		<springframework-version>4.0.0.BUILD-SNAPSHOT</springframework-version>
+		<springframework-version>4.0.0.RELEASE</springframework-version>
 		<spring-security-version>3.2.0.CI-SNAPSHOT</spring-security-version>
 		<spring-security-javaconfig-version>1.0.0.M1</spring-security-javaconfig-version>
-
-		<!-- Webflow version 2.4.0.M1 -->
-		<!-- Webflow version 2.4.0.BUILD-SNAPSHOT -->
 		<spring-faces-version>2.4.0.BUILD-SNAPSHOT</spring-faces-version>
 		<spring-webflow-version>2.4.0.BUILD-SNAPSHOT</spring-webflow-version>
 		<spring-webflow-binding-version>2.4.0.BUILD-SNAPSHOT</spring-webflow-binding-version>
