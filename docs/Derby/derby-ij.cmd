@@ -32,7 +32,7 @@ SET CLASSPATH=%CLASSPATH%;%DERBY_LIB%\derbyclient.jar
 PUSHD .
 CALL %~dp0derby-bin.cmd
 
-SET IJ_ARGS=-Dij.protocol=jdbc:derby://localhost:1527/Logbook
+SET IJ_ARGS=-Dij.protocol=jdbc:derby://localhost:501527/Logbook
 SET IJ_ARGS=%IJ_ARGS% -Dij.driver=org.apache.derby.jdbc.ClientDriver
 SET IJ_ARGS=%IJ_ARGS% -Dderby.system.home=%DERBY_DATABASES%
 SET IJ_ARGS=%IJ_ARGS% -Dij.user=admin

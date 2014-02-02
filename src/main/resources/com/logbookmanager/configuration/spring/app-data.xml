@@ -5,17 +5,19 @@
 http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
-	<bean id="c3p0DataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" abstract="true"  destroy-method="close">
-			<property name="maxPoolSize" value="1" />
-			<property name="maxStatements" value="50" />
-			<property name="minPoolSize" value="1" />
-	</bean>
+	<beans profile="c3p0">
+		<bean id="connectionPoolDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" abstract="true"  destroy-method="close">
+				<property name="maxPoolSize" value="1" />
+				<property name="maxStatements" value="50" />
+				<property name="minPoolSize" value="1" />
+		</bean>
+	</beans>
 
 	<!-- Derby Data Source Declaration -->
 	<beans profile="default,integration-test,mvc-integration-test,!cloud">
-		<bean id="dataSource" parent="c3p0DataSource">
+		<bean id="dataSource" parent="connectionPoolDataSource">
 			<property name="driverClass" value="org.apache.derby.jdbc.ClientDriver" />
-			<property name="jdbcUrl" value="jdbc:derby://localhost:1527/logbook;create=true;user=APP;password=Pa$$w0rd" />
+			<property name="jdbcUrl" value="jdbc:derby://localhost:51527/logbook;create=true;user=APP;password=Pa$$w0rd" />
 			<property name="user" value="APP" />
 			<property name="password" value="Pa$$w0rd" />
 		</bean>
@@ -23,7 +25,7 @@ http://www.springframework.org/schema/util http://www.springframework.org/schema
 
 	<!-- Cloud Data Source Declaration -->
 	<beans profile="cloud-broken">
-		<bean id="dataSource" parent="c3p0DataSource" >
+		<bean id="dataSource" parent="connectionPoolDataSource" >
 			<property name="driverClass" value="org.postgresql.Driver" />
 			<property name="jdbcUrl" value="jdbc:postgresql://${cloud.services.p8postgresql.connection.host}:${cloud.services.p8postgresql.connection.port}/${cloud.services.p8postgresql.connection.name}" />
 			<property name="user" value="${cloud.services.p8postgresql.connection.username}" />
@@ -32,7 +34,7 @@ http://www.springframework.org/schema/util http://www.springframework.org/schema
 	</beans>
 
 	<beans profile="cloud">
-		<bean id="dataSource" parent="c3p0DataSource">
+		<bean id="dataSource" parent="connectionPoolDataSource">
 			<property name="driverClass" value="org.postgresql.Driver" />
 			<property name="jdbcUrl" value="jdbc:postgresql://babar.elephantsql.com:5432/fdyqvhjp" />
 			<property name="user" value="fdyqvhjp" />

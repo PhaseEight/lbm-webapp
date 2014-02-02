@@ -32,26 +32,37 @@ http://www.springframework.org/schema/util http://www.springframework.org/schema
 		</property>
 		<property name="hibernateProperties">
 			<props>
-
+<!-- 
+				<prop key="hibernate.connection.provider_class">com.jolbox.bonecp.provider.BoneCPConnectionProvider</prop>
+ -->
 				<prop key="hibernate.bytecode.use_reflection_optimizer">true</prop>
+
 				<prop key="hibernate.transaction.factory_class">org.hibernate.transaction.JDBCTransactionFactory</prop>
-				<!-- 
+
 				<prop key="hibernate.current_session_context_class">thread</prop>
-				 -->
+
 				<prop key="hibernate.jdbc.batch_size">${hibernate.jdbc.batch_size}</prop>
-				<!-- 
+				
 				<prop key="hibernate.c3p0.min_size">${hibernate.c3p0.acquire_increment}</prop>
 				<prop key="hibernate.c3p0.min_size">${hibernate.c3p0.min_size}</prop>
 				<prop key="hibernate.c3p0.max_size">${hibernate.c3p0.max_size}</prop>
 				<prop key="hibernate.c3p0.timeout">${hibernate.c3p0.timeout}</prop>
 				<prop key="hibernate.c3p0.max_statements">${hibernate.c3p0.max_statements}</prop>
 				<prop key="hibernate.c3p0.idle_test_period">${hibernate.c3p0.idle_test_period}</prop>
-				 -->
+
+				<prop key="bonecp.idleMaxAge">${bonecp.idleMaxAge}</prop>
+				<prop key="bonecp.idleConnectionTestPeriod">${bonecp.idleConnectionTestPeriod}</prop>
+				<prop key="bonecp.partitionCount">${bonecp.partitionCount}</prop>
+				<prop key="bonecp.acquireIncrement">${bonecp.acquireIncrement}</prop>
+				<prop key="bonecp.maxConnectionsPerPartition">${bonecp.maxConnectionsPerPartition}</prop>
+				<prop key="bonecp.minConnectionsPerPartition">${bonecp.minConnectionsPerPartition}</prop>
+				<prop key="bonecp.statementsCacheSize">${bonecp.statementsCacheSize}</prop>
+				<prop key="bonecp.releaseHelperThreads">${bonecp.releaseHelperThreads}</prop>
+
 				<prop key="hibernate.cache.use_second_level_cache">${hibernate.cache.use_second_level_cache}</prop>
 				<prop key="hibernate.cache.use_query_cache">${hibernate.cache.use_query_cache}</prop>
 				<prop key="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</prop>
 				<prop key="hibernate.cache.region_prefix">${hibernate.cache.region_prefix}</prop>
-
 
 				<prop key="hibernate.hbm2ddl.import_files">${hibernate.hbm2ddl.import_files}</prop>
 				<prop key="show_sql">${hibernate.show_sql}</prop>

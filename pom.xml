@@ -13,14 +13,14 @@
 		<m2eclipse.wtp.contextRoot>/web</m2eclipse.wtp.contextRoot>
 		<javassist-version>3.18.0-GA</javassist-version>
 		<springframework-version>4.0.0.RELEASE</springframework-version>
-		<spring-security-version>3.2.0.CI-SNAPSHOT</spring-security-version>
+		<spring-security-version>3.2.0.RELEASE</spring-security-version>
 		<spring-security-javaconfig-version>1.0.0.M1</spring-security-javaconfig-version>
 		<spring-faces-version>2.4.0.BUILD-SNAPSHOT</spring-faces-version>
 		<spring-webflow-version>2.4.0.BUILD-SNAPSHOT</spring-webflow-version>
 		<spring-webflow-binding-version>2.4.0.BUILD-SNAPSHOT</spring-webflow-binding-version>
 		<myfaces-test20-version>1.0.4</myfaces-test20-version>
 		<cloudfoundry-runtime-version>0.8.4</cloudfoundry-runtime-version>
-		<primefaces-version>4.0.RC1</primefaces-version>
+		<primefaces-version>4.0.7</primefaces-version>
 		<primefaces-ext-version>1.0.0.RC1</primefaces-ext-version>
 		<primefaces.themes-version>1.0.10</primefaces.themes-version>
 		<!-- all-themes, afternoon, trontastic metroui is inlcuded in the project's 
@@ -47,6 +47,9 @@
 		<beanutils-version>1.8.3</beanutils-version>
 		<hibernate-core-version>4.2.6.Final</hibernate-core-version>
 		<hibernate-c3p0-version>4.2.6.Final</hibernate-c3p0-version>
+		
+		<bonecp-version>0.8.0.RELEASE</bonecp-version>
+		
 		<hibernate-search-version>4.3.0.Final</hibernate-search-version>
 		<hibernate-validator-version>5.0.1.Final</hibernate-validator-version>
 		<hibernate-entitymanager-version>4.2.5.Final</hibernate-entitymanager-version>
@@ -412,11 +415,17 @@
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-ehcache</artifactId>
 		</dependency>
+		
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-c3p0</artifactId>
 		</dependency>
-
+		<dependency>
+			<groupId>com.jolbox</groupId>
+			<artifactId>bonecp</artifactId>
+		</dependency>
+		
+	
 		<!-- <dependency> <groupId>org.hibernate</groupId> <artifactId>hibernate-search</artifactId> 
 			</dependency> -->
 		<!-- JSR 303 validation -->
@@ -1068,6 +1077,18 @@
 				<artifactId>hibernate-c3p0</artifactId>
 				<version>${hibernate-c3p0-version}</version>
 			</dependency>
+			<dependency>
+				<groupId>com.jolbox</groupId>
+				<artifactId>bonecp</artifactId>
+				<version>${bonecp-version}</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>com.jolbox</groupId>
+				<artifactId>bonecp-provider</artifactId>
+				<version>0.8.0-alpha1</version>
+			</dependency>
+			
 			<!-- <dependency> <groupId>org.hibernate</groupId> <artifactId>hibernate-search</artifactId> 
 				<version>${hibernate-search-version}</version> </dependency> -->
 			<dependency>

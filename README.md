@@ -50,7 +50,7 @@ see **javax.faces.application.ProjectStage** for valid ProjectStatge values
 
 You can use the JNDI Location java:comp/env/jsf/ProjectStage or set javax.faces.PROJECT_STAGE in web.xml.
 
-JNDI configuration
+##JNDI configuration
 
 Tomcat or Spring tcServer
 
@@ -59,7 +59,7 @@ Edit the context.xml in your CATALINE_BASE (Servers folder in Eclipse if you're 
     context.xml
         <Environment name="jsf/ProjectStage" override="false" type="java.lang.String" value="Development"/>
   
-web.xml
+###web.xml
 
     <resource-ref>
         <res-ref-name>jsf/ProjectStage</res-ref-name>
@@ -78,15 +78,21 @@ Again, refer to the Enumeration javax.faces.application.ProjectStage for valid P
         <param-value>Production</param-value>
      </context-param>
 
-Remove the resource-ref.
+###Remove the resource-ref.
 
     <resource-ref>
         <res-ref-name>jsf/ProjectStage</res-ref-name>
 	<res-type>java.lang.String</res-type>
     </resource-ref>
     
- ===
  
- # Third Party Libraries used by Logbook Manager
- ===
+##Third Party Libraries used by Logbook Manager
  
+1. Install PrimeFaces into your Local Maven Repository 
+	
+	http://jeff.langcode.com/archives/27
+
+	mvn install:install-file -Dfile=d:\development\resources\PrimeFaces\primefaces-4.0.7\primefaces-4.0.7.jar -DgroupId=org.primefaces -DartifactId=primefaces -Dversion=4.0.7 -Dpackaging=jar -DgeneratePom=true
+
+	mvn install:install-file -Dfile=d:\development\resources\PrimeFaces\primefaces-4.0.7\primefaces-4.0.7-sources.jar -DgroupId=org.primefaces -DartifactId=primefaces -Dversion=4.0.7 -Dpackaging=source
+
