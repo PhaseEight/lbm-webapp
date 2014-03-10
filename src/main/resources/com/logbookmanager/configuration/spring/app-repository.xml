@@ -33,7 +33,6 @@ http://www.springframework.org/schema/util http://www.springframework.org/schema
 		<property name="hibernateProperties">
 			<props>
 
-				<prop key="hibernate.connection.provider_class">com.jolbox.bonecp.provider.BoneCPConnectionProvider</prop>
 
 				<prop key="hibernate.bytecode.use_reflection_optimizer">true</prop>
 
@@ -42,6 +41,8 @@ http://www.springframework.org/schema/util http://www.springframework.org/schema
 				<prop key="hibernate.current_session_context_class">thread</prop>
 
 				<prop key="hibernate.jdbc.batch_size">${hibernate.jdbc.batch_size}</prop>
+<!-- 
+				<prop key="hibernate.connection.provider_class">com.jolbox.bonecp.provider.BoneCPConnectionProvider</prop>
 				
 				<prop key="hibernate.c3p0.min_size">${hibernate.c3p0.acquire_increment}</prop>
 				<prop key="hibernate.c3p0.min_size">${hibernate.c3p0.min_size}</prop>
@@ -58,6 +59,7 @@ http://www.springframework.org/schema/util http://www.springframework.org/schema
 				<prop key="bonecp.minConnectionsPerPartition">${bonecp.minConnectionsPerPartition}</prop>
 				<prop key="bonecp.statementsCacheSize">${bonecp.statementsCacheSize}</prop>
 				<prop key="bonecp.releaseHelperThreads">${bonecp.releaseHelperThreads}</prop>
+ -->
 
 				<prop key="hibernate.cache.use_second_level_cache">${hibernate.cache.use_second_level_cache}</prop>
 				<prop key="hibernate.cache.use_query_cache">${hibernate.cache.use_query_cache}</prop>
