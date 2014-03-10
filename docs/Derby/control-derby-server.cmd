@@ -24,8 +24,6 @@ SET DERBY_BIN=%DERBY_HOME%\bin
 SET DERBY_DATABASES=%DERBY_HOME%\databases
 SET DERBY_LIB=%DERBY_HOME%\lib
 
--h localhost -p 501527 -noSecurityManager -ssl https
-
 SETX DERBY_HOME "%DERBY_HOME%" /M	
 SETX DERBY_BIN "%DERBY_BIN%" /M 
 SETX DERBY_DATABASES "%DERBY_DATABASES%" /M 
@@ -45,7 +43,7 @@ ECHO java %IJ_ARGS% -jar "%DERBY_HOME%\lib\derbyrun.jar" server start
 ECHO ################################################################################################
 
 ECHO %IJ_ARGS%
-SET COMMAND=java %IJ_ARGS% -jar "%DERBY_LIB%\derbyrun.jar" server %CONTROL%
+SET COMMAND=java %IJ_ARGS% -jar "%DERBY_LIB%\derbyrun.jar" server %CONTROL%  -h localhost -p 51527 -noSecurityManager
 ECHO Calling: %COMMAND%
 CALL %COMMAND%
 
