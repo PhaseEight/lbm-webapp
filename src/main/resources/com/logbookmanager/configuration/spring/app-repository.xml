@@ -32,9 +32,9 @@ http://www.springframework.org/schema/util http://www.springframework.org/schema
 		</property>
 		<property name="hibernateProperties">
 			<props>
-<!-- 
+
 				<prop key="hibernate.connection.provider_class">com.jolbox.bonecp.provider.BoneCPConnectionProvider</prop>
- -->
+
 				<prop key="hibernate.bytecode.use_reflection_optimizer">true</prop>
 
 				<prop key="hibernate.transaction.factory_class">org.hibernate.transaction.JDBCTransactionFactory</prop>

@@ -88,14 +88,21 @@
 			access="hasRole('ROLE_ADMIN')" />
 
 		<!-- A user will always go to default-target-url on successful login -->
-		<security:form-login login-processing-url="/app/doLogin"
-			username-parameter="loginForm:username" password-parameter="loginForm:password"
-			login-page="/app/welcome" default-target-url="/app/main"
-			always-use-default-target="false" authentication-failure-url="/app/welcome?login_error=1" />
+		<security:form-login 
+			login-processing-url="/app/doLogin"
+			username-parameter="loginForm:username" 
+			password-parameter="loginForm:password"
+			login-page="/app/welcome"
+			default-target-url="/app/main"
+			always-use-default-target="false"
+			authentication-failure-url="/app/welcome?login_error=1" />
 
-		<security:logout success-handler-ref=""
-			delete-cookies="JSESSIONID" logout-success-url="/app/welcome?logout_success=1"
-			logout-url="/app/logout" invalidate-session="true" />
+		<security:logout 
+			success-handler-ref=""
+			delete-cookies="JSESSIONID"
+			logout-success-url="/app/welcome?logout_success=1"
+			logout-url="/app/logout"
+			invalidate-session="true" />
 
 		<security:port-mappings>
 			<security:port-mapping http="8080" https="8443" />
