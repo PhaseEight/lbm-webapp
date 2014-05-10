@@ -12,14 +12,14 @@
 	<properties>
 		<m2eclipse.wtp.contextRoot>/web</m2eclipse.wtp.contextRoot>
 		<javassist-version>3.18.0-GA</javassist-version>
-		<springframework-version>4.0.0.RELEASE</springframework-version>
-		<spring-security-version>4.0.0.CI-SNAPSHOT</spring-security-version>
+		<springframework-version>4.0.3.RELEASE</springframework-version>
+		<spring-security-version>3.2.3.RELEASE</spring-security-version>
 		<spring-faces-version>2.4.0.BUILD-SNAPSHOT</spring-faces-version>
 		<spring-webflow-version>2.4.0.BUILD-SNAPSHOT</spring-webflow-version>
 		<spring-webflow-binding-version>${spring-webflow-version}</spring-webflow-binding-version>
 		<myfaces-test20-version>1.0.6</myfaces-test20-version>
 		<cloudfoundry-runtime-version>0.8.4</cloudfoundry-runtime-version>
-		<primefaces-version>4.0.7</primefaces-version>
+		<primefaces-version>4.0.13</primefaces-version>
 		<primefaces-ext-version>1.0.0.RC1</primefaces-ext-version>
 		<primefaces.themes-version>1.0.10</primefaces.themes-version>
 		<!-- all-themes, afternoon, trontastic metroui is inlcuded in the project's 
@@ -150,18 +150,6 @@
 			<version>3.0.0</version>
 			<scope>test</scope>
 		</dependency>
-
-		<parent>
-		    <groupId>org.springframework.boot</groupId>
-		    <artifactId>spring-boot-starter-parent</artifactId>
-		    <version>1.0.1.RELEASE</version>
-		</parent>
-		<dependencies>
-		    <dependency>
-		        <groupId>org.springframework.boot</groupId>
-		        <artifactId>spring-boot-starter-web</artifactId>
-		    </dependency>
-		</dependencies>
 
 		<!-- ########## -->
 		<!-- MONITORING -->
@@ -778,7 +766,7 @@
 
 				<executions>
 					<execution>
-						<id>generate-rebel-xml</id>
+ 						<id>generate-rebel-xml</id>
 						<phase>process-resources</phase>
 						<goals>
 							<goal>generate</goal>

@@ -92,7 +92,7 @@ Again, refer to the Enumeration javax.faces.application.ProjectStage for valid P
 	
 	http://jeff.langcode.com/archives/27
 
-	mvn install:install-file -Dfile=d:\development\resources\PrimeFaces\primefaces-4.0.7\primefaces-4.0.7.jar -DgroupId=org.primefaces -DartifactId=primefaces -Dversion=4.0.7 -Dpackaging=jar -DgeneratePom=true
+	mvn install:install-file -Dfile=D:\development\resources\primefaces-4.0.13\primefaces-4.0.13.jar -DgroupId=org.primefaces -DartifactId=primefaces -Dversion=4.0.13 -Dpackaging=jar -DgeneratePom=true
 
-	mvn install:install-file -Dfile=d:\development\resources\PrimeFaces\primefaces-4.0.7\primefaces-4.0.7-sources.jar -DgroupId=org.primefaces -DartifactId=primefaces -Dversion=4.0.7 -Dpackaging=source
+	mvn install:install-file -Dfile=-Dfile=D:\development\resources\primefaces-4.0.13\primefaces-4.0.13-sources.jar -DgroupId=org.primefaces -DartifactId=primefaces -Dversion=4.0.13 -Dpackaging=source
 
