@@ -10,8 +10,8 @@ create a workspace directory e.g.
 
     open Git shell
     cd to d:\development\GitHub
-    md logbookmanger-web
-    cd logbookmanger-web
+    md lbm-webapp
+    cd lbm-webapp
 
 ###clone this repository with all Branches
 
@@ -20,12 +20,10 @@ create a workspace directory e.g.
 ###clone spring-webflow
 
 	change to your workspace
-	cd D:\Development\GitHub\logbookmanager-web
+	cd D:\Development\GitHub\lbm-webapp
 	git clone git://github.com/SpringSource/spring-webflow.git spring-webflow
 	
-
 	
-
 ##pulling/pushing from/to guidelines using remote/github repository:
 
     git stash - to make sure your changes are stash and your copy is reverted to the last commit that is in-sync with the remote.
@@ -52,7 +50,7 @@ You can use the JNDI Location java:comp/env/jsf/ProjectStage or set javax.faces.
 
 ##JNDI configuration
 
-Tomcat or Spring tcServer
+Tomcat or Spring tc Server
 
 Edit the context.xml in your CATALINE_BASE (Servers folder in Eclipse if you're using the deveault workspace metadata) and create a "JNDI Environment" Configuration
 
@@ -68,17 +66,22 @@ Edit the context.xml in your CATALINE_BASE (Servers folder in Eclipse if you're 
 
 
 If you are building a war per environment, then you may want to set the ProjectStage using the web.xml and 
-setting teh context-param - javax.faces.PROJECT_STAGE.
+setting the context-param - javax.faces.PROJECT_STAGE.
 
-Again, refer to the Enumeration javax.faces.application.ProjectStage for valid ProjectStage values.
-
+Supported Project Stage Values
+    Development,
+    UnitTest,
+    SystemTest,
+    Production
+     
     web.xml
     <context-param>
         <param-name>javax.faces.PROJECT_STAGE</param-name>
         <param-value>Production</param-value>
      </context-param>
+         
 
-###Remove the resource-ref.
+###Remove the JNDI resource-ref.
 
     <resource-ref>
         <res-ref-name>jsf/ProjectStage</res-ref-name>
@@ -90,7 +93,7 @@ Again, refer to the Enumeration javax.faces.application.ProjectStage for valid P
  
 1. Install PrimeFaces into your Local Maven Repository 
 	
-	http://jeff.langcode.com/archives/27
+	@see http://jeff.langcode.com/archives/27
 
 	mvn install:install-file -Dfile=D:\development\resources\primefaces-4.0.13\primefaces-4.0.13.jar -DgroupId=org.primefaces -DartifactId=primefaces -Dversion=4.0.13 -Dpackaging=jar -DgeneratePom=true
 
