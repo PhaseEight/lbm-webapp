@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="logmydive-app:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="logmydive-web.war">
+      <element id="artifact" artifact-name="logmydive-app:war exploded" />
+    </root>
+  </artifact>
+</component>

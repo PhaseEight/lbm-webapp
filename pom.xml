@@ -1,47 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<!-- see setup/maven/settings.xml in the setup project for other repositories
+    required -->
+<!-- <repository> <id>repository.springsource.milestone</id> <name>SpringSource
+    Milestone Repository</name> <url>http://repo.springsource.org/milestone</url>
+    <snapshots> <enabled>true</enabled> </snapshots> <releases> <enabled>true</enabled>
+    </releases> </repository> -->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.logbookmanager.logmydive</groupId>
 	<artifactId>logmydive-app</artifactId>
-	<version>1.0.0</version>
+	<version>1.0.1-SNAPSHOT</version>
 	<name>Log My Dive</name>
 	<prerequisites>
 		<maven>3.1.0</maven>
 	</prerequisites>
 	<properties>
-		<m2eclipse.wtp.contextRoot>/web</m2eclipse.wtp.contextRoot>
-		<javassist-version>3.18.0-GA</javassist-version>
-		<springframework-version>4.0.3.RELEASE</springframework-version>
-		<spring-security-version>3.2.3.RELEASE</spring-security-version>
-		<spring-faces-version>2.4.0.BUILD-SNAPSHOT</spring-faces-version>
-		<spring-webflow-version>2.4.0.BUILD-SNAPSHOT</spring-webflow-version>
+		<javassist-version>3.23.1-GA</javassist-version>
+		<springframework-version>5.0.7.RELEASE</springframework-version>
+		<spring-security-version>5.0.6.RELEASE</spring-security-version>
+		<spring-faces-version>2.5.0.RELEASE</spring-faces-version>
+		<spring-webflow-version>2.5.0.RELEASE</spring-webflow-version>
 		<spring-webflow-binding-version>${spring-webflow-version}</spring-webflow-binding-version>
-		<myfaces-test20-version>1.0.6</myfaces-test20-version>
-		<cloudfoundry-runtime-version>0.8.4</cloudfoundry-runtime-version>
-		<primefaces-version>4.0.13</primefaces-version>
-		<primefaces-ext-version>1.0.0.RC1</primefaces-ext-version>
+		<myfaces-test20-version>1.0.8</myfaces-test20-version>
+		<cloudfoundry-runtime-version>2.0.2.RELEASE</cloudfoundry-runtime-version>
+		<primefaces-version>6.2</primefaces-version>
+		<primefaces-extentsions-version>6.2.7</primefaces-extentsions-version>
 		<primefaces.themes-version>1.0.10</primefaces.themes-version>
 		<!-- all-themes, afternoon, trontastic metroui is inlcuded in the project's 
 			webapp/WEB-INF/lib folder -->
 		<primefaces.theme-artifactId>all-themes</primefaces.theme-artifactId>
-		<jackson-core-version>2.2.3</jackson-core-version>
-		<jackson-databind-version>2.2.3</jackson-databind-version>
-		<jackson-annotations-version>2.2.3</jackson-annotations-version>
-		<tomcat-version>7.0.42</tomcat-version>
-		<shrinkwrap-impl-base>1.2.0</shrinkwrap-impl-base>
-		<joda-time-version>2.3</joda-time-version>
-		<guava-version>14.0.1</guava-version>
-		<org.jadira.usertype.core-version>3.0.0.GA</org.jadira.usertype.core-version>
-		<jrebel-maven-plugin-version>1.1.3</jrebel-maven-plugin-version>
-		<junit-version>4.11</junit-version>
-		<dbunit-version>2.4.9</dbunit-version>
-		<disruptor-version>3.2.0</disruptor-version>
-		<spring-test-dbunit-version>1.0.0</spring-test-dbunit-version>
-		<selenium-java-version>2.35.0</selenium-java-version>
-		<org.aspectj-version>1.6.10</org.aspectj-version>
-		<com.sun.faces-version>2.2.3</com.sun.faces-version>
-		<wiser-version>1.2</wiser-version>
+		<jackson-core-version>2.9.6</jackson-core-version>
+		<jackson-databind-version>2.9.6</jackson-databind-version>
+		<jackson-annotations-version>2.9.6</jackson-annotations-version>
+		<tomcat-version>9.0.10</tomcat-version>
+		<shrinkwrap-impl-base>1.2.6</shrinkwrap-impl-base>
+		<joda-time-version>2.10</joda-time-version>
+		<guava-version>25.1-jre</guava-version>
+		<org.jadira.usertype.core-version>6.0.1.GA</org.jadira.usertype.core-version>
+		<junit-version>5.3.0-M1</junit-version>
+		<dbunit-version>2.5.4</dbunit-version>
+		<disruptor-version>3.4.2</disruptor-version>
+		<spring-test-dbunit-version>1.3.0</spring-test-dbunit-version>
+		<selenium-java-version>3.13.0</selenium-java-version>
+		<selenium-htmlunit-driver-version>2.52.0</selenium-htmlunit-driver-version>
+		<org.aspectj-version>1.9.1</org.aspectj-version>
+		<com.sun.faces-version>2.2.7</com.sun.faces-version>
+		<subethasmtp-wiser-version>1.2</subethasmtp-wiser-version>
 		<net.sf.ehcache-version>2.6.5</net.sf.ehcache-version>
 		<beanutils-version>1.8.3</beanutils-version>
 		<hibernate-core-version>4.2.6.Final</hibernate-core-version>
@@ -57,16 +61,15 @@
 		<commons-collections-version>3.2.1</commons-collections-version>
 		<commons-lang-version>2.6</commons-lang-version>
 		<!-- <commons-logging-version>1.1.1</commons-logging-version> -->
-		<javax.mail-version>1.4.6-rc1</javax.mail-version>
+		<javax.mail-version>1.6.1</javax.mail-version>
 		<javax.inject-version>1</javax.inject-version>
 		<bouncycastle-version>1.46</bouncycastle-version>
 		<log4j-version>2.0-beta9</log4j-version>
 		<mojo.exec-maven-plugin-version>1.2.1</mojo.exec-maven-plugin-version>
 		<commons-fileupload-version>1.3</commons-fileupload-version>
 		<commons-io-version>2.4</commons-io-version>
-		<javax.javaee-web-api-version>7.0</javax.javaee-web-api-version>
-		<maven-compiler-plugin-version>2.5.1</maven-compiler-plugin-version>
-		<maven-eclipse-plugin-version>2.9</maven-eclipse-plugin-version>
+		<javax.javaee-web-api-version>8.0</javax.javaee-web-api-version>
+		<maven-compiler-plugin-version>3.7</maven-compiler-plugin-version>
 		<maven-surefire-plugin-version>2.16</maven-surefire-plugin-version>
 		<commons-dbcp-version>1.2.2</commons-dbcp-version>
 		<h2database-version>1.3.173</h2database-version>
@@ -76,12 +79,6 @@
 	</properties>
 	<packaging>war</packaging>
 	<repositories>
-		<!-- see setup/maven/settings.xml in the setup project for other repositories 
-			required -->
-		<!-- <repository> <id>repository.springsource.milestone</id> <name>SpringSource 
-			Milestone Repository</name> <url>http://repo.springsource.org/milestone</url> 
-			<snapshots> <enabled>true</enabled> </snapshots> <releases> <enabled>true</enabled> 
-			</releases> </repository> -->
 		<repository>
 			<id>org.springframework.maven.milestone</id>
 			<name>Spring Maven Milestone Repository</name>
@@ -172,7 +169,7 @@
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-htmlunit-driver</artifactId>
 			<scope>test</scope>
-			<version>${selenium-java-version}</version>
+			<version>${selenium-htmlunit-driver-version}</version>
 		</dependency>
 		<dependency>
 			<groupId>commons-fileupload</groupId>
@@ -243,11 +240,6 @@
 			<scope>compile</scope>
 		</dependency>
 		<!-- Spring Start -->
-		<dependency>
-			<groupId>org.cloudfoundry</groupId>
-			<artifactId>cloudfoundry-runtime</artifactId>
-			<scope>compile</scope>
-		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-beans</artifactId>
@@ -378,7 +370,6 @@
 			<artifactId>spring-mobile-device</artifactId> <version>${org.springframework.mobile-version}</version> 
 			</dependency> -->
 		<!-- Spring Mobile End -->
-
 		<!-- JSF dependencies -->
 		<dependency>
 			<groupId>com.sun.faces</groupId>
@@ -590,8 +581,8 @@
 		</dependency>
 
 		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-api</artifactId>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
@@ -612,14 +603,10 @@
 			<version>${myfaces-test20-version}</version>
 			<scope>test</scope>
 		</dependency>
-		<!-- <dependency> <groupId>org.jboss.arquillian</groupId> <artifactId>arquillian-bom</artifactId> 
-			<version>1.1.1.Final</version> <scope>import</scope> <type>pom</type> </dependency> 
-			<dependency> <groupId>org.jboss.arquillian.junit</groupId> <artifactId>arquillian-junit-container</artifactId> 
-			<version>1.1.1.Final</version> <scope>test</scope> </dependency> -->
 		<dependency>
 			<groupId>org.subethamail</groupId>
 			<artifactId>subethasmtp-wiser</artifactId>
-			<version>${wiser-version}</version>
+			<version>${subethasmtp-wiser-version}</version>
 			<scope>test</scope>
 			<exclusions>
 				<exclusion>
@@ -634,18 +621,6 @@
 		<!-- finalName defaults to artifactId -->
 		<finalName>logmydive-web</finalName>
 		<plugins>
-			<plugin>
-				<groupId>org.cloudfoundry</groupId>
-				<artifactId>cf-maven-plugin</artifactId>
-				<version>1.0.0.M4</version>
-				<configuration>
-					<server>mycloudfoundry-instance</server>
-					<target>http://run.pivotal.io</target>
-					<url>http://logmydive.cfapps.io/</url>
-					<framework>spring</framework>
-					<memory>256</memory>
-				</configuration>
-			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
@@ -695,20 +670,6 @@
 
 			</plugin>
 			<plugin>
-				<artifactId>maven-eclipse-plugin</artifactId>
-				<version>${maven-eclipse-plugin-version}</version>
-				<configuration>
-					<additionalProjectnatures>
-						<projectnature>org.springframework.ide.eclipse.core.springnature</projectnature>
-					</additionalProjectnatures>
-					<additionalBuildcommands>
-						<buildcommand>org.springframework.ide.eclipse.core.springbuilder</buildcommand>
-					</additionalBuildcommands>
-					<downloadSources>true</downloadSources>
-					<downloadJavadocs>true</downloadJavadocs>
-				</configuration>
-			</plugin>
-			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>${maven-compiler-plugin-version}</version>
@@ -726,66 +687,6 @@
 				<version>${mojo.exec-maven-plugin-version}</version>
 				<configuration>
 					<mainClass>org.test.int1.Main</mainClass>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.zeroturnaround</groupId>
-				<artifactId>jrebel-maven-plugin</artifactId>
-				<version>${jrebel-maven-plugin-version}</version>
-				<configuration>
-					<!-- root is 2 directories away from jar/war modules -->
-					<relativePath>../../../../</relativePath>
-					<!-- use a system property for specifing root directory (note the double 
-						$) start your application with -Drebel.root=c:/projects/ and in JRebel Config 
-						Centre -> Advanced -> Advanced / Custom Properties when starting a server 
-						from inside Eclipse e.g. VMWare vFabric tc Server -->
-					<!-- <rootPath>$${rebel.root}</rootPath> -->
-					<showGenerated>true</showGenerated>
-					<alwaysGenerate>true</alwaysGenerate>
-					<addResourcesDirToRebelXml>true</addResourcesDirToRebelXml>
-					<packaging>war</packaging>
-					<classpath>
-						<fallback>default</fallback>
-						<resources>
-							<resource>
-								<!-- Empty resource element marks default configuration. By default 
-									it is placed first in generated configuration. -->
-							</resource>
-						</resources>
-					</classpath>
-					<web>
-						<resources>
-							<resource>
-								<!-- Empty resource element marks default configuration. By default 
-									it is placed first in generated configuration. -->
-							</resource>
-						</resources>
-					</web>
-
-				</configuration>
-
-				<executions>
-					<execution>
- 						<id>generate-rebel-xml</id>
-						<phase>process-resources</phase>
-						<goals>
-							<goal>generate</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<artifactId>maven-war-plugin</artifactId>
-				<configuration>
-					<packagingExcludes>WEB-INF/lib/terracotta-toolkit*.jar</packagingExcludes>
-					<packagingIncludes>WEB-INF/lib/*.jar,**/*.xml,**/*.properties,**/*.class,**/*.png,**/*.css,**/*.js,**/*.xhtml,**/*.</packagingIncludes>
-					<archive>
-						<manifest>
-							<addClasspath>true</addClasspath>
-							<classpathPrefix>lib/</classpathPrefix>
-							-->
-						</manifest>
-					</archive>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -1057,7 +958,7 @@
 			<dependency>
 				<groupId>org.primefaces.extensions</groupId>
 				<artifactId>primefaces-extensions</artifactId>
-				<version>${primefaces-ext-version}</version>
+				<version>${primefaces-extentsions-version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.hibernate</groupId>
@@ -1154,8 +1055,8 @@
 				<version>${javax.javaee-web-api-version}</version>
 			</dependency>
 			<dependency>
-				<groupId>junit</groupId>
-				<artifactId>junit</artifactId>
+				<groupId>org.junit.jupiter</groupId>
+				<artifactId>junit-jupiter-api</artifactId>
 				<version>${junit-version}</version>
 			</dependency>
 			<dependency>
