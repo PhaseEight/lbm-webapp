@@ -1,30 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<flow xmlns="http://www.springframework.org/schema/webflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/webflow
+<flow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.springframework.org/schema/webflow"
+      xsi:schemaLocation="http://www.springframework.org/schema/webflow
         http://www.springframework.org/schema/webflow/spring-webflow.xsd"
-	start-state="start">
-	<secured attributes="ROLE_ADMIN" match="any" />
-	<!-- 
-	• On flow start
-	• On state entry
-	• On view render
-	• On transition execution
-	• On state exit
-	• On flow end
- 	-->
-	
-	<view-state id="start" popup="false" redirect="false" view="manageLogbooks.xhtml">
-		<transition on="submit" to="reviewLogbook" />
-	</view-state>
+      start-state="start">
+    <secured attributes="ROLE_ADMIN" match="any"/>
+    <!--
+    • On flow start
+    • On state entry
+    • On view render
+    • On transition execution
+    • On state exit
+    • On flow end
+     -->
 
-	<view-state id="reviewLogbook">
-		<transition on="create" to="logbookCreated" />
-		<transition on="edit" to="enterLogbookDetails" />
-		<transition on="cancel" to="logbookCancelled" />
-	</view-state>
+    <view-state id="start" popup="false" redirect="false" view="manageLogbooks.xhtml">
+        <transition on="submit" to="reviewLogbook"/>
+    </view-state>
 
-	<end-state id="logbookCreated" />
-	<end-state id="logbookCancelled" />
+    <view-state id="reviewLogbook">
+        <transition on="create" to="logbookCreated"/>
+        <transition on="edit" to="enterLogbookDetails"/>
+        <transition on="cancel" to="logbookCancelled"/>
+    </view-state>
+
+    <end-state id="logbookCreated"/>
+    <end-state id="logbookCancelled"/>
 
 
 </flow>

@@ -57,8 +57,8 @@ import java.security.SecureRandom;
  * database.</li>
  * <li>4) Singletons are not portable and not recommended in the EJB specs.</li>
  * </ul>
- * 
- * 
+ *
+ *
  * <p>
  * The GUID is constucted by.
  * <ul>
@@ -81,7 +81,7 @@ import java.security.SecureRandom;
  * distinct objects. (This is typically implemented by converting the internal
  * address of the object into an integer, but this implementation technique is
  * not required by the Java programming language.)</I>**</li>
- * 
+ *
  * <li>4) (25-32 hex characters) a random 32 bit integer generated for each
  * method invocation from the SecureRandom java class using
  * SecureRandom.nextInt(). This method produces a cryptographically strong
@@ -114,201 +114,193 @@ import java.security.SecureRandom;
  * the random values will have to be the same in the same repeated millisecond
  * value as in a previous sequence.</li>
  * </ul>
- * 
+ *
  * @author Steve Woodcock
  * @version 1.1
  */
 public class GUIDGenerator {
 
-	/** Creates new GUIDGenerator */
-	public GUIDGenerator() throws GUIDException {
+    /**
+     * <p>
+     * The random seed used in the method call to provide the required
+     * randomized element. The normal random class is not used as the sequences
+     * produced are more uniform than this implementation and will produce a
+     * predictable sequence which could lead to a greater chance of number
+     * clashes.
+     * <p>
+     */
+    private SecureRandom seeder;
+    /**
+     * <p>
+     * The cached mid value of the UUID. This consists of the hexadecimal
+     * version of the IP address of the machine and the object's hashcode. These
+     * are stored as -xxxx-xxxx-xxxx-xxxx to speed up the method calls. This
+     * value does not change over the lifespan of the object and so is able to
+     * be cached in this manner.
+     * <p>
+     */
+    private String midValue;
+    /**
+     * <p>
+     * The unformatted cached mid value of the UUID. This consists of the
+     * hexadecimal version of the IP address of the machine and the object's
+     * hashcode. These are stored as xxxxxxxxxxxxxxxx to speed up the method
+     * calls. This value does not change over the lifespan of the object and so
+     * is able to be cached in this manner. This vlaue is used to supply the
+     * middle part of the UUID for the unformatted method.
+     * <p>
+     */
+    private String midValueUnformated;
 
-		try {
-			StringBuilder stringbuilder = new StringBuilder();
-			StringBuilder stringbuilder1 = new StringBuilder();
-			this.seeder = new SecureRandom();
-			InetAddress inetaddress = InetAddress.getLocalHost();
-			byte abyte0[] = inetaddress.getAddress();
-			String s = hexFormat(getInt(abyte0), 8);
-			String s1 = hexFormat(hashCode(), 8);
-			stringbuilder.append("-");
-			stringbuilder1.append(s.substring(0, 4));
-			stringbuilder.append(s.substring(0, 4));
-			stringbuilder.append("-");
-			stringbuilder1.append(s.substring(4));
-			stringbuilder.append(s.substring(4));
-			stringbuilder.append("-");
-			stringbuilder1.append(s1.substring(0, 4));
-			stringbuilder.append(s1.substring(0, 4));
-			stringbuilder.append("-");
-			stringbuilder1.append(s1.substring(4));
-			stringbuilder.append(s1.substring(4));
-			this.midValue = stringbuilder.toString();
-			this.midValueUnformated = stringbuilder1.toString();
-			this.seeder.nextInt();
-		} catch (Exception exception) {
-			throw new GUIDException("error - failure to instantiate GUIDGenerator" + exception);
-		}
-	}
+    /**
+     * Creates new GUIDGenerator
+     */
+    public GUIDGenerator() throws GUIDException {
 
-	/**
-	 * <p>
-	 * The private method that actually does the work. The String passed into
-	 * the method is either the formatted or unformatted mid value which is
-	 * combined with the low 32 bits (obtained by a bit wise &) of the time and
-	 * the next value in the secureRandom sequence.
-	 * </p>
-	 * 
-	 * @param s
-	 *            The string containing the mid value of the required format for
-	 *            the UUID.
-	 * @return A string containing the UUID in the desired format.
-	 * 
-	 */
-	private String getVal(String s) {
-		int i = (int) System.currentTimeMillis() & 0xffffffff;
-		int j = this.seeder.nextInt();
-		return hexFormat(i, 8) + s + hexFormat(j, 8);
-	}
+        try {
+            StringBuilder stringbuilder = new StringBuilder();
+            StringBuilder stringbuilder1 = new StringBuilder();
+            this.seeder = new SecureRandom();
+            InetAddress inetaddress = InetAddress.getLocalHost();
+            byte abyte0[] = inetaddress.getAddress();
+            String s = hexFormat(getInt(abyte0), 8);
+            String s1 = hexFormat(hashCode(), 8);
+            stringbuilder.append("-");
+            stringbuilder1.append(s.substring(0, 4));
+            stringbuilder.append(s.substring(0, 4));
+            stringbuilder.append("-");
+            stringbuilder1.append(s.substring(4));
+            stringbuilder.append(s.substring(4));
+            stringbuilder.append("-");
+            stringbuilder1.append(s1.substring(0, 4));
+            stringbuilder.append(s1.substring(0, 4));
+            stringbuilder.append("-");
+            stringbuilder1.append(s1.substring(4));
+            stringbuilder.append(s1.substring(4));
+            this.midValue = stringbuilder.toString();
+            this.midValueUnformated = stringbuilder1.toString();
+            this.seeder.nextInt();
+        } catch (Exception exception) {
+            throw new GUIDException("error - failure to instantiate GUIDGenerator" + exception);
+        }
+    }
 
-	/**
-	 * <p>
-	 * Used to provide a UUID that does not conform to the GUID RFC. The String
-	 * returned does not have the xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx format
-	 * instead it is xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx. This is to provide a
-	 * shorter version of the UUID for easier database manipulation.
-	 * </p>
-	 * <p>
-	 * However, it is recommended that th full format be used.
-	 * </P>
-	 * 
-	 * @throws RemoteException
-	 *             Required to be thrown by the EJB specification.
-	 * @return A String representing a UUID in the format
-	 *         xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx. Each character in the string is
-	 *         a hexadecimal.
-	 */
-	public String getUnformatedUUID() {
-		return getVal(this.midValueUnformated);
-	}
+    /**
+     * <p>
+     * The private method that actually does the work. The String passed into
+     * the method is either the formatted or unformatted mid value which is
+     * combined with the low 32 bits (obtained by a bit wise &) of the time and
+     * the next value in the secureRandom sequence.
+     * </p>
+     *
+     * @param s The string containing the mid value of the required format for
+     *          the UUID.
+     * @return A string containing the UUID in the desired format.
+     */
+    private String getVal(String s) {
+        int i = (int) System.currentTimeMillis() & 0xffffffff;
+        int j = this.seeder.nextInt();
+        return hexFormat(i, 8) + s + hexFormat(j, 8);
+    }
 
-	/**
-	 * <p>
-	 * Returns a UUID formated according to the draft internet standard. See the
-	 * class level documentation for more details.
-	 * </P>
-	 * 
-	 * @return A String representing a UUID in the format
-	 *         xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx.
-	 */
-	public String getUUID() {
-		return getVal(this.midValue);
-	}
+    /**
+     * <p>
+     * Used to provide a UUID that does not conform to the GUID RFC. The String
+     * returned does not have the xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx format
+     * instead it is xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx. This is to provide a
+     * shorter version of the UUID for easier database manipulation.
+     * </p>
+     * <p>
+     * However, it is recommended that th full format be used.
+     * </P>
+     *
+     * @return A String representing a UUID in the format
+     * xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx. Each character in the string is
+     * a hexadecimal.
+     * @throws RemoteException Required to be thrown by the EJB specification.
+     */
+    public String getUnformatedUUID() {
+        return getVal(this.midValueUnformated);
+    }
 
-	/**
-	 * <p>
-	 * A utility method to take a byte array of 4 bytes and produce an int
-	 * value. This is used to convert the quad xxx.xxx.xxx.xxx value of the IP
-	 * address to the underlying 32-bit int that the ip address represents.
-	 * There is no way to obtain this value in Java so we need to convert it
-	 * ourselves.
-	 * </P
-	 * 
-	 * @param abyte0
-	 *            Th byte array containg 4 bytes that represent an IP address.
-	 * @return An int that is the actual value of the ip address.
-	 */
-	private int getInt(byte abyte0[]) {
-		int i = 0;
-		int j = 24;
-		for (int k = 0; j >= 0; k++) {
-			int l = abyte0[k] & 0xff;
-			i += l << j;
-			j -= 8;
-		}
+    /**
+     * <p>
+     * Returns a UUID formated according to the draft internet standard. See the
+     * class level documentation for more details.
+     * </P>
+     *
+     * @return A String representing a UUID in the format
+     * xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx.
+     */
+    public String getUUID() {
+        return getVal(this.midValue);
+    }
 
-		return i;
-	}
+    /**
+     * <p>
+     * A utility method to take a byte array of 4 bytes and produce an int
+     * value. This is used to convert the quad xxx.xxx.xxx.xxx value of the IP
+     * address to the underlying 32-bit int that the ip address represents.
+     * There is no way to obtain this value in Java so we need to convert it
+     * ourselves.
+     * </P
+     *
+     * @param abyte0 Th byte array containg 4 bytes that represent an IP address.
+     * @return An int that is the actual value of the ip address.
+     */
+    private int getInt(byte abyte0[]) {
+        int i = 0;
+        int j = 24;
+        for (int k = 0; j >= 0; k++) {
+            int l = abyte0[k] & 0xff;
+            i += l << j;
+            j -= 8;
+        }
 
-	/**
-	 * <p>
-	 * A utility method to produce a correctly formatted hex string string from
-	 * an int value and and an int specifying the length the hex string that
-	 * represents the int value should be.
-	 * </p>
-	 * <p>
-	 * Utilises both the padHex and toHexString methods.
-	 * </p>
-	 * 
-	 * @param i
-	 *            The int value that is to be transformed to a hex string.
-	 * @param j
-	 *            An int specifying the length of the hex string to be returned.
-	 * @return A string that contains the formatted hex string.
-	 */
-	private String hexFormat(int i, int j) {
-		String s = Integer.toHexString(i);
-		return padHex(s, j) + s;
-	}
+        return i;
+    }
 
-	/**
-	 * <p>
-	 * A utility method that takes in a string of hex characters and prepends a
-	 * number characters to the string to make up a string of the required
-	 * length as defined in the int value passed into the method. This is
-	 * because the values for say the hashcode on a lower memory machine will
-	 * only be 4 characters long and so to the correct formatting is produced 0
-	 * characters must be prepended to the fornt of the string.
-	 * <p>
-	 * 
-	 * @param s
-	 *            The String containing the hex values.
-	 * @param i
-	 *            The int specifying the length that the string should be.
-	 * @return A String of the correct length containing the original hex value
-	 *         and a number of pad zeros at the front of the string.
-	 */
-	private String padHex(String s, int i) {
-		StringBuilder stringbuilder = new StringBuilder();
-		if (s.length() < i) {
-			for (int j = 0; j < i - s.length(); j++)
-				stringbuilder.append("0");
+    /**
+     * <p>
+     * A utility method to produce a correctly formatted hex string string from
+     * an int value and and an int specifying the length the hex string that
+     * represents the int value should be.
+     * </p>
+     * <p>
+     * Utilises both the padHex and toHexString methods.
+     * </p>
+     *
+     * @param i The int value that is to be transformed to a hex string.
+     * @param j An int specifying the length of the hex string to be returned.
+     * @return A string that contains the formatted hex string.
+     */
+    private String hexFormat(int i, int j) {
+        String s = Integer.toHexString(i);
+        return padHex(s, j) + s;
+    }
 
-		}
-		return stringbuilder.toString();
-	}
+    /**
+     * <p>
+     * A utility method that takes in a string of hex characters and prepends a
+     * number characters to the string to make up a string of the required
+     * length as defined in the int value passed into the method. This is
+     * because the values for say the hashcode on a lower memory machine will
+     * only be 4 characters long and so to the correct formatting is produced 0
+     * characters must be prepended to the fornt of the string.
+     * <p>
+     *
+     * @param s The String containing the hex values.
+     * @param i The int specifying the length that the string should be.
+     * @return A String of the correct length containing the original hex value
+     * and a number of pad zeros at the front of the string.
+     */
+    private String padHex(String s, int i) {
+        StringBuilder stringbuilder = new StringBuilder();
+        if (s.length() < i) {
+            for (int j = 0; j < i - s.length(); j++)
+                stringbuilder.append("0");
 
-	/**
-	 * <p>
-	 * The random seed used in the method call to provide the required
-	 * randomized element. The normal random class is not used as the sequences
-	 * produced are more uniform than this implementation and will produce a
-	 * predictable sequence which could lead to a greater chance of number
-	 * clashes.
-	 * <p>
-	 */
-	private SecureRandom seeder;
-
-	/**
-	 * <p>
-	 * The cached mid value of the UUID. This consists of the hexadecimal
-	 * version of the IP address of the machine and the object's hashcode. These
-	 * are stored as -xxxx-xxxx-xxxx-xxxx to speed up the method calls. This
-	 * value does not change over the lifespan of the object and so is able to
-	 * be cached in this manner.
-	 * <p>
-	 */
-	private String midValue;
-
-	/**
-	 * <p>
-	 * The unformatted cached mid value of the UUID. This consists of the
-	 * hexadecimal version of the IP address of the machine and the object's
-	 * hashcode. These are stored as xxxxxxxxxxxxxxxx to speed up the method
-	 * calls. This value does not change over the lifespan of the object and so
-	 * is able to be cached in this manner. This vlaue is used to supply the
-	 * middle part of the UUID for the unformatted method.
-	 * <p>
-	 */
-	private String midValueUnformated;
+        }
+        return stringbuilder.toString();
+    }
 }

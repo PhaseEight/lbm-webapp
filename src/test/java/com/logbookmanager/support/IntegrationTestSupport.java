@@ -1,7 +1,6 @@
 package com.logbookmanager.support;
 
-import javax.inject.Inject;
-
+import com.github.springtestdbunit.DbUnitTestExecutionListener;
 import org.hibernate.SessionFactory;
 import org.junit.FixMethodOrder;
 import org.junit.runner.RunWith;
@@ -17,7 +16,7 @@ import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 import org.springframework.test.context.web.WebAppConfiguration;
 
-import com.github.springtestdbunit.DbUnitTestExecutionListener;
+import javax.inject.Inject;
 
 //http://www.petrikainulainen.net/programming/spring-framework/integration-testing-of-spring-mvc-applications-migrating-to-spring-3-2/
 
@@ -27,15 +26,15 @@ import com.github.springtestdbunit.DbUnitTestExecutionListener;
  * not necessary as this is declared in the
  * AbstractTransactionalJUnit4SpringContextTests
  */
-@TestExecutionListeners({ DependencyInjectionTestExecutionListener.class, DirtiesContextTestExecutionListener.class,
-		TransactionalTestExecutionListener.class, DbUnitTestExecutionListener.class })
+@TestExecutionListeners({DependencyInjectionTestExecutionListener.class, DirtiesContextTestExecutionListener.class,
+        TransactionalTestExecutionListener.class, DbUnitTestExecutionListener.class})
 /*
  * not necessary as this is declared in the
  * AbstractTransactionalJUnit4SpringContextTests
  */
 @ContextConfiguration(name = "lbm-test-dispatcher-servlet", locations = {
-		"file:src/main/webapp/WEB-INF/spring/servlet-context.xml",
-		"file:src/main/resources/com/logbookmanager/configuration/spring/app-root.xml"
+        "file:src/main/webapp/WEB-INF/spring/servlet-context.xml",
+        "file:src/main/resources/com/logbookmanager/configuration/spring/app-root.xml"
 
 })
 @WebAppConfiguration(value = "src/main/webapp")
@@ -44,16 +43,18 @@ import com.github.springtestdbunit.DbUnitTestExecutionListener;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public abstract class IntegrationTestSupport extends AbstractTransactionalJUnit4SpringContextTests {
 
-	/** Inject session Factory for flushing objects to the database */
-	@Inject
-	private SessionFactory sessionFactory;
+    /**
+     * Inject session Factory for flushing objects to the database
+     */
+    @Inject
+    private SessionFactory sessionFactory;
 
-	public SessionFactory getSessionFactory() {
-		return sessionFactory;
-	}
+    public SessionFactory getSessionFactory() {
+        return sessionFactory;
+    }
 
-	public void setSessionFactory(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
-	}
+    public void setSessionFactory(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
 
 }

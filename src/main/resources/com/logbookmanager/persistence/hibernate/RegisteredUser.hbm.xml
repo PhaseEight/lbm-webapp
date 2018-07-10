@@ -1,87 +1,86 @@
-
 <!DOCTYPE hibernate-mapping PUBLIC
-    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
-    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-	<class name="com.logbookmanager.domain.model.security.RegisteredUser"
-		table="sec_user">
-		<cache usage="read-write" />
-		<id name="id" column="ID" type="long" unsaved-value="null">
-			<generator class="increment"></generator>
-		</id>
-		<natural-id mutable="false">
-			<component name="username"
-				class="com.logbookmanager.domain.support.UserName">
-				<property name="value" type="java.lang.String" column="username"
-					length="55" insert="true" update="false" not-null="true" unique="true" />
-			</component>
-		</natural-id>
+    <class name="com.logbookmanager.domain.model.security.RegisteredUser"
+           table="sec_user">
+        <cache usage="read-write"/>
+        <id name="id" column="ID" type="long" unsaved-value="null">
+            <generator class="increment"></generator>
+        </id>
+        <natural-id mutable="false">
+            <component name="username"
+                       class="com.logbookmanager.domain.support.UserName">
+                <property name="value" type="java.lang.String" column="username"
+                          length="55" insert="true" update="false" not-null="true" unique="true"/>
+            </component>
+        </natural-id>
 
-		<version name="version" column="version" type="java.lang.Long" />
-		<property name="active" type="java.lang.Boolean" update="true">
-			<column name="active" not-null="true" unique="false" default="false" />
-		</property>
+        <version name="version" column="version" type="java.lang.Long"/>
+        <property name="active" type="java.lang.Boolean" update="true">
+            <column name="active" not-null="true" unique="false" default="false"/>
+        </property>
 
-		<!-- used to represent a logical delete -->
-		<property name="deleted" type="java.lang.Boolean" update="true">
-			<column name="deleted" not-null="true" unique="false" default="false" />
-		</property>
+        <!-- used to represent a logical delete -->
+        <property name="deleted" type="java.lang.Boolean" update="true">
+            <column name="deleted" not-null="true" unique="false" default="false"/>
+        </property>
 
-		<property name="lastUpdateTimeStamp" type="java.sql.Timestamp"
-			update="true" unique="false">
-			<column name="last_update_date" length="10" not-null="true"
-				unique="false" default="CURRENT_TIMESTAMP" />
-		</property>
+        <property name="lastUpdateTimeStamp" type="java.sql.Timestamp"
+                  update="true" unique="false">
+            <column name="last_update_date" length="10" not-null="true"
+                    unique="false" default="CURRENT_TIMESTAMP"/>
+        </property>
 
-		<component name="password" class="com.logbookmanager.domain.support.Password">
-			<property name="value" type="java.lang.String" update="true"
-				insert="true" column="password" not-null="true" />
-		</component>
+        <component name="password" class="com.logbookmanager.domain.support.Password">
+            <property name="value" type="java.lang.String" update="true"
+                      insert="true" column="password" not-null="true"/>
+        </component>
 
-		<component name="passwordHint"
-			class="com.logbookmanager.domain.support.PasswordHint">
-			<property name="question" type="java.lang.String" update="true"
-				insert="true" column="password_hint_question" not-null="false" />
-			<property name="answer" type="java.lang.String" update="true"
-				insert="true" column="password_hint_answer" not-null="false" />
-		</component>
-		<set name="roles" lazy="false" table="sec_user_role" cascade="save-update,delete"
-			fetch="join">
-			<key column="user_id" />
-			<many-to-many class="com.logbookmanager.domain.model.security.Role"
-				column="role_id" />
-		</set>
+        <component name="passwordHint"
+                   class="com.logbookmanager.domain.support.PasswordHint">
+            <property name="question" type="java.lang.String" update="true"
+                      insert="true" column="password_hint_question" not-null="false"/>
+            <property name="answer" type="java.lang.String" update="true"
+                      insert="true" column="password_hint_answer" not-null="false"/>
+        </component>
+        <set name="roles" lazy="false" table="sec_user_role" cascade="save-update,delete"
+             fetch="join">
+            <key column="user_id"/>
+            <many-to-many class="com.logbookmanager.domain.model.security.Role"
+                          column="role_id"/>
+        </set>
 
-		<one-to-one name="logbookUser" property-ref="registeredUser" />
+        <one-to-one name="logbookUser" property-ref="registeredUser"/>
 
-		<component name="userDetails"
-			class="com.logbookmanager.domain.support.UserDetails">
+        <component name="userDetails"
+                   class="com.logbookmanager.domain.support.UserDetails">
 
-			<property name="firstName" type="java.lang.String" update="true"
-				insert="true" column="first_name" length="50" not-null="true" />
+            <property name="firstName" type="java.lang.String" update="true"
+                      insert="true" column="first_name" length="50" not-null="true"/>
 
-			<property name="lastName" type="java.lang.String" update="true"
-				insert="true" column="last_name" length="50" not-null="true" />
+            <property name="lastName" type="java.lang.String" update="true"
+                      insert="true" column="last_name" length="50" not-null="true"/>
 
-			<property name="email" type="java.lang.String" length="255"
-				insert="true" update="true" column="email" not-null="true" unique="true"
-				index="sec_user_email_idx" />
+            <property name="email" type="java.lang.String" length="255"
+                      insert="true" update="true" column="email" not-null="true" unique="true"
+                      index="sec_user_email_idx"/>
 
-			<property name="phoneNumber" type="java.lang.String" update="true"
-				insert="true" column="phone_number" not-null="false" />
+            <property name="phoneNumber" type="java.lang.String" update="true"
+                      insert="true" column="phone_number" not-null="false"/>
 
-			<property name="mobileNumber" type="java.lang.String"
-				update="true" insert="true" column="mobile_number" not-null="false" />
+            <property name="mobileNumber" type="java.lang.String"
+                      update="true" insert="true" column="mobile_number" not-null="false"/>
 
-			<property name="website" type="java.lang.String" update="true"
-				insert="true" column="website" not-null="false" />
+            <property name="website" type="java.lang.String" update="true"
+                      insert="true" column="website" not-null="false"/>
 
-			<property name="locale" type="java.lang.String" update="true"
-				insert="true" column="locale" not-null="false" />
+            <property name="locale" type="java.lang.String" update="true"
+                      insert="true" column="locale" not-null="false"/>
 
-		</component>
+        </component>
 
-	</class>
+    </class>
 
 </hibernate-mapping>

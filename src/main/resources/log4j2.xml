@@ -1,123 +1,122 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<configuration 
-	name="testConfiguration"
-    strict="true"
-	status="warn" 
-	monitorInterval="600"
-    schema="log4J-V2.0.xsd"
+<configuration
+        name="testConfiguration"
+        strict="true"
+        status="warn"
+        monitorInterval="600"
+        schema="log4J-V2.0.xsd"
 >
-	<appenders>
-		<File name="file" fileName="weblogs/lbm-webapp.log" append="false">
-			<PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
-		</File>
-		<Console name="stdout" target="SYSTEM_OUT">
-			<PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
-		</Console>
-	</appenders>
-	<loggers>
-		<logger name="org.apache.log4j.xml" level="info">
-			<appender-ref ref="file" />
-		</logger>
+    <appenders>
+        <File name="file" fileName="weblogs/lbm-webapp.log" append="false">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </File>
+        <Console name="stdout" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </Console>
+    </appenders>
+    <loggers>
+        <logger name="org.apache.log4j.xml" level="info">
+            <appender-ref ref="file"/>
+        </logger>
 
-		<!-- Application Loggers -->
-		<logger name="com.logbookmanager" level="debug" additivity="false" >
-			<appender-ref ref="file" />
-			<appender-ref ref="stdout" />
-		</logger>
-
-
-		<!-- 3rdparty Loggers -->
-		<logger name="org.springframework.core.env.StandardEnvironment" level="warn" >
-		</logger>
-
-		<logger name="org.springframework" level="info" >
-		</logger>
-
-		<logger name="org.springframework.jndi" level="info" >
-		</logger>
-
-		<logger name="org.springframework.ui" level="info" >
-		</logger>
-
-		<logger name="org.springframework.core" level="info" >
-		</logger>
-
-		<logger name="org.springframework.beans" level="info" >
-		</logger>
-
-		<logger name="org.springframework.beans.factory" level="info" >
-		</logger>
-
-		<logger name="org.springframework.beans.factory.xml.XmlBeanDefinitionReader" level="warn" >
-		</logger>
+        <!-- Application Loggers -->
+        <logger name="com.logbookmanager" level="debug" additivity="false">
+            <appender-ref ref="file"/>
+            <appender-ref ref="stdout"/>
+        </logger>
 
 
+        <!-- 3rdparty Loggers -->
+        <logger name="org.springframework.core.env.StandardEnvironment" level="warn">
+        </logger>
 
-		<logger name="org.springframework.test" level="debug" >
-		</logger>
+        <logger name="org.springframework" level="info">
+        </logger>
 
+        <logger name="org.springframework.jndi" level="info">
+        </logger>
 
-		<logger name="org.springframework.context" level="info" >
-		</logger>
+        <logger name="org.springframework.ui" level="info">
+        </logger>
 
-		<logger name="org.springframework.web" level="info" >
-		</logger>
+        <logger name="org.springframework.core" level="info">
+        </logger>
 
-		<logger name="org.springframework.security" level="debug" >
-		</logger>
+        <logger name="org.springframework.beans" level="info">
+        </logger>
 
-		<logger name="net.sf.ehcache" level="warn" >
-		</logger>
+        <logger name="org.springframework.beans.factory" level="info">
+        </logger>
 
-		<logger name="org.springframework.jdbc" level="warn" >
-		</logger>
-
-		<logger name="com.mchange.v2" level="warn" >
-		</logger>
-
-		<logger name="org.apache.commons.beanutils" level="warn" >
-		</logger>
-
-		<logger name="org.apache.catalina" level="warn" >
-		</logger>
-
-		<logger name="org.hibernate.SQL" level="info" >
-		</logger>
-
-		<logger name="org.hibernate.type" level="warn" >
-		</logger>
-
-		<logger name="TableMetadata" level="warn" >
-		</logger>
-
-		<logger name="org.hibernate.loader.Loader" level="warn" >
-		</logger>
+        <logger name="org.springframework.beans.factory.xml.XmlBeanDefinitionReader" level="warn">
+        </logger>
 
 
-		<logger name="org.hibernate.cfg.HbmBinder" level="warn" >
-		</logger>
+        <logger name="org.springframework.test" level="debug">
+        </logger>
 
-		<logger name="org.hibernate.cfg.CollectionSecondPass" level="warn" >
-		</logger>
 
-		<logger name="org.hibernate" level="error" >
-		</logger>
+        <logger name="org.springframework.context" level="info">
+        </logger>
 
-		<logger name="org.jboss.logging" level="error" >
-		</logger>
+        <logger name="org.springframework.web" level="info">
+        </logger>
 
-		<logger name="javax.enterprise" level="debug" >
-		</logger>
+        <logger name="org.springframework.security" level="debug">
+        </logger>
 
-		<logger name="jsf.config" level="debug" >
-		</logger>
+        <logger name="net.sf.ehcache" level="warn">
+        </logger>
 
-		<logger name="jsf.spi" level="debug" >
-		</logger>
+        <logger name="org.springframework.jdbc" level="warn">
+        </logger>
 
-		<!-- Root Logger -->
-		<root level="debug">
-			<appender-ref ref="stdout" />
-		</root>
-	</loggers>
+        <logger name="com.mchange.v2" level="warn">
+        </logger>
+
+        <logger name="org.apache.commons.beanutils" level="warn">
+        </logger>
+
+        <logger name="org.apache.catalina" level="warn">
+        </logger>
+
+        <logger name="org.hibernate.SQL" level="info">
+        </logger>
+
+        <logger name="org.hibernate.type" level="warn">
+        </logger>
+
+        <logger name="TableMetadata" level="warn">
+        </logger>
+
+        <logger name="org.hibernate.loader.Loader" level="warn">
+        </logger>
+
+
+        <logger name="org.hibernate.cfg.HbmBinder" level="warn">
+        </logger>
+
+        <logger name="org.hibernate.cfg.CollectionSecondPass" level="warn">
+        </logger>
+
+        <logger name="org.hibernate" level="error">
+        </logger>
+
+        <logger name="org.jboss.logging" level="error">
+        </logger>
+
+        <logger name="javax.enterprise" level="debug">
+        </logger>
+
+        <logger name="jsf.config" level="debug">
+        </logger>
+
+        <logger name="jsf.spi" level="debug">
+        </logger>
+
+        <!-- Root Logger -->
+        <root level="debug">
+            <appender-ref ref="stdout"/>
+        </root>
+    </loggers>
 </configuration>

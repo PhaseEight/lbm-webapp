@@ -8,44 +8,43 @@
  */
 package com.logbookmanager.web.util;
 
-import static com.google.common.collect.Maps.newHashMap;
-
-import java.util.Map;
+import org.primefaces.application.PrimeResourceHandler;
 
 import javax.faces.application.Resource;
 import javax.faces.application.ResourceHandler;
+import java.util.Map;
 
-import org.primefaces.application.PrimeResourceHandler;
+import static com.google.common.collect.Maps.newHashMap;
 
 /**
  * Cache primefaces resources
  */
 public class CachedPrimeResourceHandler extends PrimeResourceHandler {
 
-	private Map<String, Resource> resCache = newHashMap();
+    private Map<String, Resource> resCache = newHashMap();
 
-	public CachedPrimeResourceHandler(ResourceHandler wrapped) {
-		super(wrapped);
-	}
+    public CachedPrimeResourceHandler(ResourceHandler wrapped) {
+        super(wrapped);
+    }
 
-	@Override
-	public Resource createResource(String resourceName) {
-		return createResource(resourceName, "");
-	}
+    @Override
+    public Resource createResource(String resourceName) {
+        return createResource(resourceName, "");
+    }
 
-	@Override
-	public Resource createResource(String resourceName, String libraryName) {
-		return createResource(resourceName, libraryName, "");
-	}
+    @Override
+    public Resource createResource(String resourceName, String libraryName) {
+        return createResource(resourceName, libraryName, "");
+    }
 
-	@Override
-	public Resource createResource(String resourceName, String libraryName, String contentType) {
-		String key = resourceName + "__" + libraryName + "__" + contentType;
-		if (resCache.containsKey(key)) {
-			return resCache.get(key);
-		}
-		Resource resource = super.createResource(resourceName, libraryName, contentType);
-		resCache.put(key, resource);
-		return resource;
-	}
+    @Override
+    public Resource createResource(String resourceName, String libraryName, String contentType) {
+        String key = resourceName + "__" + libraryName + "__" + contentType;
+        if (resCache.containsKey(key)) {
+            return resCache.get(key);
+        }
+        Resource resource = super.createResource(resourceName, libraryName, contentType);
+        resCache.put(key, resource);
+        return resource;
+    }
 }

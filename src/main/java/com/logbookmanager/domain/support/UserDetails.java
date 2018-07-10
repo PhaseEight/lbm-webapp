@@ -1,88 +1,90 @@
 package com.logbookmanager.domain.support;
 
 public class UserDetails extends ValueObjectSupport<UserDetails> {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	private String firstName;
-	private String lastName;
-	private String email;
-	private String string;
-	private String mobileNumber;
-	private String website;
-	private String locale;
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
+    private String firstName;
+    private String lastName;
+    private String email;
+    private String string;
+    private String mobileNumber;
+    private String website;
+    private String locale;
 
-	public UserDetails(String firstName, String lastName, String email, String string, String mobileNumber,
-			String website, String locale) {
-		setFirstName(firstName);
-		setLastName(lastName);
-		setEmail(email);
-		setPhoneNumber(string);
-		setMobileNumber(mobileNumber);
-		setWebsite(website);
-		setLocale(locale);
-	}
+    public UserDetails(String firstName, String lastName, String email, String string, String mobileNumber,
+                       String website, String locale) {
+        setFirstName(firstName);
+        setLastName(lastName);
+        setEmail(email);
+        setPhoneNumber(string);
+        setMobileNumber(mobileNumber);
+        setWebsite(website);
+        setLocale(locale);
+    }
 
-	public String getFirstName() {
-		return firstName;
-	}
+    /**
+     * required by Hibernate
+     **/
+    UserDetails() {
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
+    }
 
-	public String getLastName() {
-		return lastName;
-	}
+    public String getFirstName() {
+        return firstName;
+    }
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
 
-	public String getPhoneNumber() {
-		return string;
-	}
+    public String getLastName() {
+        return lastName;
+    }
 
-	public void setPhoneNumber(String string) {
-		this.string = string;
-	}
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    public String getPhoneNumber() {
+        return string;
+    }
 
-	public String getMobileNumber() {
-		return mobileNumber;
-	}
+    public void setPhoneNumber(String string) {
+        this.string = string;
+    }
 
-	public void setMobileNumber(String mobileNumber) {
-		this.mobileNumber = mobileNumber;
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	public String getWebsite() {
-		return website;
-	}
+    public String getMobileNumber() {
+        return mobileNumber;
+    }
 
-	public String getLocale() {
-		return locale;
-	}
+    public void setMobileNumber(String mobileNumber) {
+        this.mobileNumber = mobileNumber;
+    }
 
-	public void setLocale(String locale) {
-		this.locale = locale;
-	}
+    public String getWebsite() {
+        return website;
+    }
 
-	public void setWebsite(String website) {
-		this.website = website;
-	}
+    public void setWebsite(String website) {
+        this.website = website;
+    }
 
-	/** required by Hibernate **/
-	UserDetails() {
+    public String getLocale() {
+        return locale;
+    }
 
-	}
+    public void setLocale(String locale) {
+        this.locale = locale;
+    }
 
 }

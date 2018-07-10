@@ -18,22 +18,17 @@ package org.springframework.util;
 
 import java.io.Serializable;
 import java.lang.ref.Reference;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
-import java.util.WeakHashMap;
+import java.util.*;
 
 /**
  * A simple decorator for a Map, encapsulating the workflow for caching
  * expensive values in a target Map. Supports caching weak or strong keys.
- * 
+ *
  * <p>
  * This class is also an abstract template. Caching Map implementations should
  * subclass and override the <code>create(key)</code> method which encapsulates
  * expensive creation of a new object.
- * 
+ *
  * @author Keith Donald
  * @author Juergen Hoeller
  * @since 1.2.2
@@ -41,149 +36,144 @@ import java.util.WeakHashMap;
 @SuppressWarnings("rawtypes")
 public abstract class CachingMapDecorator implements Map, Serializable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
 
-	private static Object NULL_VALUE = new Object();
+    private static Object NULL_VALUE = new Object();
 
-	private final Map targetMap;
+    private final Map targetMap;
 
-	/**
-	 * Create a CachingMapDecorator with strong keys, using an underlying
-	 * synchronized Map.
-	 */
-	public CachingMapDecorator() {
-		this(false);
-	}
+    /**
+     * Create a CachingMapDecorator with strong keys, using an underlying
+     * synchronized Map.
+     */
+    public CachingMapDecorator() {
+        this(false);
+    }
 
-	/**
-	 * Create a CachingMapDecorator, using an underlying synchronized Map.
-	 * 
-	 * @param weakKeys
-	 *            whether to use weak references for keys
-	 */
-	@SuppressWarnings("unchecked")
-	public CachingMapDecorator(boolean weakKeys) {
-		Map internalMap = weakKeys ? (Map) new WeakHashMap() : new HashMap();
-		this.targetMap = Collections.synchronizedMap(internalMap);
-	}
+    /**
+     * Create a CachingMapDecorator, using an underlying synchronized Map.
+     *
+     * @param weakKeys whether to use weak references for keys
+     */
+    @SuppressWarnings("unchecked")
+    public CachingMapDecorator(boolean weakKeys) {
+        Map internalMap = weakKeys ? (Map) new WeakHashMap() : new HashMap();
+        this.targetMap = Collections.synchronizedMap(internalMap);
+    }
 
-	/**
-	 * Create a CachingMapDecorator with initial size, using an underlying
-	 * synchronized Map.
-	 * 
-	 * @param weakKeys
-	 *            whether to use weak references for keys
-	 * @param size
-	 *            the initial cache size
-	 */
-	@SuppressWarnings("unchecked")
-	public CachingMapDecorator(boolean weakKeys, int size) {
-		Map internalMap = weakKeys ? (Map) new WeakHashMap(size) : new HashMap(size);
-		this.targetMap = Collections.synchronizedMap(internalMap);
-	}
+    /**
+     * Create a CachingMapDecorator with initial size, using an underlying
+     * synchronized Map.
+     *
+     * @param weakKeys whether to use weak references for keys
+     * @param size     the initial cache size
+     */
+    @SuppressWarnings("unchecked")
+    public CachingMapDecorator(boolean weakKeys, int size) {
+        Map internalMap = weakKeys ? (Map) new WeakHashMap(size) : new HashMap(size);
+        this.targetMap = Collections.synchronizedMap(internalMap);
+    }
 
-	/**
-	 * Create a CachingMapDecorator for the given Map.
-	 * <p>
-	 * The passed-in Map won't get synchronized explicitly, so make sure to pass
-	 * in a properly synchronized Map, if desired.
-	 * 
-	 * @param targetMap
-	 *            the Map to decorate
-	 */
-	public CachingMapDecorator(Map targetMap) {
-		Assert.notNull(targetMap, "Target Map is required");
-		this.targetMap = targetMap;
-	}
+    /**
+     * Create a CachingMapDecorator for the given Map.
+     * <p>
+     * The passed-in Map won't get synchronized explicitly, so make sure to pass
+     * in a properly synchronized Map, if desired.
+     *
+     * @param targetMap the Map to decorate
+     */
+    public CachingMapDecorator(Map targetMap) {
+        Assert.notNull(targetMap, "Target Map is required");
+        this.targetMap = targetMap;
+    }
 
-	public int size() {
-		return this.targetMap.size();
-	}
+    public int size() {
+        return this.targetMap.size();
+    }
 
-	public boolean isEmpty() {
-		return this.targetMap.isEmpty();
-	}
+    public boolean isEmpty() {
+        return this.targetMap.isEmpty();
+    }
 
-	public boolean containsKey(Object key) {
-		return this.targetMap.containsKey(key);
-	}
+    public boolean containsKey(Object key) {
+        return this.targetMap.containsKey(key);
+    }
 
-	public boolean containsValue(Object value) {
-		return this.targetMap.containsValue(value);
-	}
+    public boolean containsValue(Object value) {
+        return this.targetMap.containsValue(value);
+    }
 
-	@SuppressWarnings("unchecked")
-	public Object put(Object key, Object value) {
-		return this.targetMap.put(key, value);
-	}
+    @SuppressWarnings("unchecked")
+    public Object put(Object key, Object value) {
+        return this.targetMap.put(key, value);
+    }
 
-	public Object remove(Object key) {
-		return this.targetMap.remove(key);
-	}
+    public Object remove(Object key) {
+        return this.targetMap.remove(key);
+    }
 
-	@SuppressWarnings("unchecked")
-	public void putAll(Map t) {
-		this.targetMap.putAll(t);
-	}
+    @SuppressWarnings("unchecked")
+    public void putAll(Map t) {
+        this.targetMap.putAll(t);
+    }
 
-	public void clear() {
-		this.targetMap.clear();
-	}
+    public void clear() {
+        this.targetMap.clear();
+    }
 
-	public Set keySet() {
-		return this.targetMap.keySet();
-	}
+    public Set keySet() {
+        return this.targetMap.keySet();
+    }
 
-	public Collection values() {
-		return this.targetMap.values();
-	}
+    public Collection values() {
+        return this.targetMap.values();
+    }
 
-	public Set entrySet() {
-		return this.targetMap.entrySet();
-	}
+    public Set entrySet() {
+        return this.targetMap.entrySet();
+    }
 
-	/**
-	 * Get value for key. Creates and caches value if it doesn't already exist
-	 * in the cache.
-	 * <p>
-	 * This implementation is <i>not</i> synchronized: This is highly concurrent
-	 * but does not guarantee unique instances in the cache, as multiple values
-	 * for the same key could get created in parallel. Consider overriding this
-	 * method to synchronize it, if desired.
-	 * 
-	 * @see #create(Object)
-	 */
-	public Object get(Object key) {
-		Object value = this.targetMap.get(key);
-		if (value instanceof Reference) {
-			value = ((Reference) value).get();
-		}
-		if (value == null) {
-			Object newValue = create(key);
-			value = (newValue instanceof Reference ? ((Reference) newValue).get() : newValue);
-			if (newValue == null) {
-				newValue = NULL_VALUE;
-			}
-			put(key, newValue);
-		}
-		return (value == NULL_VALUE ? null : value);
-	}
+    /**
+     * Get value for key. Creates and caches value if it doesn't already exist
+     * in the cache.
+     * <p>
+     * This implementation is <i>not</i> synchronized: This is highly concurrent
+     * but does not guarantee unique instances in the cache, as multiple values
+     * for the same key could get created in parallel. Consider overriding this
+     * method to synchronize it, if desired.
+     *
+     * @see #create(Object)
+     */
+    public Object get(Object key) {
+        Object value = this.targetMap.get(key);
+        if (value instanceof Reference) {
+            value = ((Reference) value).get();
+        }
+        if (value == null) {
+            Object newValue = create(key);
+            value = (newValue instanceof Reference ? ((Reference) newValue).get() : newValue);
+            if (newValue == null) {
+                newValue = NULL_VALUE;
+            }
+            put(key, newValue);
+        }
+        return (value == NULL_VALUE ? null : value);
+    }
 
-	/**
-	 * Create a value to cache for the given key. Called by <code>get</code> if
-	 * there is no value cached already.
-	 * 
-	 * @param key
-	 *            the cache key
-	 * @see #get(Object)
-	 */
-	protected abstract Object create(Object key);
+    /**
+     * Create a value to cache for the given key. Called by <code>get</code> if
+     * there is no value cached already.
+     *
+     * @param key the cache key
+     * @see #get(Object)
+     */
+    protected abstract Object create(Object key);
 
-	public String toString() {
-		return "CachingMapDecorator [" + getClass().getName() + "]:" + this.targetMap;
-	}
+    public String toString() {
+        return "CachingMapDecorator [" + getClass().getName() + "]:" + this.targetMap;
+    }
 
 }

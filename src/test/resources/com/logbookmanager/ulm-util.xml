@@ -1,25 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:lbmdate="http://www.logbookmanager.com/schema/beans/date"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+<beans xmlns:lbmdate="http://www.logbookmanager.com/schema/beans/date"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 						http://www.logbookmanager.com/schema/beans/date http://www.logbookmanager.com/schema/beans/date.xsd">
 
-	<!-- date with format 2008-02-28 23:59 -->
+    <!-- date with format 2008-02-28 23:59 -->
 
-	<bean id="datedSuffixDateFormatRegEx" class="java.lang.String">
-		<constructor-arg value="\d{4}-\d{2}-\d{2}-\d{2}:\d{2}"></constructor-arg>
-	</bean>
+    <bean id="datedSuffixDateFormatRegEx" class="java.lang.String">
+        <constructor-arg value="\d{4}-\d{2}-\d{2}-\d{2}:\d{2}"></constructor-arg>
+    </bean>
 
-	<bean id="timeOfDayOfYearDateFormatRegEx"
-		class="java.lang.String">
-		<constructor-arg value="\d{2}:\d{2}\s{1}\d{2}-\d{2}-\d{4}"></constructor-arg>
-	</bean>
+    <bean id="timeOfDayOfYearDateFormatRegEx"
+          class="java.lang.String">
+        <constructor-arg value="\d{2}:\d{2}\s{1}\d{2}-\d{2}-\d{4}"></constructor-arg>
+    </bean>
 
-	<lbmdate:dateformat id="datedSuffixDateFormat" pattern="yyyy-MM-dd-HH:mm" lenient="true" />
+    <lbmdate:dateformat id="datedSuffixDateFormat" pattern="yyyy-MM-dd-HH:mm" lenient="true"/>
 
-	<lbmdate:dateformat id="timeOfDayOfYearDateFormat" pattern="HH:mm dd-MM-yyyy" lenient="true" />
+    <lbmdate:dateformat id="timeOfDayOfYearDateFormat" pattern="HH:mm dd-MM-yyyy" lenient="true"/>
 
-	<lbmdate:vdateformat id="validateableDatedSuffixDateFormat" pattern="yyyy-MM-dd-HH:mm" lenient="true" validation="\d{4}-\d{2}-\d{2}-\d{2}:\d{2}" validate="true"/>
+    <lbmdate:vdateformat id="validateableDatedSuffixDateFormat" pattern="yyyy-MM-dd-HH:mm" lenient="true"
+                         validation="\d{4}-\d{2}-\d{2}-\d{2}:\d{2}" validate="true"/>
 
 </beans>

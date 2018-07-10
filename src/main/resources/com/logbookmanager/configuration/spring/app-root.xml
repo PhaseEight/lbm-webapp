@@ -1,21 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
-	xmlns:context="http://www.springframework.org/schema/context"
-	xsi:schemaLocation="
-	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
-http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	<!-- Root Context: defines shared resources visible to all components -->
-	<import resource="app-property-configurator.xml" />
-	<import resource="app-infrastructure.xml" />
-	<import resource="app-data.xml" />
-	<import resource="app-repository.xml" />
-	<import resource="app-tx.xml" />
-	<import resource="app-services.xml" />
-	<import resource="app-security.xml" />
-	<import resource="app-cloud.xml" />
-	<import resource="app-jmx.xml" />
+    <!-- Root Context: defines shared resources visible to all components -->
+    <import resource="app-property-configurator.xml"/>
+    <import resource="app-infrastructure.xml"/>
+    <import resource="app-data.xml"/>
+    <import resource="app-repository.xml"/>
+    <import resource="app-tx.xml"/>
+    <import resource="app-services.xml"/>
+    <import resource="app-security.xml"/>
+    <import resource="app-cloud.xml"/>
+    <import resource="app-jmx.xml"/>
 
 </beans>

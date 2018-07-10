@@ -1,31 +1,31 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-	<class name="com.logbookmanager.domain.model.Country" table="country">
+    <class name="com.logbookmanager.domain.model.Country" table="country">
 
-		<id name="id" column="id" type="java.lang.Long" unsaved-value="null">
-			<generator class="increment">
-			</generator>
-		</id>
+        <id name="id" column="id" type="java.lang.Long" unsaved-value="null">
+            <generator class="increment">
+            </generator>
+        </id>
 
-		<natural-id>
-			<property name="ansiCode" type="string">
-				<column name="ANSI_CODE" length="3" unique="true" />
-			</property>
-		</natural-id>
+        <natural-id>
+            <property name="ansiCode" type="string">
+                <column name="ANSI_CODE" length="3" unique="true"/>
+            </property>
+        </natural-id>
 
-		<version name="version" column="version" type="java.lang.Long" />
+        <version name="version" column="version" type="java.lang.Long"/>
 
-		<property name="active" type="java.lang.Boolean" update="true">
-			<column name="ACTIVE" not-null="true" unique="false" default="true" />
-		</property>
+        <property name="active" type="java.lang.Boolean" update="true">
+            <column name="ACTIVE" not-null="true" unique="false" default="true"/>
+        </property>
 
-		<property name="lastUpdateTimeStamp" type="java.sql.Timestamp"
-			insert="false">
-			<column name="LAST_UPDATE_DATE" length="10" not-null="true"
-				unique="false" default="CURRENT_TIMESTAMP" />
-		</property>
+        <property name="lastUpdateTimeStamp" type="java.sql.Timestamp"
+                  insert="false">
+            <column name="LAST_UPDATE_DATE" length="10" not-null="true"
+                    unique="false" default="CURRENT_TIMESTAMP"/>
+        </property>
 
-	</class>
+    </class>
 </hibernate-mapping>

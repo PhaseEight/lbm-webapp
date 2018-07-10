@@ -1,81 +1,74 @@
 package com.logbookmanager.service;
 
+import com.logbookmanager.data.repository.LogbookRepository;
+import com.logbookmanager.data.repository.LogbookUserRepository;
+import com.logbookmanager.domain.model.logbook.Logbook;
+import com.logbookmanager.domain.model.logbook.LogbookUser;
+import com.logbookmanager.service.support.GenericService;
+import org.slf4j.Logger;
+import org.springframework.beans.factory.annotation.Qualifier;
+
 import javax.inject.Inject;
 
 /**
  * protected Logger log;
  * this.log = LoggerFactory.getLogger(getClass());
  */
-import org.slf4j.Logger;
-import org.springframework.beans.factory.annotation.Qualifier;
-
-import com.logbookmanager.data.repository.LogbookRepository;
-import com.logbookmanager.data.repository.LogbookUserRepository;
-import com.logbookmanager.domain.model.logbook.Logbook;
-import com.logbookmanager.domain.model.logbook.LogbookUser;
-import com.logbookmanager.service.support.GenericService;
 
 /**
  * Class responsible for management of Logbooks.
- * 
+ * <p>
  * Create attributes for a detail, create the details themselves. Create pages
  * and place details on the page. Allow managing lists and grouping of details
- * 
+ *
  * @author Peter
- * 
  */
 public class LogbookServiceImpl extends GenericService<Logbook, Long> implements LogbookService {
 
-	@Inject
-	Logger logger = null;
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
+    @Inject
+    Logger logger = null;
+    private LogbookRepository logbookRepository;
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+    private LogbookUserRepository logbookUserRepository;
 
-	private LogbookRepository logbookRepository;
+    @Inject
+    public LogbookServiceImpl(@Qualifier("logbookRepository") LogbookRepository logbookRepository,
+                              LogbookUserRepository logbookUserRepository) {
+        super(logbookRepository);
+        this.logbookUserRepository = logbookUserRepository;
+    }
 
-	private LogbookUserRepository logbookUserRepository;
+    public LogbookRepository getLogbookRepository() {
+        return logbookRepository;
+    }
 
-	@Inject
-	public LogbookServiceImpl(@Qualifier("logbookRepository") LogbookRepository logbookRepository,
-			LogbookUserRepository logbookUserRepository) {
-		super(logbookRepository);
-		this.logbookUserRepository = logbookUserRepository;
-	}
+    public void setLogbookRepository(LogbookRepository logbookRepository) {
+        this.logbookRepository = logbookRepository;
+    }
 
-	public LogbookRepository getLogbookRepository() {
-		return logbookRepository;
-	}
+    public LogbookUserRepository getLogbookUserRepository() {
+        return logbookUserRepository;
+    }
 
-	public void setLogbookRepository(LogbookRepository logbookRepository) {
-		this.logbookRepository = logbookRepository;
-	}
+    public void setLogbookUserRepository(LogbookUserRepository logbookUserRepository) {
+        this.logbookUserRepository = logbookUserRepository;
+    }
 
-	public LogbookUserRepository getLogbookUserRepository() {
-		return logbookUserRepository;
-	}
+    /**
+     * @param logbookUser the LogbookUser signing up for a new logbook
+     * @param logbook     The logbook the registered user wants to use
+     *                    <p>
+     *                    session.buildLockRequest().setLockMode(LockMode.
+     *                    PESSIMISTIC_WRITE).setTimeOut(60000).lock(entity);
+     */
+    public void createLogbook(LogbookUser logbookUser, Logbook logbook) {
+        logbookUser.addLogbook(logbook);
 
-	public void setLogbookUserRepository(LogbookUserRepository logbookUserRepository) {
-		this.logbookUserRepository = logbookUserRepository;
-	}
-
-	/**
-	 * 
-	 * @param logbookUser
-	 *            the LogbookUser signing up for a new logbook
-	 * @param logbook
-	 * 
-	 *            The logbook the registered user wants to use
-	 * 
-	 *            session.buildLockRequest().setLockMode(LockMode.
-	 *            PESSIMISTIC_WRITE).setTimeOut(60000).lock(entity);
-	 */
-	public void createLogbook(LogbookUser logbookUser, Logbook logbook) {
-		logbookUser.addLogbook(logbook);
-
-		logbookUserRepository.makePersistent(logbookUser);
-	}
+        logbookUserRepository.makePersistent(logbookUser);
+    }
 
 }

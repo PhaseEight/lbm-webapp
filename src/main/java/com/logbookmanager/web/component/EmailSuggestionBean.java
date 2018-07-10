@@ -1,53 +1,53 @@
 package com.logbookmanager.web.component;
 
-import java.io.Serializable;
-
 import org.springframework.binding.message.MessageBuilder;
 import org.springframework.util.StringUtils;
 import org.springframework.webflow.execution.RequestContext;
 
+import java.io.Serializable;
+
 public class EmailSuggestionBean implements Serializable {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	private String firstName;
+    private String firstName;
 
-	private String lastName;
+    private String lastName;
 
-	public String createEmailSuggestion(RequestContext context) {
+    public String createEmailSuggestion(RequestContext context) {
 
-		boolean haveFirst = StringUtils.hasText(firstName);
-		boolean haveLast = StringUtils.hasLength(lastName);
+        boolean haveFirst = StringUtils.hasText(firstName);
+        boolean haveLast = StringUtils.hasLength(lastName);
 
-		if (haveFirst && haveLast) {
-			return firstName + "." + lastName + "@fastmail.com";
+        if (haveFirst && haveLast) {
+            return firstName + "." + lastName + "@fastmail.com";
 
-		} else if (haveFirst) {
-			return firstName + "@fastmail.com";
+        } else if (haveFirst) {
+            return firstName + "@fastmail.com";
 
-		} else if (haveLast) {
-			return lastName + "@fastmail.com";
+        } else if (haveLast) {
+            return lastName + "@fastmail.com";
 
-		} else {
-			context.getMessageContext().addMessage(
-					new MessageBuilder().error().defaultText("Please enter a first or a last name of both!").build());
-			return "";
-		}
-	}
+        } else {
+            context.getMessageContext().addMessage(
+                    new MessageBuilder().error().defaultText("Please enter a first or a last name of both!").build());
+            return "";
+        }
+    }
 
-	public String getFirstName() {
-		return firstName;
-	}
+    public String getFirstName() {
+        return firstName;
+    }
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
 
-	public String getLastName() {
-		return lastName;
-	}
+    public String getLastName() {
+        return lastName;
+    }
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 
 }

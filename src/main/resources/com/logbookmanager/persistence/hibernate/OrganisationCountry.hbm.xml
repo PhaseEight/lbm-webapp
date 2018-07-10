@@ -1,37 +1,37 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-	<class
-		name="com.logbookmanager.domain.model.organisation.OrganisationCountry"
-		table="organisation_country">
-		<id name="id" column="id" type="java.lang.Long" unsaved-value="null">
-			<generator class="increment">
-			</generator>
-		</id>
+    <class
+            name="com.logbookmanager.domain.model.organisation.OrganisationCountry"
+            table="organisation_country">
+        <id name="id" column="id" type="java.lang.Long" unsaved-value="null">
+            <generator class="increment">
+            </generator>
+        </id>
 
-		<version name="version" column="version" type="java.lang.Long" />
+        <version name="version" column="version" type="java.lang.Long"/>
 
-		<property name="active" type="java.lang.Boolean" update="true">
-			<column name="ACTIVE" not-null="true" unique="false" default="true" />
-		</property>
+        <property name="active" type="java.lang.Boolean" update="true">
+            <column name="ACTIVE" not-null="true" unique="false" default="true"/>
+        </property>
 
-		<property name="lastUpdateTimeStamp" type="java.sql.Timestamp">
-			<column name="LAST_UPDATE_DATE" length="10" not-null="true"
-				unique="false" default="CURRENT_TIMESTAMP" />
-		</property>
+        <property name="lastUpdateTimeStamp" type="java.sql.Timestamp">
+            <column name="LAST_UPDATE_DATE" length="10" not-null="true"
+                    unique="false" default="CURRENT_TIMESTAMP"/>
+        </property>
 
-		<property name="phone" type="string">
-			<column name="PHONE" length="18" />
-		</property>
-		<property name="fax" type="string">
-			<column name="FAX" length="18" />
-		</property>
-		<many-to-one name="organisation"
-			class="com.logbookmanager.domain.model.organisation.Organisation"
-			column="ORGANISATION_ID" fetch="select" foreign-key="FK_ORGANISATION_COUNTRY_ORGANISATION_ID"/>
-		<many-to-one name="country"
-			class="com.logbookmanager.domain.model.Country" column="COUNTRY_ID"
-			update="false" insert="false" fetch="select" foreign-key="FK_ORGANISATION_COUNTRY_COUNTRY_ID"/>
-	</class>
+        <property name="phone" type="string">
+            <column name="PHONE" length="18"/>
+        </property>
+        <property name="fax" type="string">
+            <column name="FAX" length="18"/>
+        </property>
+        <many-to-one name="organisation"
+                     class="com.logbookmanager.domain.model.organisation.Organisation"
+                     column="ORGANISATION_ID" fetch="select" foreign-key="FK_ORGANISATION_COUNTRY_ORGANISATION_ID"/>
+        <many-to-one name="country"
+                     class="com.logbookmanager.domain.model.Country" column="COUNTRY_ID"
+                     update="false" insert="false" fetch="select" foreign-key="FK_ORGANISATION_COUNTRY_COUNTRY_ID"/>
+    </class>
 </hibernate-mapping>

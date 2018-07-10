@@ -8,18 +8,18 @@ import org.springframework.stereotype.Component;
 @ManagedResource(objectName = "Spring-beans:name=HelloSpringJMX")
 public class HelloJMX {
 
-	String message = null;
+    String message = null;
 
-	@ManagedAttribute(description = "get the message")
-	public String getMessage() {
+    @ManagedAttribute(description = "get the message")
+    public String getMessage() {
 
-		return this.message;
-	}
+        return this.message;
+    }
 
-	@ManagedAttribute(description = "set the message")
-	public void setMessage(String Message) {
+    @ManagedAttribute(description = "set the message")
+    public void setMessage(String Message) {
 
-		this.message = Message;
+        this.message = Message;
 
-	}
+    }
 }

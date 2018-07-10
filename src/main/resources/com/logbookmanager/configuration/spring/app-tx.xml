@@ -1,36 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:aop="http://www.springframework.org/schema/aop"
-	xmlns:util="http://www.springframework.org/schema/util" xmlns:tx="http://www.springframework.org/schema/tx" 
-	xsi:schemaLocation="
-	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
 	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
-	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <import resource="app-repository.xml" />
-    
-	<!-- Add new Services here -->
-	<!-- Platform Transaction manager for a single Hibernate SessionFactory (alternative to JTA) -->
-	<bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager" depends-on="sessionFactory">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
+    <import resource="app-repository.xml"/>
 
-	<tx:annotation-driven mode="proxy" transaction-manager="transactionManager" proxy-target-class="false" />
+    <!-- Add new Services here -->
+    <!-- Platform Transaction manager for a single Hibernate SessionFactory (alternative to JTA) -->
+    <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager"
+          depends-on="sessionFactory">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
 
-	<!-- the transactional advice (what 'happens'; see the <aop:advisor/> bean below) -->
-	<!-- all methods starting with 'get' and 'find' are read-only -->
-	<!-- other methods use the default transaction settings (see below) -->
-	<!-- ensure that the above transactional advice runs for any execution of an operation defined by the UserService interface -->
-	<tx:advice id="transactionAdvice" transaction-manager="transactionManager">
-		<tx:attributes>
-		    <tx:method name="find*" read-only="true" />
-			<tx:method name="get*" read-only="true" />
-			<tx:method name="*" />
-		</tx:attributes>
-	</tx:advice>
-	<aop:config>
-		<aop:pointcut id="serviceOperations" expression="execution(* com.logbookmanager.service.*Service.* (..))" />
-		<aop:advisor advice-ref="transactionAdvice" pointcut-ref="serviceOperations" />
-	</aop:config>
+    <tx:annotation-driven mode="proxy" transaction-manager="transactionManager" proxy-target-class="false"/>
+
+    <!-- the transactional advice (what 'happens'; see the <aop:advisor/> bean below) -->
+    <!-- all methods starting with 'get' and 'find' are read-only -->
+    <!-- other methods use the default transaction settings (see below) -->
+    <!-- ensure that the above transactional advice runs for any execution of an operation defined by the UserService interface -->
+    <tx:advice id="transactionAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method name="find*" read-only="true"/>
+            <tx:method name="get*" read-only="true"/>
+            <tx:method name="*"/>
+        </tx:attributes>
+    </tx:advice>
+    <aop:config>
+        <aop:pointcut id="serviceOperations" expression="execution(* com.logbookmanager.service.*Service.* (..))"/>
+        <aop:advisor advice-ref="transactionAdvice" pointcut-ref="serviceOperations"/>
+    </aop:config>
 </beans>

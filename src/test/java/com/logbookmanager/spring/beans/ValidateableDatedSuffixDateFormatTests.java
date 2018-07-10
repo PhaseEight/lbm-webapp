@@ -1,27 +1,26 @@
 package com.logbookmanager.spring.beans;
 
-import static org.junit.Assert.assertTrue;
-
+import com.logbookmanager.date.ValidateableSimpleDateFormat;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.logbookmanager.date.ValidateableSimpleDateFormat;
+import static org.junit.Assert.assertTrue;
 
 public class ValidateableDatedSuffixDateFormatTests {
 
-	private static ClassPathXmlApplicationContext ctx;
+    private static ClassPathXmlApplicationContext ctx;
 
-	@BeforeClass
-	public static void beforeClass() {
-		ctx = new ClassPathXmlApplicationContext(new String[] { "com/logbookmanager/ulm-util.xml" });
-	}
+    @BeforeClass
+    public static void beforeClass() {
+        ctx = new ClassPathXmlApplicationContext(new String[]{"com/logbookmanager/ulm-util.xml"});
+    }
 
-	@Test
-	public void validateableDatedSuffixDateFormat() {
-		ValidateableSimpleDateFormat validateableDatedSuffixDateFormat = (ValidateableSimpleDateFormat) ctx
-				.getBean("validateableDatedSuffixDateFormat");
-		assertTrue(validateableDatedSuffixDateFormat.isValid());
-	}
+    @Test
+    public void validateableDatedSuffixDateFormat() {
+        ValidateableSimpleDateFormat validateableDatedSuffixDateFormat = (ValidateableSimpleDateFormat) ctx
+                .getBean("validateableDatedSuffixDateFormat");
+        assertTrue(validateableDatedSuffixDateFormat.isValid());
+    }
 
 }

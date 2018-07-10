@@ -8,16 +8,16 @@
 		Light Blue: rgb(128, 192, 255)
 */
 strong em bold {
-	font: Verdana, Verdana, Geneva, sans-serif;
-	font-family: sans-serif;
+    font: Verdana, Verdana, Geneva, sans-serif;
+    font-family: sans-serif;
 }
 
 body {
-	background-color: rgb(32,64,96);
-	color: rgb(64, 192, 255);
+    background-color: rgb(32, 64, 96);
+    color: rgb(64, 192, 255);
 }
 
 h1.site-title {
-	padding-top: 10px;
-	padding-left: 10px;
+    padding-top: 10px;
+    padding-left: 10px;
 }

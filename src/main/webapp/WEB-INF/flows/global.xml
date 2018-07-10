@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<flow xmlns="http://www.springframework.org/schema/webflow"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<flow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xmlns="http://www.springframework.org/schema/webflow"
       xsi:schemaLocation="http://www.springframework.org/schema/webflow
       http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd"
       abstract="true">
@@ -9,7 +9,8 @@
 
     <view-state id="generalException" view="../views/exception/generalException.xhtml">
         <on-entry>
-            <evaluate expression="exceptionManager.extractMessages(flowExecutionException, rootCauseException)" result="viewScope.exception"/>
+            <evaluate expression="exceptionManager.extractMessages(flowExecutionException, rootCauseException)"
+                      result="viewScope.exception"/>
         </on-entry>
     </view-state>
 

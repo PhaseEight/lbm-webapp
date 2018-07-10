@@ -4,9 +4,11 @@ package com.logbookmanager.domain.model.security;
  * protected Logger log;
  * this.log = LoggerFactory.getLogger(getClass());
  */
-import java.io.Serializable;
-import java.util.Set;
 
+import com.logbookmanager.annotations.DeleteType;
+import com.logbookmanager.annotations.DeletionType;
+import com.logbookmanager.domain.model.logbook.LogbookUser;
+import com.logbookmanager.domain.support.*;
 import org.apache.commons.lang3.Validate;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
@@ -14,228 +16,208 @@ import org.hibernate.annotations.NaturalId;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.logbookmanager.annotations.DeleteType;
-import com.logbookmanager.annotations.DeletionType;
-import com.logbookmanager.domain.model.logbook.LogbookUser;
-import com.logbookmanager.domain.support.EntitySupport;
-import com.logbookmanager.domain.support.Password;
-import com.logbookmanager.domain.support.PasswordHint;
-import com.logbookmanager.domain.support.UserDetails;
-import com.logbookmanager.domain.support.UserName;
+import java.io.Serializable;
+import java.util.Set;
 
 /**
  * RegisteredUser class
- * 
+ * <p>
  * This class is used to generate Spring Validation rules as well as the
- * 
+ *
  * <p>
  * <a href="RegisteredUser.java.html"><i>View Source</i></a>
  * </p>
- * 
+ *
  * @author <a href="mailto:peter.neil@logbookmanager.com">Peter Neil</a>
- * 
  */
 /*
  * @Entity
- * 
+ *
  * @Table(name = "RegisteredUser")
  */
 @DeleteType(type = DeletionType.LogicalDelete)
 public class RegisteredUser extends EntitySupport<com.logbookmanager.domain.model.security.RegisteredUser, Long>
-		implements Serializable {
+        implements Serializable {
 
-	private static final long serialVersionUID = 912839123L;
+    private static final long serialVersionUID = 912839123L;
+    protected Set<com.logbookmanager.domain.model.security.Role> roles = null;
+    private Logger log = LoggerFactory.getLogger(RegisteredUser.class);
+    @NaturalId
+    private UserName username;
+    private Password password;
+    private PasswordHint passwordHint;
+    private UserDetails userDetails;
+    private LogbookUser logbookUser = null;
 
-	private Logger log = LoggerFactory.getLogger(RegisteredUser.class);
+    public RegisteredUser() {
+        log.info("empty user constructor");
+    }
 
-	@NaturalId
-	private UserName username;
+    public RegisteredUser(UserName username) {
+        this(username, true, false);
+    }
 
-	private Password password;
+    public RegisteredUser(UserName username, Boolean active, Boolean deleted) {
+        Validate.notNull(username, "error.username.null");
+        setUsername(username);
+        setActive(active);
+        setDeleted(deleted);
+    }
 
-	private PasswordHint passwordHint;
+    /**
+     * Create a new user that will probably be persisted to the database
+     *
+     * @param username
+     * @param password
+     * @param passwordHintQuestion
+     * @param passwordConfirmation
+     * @param userDetails
+     * @param roles
+     */
+    public RegisteredUser(UserName username, Password password, PasswordHint passwordHint, UserDetails userDetails,
+                          Set<Role> roles) {
+        this(username, password, passwordHint, userDetails, roles, true, false);
+    }
 
-	private UserDetails userDetails;
+    public RegisteredUser(UserName username, Password password, PasswordHint passwordHint, UserDetails userDetails,
+                          Set<Role> roles, Boolean active, Boolean deleted) {
+        this(username, password, passwordHint, userDetails, active, deleted);
+        this.setRoles(roles);
+    }
 
-	protected Set<com.logbookmanager.domain.model.security.Role> roles = null;
+    private RegisteredUser(UserName username, Password password, PasswordHint passwordHint, UserDetails userDetails,
+                           Boolean active, Boolean deleted) {
+        Validate.notNull(username, "error.username.null");
+        Validate.notNull(password, "error.password.null");
 
-	private LogbookUser logbookUser = null;
+        this.setUsername(username);
 
-	public RegisteredUser() {
-		log.info("empty user constructor");
-	}
+        this.setPassword(password);
 
-	public RegisteredUser(UserName username) {
-		this(username, true, false);
-	}
+        this.setPasswordHint(passwordHint);
+        this.setUserDetails(userDetails);
 
-	public RegisteredUser(UserName username, Boolean active, Boolean deleted) {
-		Validate.notNull(username, "error.username.null");
-		setUsername(username);
-		setActive(active);
-		setDeleted(deleted);
-	}
+        this.active = (active == null) ? true : active;
+        this.deleted = (deleted == null) ? false : deleted;
 
-	/**
-	 * Create a new user that will probably be persisted to the database
-	 * 
-	 * @param username
-	 * @param password
-	 * @param passwordHintQuestion
-	 * @param passwordConfirmation
-	 * @param userDetails
-	 * @param roles
-	 */
-	public RegisteredUser(UserName username, Password password, PasswordHint passwordHint, UserDetails userDetails,
-			Set<Role> roles) {
-		this(username, password, passwordHint, userDetails, roles, true, false);
-	}
+    }
 
-	public RegisteredUser(UserName username, Password password, PasswordHint passwordHint, UserDetails userDetails,
-			Set<Role> roles, Boolean active, Boolean deleted) {
-		this(username, password, passwordHint, userDetails, active, deleted);
-		this.setRoles(roles);
-	}
+    /**
+     * Returns the username.
+     *
+     * @return String
+     */
+    public UserName getUsername() {
+        return username;
+    }
 
-	private RegisteredUser(UserName username, Password password, PasswordHint passwordHint, UserDetails userDetails,
-			Boolean active, Boolean deleted) {
-		Validate.notNull(username, "error.username.null");
-		Validate.notNull(password, "error.password.null");
+    /**
+     * Sets the username.
+     *
+     * @param username The username to set
+     * @t-spring.validator type="required"
+     */
+    public void setUsername(UserName username) {
+        this.username = username;
+    }
 
-		this.setUsername(username);
+    /**
+     * Returns the password.
+     *
+     * @return String
+     */
+    public Password getPassword() {
+        return password;
+    }
 
-		this.setPassword(password);
+    protected void setPassword(Password password) {
+        this.password = password;
+    }
 
-		this.setPasswordHint(passwordHint);
-		this.setUserDetails(userDetails);
+    /**
+     * Returns the user's roles.
+     *
+     * @return Set
+     */
+    public Set<Role> getRoles() {
+        return roles;
+    }
 
-		this.active = (active == null) ? true : active;
-		this.deleted = (deleted == null) ? false : deleted;
+    /**
+     * Sets the roles.
+     *
+     * @param roles The roles to set
+     */
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
 
-	}
+    /**
+     * Adds a role for the user
+     *
+     * @param role
+     */
+    public void addRole(Role role) {
+        if (log.isDebugEnabled()) {
+            log.debug("adding role to user");
+        }
+        roles.add(role);
+    }
 
-	/**
-	 * Returns the username.
-	 * 
-	 * @return String
-	 * 
-	 */
-	public UserName getUsername() {
-		return username;
-	}
+    public UserDetails getUserDetails() {
+        return userDetails;
+    }
 
-	/**
-	 * Returns the password.
-	 * 
-	 * @return String
-	 * 
-	 * 
-	 */
-	public Password getPassword() {
-		return password;
-	}
+    public void setUserDetails(UserDetails userDetails) {
+        this.userDetails = userDetails;
+    }
 
-	/**
-	 * Returns the user's roles.
-	 * 
-	 * @return Set
-	 * 
-	 */
-	public Set<Role> getRoles() {
-		return roles;
-	}
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (!(o instanceof RegisteredUser))
+            return false;
 
-	/**
-	 * Adds a role for the user
-	 * 
-	 * @param role
-	 */
-	public void addRole(Role role) {
-		if (log.isDebugEnabled()) {
-			log.debug("adding role to user");
-		}
-		roles.add(role);
-	}
+        final RegisteredUser registeredUser = (RegisteredUser) o;
 
-	/**
-	 * Sets the username.
-	 * 
-	 * @param username
-	 *            The username to set
-	 * @t-spring.validator type="required"
-	 */
-	public void setUsername(UserName username) {
-		this.username = username;
-	}
+        if (getUsername() != null ? !getUsername().equals(registeredUser.getUsername())
+                : registeredUser.getUsername() != null) {
+            return false;
+        } else {
 
-	/**
-	 * Sets the roles.
-	 * 
-	 * @param roles
-	 *            The roles to set
-	 */
-	public void setRoles(Set<Role> roles) {
-		this.roles = roles;
-	}
+            return true;
+        }
+    }
 
-	public UserDetails getUserDetails() {
-		return userDetails;
-	}
+    @Override
+    public int hashCode() {
+        return (getUsername() != null ? getUsername().hashCode() : 0);
+    }
 
-	public void setUserDetails(UserDetails userDetails) {
-		this.userDetails = userDetails;
-	}
+    /**
+     */
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE).append("roles", this.roles)
+                .append("username", this.getUsername())
+                .append("userDetails", (getUserDetails() != null) ? this.getUserDetails().toString() : "[...]")
+                .append("active", this.isActive()).toString();
+    }
 
-	public boolean equals(Object o) {
-		if (this == o)
-			return true;
-		if (!(o instanceof RegisteredUser))
-			return false;
+    protected PasswordHint getPasswordHint() {
+        return passwordHint;
+    }
 
-		final RegisteredUser registeredUser = (RegisteredUser) o;
+    protected void setPasswordHint(PasswordHint passwordHint) {
+        this.passwordHint = passwordHint;
+    }
 
-		if (getUsername() != null ? !getUsername().equals(registeredUser.getUsername())
-				: registeredUser.getUsername() != null) {
-			return false;
-		} else {
+    public LogbookUser getLogbookUser() {
+        return logbookUser;
+    }
 
-			return true;
-		}
-	}
-
-	@Override
-	public int hashCode() {
-		return (getUsername() != null ? getUsername().hashCode() : 0);
-	}
-
-	/**
-	 */
-	@Override
-	public String toString() {
-		return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE).append("roles", this.roles)
-				.append("username", this.getUsername())
-				.append("userDetails", (getUserDetails() != null) ? this.getUserDetails().toString() : "[...]")
-				.append("active", this.isActive()).toString();
-	}
-
-	protected void setPassword(Password password) {
-		this.password = password;
-	}
-
-	protected PasswordHint getPasswordHint() {
-		return passwordHint;
-	}
-
-	protected void setPasswordHint(PasswordHint passwordHint) {
-		this.passwordHint = passwordHint;
-	}
-
-	public LogbookUser getLogbookUser() {
-		return logbookUser;
-	}
-
-	public void setLogbookUser(LogbookUser logbookUser) {
-		this.logbookUser = logbookUser;
-	}
+    public void setLogbookUser(LogbookUser logbookUser) {
+        this.logbookUser = logbookUser;
+    }
 
 }

@@ -8,180 +8,180 @@
 		Light Blue: rgb(128, 192, 256)
 */
 body {
-	margin: 0px;
-	padding: 0px;
-	font: Tahoma, Geneva, sans-serif;
-	font-family: sans-serif;
-	font-size: 80%;
+    margin: 0px;
+    padding: 0px;
+    font: Tahoma, Geneva, sans-serif;
+    font-family: sans-serif;
+    font-size: 80%;
 }
 
 #main-content {
-	width: 98%;
-	margin: 0px auto;
-	padding: 2px;
-	border: 1px none #333;
-	background-color: #fff;
-	height: auto;
+    width: 98%;
+    margin: 0px auto;
+    padding: 2px;
+    border: 1px none #333;
+    background-color: #fff;
+    height: auto;
 }
 
 #layout-top {
-	display: inline-block;
-	width: 100%;
-	margin: 0px auto;
-	padding: 0px;
-	border: 0px dashed #333;
-	background-color: #fff;
-	height: auto;
+    display: inline-block;
+    width: 100%;
+    margin: 0px auto;
+    padding: 0px;
+    border: 0px dashed #333;
+    background-color: #fff;
+    height: auto;
 }
 
 #site-menu {
-	width: 100%;
-	margin: 0px auto;
-	padding: 0px;
-	border: 0px;
-	height: auto;
+    width: 100%;
+    margin: 0px auto;
+    padding: 0px;
+    border: 0px;
+    height: auto;
 }
 
 #site-title {
-	display: inline-block;
-	width: 100%;
-	padding-top: 2px;
-	padding-left: 2px;
-	position: relative;
-	overflow: hidden;
-	vertical-align: middle;
-	text-align: left;
-	white-space: pre;
+    display: inline-block;
+    width: 100%;
+    padding-top: 2px;
+    padding-left: 2px;
+    position: relative;
+    overflow: hidden;
+    vertical-align: middle;
+    text-align: left;
+    white-space: pre;
 }
 
 .title {
-	width: auto;
-	display: inline-block;
-	font-size: x-large;
-	overflow: hidden; 
-	white-space: nowrap;
+    width: auto;
+    display: inline-block;
+    font-size: x-large;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 .ui-dashboard .ui-dashboard-column div.ui-state-hover {
-	margin: 15px;
-	width: 240px;
-	height: auto;
+    margin: 15px;
+    width: 240px;
+    height: auto;
 }
 
 .ui-dashboard-column {
-	margin: 5px;
-	width: 250px;
-	padding-top: 2px;
-	padding-bottom: 2px;
+    margin: 5px;
+    width: 250px;
+    padding-top: 2px;
+    padding-bottom: 2px;
 }
 
 .ui-dashboard .ui-dashboard-column .ui-panel {
-	margin: 5px;
-	width: 250px;
-	padding-top: 0px;
-	padding-bottom: 0px;
+    margin: 5px;
+    width: 250px;
+    padding-top: 0px;
+    padding-bottom: 0px;
 }
 
 #login-form-wrapper {
-	display: inline-block;
-	border: 1px none #000;
-	width: 100%;
-	text-align: center;
+    display: inline-block;
+    border: 1px none #000;
+    width: 100%;
+    text-align: center;
 }
 
 #login-form-container {
-	width: 350px;
-	margin: 0;
-	text-align: center;
-	float: right;
-	position: relative;
-	clear: both;
+    width: 350px;
+    margin: 0;
+    text-align: center;
+    float: right;
+    position: relative;
+    clear: both;
 }
 
 #login-form-container form {
-	width: 350px;
-	margin: 0;
-	padding: 0;
-	text-align: left;
+    width: 350px;
+    margin: 0;
+    padding: 0;
+    text-align: left;
 }
 
-#login-form-container label,#login-form-container input {
-	display: inline-block;
-	padding-bottom: 2px;
+#login-form-container label, #login-form-container input {
+    display: inline-block;
+    padding-bottom: 2px;
 }
 
 #login-form-container label {
-	width: 70px; /* or whatever size you want them */
-	text-align: left;
-	padding-bottom: 2px;
+    width: 70px; /* or whatever size you want them */
+    text-align: left;
+    padding-bottom: 2px;
 }
 
-#login-form-container label+#login-form-container input {
-	width: 30px;
-	margin: 0 30% 0 4%;
-	padding-bottom: 2px;
+#login-form-container label + #login-form-container input {
+    width: 30px;
+    margin: 0 30% 0 4%;
+    padding-bottom: 2px;
 }
 
-#login-form-container input+#login-form-container input {
-	display: inline-block;
-	float: right;
+#login-form-container input + #login-form-container input {
+    display: inline-block;
+    float: right;
 }
 
 #login-form-container #login-button {
-	display: inline-block;
-	position: relative;
-	float: right;
-	text-align: right;
+    display: inline-block;
+    position: relative;
+    float: right;
+    text-align: right;
 }
 
 #login-username {
-	display: block;
-	padding: 0px;
-	margin: 2px;
+    display: block;
+    padding: 0px;
+    margin: 2px;
 }
 
 #login-password {
-	display: block;
-	padding: 0px;
-	margin: 2px;
+    display: block;
+    padding: 0px;
+    margin: 2px;
 }
 
 #login-button {
-	display: inline-block;
-	padding: 0px;
-	margin: 2px;
-	position: relative;
-	float: none;
+    display: inline-block;
+    padding: 0px;
+    margin: 2px;
+    position: relative;
+    float: none;
 }
 
 #login-remember-me {
-	display: inline-block;
-	padding: 0px;
-	margin: 2px;
-	position: relative;
-	text-align: left;
+    display: inline-block;
+    padding: 0px;
+    margin: 2px;
+    position: relative;
+    text-align: left;
 }
 
 #capsalert.ui-icon.ui-icon-name {
-	display: inline-block;
-	width: 16px;
-	height: 16px;
-	background-image: url(images/ui-icons_red_256x240.png);
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background-image: url(images/ui-icons_red_256x240.png);
 }
 
 #capsalert-text {
-	color: red;
-	display: inline-block;
-	overflow: hidden;
+    color: red;
+    display: inline-block;
+    overflow: hidden;
 }
 
 .right {
-	float: right;
-	display: inline-block;
-	position: relative;
-	overflow: hidden;
+    float: right;
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
 }
 
 #my-dive-calendar-container {
-	
+
 }

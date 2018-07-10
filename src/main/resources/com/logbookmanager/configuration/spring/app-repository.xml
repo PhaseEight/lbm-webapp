@@ -1,187 +1,186 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:util="http://www.springframework.org/schema/util"
-	xsi:schemaLocation="
-http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	<!-- Exception translation bean post processor -->
-	<!-- <bean class="org.springframework.persistence.annotation.PersistenceExceptionTranslationPostProcessor"/> -->
+    <!-- Exception translation bean post processor -->
+    <!-- <bean class="org.springframework.persistence.annotation.PersistenceExceptionTranslationPostProcessor"/> -->
 
-	<import resource="app-data.xml" />
-	
-	<!-- Hibernate Configuration for the SessionFactory -->
-	<!-- Hibernate SessionFactory -->
-	<bean id="defaultSessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean" abstract="true">
-		<property name="dataSource" ref="dataSource" />
-		<property name="packagesToScan" value="com.logbookmanager.domain.model" />
+    <import resource="app-data.xml"/>
 
-		<property name="mappingResources">
-			<list>
-				<value>com/logbookmanager/persistence/hibernate/Country.hbm.xml</value>
-				<value>com/logbookmanager/persistence/hibernate/Logbook.hbm.xml</value>
-				<value>com/logbookmanager/persistence/hibernate/LogbookPage.hbm.xml</value>
-				<value>com/logbookmanager/persistence/hibernate/Organisation.hbm.xml</value>
-				<value>com/logbookmanager/persistence/hibernate/OrganisationCountry.hbm.xml</value>
-				<value>com/logbookmanager/persistence/hibernate/LogbookUser.hbm.xml</value>
-				<value>com/logbookmanager/persistence/hibernate/LogbookUserLogbook.hbm.xml</value>
-				<value>com/logbookmanager/persistence/hibernate/Certification.hbm.xml</value>
-				<value>com/logbookmanager/persistence/hibernate/Role.hbm.xml</value>
-				<value>com/logbookmanager/persistence/hibernate/RegisteredUser.hbm.xml</value>
-			</list>
-		</property>
-		<property name="hibernateProperties">
-			<props>
+    <!-- Hibernate Configuration for the SessionFactory -->
+    <!-- Hibernate SessionFactory -->
+    <bean id="defaultSessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean" abstract="true">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="packagesToScan" value="com.logbookmanager.domain.model"/>
+
+        <property name="mappingResources">
+            <list>
+                <value>com/logbookmanager/persistence/hibernate/Country.hbm.xml</value>
+                <value>com/logbookmanager/persistence/hibernate/Logbook.hbm.xml</value>
+                <value>com/logbookmanager/persistence/hibernate/LogbookPage.hbm.xml</value>
+                <value>com/logbookmanager/persistence/hibernate/Organisation.hbm.xml</value>
+                <value>com/logbookmanager/persistence/hibernate/OrganisationCountry.hbm.xml</value>
+                <value>com/logbookmanager/persistence/hibernate/LogbookUser.hbm.xml</value>
+                <value>com/logbookmanager/persistence/hibernate/LogbookUserLogbook.hbm.xml</value>
+                <value>com/logbookmanager/persistence/hibernate/Certification.hbm.xml</value>
+                <value>com/logbookmanager/persistence/hibernate/Role.hbm.xml</value>
+                <value>com/logbookmanager/persistence/hibernate/RegisteredUser.hbm.xml</value>
+            </list>
+        </property>
+        <property name="hibernateProperties">
+            <props>
 
 
-				<prop key="hibernate.bytecode.use_reflection_optimizer">true</prop>
+                <prop key="hibernate.bytecode.use_reflection_optimizer">true</prop>
 
-				<prop key="hibernate.transaction.factory_class">org.hibernate.transaction.JDBCTransactionFactory</prop>
+                <prop key="hibernate.transaction.factory_class">org.hibernate.transaction.JDBCTransactionFactory</prop>
 
-				<prop key="hibernate.current_session_context_class">thread</prop>
+                <prop key="hibernate.current_session_context_class">thread</prop>
 
-				<prop key="hibernate.jdbc.batch_size">${hibernate.jdbc.batch_size}</prop>
-<!-- 
-				<prop key="hibernate.connection.provider_class">com.jolbox.bonecp.provider.BoneCPConnectionProvider</prop>
-				
-				<prop key="hibernate.c3p0.min_size">${hibernate.c3p0.acquire_increment}</prop>
-				<prop key="hibernate.c3p0.min_size">${hibernate.c3p0.min_size}</prop>
-				<prop key="hibernate.c3p0.max_size">${hibernate.c3p0.max_size}</prop>
-				<prop key="hibernate.c3p0.timeout">${hibernate.c3p0.timeout}</prop>
-				<prop key="hibernate.c3p0.max_statements">${hibernate.c3p0.max_statements}</prop>
-				<prop key="hibernate.c3p0.idle_test_period">${hibernate.c3p0.idle_test_period}</prop>
+                <prop key="hibernate.jdbc.batch_size">${hibernate.jdbc.batch_size}</prop>
+                <!--
+                                <prop key="hibernate.connection.provider_class">com.jolbox.bonecp.provider.BoneCPConnectionProvider</prop>
 
-				<prop key="bonecp.idleMaxAge">${bonecp.idleMaxAge}</prop>
-				<prop key="bonecp.idleConnectionTestPeriod">${bonecp.idleConnectionTestPeriod}</prop>
-				<prop key="bonecp.partitionCount">${bonecp.partitionCount}</prop>
-				<prop key="bonecp.acquireIncrement">${bonecp.acquireIncrement}</prop>
-				<prop key="bonecp.maxConnectionsPerPartition">${bonecp.maxConnectionsPerPartition}</prop>
-				<prop key="bonecp.minConnectionsPerPartition">${bonecp.minConnectionsPerPartition}</prop>
-				<prop key="bonecp.statementsCacheSize">${bonecp.statementsCacheSize}</prop>
-				<prop key="bonecp.releaseHelperThreads">${bonecp.releaseHelperThreads}</prop>
- -->
+                                <prop key="hibernate.c3p0.min_size">${hibernate.c3p0.acquire_increment}</prop>
+                                <prop key="hibernate.c3p0.min_size">${hibernate.c3p0.min_size}</prop>
+                                <prop key="hibernate.c3p0.max_size">${hibernate.c3p0.max_size}</prop>
+                                <prop key="hibernate.c3p0.timeout">${hibernate.c3p0.timeout}</prop>
+                                <prop key="hibernate.c3p0.max_statements">${hibernate.c3p0.max_statements}</prop>
+                                <prop key="hibernate.c3p0.idle_test_period">${hibernate.c3p0.idle_test_period}</prop>
 
-				<prop key="hibernate.cache.use_second_level_cache">${hibernate.cache.use_second_level_cache}</prop>
-				<prop key="hibernate.cache.use_query_cache">${hibernate.cache.use_query_cache}</prop>
-				<prop key="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</prop>
-				<prop key="hibernate.cache.region_prefix">${hibernate.cache.region_prefix}</prop>
+                                <prop key="bonecp.idleMaxAge">${bonecp.idleMaxAge}</prop>
+                                <prop key="bonecp.idleConnectionTestPeriod">${bonecp.idleConnectionTestPeriod}</prop>
+                                <prop key="bonecp.partitionCount">${bonecp.partitionCount}</prop>
+                                <prop key="bonecp.acquireIncrement">${bonecp.acquireIncrement}</prop>
+                                <prop key="bonecp.maxConnectionsPerPartition">${bonecp.maxConnectionsPerPartition}</prop>
+                                <prop key="bonecp.minConnectionsPerPartition">${bonecp.minConnectionsPerPartition}</prop>
+                                <prop key="bonecp.statementsCacheSize">${bonecp.statementsCacheSize}</prop>
+                                <prop key="bonecp.releaseHelperThreads">${bonecp.releaseHelperThreads}</prop>
+                 -->
 
-				<prop key="hibernate.hbm2ddl.import_files">${hibernate.hbm2ddl.import_files}</prop>
-				<prop key="show_sql">${hibernate.show_sql}</prop>
-				<prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
-				<prop key="hibernate.generate_statistics">${hibernate.generate_statistics}</prop>
-				<prop key="hibernate.use_sql_comments">${hibernate.use_sql_comments}</prop>
-			</props>
-		</property>
-	</bean>
+                <prop key="hibernate.cache.use_second_level_cache">${hibernate.cache.use_second_level_cache}</prop>
+                <prop key="hibernate.cache.use_query_cache">${hibernate.cache.use_query_cache}</prop>
+                <prop key="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</prop>
+                <prop key="hibernate.cache.region_prefix">${hibernate.cache.region_prefix}</prop>
 
-	<bean id="countryRepository" class="com.logbookmanager.data.repository.hibernate.CountryRepositoryImpl">
-		<constructor-arg ref="sessionFactory" />
-	</bean>
-	<bean id="logbookRepository" class="com.logbookmanager.data.repository.LogbookRepositoryImpl">
-		<constructor-arg ref="sessionFactory" />
-	</bean>
-	<bean id="logbookPageRepository" class="com.logbookmanager.data.repository.hibernate.LogbookPageRepositoryImpl">
-		<constructor-arg ref="sessionFactory" />
-	</bean>
-	<bean id="organisationCountrdyRepository" class="com.logbookmanager.data.repository.hibernate.OrganisationCountryRepositoryImpl">
-		<constructor-arg ref="sessionFactory" />
-	</bean>
-	<bean id="organisationRepository" class="com.logbookmanager.data.repository.hibernate.OrganisationRepositoryImpl">
-		<constructor-arg ref="sessionFactory" />
-	</bean>
-	<bean id="LogbookUserRepository" class="com.logbookmanager.data.repository.hibernate.LogbookUserRepositoryImpl">
-		<constructor-arg ref="sessionFactory" />
-	</bean>
-	<bean id="LogbookUserLogbookRepository" class="com.logbookmanager.data.repository.hibernate.LogbookUserLogbookRepositoryImpl">
-		<constructor-arg ref="sessionFactory" />
-	</bean>
-	<bean id="roleRepository" class="com.logbookmanager.data.repository.hibernate.RoleRepositoryImpl">
-		<constructor-arg ref="sessionFactory" />
-	</bean>
-	<bean id="userRepository" class="com.logbookmanager.data.repository.hibernate.UserRepositoryImpl">
-		<constructor-arg ref="sessionFactory" />
-	</bean>
+                <prop key="hibernate.hbm2ddl.import_files">${hibernate.hbm2ddl.import_files}</prop>
+                <prop key="show_sql">${hibernate.show_sql}</prop>
+                <prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
+                <prop key="hibernate.generate_statistics">${hibernate.generate_statistics}</prop>
+                <prop key="hibernate.use_sql_comments">${hibernate.use_sql_comments}</prop>
+            </props>
+        </property>
+    </bean>
 
-	<!-- Add new Repositories here -->
-	<beans profile="default">
-		<bean id="sessionFactory" parent="defaultSessionFactory">
-			<property name="hibernateProperties">
-				<props merge="true">
-					<prop key="hibernate.dialect">org.hibernate.dialect.DerbyTenSevenDialect</prop>
-					<prop key="hibernate.default_schema">APP</prop>
-					<prop key="hibernate.catalogue">APP</prop>
-					<!-- hibernate.hbm2ddl.auto Automatically validate 
-						or export schema DDL to the database when the SessionFactory is created. With create-drop, the database schema will be dropped 
-						when the SessionFactory is closed explicitly. eg. validate | update | create | create-drop -->
-					<prop key="hibernate.hbm2ddl.auto">create</prop>
-				</props>
-			</property>
-		</bean>
-	</beans>
+    <bean id="countryRepository" class="com.logbookmanager.data.repository.hibernate.CountryRepositoryImpl">
+        <constructor-arg ref="sessionFactory"/>
+    </bean>
+    <bean id="logbookRepository" class="com.logbookmanager.data.repository.LogbookRepositoryImpl">
+        <constructor-arg ref="sessionFactory"/>
+    </bean>
+    <bean id="logbookPageRepository" class="com.logbookmanager.data.repository.hibernate.LogbookPageRepositoryImpl">
+        <constructor-arg ref="sessionFactory"/>
+    </bean>
+    <bean id="organisationCountrdyRepository"
+          class="com.logbookmanager.data.repository.hibernate.OrganisationCountryRepositoryImpl">
+        <constructor-arg ref="sessionFactory"/>
+    </bean>
+    <bean id="organisationRepository" class="com.logbookmanager.data.repository.hibernate.OrganisationRepositoryImpl">
+        <constructor-arg ref="sessionFactory"/>
+    </bean>
+    <bean id="LogbookUserRepository" class="com.logbookmanager.data.repository.hibernate.LogbookUserRepositoryImpl">
+        <constructor-arg ref="sessionFactory"/>
+    </bean>
+    <bean id="LogbookUserLogbookRepository"
+          class="com.logbookmanager.data.repository.hibernate.LogbookUserLogbookRepositoryImpl">
+        <constructor-arg ref="sessionFactory"/>
+    </bean>
+    <bean id="roleRepository" class="com.logbookmanager.data.repository.hibernate.RoleRepositoryImpl">
+        <constructor-arg ref="sessionFactory"/>
+    </bean>
+    <bean id="userRepository" class="com.logbookmanager.data.repository.hibernate.UserRepositoryImpl">
+        <constructor-arg ref="sessionFactory"/>
+    </bean>
 
-	<beans profile="cloud">
-		<bean id="sessionFactory" parent="defaultSessionFactory">
-			<property name="hibernateProperties">
-				<props merge="true">
-					<prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
-					<prop key="hibernate.default_schema">public</prop>
-					<prop key="hibernate.catalogue">nvnxwswb</prop>
-					<!-- hibernate.hbm2ddl.auto Automatically validate 
-						or export schema DDL to the database when the SessionFactory is created. With create-drop, the database schema will be dropped 
-						when the SessionFactory is closed explicitly. eg. validate | update | create | create-drop -->
-					<prop key="hibernate.hbm2ddl.auto">update</prop>
-				</props>
-			</property>
-		</bean>
-	</beans>
+    <!-- Add new Repositories here -->
+    <beans profile="default">
+        <bean id="sessionFactory" parent="defaultSessionFactory">
+            <property name="hibernateProperties">
+                <props merge="true">
+                    <prop key="hibernate.dialect">org.hibernate.dialect.DerbyTenSevenDialect</prop>
+                    <prop key="hibernate.default_schema">APP</prop>
+                    <prop key="hibernate.catalogue">APP</prop>
+                    <!-- hibernate.hbm2ddl.auto Automatically validate
+                        or export schema DDL to the database when the SessionFactory is created. With create-drop, the database schema will be dropped
+                        when the SessionFactory is closed explicitly. eg. validate | update | create | create-drop -->
+                    <prop key="hibernate.hbm2ddl.auto">create</prop>
+                </props>
+            </property>
+        </bean>
+    </beans>
 
-	<beans profile="h2">
-		<bean id="sessionFactory" parent="defaultSessionFactory">
-			<property name="hibernateProperties">
-				<props merge="true">
-					<prop key="hibernate.dialect">org.hibernate.dialect.H2Dialect</prop>
-					<prop key="hibernate.default_schema">APP</prop>
-					<prop key="hibernate.catalogue">APP</prop>
-					<!-- hibernate.hbm2ddl.auto Automatically validate 
-						or export schema DDL to the database when the SessionFactory is created. With create-drop, the database schema will be dropped 
-						when the SessionFactory is closed explicitly. eg. validate | update | create | create-drop -->
-					<prop key="hibernate.hbm2ddl.auto">update</prop>
-				</props>
-			</property>
-		</bean>
-	</beans>
+    <beans profile="cloud">
+        <bean id="sessionFactory" parent="defaultSessionFactory">
+            <property name="hibernateProperties">
+                <props merge="true">
+                    <prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
+                    <prop key="hibernate.default_schema">public</prop>
+                    <prop key="hibernate.catalogue">nvnxwswb</prop>
+                    <!-- hibernate.hbm2ddl.auto Automatically validate
+                        or export schema DDL to the database when the SessionFactory is created. With create-drop, the database schema will be dropped
+                        when the SessionFactory is closed explicitly. eg. validate | update | create | create-drop -->
+                    <prop key="hibernate.hbm2ddl.auto">update</prop>
+                </props>
+            </property>
+        </bean>
+    </beans>
 
-	<beans profile="integration-test">
-		<bean id="sessionFactory" parent="defaultSessionFactory">
-			<property name="hibernateProperties">
-				<props merge="true">
-					<prop key="hibernate.dialect">org.hibernate.dialect.DerbyTenSevenDialect</prop>
-					<prop key="hibernate.default_schema">APP</prop>
-					<prop key="hibernate.catalogue">APP</prop>
-					<!-- hibernate.hbm2ddl.auto Automatically validate 
-						or export schema DDL to the database when the SessionFactory is created. With create-drop, the database schema will be dropped 
-						when the SessionFactory is closed explicitly. eg. validate | update | create | create-drop -->
-					<prop key="hibernate.hbm2ddl.auto">create</prop>
-				</props>
-			</property>
-		</bean>
-	</beans>
+    <beans profile="h2">
+        <bean id="sessionFactory" parent="defaultSessionFactory">
+            <property name="hibernateProperties">
+                <props merge="true">
+                    <prop key="hibernate.dialect">org.hibernate.dialect.H2Dialect</prop>
+                    <prop key="hibernate.default_schema">APP</prop>
+                    <prop key="hibernate.catalogue">APP</prop>
+                    <!-- hibernate.hbm2ddl.auto Automatically validate
+                        or export schema DDL to the database when the SessionFactory is created. With create-drop, the database schema will be dropped
+                        when the SessionFactory is closed explicitly. eg. validate | update | create | create-drop -->
+                    <prop key="hibernate.hbm2ddl.auto">update</prop>
+                </props>
+            </property>
+        </bean>
+    </beans>
 
-	<beans profile="mvc-integration-test">
-		<bean id="sessionFactory" parent="defaultSessionFactory">
-			<property name="hibernateProperties">
-				<props merge="true">
-					<prop key="hibernate.dialect">org.hibernate.dialect.DerbyTenSevenDialect</prop>
-					<prop key="hibernate.default_schema">APP</prop>
-					<prop key="hibernate.catalogue">APP</prop>
-					<!-- hibernate.hbm2ddl.auto Automatically validate 
-						or export schema DDL to the database when the SessionFactory is created. With create-drop, the database schema will be dropped 
-						when the SessionFactory is closed explicitly. eg. validate | update | create | create-drop -->
-					<prop key="hibernate.hbm2ddl.auto">create</prop>
-				</props>
-			</property>
-		</bean>
-	</beans>
-	
+    <beans profile="integration-test">
+        <bean id="sessionFactory" parent="defaultSessionFactory">
+            <property name="hibernateProperties">
+                <props merge="true">
+                    <prop key="hibernate.dialect">org.hibernate.dialect.DerbyTenSevenDialect</prop>
+                    <prop key="hibernate.default_schema">APP</prop>
+                    <prop key="hibernate.catalogue">APP</prop>
+                    <!-- hibernate.hbm2ddl.auto Automatically validate
+                        or export schema DDL to the database when the SessionFactory is created. With create-drop, the database schema will be dropped
+                        when the SessionFactory is closed explicitly. eg. validate | update | create | create-drop -->
+                    <prop key="hibernate.hbm2ddl.auto">create</prop>
+                </props>
+            </property>
+        </bean>
+    </beans>
+
+    <beans profile="mvc-integration-test">
+        <bean id="sessionFactory" parent="defaultSessionFactory">
+            <property name="hibernateProperties">
+                <props merge="true">
+                    <prop key="hibernate.dialect">org.hibernate.dialect.DerbyTenSevenDialect</prop>
+                    <prop key="hibernate.default_schema">APP</prop>
+                    <prop key="hibernate.catalogue">APP</prop>
+                    <!-- hibernate.hbm2ddl.auto Automatically validate
+                        or export schema DDL to the database when the SessionFactory is created. With create-drop, the database schema will be dropped
+                        when the SessionFactory is closed explicitly. eg. validate | update | create | create-drop -->
+                    <prop key="hibernate.hbm2ddl.auto">create</prop>
+                </props>
+            </property>
+        </bean>
+    </beans>
+
 </beans>

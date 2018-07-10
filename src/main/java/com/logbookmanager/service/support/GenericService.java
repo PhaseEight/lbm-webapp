@@ -1,104 +1,101 @@
 package com.logbookmanager.service.support;
 
+import com.logbookmanager.data.repository.Repository;
+import com.logbookmanager.domain.support.EntitySupport;
+import com.logbookmanager.util.ResourcesUtil;
+import org.hibernate.criterion.Criterion;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import javax.inject.Inject;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.inject.Inject;
-
-import org.hibernate.criterion.Criterion;
 /**
  * protected Logger log;
  * this.log = LoggerFactory.getLogger(getClass());
  */
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import com.logbookmanager.data.repository.Repository;
-import com.logbookmanager.domain.support.EntitySupport;
-import com.logbookmanager.util.ResourcesUtil;
 
 /**
  * @author <a HREF="mailto:peter.neil@logbookmanager.com">Peter Neil</a>
  */
 abstract public class GenericService<T extends EntitySupport<T, ID>, ID extends Serializable> implements
-		DefaultService<T, ID> {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+        DefaultService<T, ID> {
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
 
-	protected Logger log;
+    protected Logger log;
+    /**
+     */
+    protected Repository<T, ID> repository = null;
+    @Inject
+    private ResourcesUtil resourcesUtil = null;
 
-	@Inject
-	private ResourcesUtil resourcesUtil = null;
+    // required by cglib to create a proxy around the object we are using
+    protected GenericService() {
+        super();
+    }
 
-	/**
-	 */
-	protected Repository<T, ID> repository = null;
+    @Inject
+    public GenericService(Repository<T, ID> repository) {
+        this.log = LoggerFactory.getLogger(getClass());
+        this.repository = repository;
+    }
 
-	// required by cglib to create a proxy around the object we are using
-	protected GenericService() {
-		super();
-	}
+    /**
+     * @see com.logbookmanager.domain.model.service.Manager#getObject(java.lang.Class,
+     * java.io.Serializable)
+     */
+    public T findById(ID id) {
+        return repository.findById(id);
+    }
 
-	@Inject
-	public GenericService(Repository<T, ID> repository) {
-		this.log = LoggerFactory.getLogger(getClass());
-		this.repository = repository;
-	}
+    /**
+     * @see com.logbookmanager.domain.model.service.Manager#getObjects(java.lang.Class)
+     */
+    public List<T> findAll() {
+        return repository.findAll();
+    }
 
-	/**
-	 * @see com.logbookmanager.domain.model.service.Manager#getObject(java.lang.Class,
-	 *      java.io.Serializable)
-	 */
-	public T findById(ID id) {
-		return repository.findById(id);
-	}
+    public List<T> findByExample(T exampleInstance) {
+        return repository.findByExample(exampleInstance);
+    }
 
-	/**
-	 * @see com.logbookmanager.domain.model.service.Manager#getObjects(java.lang.Class)
-	 */
-	public List<T> findAll() {
-		return repository.findAll();
-	}
+    public T findByNaturalId(T exampleInstance) {
+        return repository.findByNaturalId(exampleInstance);
+    }
 
-	public List<T> findByExample(T exampleInstance) {
-		return repository.findByExample(exampleInstance);
-	}
+    public T findByNaturalId(T exampleInstance, Criterion naturalIdRestriction) {
+        return repository.findByNaturalId(exampleInstance, naturalIdRestriction);
+    }
 
-	public T findByNaturalId(T exampleInstance) {
-		return repository.findByNaturalId(exampleInstance);
-	}
+    public T findOneByExample(T exampleInstance) {
+        return repository.findOneByExample(exampleInstance);
+    }
 
-	public T findByNaturalId(T exampleInstance, Criterion naturalIdRestriction) {
-		return repository.findByNaturalId(exampleInstance, naturalIdRestriction);
-	}
+    /**
+     * @see com.logbookmanager.domain.model.service.Manager#saveObject(java.lang.Object)
+     */
+    public T save(T o) {
+        return repository.makePersistent(o);
+    }
 
-	public T findOneByExample(T exampleInstance) {
-		return repository.findOneByExample(exampleInstance);
-	}
+    public T delete(T entity) {
+        return repository.delete(entity);
+    }
 
-	/**
-	 * @see com.logbookmanager.domain.model.service.Manager#saveObject(java.lang.Object)
-	 */
-	public T save(T o) {
-		return repository.makePersistent(o);
-	}
+    public T delete(ID id) {
+        return repository.delete(id);
+    }
 
-	public T delete(T entity) {
-		return repository.delete(entity);
-	}
+    public ResourcesUtil getResourcesUtil() {
+        return resourcesUtil;
+    }
 
-	public T delete(ID id) {
-		return repository.delete(id);
-	}
-
-	public ResourcesUtil getResourcesUtil() {
-		return resourcesUtil;
-	}
-
-	public void setResourcesUtil(ResourcesUtil resourcesUtil) {
-		this.resourcesUtil = resourcesUtil;
-	}
+    public void setResourcesUtil(ResourcesUtil resourcesUtil) {
+        this.resourcesUtil = resourcesUtil;
+    }
 
 }

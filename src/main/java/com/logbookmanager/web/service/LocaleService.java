@@ -8,10 +8,9 @@
  */
 package com.logbookmanager.web.service;
 
-import static java.util.Locale.ENGLISH;
-import static java.util.Locale.FRENCH;
-
-import java.util.Locale;
+import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.LocaleResolver;
 
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.ExternalContext;
@@ -19,57 +18,57 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Locale;
 
-import org.springframework.context.i18n.LocaleContextHolder;
-import org.springframework.stereotype.Service;
-import org.springframework.web.servlet.LocaleResolver;
+import static java.util.Locale.ENGLISH;
+import static java.util.Locale.FRENCH;
 
 @Service
 @SessionScoped
 public class LocaleService {
-	@Inject
-	private LocaleResolver localeResolver;
+    @Inject
+    private LocaleResolver localeResolver;
 
-	public String getLocale() {
-		return LocaleContextHolder.getLocale().toString();
-	}
+    public String getLocale() {
+        return LocaleContextHolder.getLocale().toString();
+    }
 
-	public String getLanguage() {
-		return LocaleContextHolder.getLocale().getLanguage();
-	}
+    public String getLanguage() {
+        return LocaleContextHolder.getLocale().getLanguage();
+    }
 
-	public String switchToFrench() {
-		return switchToLocale(FRENCH);
-	}
+    public String switchToFrench() {
+        return switchToLocale(FRENCH);
+    }
 
-	public String switchToEnglish() {
-		return switchToLocale(ENGLISH);
-	}
+    public String switchToEnglish() {
+        return switchToLocale(ENGLISH);
+    }
 
-	private String switchToLocale(Locale locale) {
-		updateJsfLocale(locale);
-		updateSpringLocale(locale);
-		return redirectToSelf();
-	}
+    private String switchToLocale(Locale locale) {
+        updateJsfLocale(locale);
+        updateSpringLocale(locale);
+        return redirectToSelf();
+    }
 
-	private String redirectToSelf() {
-		String viewId = FacesContext.getCurrentInstance().getViewRoot().getViewId();
-		return viewId + "?faces-redirect=true";
-	}
+    private String redirectToSelf() {
+        String viewId = FacesContext.getCurrentInstance().getViewRoot().getViewId();
+        return viewId + "?faces-redirect=true";
+    }
 
-	private void updateJsfLocale(Locale locale) {
-		FacesContext.getCurrentInstance().getViewRoot().setLocale(locale);
-	}
+    private void updateJsfLocale(Locale locale) {
+        FacesContext.getCurrentInstance().getViewRoot().setLocale(locale);
+    }
 
-	private void updateSpringLocale(Locale locale) {
-		ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
-		localeResolver.setLocale((HttpServletRequest) externalContext.getRequest(),
-				(HttpServletResponse) externalContext.getResponse(), locale);
-		LocaleContextHolder.setLocale(locale);
-	}
+    private void updateSpringLocale(Locale locale) {
+        ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+        localeResolver.setLocale((HttpServletRequest) externalContext.getRequest(),
+                (HttpServletResponse) externalContext.getResponse(), locale);
+        LocaleContextHolder.setLocale(locale);
+    }
 
-	public boolean isFrench() {
-		// check 'fr_FR' or simply 'fr'
-		return FRENCH.equals(LocaleContextHolder.getLocale()) || FRENCH.getLanguage().equals(getLanguage());
-	}
+    public boolean isFrench() {
+        // check 'fr_FR' or simply 'fr'
+        return FRENCH.equals(LocaleContextHolder.getLocale()) || FRENCH.getLanguage().equals(getLanguage());
+    }
 }

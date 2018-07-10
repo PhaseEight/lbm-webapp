@@ -1,77 +1,77 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-	<class name="com.logbookmanager.domain.model.logbook.LogbookUser"
-		table="logbookUser">
+    <class name="com.logbookmanager.domain.model.logbook.LogbookUser"
+           table="logbookUser">
 
-		<id name="id" column="id" type="java.lang.Long" unsaved-value="null">
-			<generator class="increment">
-			</generator>
-		</id>
+        <id name="id" column="id" type="java.lang.Long" unsaved-value="null">
+            <generator class="increment">
+            </generator>
+        </id>
 
-		<version name="version" column="version" type="java.lang.Long" />
+        <version name="version" column="version" type="java.lang.Long"/>
 
-		<property name="active" type="java.lang.Boolean" update="true">
-			<column name="ACTIVE" not-null="true" unique="false" default="true" />
-		</property>
+        <property name="active" type="java.lang.Boolean" update="true">
+            <column name="ACTIVE" not-null="true" unique="false" default="true"/>
+        </property>
 
-		<property name="lastUpdateTimeStamp" type="java.sql.Timestamp">
-			<column name="LAST_UPDATE_DATE" length="10" not-null="true"
-				unique="false" default="CURRENT_TIMESTAMP" />
-		</property>
+        <property name="lastUpdateTimeStamp" type="java.sql.Timestamp">
+            <column name="LAST_UPDATE_DATE" length="10" not-null="true"
+                    unique="false" default="CURRENT_TIMESTAMP"/>
+        </property>
 
-		<set name="certifications" lazy="true" table="LOGBOOKUSER_CERTIFICATION"
-			cascade="save-update,delete" fetch="join">
+        <set name="certifications" lazy="true" table="LOGBOOKUSER_CERTIFICATION"
+             cascade="save-update,delete" fetch="join">
 
-			<key column="LOGBOOKUSER_ID" not-null="false" />
+            <key column="LOGBOOKUSER_ID" not-null="false"/>
 
-			<many-to-many
-				class="com.logbookmanager.domain.model.organisation.Certification"
-				column="CERTIFICATION_ID" foreign-key="FK_CERTIFICATION_CERTIFICATION_ID" />
-		</set>
+            <many-to-many
+                    class="com.logbookmanager.domain.model.organisation.Certification"
+                    column="CERTIFICATION_ID" foreign-key="FK_CERTIFICATION_CERTIFICATION_ID"/>
+        </set>
 
-		<set name="logbookUserLogbooks" inverse="true" batch-size="0"
-			outer-join="true" lazy="true" cascade="all-delete-orphan" table="LOGBOOKUSER_LOGBOOK">
-			<key>
-				<column name="LOGBOOKUSER_ID" not-null="true" unique="true" />
-			</key>
-			<one-to-many
-				class="com.logbookmanager.domain.model.logbook.LogbookUserLogbook" />
-		</set>
+        <set name="logbookUserLogbooks" inverse="true" batch-size="0"
+             outer-join="true" lazy="true" cascade="all-delete-orphan" table="LOGBOOKUSER_LOGBOOK">
+            <key>
+                <column name="LOGBOOKUSER_ID" not-null="true" unique="true"/>
+            </key>
+            <one-to-many
+                    class="com.logbookmanager.domain.model.logbook.LogbookUserLogbook"/>
+        </set>
 
-		<many-to-one name="registeredUser"
-			class="com.logbookmanager.domain.model.security.RegisteredUser" lazy="false"
-			foreign-key="FK_SEC_USER_ID" column="SEC_USER_ID" unique="true"
-			not-null="false" />
+        <many-to-one name="registeredUser"
+                     class="com.logbookmanager.domain.model.security.RegisteredUser" lazy="false"
+                     foreign-key="FK_SEC_USER_ID" column="SEC_USER_ID" unique="true"
+                     not-null="false"/>
 
-		<component name="personalDetails"
-			class="com.logbookmanager.domain.support.PersonalDetails">
+        <component name="personalDetails"
+                   class="com.logbookmanager.domain.support.PersonalDetails">
 
-			<component name="address"
-				class="com.logbookmanager.domain.model.support.Address">
-				<property name="nameOrNumber" type="java.lang.String"
-					update="true" insert="true" column="name_or_number" length="150"
-					not-null="false" />
+            <component name="address"
+                       class="com.logbookmanager.domain.model.support.Address">
+                <property name="nameOrNumber" type="java.lang.String"
+                          update="true" insert="true" column="name_or_number" length="150"
+                          not-null="false"/>
 
-				<property name="street" type="java.lang.String" update="true"
-					insert="true" column="street" length="150" not-null="false" />
+                <property name="street" type="java.lang.String" update="true"
+                          insert="true" column="street" length="150" not-null="false"/>
 
-				<property name="city" type="java.lang.String" update="true"
-					insert="true" column="city" length="150" not-null="false" />
+                <property name="city" type="java.lang.String" update="true"
+                          insert="true" column="city" length="150" not-null="false"/>
 
-				<property name="province" type="java.lang.String" update="true"
-					insert="true" column="province" length="150" not-null="false" />
+                <property name="province" type="java.lang.String" update="true"
+                          insert="true" column="province" length="150" not-null="false"/>
 
-				<many-to-one name="country"
-					class="com.logbookmanager.domain.model.Country" cascade="none"
-					column="country_id" not-null="true" insert="true" update="true"></many-to-one>
+                <many-to-one name="country"
+                             class="com.logbookmanager.domain.model.Country" cascade="none"
+                             column="country_id" not-null="true" insert="true" update="true"></many-to-one>
 
-				<property name="postCode" type="java.lang.String" update="true"
-					insert="true" column="postal_code" length="15" not-null="false" />
-			</component>
+                <property name="postCode" type="java.lang.String" update="true"
+                          insert="true" column="postal_code" length="15" not-null="false"/>
+            </component>
 
-		</component>
+        </component>
 
-	</class>
+    </class>
 </hibernate-mapping>

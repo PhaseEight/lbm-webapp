@@ -4,18 +4,18 @@ import java.io.Serializable;
 
 public interface Entity<T, ID extends Serializable> {
 
-	/**
-	 * @return the business key
-	 */
-	ID getId();
+    /**
+     * @return the business key
+     */
+    ID getId();
 
-	/**
-	 * Sets the primary key
-	 */
-	void setId(ID id);
+    /**
+     * Sets the primary key
+     */
+    void setId(ID id);
 
-	boolean isIdSet();
+    boolean isIdSet();
 
-	public boolean sameIdentityAs(T other);
+    public boolean sameIdentityAs(T other);
 
 }

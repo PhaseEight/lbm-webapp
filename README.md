@@ -98,4 +98,3 @@ Supported Project Stage Values
 	mvn install:install-file -Dfile=D:\development\resources\primefaces-4.0.13\primefaces-4.0.13.jar -DgroupId=org.primefaces -DartifactId=primefaces -Dversion=4.0.13 -Dpackaging=jar -DgeneratePom=true
 
 	mvn install:install-file -Dfile=-Dfile=D:\development\resources\primefaces-4.0.13\primefaces-4.0.13-sources.jar -DgroupId=org.primefaces -DartifactId=primefaces -Dversion=4.0.13 -Dpackaging=source
-

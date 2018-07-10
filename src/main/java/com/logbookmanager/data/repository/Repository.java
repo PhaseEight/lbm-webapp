@@ -1,50 +1,44 @@
 package com.logbookmanager.data.repository;
 
+import com.logbookmanager.support.BaseObject;
+import org.hibernate.criterion.Criterion;
+
 import java.io.Serializable;
 import java.util.List;
 
-import org.hibernate.criterion.Criterion;
-
-import com.logbookmanager.support.BaseObject;
-
 /**
  * Each Repository represents 1 Data object
- * 
- * The data objects will be used by Domain Objects and a Data Repository will be used by a Domain Repository. 
- *
+ * <p>
+ * The data objects will be used by Domain Objects and a Data Repository will be used by a Domain Repository.
  */
- public interface Repository<T extends BaseObject<T> & Serializable, ID extends Serializable> {
- 
+public interface Repository<T extends BaseObject<T> & Serializable, ID extends Serializable> {
 
-	T findById(ID id);
 
-	List<T> findAll();
+    T findById(ID id);
 
-	List<T> findByExample(T exampleInstance);
+    List<T> findAll();
 
-	T findOneByExample(T exampleInstance);
+    List<T> findByExample(T exampleInstance);
 
-	T findByNaturalId(T exampleInstance);
+    T findOneByExample(T exampleInstance);
 
-	T findByNaturalId(T exampleInstance, Criterion naturalIdRestriction);
+    T findByNaturalId(T exampleInstance);
 
-	T makePersistent(T entity);
+    T findByNaturalId(T exampleInstance, Criterion naturalIdRestriction);
 
-	/**
-	 * 
-	 * @param entity
-	 *            The entity in the session which should be removed from the
-	 *            datastore
-	 * @return the transient version of the entity
-	 */
-	T delete(T entity);
+    T makePersistent(T entity);
 
-	/**
-	 * 
-	 * @param id
-	 *            The id of the entity to be removed
-	 * @return the transient version of the entity
-	 */
-	T delete(ID id);
+    /**
+     * @param entity The entity in the session which should be removed from the
+     *               datastore
+     * @return the transient version of the entity
+     */
+    T delete(T entity);
+
+    /**
+     * @param id The id of the entity to be removed
+     * @return the transient version of the entity
+     */
+    T delete(ID id);
 
 }

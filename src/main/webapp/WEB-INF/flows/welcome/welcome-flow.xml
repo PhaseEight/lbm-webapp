@@ -1,33 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<flow xmlns="http://www.springframework.org/schema/webflow"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/webflow
+<flow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xmlns="http://www.springframework.org/schema/webflow"
+      xsi:schemaLocation="http://www.springframework.org/schema/webflow
         http://www.springframework.org/schema/webflow/spring-webflow.xsd"
-	start-state="welcome">
+      start-state="welcome">
 
-	<var name="loginCredentials" class="com.logbookmanager.web.authentication.LoginCredentials" />
+    <var name="loginCredentials" class="com.logbookmanager.web.authentication.LoginCredentials"/>
 
-	<view-state id="welcome" view="welcome.xhtml" model="loginCredentials"
-		popup="false" redirect="false">
-		<transition on="loginCredentialsEntered" to="performLoginAction" />
-	</view-state>
+    <view-state id="welcome" view="welcome.xhtml" model="loginCredentials"
+                popup="false" redirect="false">
+        <transition on="loginCredentialsEntered" to="performLoginAction"/>
+    </view-state>
 
-	<action-state id="performLoginAction">
-		<evaluate expression="loginService.performLogin(loginCredentials)" />
+    <action-state id="performLoginAction">
+        <evaluate expression="loginService.performLogin(loginCredentials)"/>
 
-		<transition to="displayLoginSuccessView" />
+        <transition to="displayLoginSuccessView"/>
 
-		<transition
-			on-exception="com.logbookmanager.web.authentication.IncorrectLoginCredentialsException"
-			to="displayLoginErrorView" />
-	</action-state>
-
-
-	<view-state id="displayLoginSuccessView" view="/WEB-INF/views/display_login_success.jsp" />
-
-	<view-state id="displayLoginErrorView" view="/WEB-INF/views/display_login_error.jsp" />
+        <transition
+                on-exception="com.logbookmanager.web.authentication.IncorrectLoginCredentialsException"
+                to="displayLoginErrorView"/>
+    </action-state>
 
 
-	<end-state id="main" />
+    <view-state id="displayLoginSuccessView" view="/WEB-INF/views/display_login_success.jsp"/>
+
+    <view-state id="displayLoginErrorView" view="/WEB-INF/views/display_login_error.jsp"/>
+
+
+    <end-state id="main"/>
 
 </flow>
