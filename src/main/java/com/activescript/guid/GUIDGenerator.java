@@ -124,27 +124,27 @@ public class GUIDGenerator {
 	public GUIDGenerator() throws GUIDException {
 
 		try {
-			StringBuilder stringbuilder = new StringBuilder();
-			StringBuilder stringbuilder1 = new StringBuilder();
+			StringBuilder guidStringBuilder1 = new StringBuilder();
+			StringBuilder guidStringBuilder2 = new StringBuilder();
 			this.seeder = new SecureRandom();
 			InetAddress inetaddress = InetAddress.getLocalHost();
 			byte abyte0[] = inetaddress.getAddress();
 			String s = hexFormat(getInt(abyte0), 8);
 			String s1 = hexFormat(hashCode(), 8);
-			stringbuilder.append("-");
-			stringbuilder1.append(s.substring(0, 4));
-			stringbuilder.append(s.substring(0, 4));
-			stringbuilder.append("-");
-			stringbuilder1.append(s.substring(4));
-			stringbuilder.append(s.substring(4));
-			stringbuilder.append("-");
-			stringbuilder1.append(s1.substring(0, 4));
-			stringbuilder.append(s1.substring(0, 4));
-			stringbuilder.append("-");
-			stringbuilder1.append(s1.substring(4));
-			stringbuilder.append(s1.substring(4));
-			this.midValue = stringbuilder.toString();
-			this.midValueUnformated = stringbuilder1.toString();
+			guidStringBuilder1.append("-");
+			guidStringBuilder2.append(s.substring(0, 4));
+			guidStringBuilder1.append(s.substring(0, 4));
+			guidStringBuilder1.append("-");
+			guidStringBuilder2.append(s.substring(4));
+			guidStringBuilder1.append(s.substring(4));
+			guidStringBuilder1.append("-");
+			guidStringBuilder2.append(s1.substring(0, 4));
+			guidStringBuilder1.append(s1.substring(0, 4));
+			guidStringBuilder1.append("-");
+			guidStringBuilder2.append(s1.substring(4));
+			guidStringBuilder1.append(s1.substring(4));
+			this.midValue = guidStringBuilder1.toString();
+			this.midValueUnformated = guidStringBuilder2.toString();
 			this.seeder.nextInt();
 		} catch (Exception exception) {
 			throw new GUIDException("error - failure to instantiate GUIDGenerator" + exception);
@@ -269,13 +269,13 @@ public class GUIDGenerator {
 	 *         and a number of pad zeros at the front of the string.
 	 */
 	private String padHex(String s, int i) {
-		StringBuilder stringbuilder = new StringBuilder();
+		StringBuilder guidStringBuilder1 = new StringBuilder();
 		if (s.length() < i) {
 			for (int j = 0; j < i - s.length(); j++)
-				stringbuilder.append("0");
+				guidStringBuilder1.append("0");
 
 		}
-		return stringbuilder.toString();
+		return guidStringBuilder1.toString();
 	}
 
 	/**
